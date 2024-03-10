@@ -71,7 +71,6 @@
             </li>
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-               <!-- <img src="{{asset('admin/images/faces/face28.jpg')}}" alt="profile"/>-->
                @if(!empty(Auth::guard('admin')->user()->image))
                <img src="{{ url('admin/images/photos/' . Auth::guard('admin')->user()->image) }}">
                <input type="hidden" name="current_vendor_image" value="{{ Auth::guard('admin')->user()->image }}">

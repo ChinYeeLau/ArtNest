@@ -96,6 +96,18 @@
                            </select>
                             </div>
                             <br>
+                            <span>Sold by:</span>
+                            <div >
+                                @if(!empty(Auth::guard('admin')->user()->image))
+                                <img style="border-radius: 50%; width:50px; height:50px;" src="{{ url('admin/images/photos/' . Auth::guard('admin')->user()->image) }}" alt="Admin/Vendor Image">
+                            @else
+                                <img style="border-radius: 50%; width:50px; height:50px;" src="{{ url('admin/images/photos/no-image.png') }}" alt="No Image">
+                            @endif
+                                @if(isset($productDetails['vendor']))
+                                <span>{{$productDetails['vendor']['vendorbusinessdetails']['shop_name']}}</span>
+                                @endif
+                            </div>
+                            <br>
                               <!--  <div class="d-flex mb-4">
                                     <i class="fa fa-star text-secondary"></i>
                                     <i class="fa fa-star text-secondary"></i>

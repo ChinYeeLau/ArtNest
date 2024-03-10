@@ -125,9 +125,9 @@ class ProductsController extends Controller
     }
     
     public function detail($id){
-      $productDetails=Product::with(['category','attributes'=>function($query){$query->where('stock','>',0)->where('status',1);},'images'])->find ($id)->toArray();
+      $productDetails=Product::with(['section','category','vendor','attributes'=>function($query){$query->where('stock','>',0)->where('status',1);},'images'])->find ($id)->toArray();
       $categoryDetails=Category::categoryDetails($productDetails['category']['url']);
-      // dd( $categoryDetails);
+      //dd( $productDetails);
       $totalStock=ProductsAttribute::where('product_id',$id)->sum('stock'); 
       return view('front.products.detail')->with(compact('productDetails','categoryDetails','totalStock'));
     }
