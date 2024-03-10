@@ -45,7 +45,7 @@
                                     @foreach($admins as $admin)
                                     <tr>
                                         <td>
-                                            {{$admin['id']}}
+                                            {{$admin['id']}} 
                                         </td>
                                         <td>
                                             {{$admin['name']}}
