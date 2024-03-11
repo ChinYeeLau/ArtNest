@@ -161,7 +161,7 @@ class AdminController extends Controller
                
                 Admin::where('id', Auth::guard('admin')->user()->id)->update(['name' => $data['vendor_name'], 'mobile' => $data['vendor_mobile'],'image'=>$imageName]);
                 //update in vendors table
-                Vendor::where('id',Auth::guard('admin')->user()->vendor_id)->update(['name' => $data['vendor_name'], 'state' => $data['vendor_state'],'mobile' => $data['vendor_mobile'],'current_status'=>$data['vendor_current_status']]);
+                Vendor::where('id',Auth::guard('admin')->user()->vendor_id)->update(['name' => $data['vendor_name'], 'state' => $data['vendor_state'],'mobile' => $data['vendor_mobile'],'current_status'=>$data['vendor_current_status'],'portfolio'=>$data['vendor_portfolio']]);
                 return redirect()->back()->with('success_message','Vendor details updated successfully!');
             
                 

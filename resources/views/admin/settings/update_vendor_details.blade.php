@@ -72,19 +72,23 @@
                       </div>
                       <div class="form-group">
                         <label for="vendor_name">Name</label>
-                        <input type="text" class="form-control" id="vendor_name" placeholder="Enter Name" name="vendor_name"value="{{$vendorDetails['name']}}" required="">
+                        <input type="text" class="form-control" id="vendor_name" placeholder="Enter Name" name="vendor_name" @if(isset($vendorDetails['name']))value="{{$vendorDetails['name']}}" @endif required="">
                       </div>
                       <div class="form-group">
                           <label for="vendor_state">State</label>
-                          <input type="text" class="form-control" id="vendor_state" placeholder="Enter State" name="vendor_state"value="{{$vendorDetails['state']}}" required="" >
+                          <input type="text" class="form-control" id="vendor_state" placeholder="Enter State" name="vendor_state"  @if(isset($vendorDetails['state']))value="{{$vendorDetails['state']}}" @endif required="" >
                         </div>
                       <div class="form-group">
                         <label for="vendor_mobile">Mobile</label>
-                        <input type="text" class="form-control" id="vendor_mobile" placeholder="Enter 10 Digit Mobile Number" name="vendor_mobile"value="{{$vendorDetails['mobile']}}" required="" maxlength="10"minlength="10">
+                        <input type="text" class="form-control" id="vendor_mobile" placeholder="Enter 10 Digit Mobile Number" name="vendor_mobile"  @if(isset($vendorDetails['mobile']))value="{{$vendorDetails['mobile']}}" @endif  required="" maxlength="10"minlength="10">
                       </div>
                       <div class="form-group">
                         <label for="vendor_curent_status">Current Status</label>
-                        <input type="text" class="form-control" id="vendor_current_status" placeholder="Are you looking for job or a freelancer?" name="vendor_current_status"value="{{$vendorDetails['current_status']}}" required="" >
+                        <input type="text" class="form-control" id="vendor_current_status" placeholder="Are you looking for job or a freelancer?" name="vendor_current_status"  @if(isset($vendorDetails['current_status']))value="{{$vendorDetails['current_status']}}" @endif required="" >
+                      </div>
+                      <div class="form-group">
+                        <label for="vendor_portfolio">Portfolio</label>
+                        <input type="text" class="form-control" id="vendor_portfolio" placeholder="portfolio link" name="vendor_portfolio"  @if(isset($vendorDetails['portfolio']))value="{{$vendorDetails['portfolio']}}" @endif >
                       </div>
                      
                       <div class="form-group">

@@ -123,7 +123,10 @@ class ProductsController extends Controller
       }
         
     }
-    
+    public function vendorListing($vendorid){
+      //get vendor details
+      $getVendor Details
+    }
     public function detail($id){
       $productDetails=Product::with(['section','category','vendor','attributes'=>function($query){$query->where('stock','>',0)->where('status',1);},'images'])->find ($id)->toArray();
       $categoryDetails=Category::categoryDetails($productDetails['category']['url']);
