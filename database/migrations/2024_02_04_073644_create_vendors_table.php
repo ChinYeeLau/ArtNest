@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('mobile');
             $table->string('email')->unique();
             $table->string('currentstatus');
+            $table->string('portfolio')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
         });

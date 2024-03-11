@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Banner;
+use App\Models\Vendor;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -10,7 +12,6 @@ use App\Models\ProductsAttribute;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;
-use App\Models\Banner;
 
 class ProductsController extends Controller
 {
@@ -124,9 +125,17 @@ class ProductsController extends Controller
         
     }
     public function vendorListing($vendorid){
-      //get vendor details
-      $getVendor Details
-    }
+      //get vendor shop detail
+     $getVendorShop =Vendor::getVendorShop ($vendorid);
+      // Get vendor details
+    $vendor = Vendor::find($vendorid);
+     //get vendor product
+     $vendorProducts=Product::where('vendor_id',$vendorid)->where('status',1);
+     $vendorProducts=$vendorProducts->paginate(30);
+
+    //dd($vendorProducts);
+     return view('front.products.vendor_listing')->with(compact('getVendorShop','vendorProducts','vendor'));
+   }
     public function detail($id){
       $productDetails=Product::with(['section','category','vendor','attributes'=>function($query){$query->where('stock','>',0)->where('status',1);},'images'])->find ($id)->toArray();
       $categoryDetails=Category::categoryDetails($productDetails['category']['url']);

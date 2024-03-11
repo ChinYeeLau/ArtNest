@@ -97,7 +97,8 @@
                             </div>
                             <br>
                             <span>Sold by:</span>
-                            <div >
+                            <div  >
+                                <a href="/products/{{$productDetails['vendor']['id']}}">
                                 @if(!empty(Auth::guard('admin')->user()->image))
                                 <img style="border-radius: 50%; width:50px; height:50px;" src="{{ url('admin/images/photos/' . Auth::guard('admin')->user()->image) }}" alt="Admin/Vendor Image">
                             @else
@@ -106,6 +107,7 @@
                                 @if(isset($productDetails['vendor']))
                                 <span>{{$productDetails['vendor']['vendorbusinessdetails']['shop_name']}}</span>
                                 @endif
+                            </a>
                             </div>
                             <br>
                               <!--  <div class="d-flex mb-4">
