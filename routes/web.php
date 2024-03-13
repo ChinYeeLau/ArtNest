@@ -108,5 +108,8 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
  Route::post( 'vendor/register', 'VendorController@vendorRegister');
  //confirm vendor acc
  Route::get('vendor/confirm/{code}', 'VendorController@confirmVendor')->name('vendor.confirm');
+//add to cart 
+Route::post('cart/add','ProductsController@cartAdd');
+
 });
 

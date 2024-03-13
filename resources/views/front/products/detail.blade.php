@@ -39,6 +39,24 @@
                                 </div>
                           
                             <div class="col-lg-6 ">
+                            <div>
+                                @if(Session::has('error_message'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                  <strong>Error</strong> {{Session::get('error_message')}}
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                @endif
+                                @if(Session::has('success_message'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                  <strong>Success</strong> {{Session::get('success_message')}}
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                @endif
+                            </div>
                                 <h4 class="fw-bold mb-3">{{$productDetails['product_name']}}</h4>
                               <div aria-label="breadcrumb">
                                     <ol class="breadcrumb">
@@ -86,9 +104,11 @@
                                 @endif
                                </div>
                                <br>
+                               <form action="{{url('cart/add')}}" method="Post">@csrf
+                                <input type="hidden" name="product_id" value={{$productDetails['id']}}>
                                <div>
                                 <span>Available Sizes:</span>
-                              <select name="size" id="getPrice" product-id="{{ $productDetails['id'] }}">
+                              <select name="size" id="getPrice" product-id="{{ $productDetails['id'] }}" required="">
                      <option value="">Select Size</option>
                          @foreach($productDetails['attributes'] as $attribute)
                       <option value="{{ $attribute['size'] }}">{{ $attribute['size'] }}</option>
@@ -123,15 +143,16 @@
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                                    <input type="text" name="quantity" class="form-control form-control-sm text-center border-0" value="1">
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-plus rounded-circle bg-light border">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
                                 </div>
-                                <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                <button class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary" type="submit"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
+                        </form>
                             <div class="col-lg-12">
                              <h1>Reviews</h1>
                                

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Front;
 
+use DB;
+use Session;
+use App\Models\Cart;
 use App\Models\Banner;
 use App\Models\Vendor;
 use App\Models\Product;
@@ -150,5 +153,31 @@ class ProductsController extends Controller
          $getDiscountAttributePrice=Product::getDiscountAttributePrice($data['product_id'],$data['size']);
        return  $getDiscountAttributePrice;
       }
+    }
+    public function cartAdd(Request $request){
+      if($request->isMethod('post')){
+         $data=$request->all();
+         //echo"<pre>";print_r($data);die;
+         //check product stock is available or not
+        $getProductStock=ProductsAttribute::getProductStock($data['product_id'],$data['size']);
+        if($getProductStock<$data['quantity']){
+         return redirect()->back()->with('error_message','Require Quantity is not available');
+        }
+       // generate session id if not exists
+       $session_id=Session::get('session_id');
+       if(empty($session_id)){
+         $session_id=Session::getId();
+         Session::put('session_id',$session_id);
+       }
+       //save product in cart table
+       $item=new Cart;
+       $item->session_id=$session_id;
+       $item->product_id=$data['product_id'];
+       $item->size=$data['size'];
+       $item->quantity=$data['quantity'];
+       $item->save();
+       return redirect()->back()->with('success_message','Product has been added in cart');
+      }
+
     }
 }
