@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use Hash;
+use Session;
 use App\Models\Admin;
 use App\Models\Vendor;
-use App\Models\VendorsBusinessDetail;
-use App\Models\VendorsBankDetail;
 use Illuminate\Http\Request;
+use App\Models\VendorsBankDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Models\VendorsBusinessDetail;
 use Intervention\Image\Facades\Image;
-use Session;
 
 class AdminController extends Controller
 
@@ -335,16 +336,17 @@ class AdminController extends Controller
     }
     public function updateAdminStatus(Request $request){
         if($request->ajax()){
-            $data=$request->all();
-            /*echo"<pre>";print_r($data);die;*/
-            if($data ['status']=="Active"){
-                $status=0;
+            $data = $request->all();
+            /*echo "<pre>"; print_r($data); die;*/
+            if($data['status']=="Active"){
+                $status = 0;
             }else{
-                $status=1;
+                $status = 1;
             }
             Admin::where('id',$data['admin_id'])->update(['status'=>$status]);
-            $adminDetails=Admin::where('id',$data['admin_id'])->first()->toArray();
-           if($adminDetails['type']=="vendor"&& $status==1) {
+            $adminDetails = Admin::where('id',$data['admin_id'])->first()->toArray();
+            if($adminDetails['type']=="vendor" && $status==1){
+          Vendor::where('id',$adminDetails['vendor_id'])->update(['status'=>$status]);
              //send Approval email
         $email=$adminDetails['email'];
         $messageData=[
@@ -352,6 +354,7 @@ class AdminController extends Controller
        'name'=>$adminDetails['name'],
        'mobile'=>$adminDetails['mobile'],
       ];
+      
        Mail::send('emails.vendor_approved',$messageData,function($message)use($email){
        $message->to($email)->subject('Vendor Account is Approved');
        });
@@ -359,6 +362,7 @@ class AdminController extends Controller
             
             
             return response()->json(['status'=>$status,'admin_id'=>$data['admin_id']]);
+            
         }
 
     }

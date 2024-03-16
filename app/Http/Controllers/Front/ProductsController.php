@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use DB;
+use Auth;
 use Session;
 use App\Models\Cart;
 use App\Models\Banner;
@@ -169,9 +170,22 @@ class ProductsController extends Controller
          $session_id=Session::getId();
          Session::put('session_id',$session_id);
        }
+       //check products if already exist in cart
+       if (Auth::check()){
+         //user is logged in 
+          $user_id=Auth::user()->id;
+          $countProducts=Cart::where(['product_id'=>$data['product_id'],'size'=>$data['size'],'user_id'=>$user_id])->count();
+       }else{
+         //user is not loged in 
+         $user_id=0;
+         $countProducts=Cart::where(['product_id'=>$data['product_id'],'size'=>$data['size'],'session_id'=>$session_id])->count();
+
+       }
+       
        //save product in cart table
        $item=new Cart;
        $item->session_id=$session_id;
+       $item->user_id=$user_id;
        $item->product_id=$data['product_id'];
        $item->size=$data['size'];
        $item->quantity=$data['quantity'];
@@ -179,5 +193,9 @@ class ProductsController extends Controller
        return redirect()->back()->with('success_message','Product has been added in cart');
       }
 
+    }
+
+    public function cart(){
+      return view ('front.products.cart');
     }
 }

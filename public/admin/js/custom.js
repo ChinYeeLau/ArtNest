@@ -57,8 +57,8 @@ $(document).ready(function(){
         error: function(){
             alert("Error");
         }
+    })
     });
-});
 //update Banner Status
 $(document).on("click",".updateBannerStatus",function(){
     var status = $(this).children("i").attr("status");

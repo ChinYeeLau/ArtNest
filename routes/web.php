@@ -110,6 +110,7 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
  Route::get('vendor/confirm/{code}', 'VendorController@confirmVendor')->name('vendor.confirm');
 //add to cart 
 Route::post('cart/add','ProductsController@cartAdd');
-
+//cart route
+Route::get('/cart','ProductsController@cart');
 });
 
