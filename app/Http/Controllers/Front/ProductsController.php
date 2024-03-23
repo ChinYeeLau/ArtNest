@@ -15,6 +15,7 @@ use App\Models\ProductsFilter;
 use App\Models\ProductsAttribute;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 
 class ProductsController extends Controller
@@ -190,12 +191,28 @@ class ProductsController extends Controller
        $item->size=$data['size'];
        $item->quantity=$data['quantity'];
        $item->save();
-       return redirect()->back()->with('success_message','Product has been added in cart');
+       return redirect()->back()->with('success_message','Product has been added in cart! <a href="/cart">View Cart</a>');
       }
 
     }
 
     public function cart(){
-      return view ('front.products.cart');
+      $getCartItems=Cart::getCartItems();
+      //dd($getCartItems);
+      return view ('front.products.cart')->with(compact('getCartItems'));
+    }
+    public function cartUpdate(Request $request){
+      if($request->ajax()){
+         $data=$request->all();
+        // echo"<pre>";print_r($data);die;
+
+        Cart::where('id',$data['cartid'])->update(['quantity'=>$data['qty']]);
+        $getCartItems =Cart::getCartItems();
+        return response()->json([
+         'status'=>true,
+         'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+      ]);
+      }
+
     }
 }

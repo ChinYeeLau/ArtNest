@@ -60,10 +60,10 @@
             if (button.hasClass('btn-plus')) {
                 var newVal = parseFloat(oldValue) + 1;
             } else {
-                if (oldValue > 0) {
+                if (oldValue >1) {
                     var newVal = parseFloat(oldValue) - 1;
                 } else {
-                    newVal = 0;
+                    newVal = 1;
                 }
             }
             button.parent().parent().find('input').val(newVal);
@@ -115,6 +115,44 @@ $(document).ready(function() {
                 alert("Error");
             }
         });
+    });
+    //update cart items qty
+    $(document).on('click','.updateCartItem',function(){
+     if($(this).hasClass('btn-plus')){
+        //get qty
+        var quantity=$(this).data('qty');
+        //increase qty by 1
+         new_qty=parseInt(quantity)+ 1;
+        // alert(new_qty);
+     }
+     if($(this).hasClass('btn-minus')){
+        //get qty
+        var quantity=$(this).data('qty');
+        //check qty is atleast 1
+        if(quantity<=1){
+            alert("Item quantity must be 1 or greater!");
+            return false;
+        }
+        //decrease qty by 1
+         new_qty=parseInt(quantity)- 1;
+        // alert(new_qty);
+     }
+     var cartid=$(this).data('cartid');
+    $.ajax ({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data:{cartid:cartid,qty:new_qty},
+        url:'/cart/update',
+        type:'post',
+        success:function(resp){
+            $("#appendCartItems").html(resp.view);
+
+        },error:function(){
+            alert("Error");
+        }
+
+    })
     });
 });
 function get_filter(class_name){

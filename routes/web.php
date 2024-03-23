@@ -111,6 +111,8 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
 //add to cart 
 Route::post('cart/add','ProductsController@cartAdd');
 //cart route
-Route::get('/cart','ProductsController@cart');
+Route::get('cart','ProductsController@cart');
+//update cart item qty
+Route::post('cart/update','ProductsController@cartUpdate');
 });
 
