@@ -114,5 +114,8 @@ Route::post('cart/add','ProductsController@cartAdd');
 Route::get('cart','ProductsController@cart');
 //update cart item qty
 Route::post('cart/update','ProductsController@cartUpdate');
+//delete cart item
+Route::post('cart/delete','ProductsController@cartDelete');
+
 });
 

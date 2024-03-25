@@ -17,11 +17,14 @@
             ?>
             <tr>
                 <th scope="row">
+                    <a href="{{url('product/'.$item['product_id'])}}">
                     <div class="d-flex align-items-center">
                         <img src="{{asset('front/images/product_images/small/'.$item['product']['product_image'])}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="Product">
                     <h6>{{$item['product']['product_name']}}({{$item['product']['product_code']}})-{{$item['size']}}      
                     </h6>
+                
                     </div>
+                </a>
                 </th>
               
                
@@ -52,15 +55,15 @@
                     <p class="mb-0 mt-4 text-dark fs-5 fw-bold mb-0 product-price"> RM{{ $getDiscountAttributePrice['final_price']*$item['quantity'] }}</p>
                 </td>
                 <td>
-                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
+                    <button class="btn btn-md rounded-circle bg-light border mt-4  deleteCartItem" data-cartid="{{$item['id']}}">
                         <i class="fa fa-times text-danger"></i>
                     </button>
                 </td>
-            
+                
             </tr>
+           
             @php $total_price=$total_price + ($getDiscountAttributePrice['final_price']*$item['quantity']) @endphp
             @endforeach
-                
                
         </tbody>
     </table>

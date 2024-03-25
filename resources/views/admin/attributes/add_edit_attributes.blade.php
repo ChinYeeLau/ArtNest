@@ -12,7 +12,7 @@
                     
         </div>
         <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
+            <div class="col-md-8 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   
@@ -115,8 +115,6 @@
                            </tr>
                       </thead>
                       <tbody>
-                        
-                       
                           @foreach($product['attributes'] as $attribute)
                             <input style="display:none;" type="text" name="attributeId[]" value="{{$attribute['id'] }}">
                               <tr>
@@ -144,20 +142,21 @@
                                   <a class="updateAttributeStatus" id="attribute-{{$attribute['id']}}" attribute_id="{{$attribute['id']}}" href="javascript:void(0)"><i style="font-size:25px" class="mdi mdi-bookmark-outline"status="Inactive"></i></a>
                                   @endif
                               </td>
-                          </tr>
+                            </tr>
                           
                         @endforeach
                     
                       </tbody>
+                      
                   </table>
                   <button type="submit" class="btn btn-primary">Update Attributes</button>
                     </form>
                 </div>
                  
-                   
+              </div>
                 
               </div>
-            </div>
+           
           
              
           </div>

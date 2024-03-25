@@ -205,6 +205,31 @@ class ProductsController extends Controller
       if($request->ajax()){
          $data=$request->all();
         // echo"<pre>";print_r($data);die;
+        //Get Cart Details
+        $cartDetails=Cart::find($data['cartid']);
+        //Get Available Product Stock
+        $availableStock=ProductsAttribute::select('stock')->where(['product_id'=>$cartDetails['product_id'],'size'=>$cartDetails['size']])->first()->toArray();
+       // echo"<pre>";print_r($availableStock);die;
+       //check if desire stock from user is avaiable
+        if($data['qty']>$availableStock['stock']){
+         $getCartItems =Cart::getCartItems();
+         return response()->json([
+          'status'=>false,
+          'message'=>'Product Stock is not available',
+          'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+       ]);
+        }
+        //check if size is available
+        $availableSize=ProductsAttribute::where(['product_id'=>$cartDetails['product_id'],'size'=>$cartDetails['size'],'status'=>1])->count();
+        if ($availableSize == 0) {
+         $getCartItems = Cart::getCartItems();
+         return response()->json([
+             'status' => false,
+             'message' => 'Product Size is not available.Please remove and choose other product.',
+             'view' => (string)View::make('front.products.cart_items')->with(compact('getCartItems'))
+         ]);
+     }
+        //update the qty
 
         Cart::where('id',$data['cartid'])->update(['quantity'=>$data['qty']]);
         $getCartItems =Cart::getCartItems();
@@ -214,5 +239,16 @@ class ProductsController extends Controller
       ]);
       }
 
+    }
+    public function cartDelete(Request $request){
+       if ($request->ajax()){
+         $data=$request->all();
+        // echo"<pre>";print_r($data);die;
+         Cart::where('id',$data['cartid'])->delete();
+        $getCartItems =Cart::getCartItems();
+        return response()->json([
+         'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+     ]);
+       }
     }
 }

@@ -1,4 +1,11 @@
 
+.fixed-top {
+    transition: top 0.3s ease-in-out;
+}
+
+.fixed-top.hidden {
+    top: -150px; /* Adjust as needed */
+}
 /*** Spinner Start ***/
 #spinner {
     opacity: 0;
@@ -25,6 +32,7 @@
     transition: 0.5s;
     z-index: 99;
 }
+
 /*** Spinner End ***/
 
 
@@ -32,7 +40,9 @@
 .btn {
     font-weight: 600;
     transition: .5s;
+    color: #f26b4e;
 }
+
 
 .btn-square {
     width: 32px;
@@ -65,180 +75,105 @@
     font-weight: normal;
 }
 
+.border-secondary{
+    border-color: #f26b4e !important;
+}
+
 .btn.border-secondary {
-    transition: 0.5s;
+    transition: 0.5s;  
 }
 
 .btn.border-secondary:hover {
-    background: var(--bs-secondary) !important;
+    background: #f26b4e(--bs-secondary) !important;
     color: var(--bs-white) !important;
 }
 
-/*** Topbar Start ***/
-.fixed-top {
-    transition: 0.5s;
-    background: var(--bs-white);
-    border: 0;
+.rounded-pill{
+    width: 189px;
+    height: 40px;
+    justify-content: center;
 }
 
-.topbar {
-    padding: 20px;
-    border-radius: 230px 100px;
-}
-
-.topbar .top-info {
-    font-size: 15px;
-    line-height: 0;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-}
-
-.topbar .top-link {
-    font-size: 15px;
-    line-height: 0;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-}
-
-.topbar .top-link a {
-    letter-spacing: 1px;
-}
-
-.topbar .top-link a small:hover {
-    color: var(--bs-secondary) !important;
-    transition: 0.5s;
-}
-
-.topbar .top-link a small:hover i {
-    color: var(--bs-primary) !important;
-}
-/*** Topbar End ***/
 
 /*** Navbar Start ***/
+.nav-link{
+    color: #000;
+    background-color: #fdc3b5;
+}
+
+.nav-link:hover {
+    color: black;
+}
+
+.fixed-top{
+    background-color: #fdc3b5;
+}
+
+.navbar-brand{
+    margin-right: 0px;
+}
+
 .navbar .navbar-nav .nav-link {
     padding: 10px 15px;
     font-size: 16px;
-    transition: .5s;
+    transition: .5s;  
 }
 
 .navbar {
-    height: 100px;
     border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
-
-.navbar .navbar-nav .nav-link:hover,
-.navbar .navbar-nav .nav-link.active,
-.fixed-top.bg-white .navbar .navbar-nav .nav-link:hover,
-.fixed-top.bg-white .navbar .navbar-nav .nav-link.active {
-    color: var(--bs-primary);
-}
-
-.navbar .dropdown-toggle::after {
-    border: none;
-    content: "\f107";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 700;
-    vertical-align: middle;
-    margin-left: 8px;
-}
-
-@media (min-width: 1200px) {
-    .navbar .nav-item .dropdown-menu {
-        display: block;
-        visibility: hidden;
-        top: 100%;
-        transform: rotateX(-75deg);
-        transform-origin: 0% 0%;
-        border: 0;
-        transition: .5s;
-        opacity: 0;
-    }
-}
-
-.dropdown .dropdown-menu a:hover {
-    background: var(--bs-secondary);
-    color: var(--bs-primary);
-}
-
-.navbar .nav-item:hover .dropdown-menu {
-    transform: rotateX(0deg);
-    visibility: visible;
-    background: var(--bs-light) !important;
-    border-radius: 10px !important;
-    transition: .5s;
-    opacity: 1;
-}
-
 #searchModal .modal-content {
     background: rgba(255, 255, 255, .8);
 }
+
+/* Dropdown Button */
+.dropbtn {
+    background: none;
+    color: black;
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown content */
+.dropdown-content {
+    display: none;
+    background-color: #f9f9f9; 
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 7px;    
+    
+}
+
+/* Dropdown links */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #fdc3b5;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
 /*** Navbar End ***/
 
-/*** Hero Header ***/
-.hero-header {
-    background: linear-gradient(rgba(248, 223, 173, 0.1), rgba(248, 223, 173, 0.1)), url(../img/hero-img.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-/*.carousel-item {
-    position: relative;
-}
-
-.carousel-item a {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 25px;
-    background: linear-gradient(rgba(255, 181, 36, 0.7), rgba(255, 181, 36, 0.7));
-}
-*/
-.carousel-control-next,
-.carousel-control-prev {
-    width: 48px;
-    height: 48px;
-    border-radius: 48px;
-    border: 1px solid var(--bs-white);
-    background: var(--bs-primary);
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.carousel-control-next {
-    margin-right: 20px;
-}
-
-.carousel-control-prev {
-    margin-left: 20px;
-}
-
-.page-header {
-    position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../img/cart-page-header-img.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-@media (min-width: 992px) {
-    .hero-header,
-    .page-header {
-        margin-top: 152px !important;
-    }
-}
-
-@media (max-width: 992px) {
-    .hero-header,
-    .page-header {
-        margin-top: 97px !important;
-    }
-}
-/*** Hero Header end ***/
 
 
 /*** featurs Start ***/
@@ -287,8 +222,16 @@
 }
 
 /*** Fruits Start ***/
+.product{
+    max-height: 422.06px;
+}
+
+#clickableAwesomeFont{
+    cursor: pointer;
+}
+
 .fruite .tab-class .nav-item a.active {
-    background: var(--bs-secondary) !important;
+    background: #f26b4e !important;
 }
 
 .fruite .tab-class .nav-item a.active span {
@@ -296,16 +239,26 @@
 }
 
 .fruite .fruite-categorie .fruite-name {
-    line-height: 40px;
+    line-height: 64px;
+    background-color: #eff9ff;
+}
+
+.fruite .fruite-categorie .fruite-name:active {
+    background-color: #448bb5;
 }
 
 .fruite .fruite-categorie .fruite-name a {
-    transition: 0.5s;
+    /* transition: 0.5s; */
+    color: #000;
 }
 
-.fruite .fruite-categorie .fruite-name a:hover {
-    color: var(--bs-secondary);
+.fruite .fruite-categorie .fruite-name a:active {
+    color: #fff;
 }
+
+/* .fruite .fruite-categorie .fruite-name a:hover {
+    color: var(--bs-secondary);
+} */
 
 .fruite .fruite-item {
     height: 100%;
@@ -327,6 +280,25 @@
 
 .fruite .fruite-item .fruite-img img:hover {
     transform: scale(1.3);
+}
+.pad{
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+@media(max-width:768px){
+    .product{
+        max-height: 441.6px;
+    }
+    .pad{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
+
+@media(max-width:435px){
+    .product{
+        max-height: 471.83px;
+    }
 }
 /*** Fruits End ***/
 
@@ -395,11 +367,69 @@
 /*** vesitable End ***/
 
 
-/*** Banner Section Start ***/
-.banner .banner-btn:hover {
-    background: var(--bs-primary);
-}
-/*** Banner Section End ***/
+/* Centered text */
+/*.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* max-height: 259.2px; 
+  }*/
+
+ 
+  
+  .display-3{
+      font-size: 48px;
+  }
+  
+
+
+  .bannerdescription{
+      font-size: 16px;
+      margin-bottom: 24px;
+  }
+  
+  .banner .banner-btn:hover {
+      background: var(--bs-primary);
+  }
+  
+  .banner-btn{
+      width: 189px; 
+      height: 24px;
+      padding: 16px 48px;
+  }
+  
+  
+  @media (max-width: 768px) {
+      .display-3{
+          font-size: 32px;
+      }    
+  }
+  
+  @media (max-width: 435px){
+      .display-3{
+          font-size: 15px;
+          margin-top: 35px;
+          
+      }
+  
+      .bannerdescription{
+          font-size: 10px;
+          margin-bottom: 8px;
+      }
+  
+      .banner{
+          margin-top: 70px;
+      }
+  
+      .banner-btn{
+          width: 64px;
+          height: 16px;
+          font-size: 8px;
+          padding: 0;
+      }
+  }
+  /*** Banner Section End ***/
 
 
 /*** Facts Start ***/
@@ -495,18 +525,19 @@
 /*** Footer Start ***/
 .footer .footer-item .btn-link {
     line-height: 35px;
-    color: rgba(255, 255, 255, .5);
+    color: #474747;
     transition: 0.5s;
 }
 
 .footer .footer-item .btn-link:hover {
-    color: var(--bs-secondary) !important;
+    color: #f26b4e !important;
 }
 
 .footer .footer-item p.mb-4 {
     line-height: 35px;
 }
 /*** Footer End ***/
+
 
 .card {
     position: relative; /* Ensure proper positioning */

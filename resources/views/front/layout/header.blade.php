@@ -4,81 +4,64 @@ $sections=Section::sections();
 /*echo"<pre>";print_r($sections);die;*/
 ?>
   
-  <!-- Spinner Start -->
-   <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+ <!-- Spinner Start -->
+ <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
     <div class="spinner-grow text-primary" role="status"></div>
 </div>
 <!-- Spinner End -->
 
 
-<!-- Navbar start -->
-<div class="container-fluid fixed-top">
-    <div class="container topbar bg-primary d-none d-lg-block">
-        <div class="d-flex justify-content-between">
-            <div class="top-info ps-2">
-                <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">123 Street, New York</a></small>
-                <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">Email@Example.com</a></small>
-            </div>
-            <div class="top-link pe-2">
-                <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
-                <a href="#" class="text-white"><small class="text-white mx-2">Terms of Use</small>/</a>
-                <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a>
-            </div>
-        </div>
-    </div>
-    <div class="container px-0">
-        <nav class="navbar navbar-light bg-white navbar-expand-xl">
-            <a href="{{url('/')}}" class="navbar-brand"><h1 class="text-primary display-6">Fruitables</h1></a>
-            <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars text-primary"></span>
-            </button>
-            <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
-                <div class="navbar-nav mx-auto">
-                    <a href="{{url('/')}}" class="nav-item nav-link active">Home</a>
-                    <a href="shop.html" class="nav-item nav-link">Shop</a>
-                    <a href="shop-detail.html" class="nav-item nav-link">Shop Detail</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                            <a href="cart.html" class="dropdown-item">Cart</a>
-                            <a href="chackout.html" class="dropdown-item">Chackout</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Page</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">All Categories</a>
-                        <div class="dropdown-menu m-0 bg-secondary rounded-0">
+ <!-- Navbar start -->
+
+ <div class="container-fluid fixed-top" style="padding-left:50px;padding-right:50px;">  
+    <div class="container-fluid px-0">
+        <nav class="navbar navbar-light navbar-expand-xl" style="background-color: #fdc3b5;">
+            <a href="{{url('/')}}" class="navbar-brand d-xl-none"><img src="{{asset('front/img/ART.NEST.png')}}" class="logo" alt="logo"></a>
+            <button class="navbar-toggler shadow-none border-0 py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <i class="fa-solid fa-bars" style="color: #f26b4e;"></i>
+            </button>  
+            <div class="collapse navbar-collapse" style="width: 100%;" id="navbarCollapse" >
+                <div class="d-flex flex-column flex-xl-row">
+                    <div class="dropdown" style="float:right;">
+                        <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</button>
+                        <div class="dropdown-menu dropdown-content">
                             @foreach($sections as $section)
-                                <div class="dropdown">
-                                    <a href="javascript:;" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">{{$section['name']}}</a>
-                                    @if(count($section['categories']) > 0)
-                                            @foreach($section['categories'] as $category)
-                                                <!-- Check if 'name' key exists before accessing it -->
-                                                @if(isset($category['category_name']))
-                                                    <a href="{{url($category['url'])}}"  >{{$category['category_name']}}</a><br>
-                                                @endif
-                                            @endforeach
-                                            @endif
-                                        </div>
-                                        
+                                <strong style="padding-left:15px; color: #f26b4e">{{$section['name']}}</strong>
+                                @if(count($section['categories']) > 0)
+                                    @foreach($section['categories'] as $category)
+                                        @if(isset($category['category_name']))
+                                            <a  href="{{url($category['url'])}}">{{$category['category_name']}} </a>
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endforeach
                         </div>
                     </div>
-                  
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="about.html" class="nav-item nav-link">About</a> 
+                    <a href="{{url('/')}}" class="navbar-brand d-none d-xl-block"><img src="{{asset('front/img/ART.NEST.png')}}" class="logo" alt="logo" style="padding: 8px 16px;"></a> 
                 </div>
-                <div class="d-flex m-3 me-0">
-                    <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-                    <a href="#" class="position-relative me-4 my-auto">
-                        <i class="fa fa-shopping-bag fa-2x"></i>
-                        <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
-                    </a>
-                    <a href="#" class="my-auto">
-                        <i class="fas fa-user fa-2x"></i>
-                    </a>
+                <div class="navbar-nav mx-auto">    
                 </div>
-            </div>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="border: none; border-radius: 30px; height: 45px;">
+                    <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass fa-2x" style="color: #f26b4e;"></i></button>
+                    </form>
+                    <div class="d-flex">
+                    <a href="vendor.html" class="nav-item nav-link"><i class="fa-solid fa-store fa-2x" style="color: #f26b4e;"></i></a>   
+                    <a href="favourite.html" class="nav-item nav-link"><i class="fa-solid fa-heart fa-2x" style="color: #f26b4e;"></i></a> 
+                    <a href="cart.html" class="nav-item nav-link"><i class="fa-solid fa-cart-shopping fa-2x" style="color: #f26b4e;"></i></a> 
+                    <div class="dropdown" style="float:right;">
+                    <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-user fa-2x" style="color: #f26b4e; "></i></button>
+                    <div class="dropdown-menu m-0   dropdown-content" style=" position: absolute;right: 0;">
+                    <a href="profile.html">Profile</a>
+                    <a href="trackorder.html">Track Order</a>
+                    <a href="message.html">Message</a>
+                    <a href="index - Copy (2).html">Log Out</a>    
+                  </div>
+                </div>    
+                </div>
+                </div>
+            
         </nav>
     </div>
 </div>

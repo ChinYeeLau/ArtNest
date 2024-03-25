@@ -11,23 +11,24 @@
     };
     spinner(0);
 
+// Track the last scroll position
+var lastScrollTop = 0;
 
-    // Fixed Navbar
-    $(window).scroll(function () {
-        if ($(window).width() < 992) {
-            if ($(this).scrollTop() > 55) {
-                $('.fixed-top').addClass('shadow');
-            } else {
-                $('.fixed-top').removeClass('shadow');
-            }
-        } else {
-            if ($(this).scrollTop() > 55) {
-                $('.fixed-top').addClass('shadow').css('top', -55);
-            } else {
-                $('.fixed-top').removeClass('shadow').css('top', 0);
-            }
-        } 
-    });
+$(window).scroll(function() {
+    var st = $(this).scrollTop();
+
+    // Check scroll direction and position
+    if (st > lastScrollTop) {
+        // Scroll down
+        $('.fixed-top').addClass('hidden');
+    } else {
+        // Scroll up
+        $('.fixed-top').removeClass('hidden');
+    }
+
+    // Update last scroll position
+    lastScrollTop = st;
+});
     
     
    // Back to top button
@@ -135,7 +136,7 @@ $(document).ready(function() {
         }
         //decrease qty by 1
          new_qty=parseInt(quantity)- 1;
-        // alert(new_qty);
+         //alert(new_qty);
      }
      var cartid=$(this).data('cartid');
     $.ajax ({
@@ -146,6 +147,9 @@ $(document).ready(function() {
         url:'/cart/update',
         type:'post',
         success:function(resp){
+            if(resp.status==false){
+                alert(resp.message);
+            }
             $("#appendCartItems").html(resp.view);
 
         },error:function(){
@@ -153,6 +157,29 @@ $(document).ready(function() {
         }
 
     })
+    });
+     //delete cart items qty
+     $(document).on('click', '.deleteCartItem', function() {
+        var cartid=$(this).data('cartid');
+        var result =confirm("Are you sure to delete this Cart Item?");
+        if(result){
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+        
+                data:{cartid:cartid},
+                url:'/cart/delete',
+                type:'post',
+                success:function(resp){
+                    $("#appendCartItems").html(resp.view);
+        
+                },error:function(){
+                    alert("Error");
+                }
+               })  
+        }
+     
     });
 });
 function get_filter(class_name){
