@@ -24,9 +24,9 @@ $sections=Section::sections();
                 <div class="d-flex flex-column flex-xl-row">
                     <div class="dropdown" style="float:right;">
                         <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</button>
-                        <div class="dropdown-menu dropdown-content">
+                        <div class=" dropdown-content" style=" position: absolute;right: 0;">
                             @foreach($sections as $section)
-                                <strong style="padding-left:15px; color: #f26b4e">{{$section['name']}}</strong>
+                                <strong style="padding-left:15px; color: #f26b4e;font-size:24px;">{{$section['name']}}</strong>
                                 @if(count($section['categories']) > 0)
                                     @foreach($section['categories'] as $category)
                                         @if(isset($category['category_name']))
@@ -52,10 +52,11 @@ $sections=Section::sections();
                     <a href="cart.html" class="nav-item nav-link"><i class="fa-solid fa-cart-shopping fa-2x" style="color: #f26b4e;"></i></a> 
                     <div class="dropdown" style="float:right;">
                     <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-user fa-2x" style="color: #f26b4e; "></i></button>
-                    <div class="dropdown-menu m-0   dropdown-content" style=" position: absolute;right: 0;">
+                    <div class="m-0   dropdown-content" style=" position: absolute;right: 0;">
                     <a href="profile.html">Profile</a>
                     <a href="trackorder.html">Track Order</a>
                     <a href="message.html">Message</a>
+                    <a href="{{url('user/login-register')}}">User Login</a>  
                     <a href="index - Copy (2).html">Log Out</a>    
                   </div>
                 </div>    

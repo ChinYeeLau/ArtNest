@@ -15,9 +15,9 @@
                 
                     @if(isset($fixBanners[3]['image']))
                         <div class="container-fluid col-lg-12 pad" style=" background-image: url('{{ asset('front/images/banner_images/'.$fixBanners[3]['image']) }}');  background-size: cover;background-position: center; background-repeat: no-repeat;">
-                            <div class="text-overlay col-lg-12" > <!-- Adjust padding as needed -->
-                                <h1 class="display-3" style="text-align: center; font-weight: 600; align-items: center;">Entrepreneurial Spirit For A Brighter Future</h1>
-                                <p class="text-dark bannerdescription" style="text-align: center; font-weight: 400;">Where Malaysian designers flourish,<br> connecting talent with opportunities, <br>boosting our economy in line with NEP 2030 goals.</p> 
+                            <div class="text-overlay col-lg-12" style="padding-top:100px;padding-bottom:100px;"> <!-- Adjust padding as needed -->
+                                <h1 class="display-3" style="text-align: center; font-weight: 600; align-items: center;padding-bottom:30px;">Entrepreneurial Spirit For A Brighter Future</h1>
+                                <p class="text-dark bannerdescription" style="text-align: center; font-weight: 400;font-size:22px;">Where Malaysian designers flourish,<br>connecting talent with opportunities,<br>boosting our economy in line with NEP 2030 goals.</p> 
                                 <a href="shop.html" class="banner-btn rounded-pill text-white ml-2" style="background-color: #f26b4e;  display:flex; align-items: center; justify-content: center; margin: auto;">SHOP NOW</a>
                             </div>
                         </div>

@@ -70,7 +70,7 @@
 </div>
 <div class="mt-5">
     <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
-    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+    <button class="btn border-secondary rounded-pill align-items: center; justify-content: center;" type="button">Apply Coupon</button>
 </div>
 <div class="row g-4 justify-content-end">
     <div class="col-8"></div>
@@ -94,7 +94,7 @@
                 <h5 class="mb-0 ps-4 me-4">Total</h5>
                 <p class="mb-0 pe-4">RM {{$total_price}}</p>
             </div>
-            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
+            <button class="btn border-secondary rounded-pill  align-items: center; justify-content: center; mb-4 ms-4" type="button">Proceed Checkout</button>
         </div>
     </div>
 </div>

@@ -94,10 +94,15 @@
     justify-content: center;
 }
 
+.form-control:focus {
+    border-color: initial; /* or specify any other color you prefer */
+    box-shadow: none; /* This removes the box-shadow effect */
+    outline: none; /* This removes the outline when focused (be cautious with this as it affects accessibility) */
+}
 
 /*** Navbar Start ***/
 .nav-link{
-    color: #000;
+    color: black;
     background-color: #fdc3b5;
 }
 
@@ -129,12 +134,13 @@
 /* Dropdown Button */
 .dropbtn {
     background: none;
-    color: black;
+    color: black !important;
     padding: 8px 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
 }
+
 
 /* Dropdown container */
 .dropdown {
@@ -145,18 +151,21 @@
 /* Dropdown content */
 .dropdown-content {
     display: none;
-    background-color: #f9f9f9; 
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+    backdrop-filter: blur(5px); /* Apply blur effect */
     min-width: 130px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    border-radius: 7px;    
-    
+    border-radius: 7px;  
+    padding-top: 10px;  
+    padding-bottom: 10px;  
+    margin-bottom:10px
 }
 
 /* Dropdown links */
 .dropdown-content a {
     color: black;
-    padding: 12px 16px;
+    padding: 5px 15px;
     text-decoration: none;
     display: block;
 }
@@ -386,7 +395,7 @@
 
   .bannerdescription{
       font-size: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 30px;
   }
   
   .banner .banner-btn:hover {
@@ -396,7 +405,7 @@
   .banner-btn{
       width: 189px; 
       height: 24px;
-      padding: 16px 48px;
+      padding: 30px 48px;
   }
   
   

@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative mx-auto">
-                        <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="number" placeholder="Your Email">
+                        <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="email" placeholder="Your Email">
                         <button type="submit" class="btn py-3 px-4 position-absolute rounded-pill text-white" style="top: 0; right: 0; background-color: #f26b4e; display: flex; align-items: center; justify-content: center; box-shadow: none;">Subscribe Now</button>
                     </div>
                 </div>

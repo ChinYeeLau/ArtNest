@@ -116,6 +116,7 @@ Route::get('cart','ProductsController@cart');
 Route::post('cart/update','ProductsController@cartUpdate');
 //delete cart item
 Route::post('cart/delete','ProductsController@cartDelete');
-
+ //user login/Register
+ Route::get('user/login-register','UserController@loginRegister');
 });
 
