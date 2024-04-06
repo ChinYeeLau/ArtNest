@@ -52,13 +52,17 @@ $sections=Section::sections();
                     <a href="cart.html" class="nav-item nav-link"><i class="fa-solid fa-cart-shopping fa-2x" style="color: #f26b4e;"></i></a> 
                     <div class="dropdown" style="float:right;">
                     <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-user fa-2x" style="color: #f26b4e; "></i></button>
-                    <div class="m-0   dropdown-content" style=" position: absolute;right: 0;">
-                    <a href="profile.html">Profile</a>
-                    <a href="trackorder.html">Track Order</a>
-                    <a href="message.html">Message</a>
-                    <a href="{{url('user/login-register')}}">User Login</a>  
-                    <a href="index - Copy (2).html">Log Out</a>    
-                  </div>
+                    <div class="m-0 dropdown-content" style="position: absolute; right: 0;">
+                        @if (Auth::check())
+                            <a href="profile.html">Profile</a>
+                            <a href="trackorder.html">Track Order</a>
+                            <a href="message.html">Message</a>
+                            <a href="{{url('user/logout')}}">Log Out</a>
+                        @else  
+                            <a href="{{url('user/login-register')}}">User Login</a>  
+                            <a href="{{url('user/login-register')}}">User Register</a>     
+                        @endif
+                    </div>
                 </div>    
                 </div>
                 </div>

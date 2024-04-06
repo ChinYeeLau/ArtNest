@@ -66,29 +66,37 @@
             <div class="card shadow-2-strong" style="border-radius: 1rem;">
               <div class="card-body p-5 text-center">
                 <h3 class="mb-5">Register</h3>
-                <form id="userForm" action="{{ url('/user/register') }}" method="POST">@csrf
+                <form id="registerForm" action="javascript:;" method="POST">@csrf
                    
                     <div class="form-outline mb-4">
-                        <input type="text" name="name" id="username" placeholder="User Name" class="form-control form-control-lg" />
-                        <label class="form-label" for="username">Username</label>
+                      <label class="form-label" for="user-name">Username</label>
+                        <input type="text" name="name" id="user-name" placeholder="User Name" class="form-control form-control-lg" />
+                        <p id="register-name"></p>
                     </div>
                     <div class="form-outline mb-4">
-                        <input type="text" name="mobile" id="usermobile" placeholder="User Mobile" class="form-control form-control-lg" />
-                        <label class="form-label" for="usermobile">Mobile</label>
+                      <label class="form-label" for="user-mobile">Mobile</label>
+                        <input type="text" name="mobile" id="user-mobile" placeholder="User Mobile" class="form-control form-control-lg" />
+                        <p id="register-mobile"></p>
                     </div>
                     <div class="form-outline mb-4">
-                        <input type="email" name="email" id="useremail" placeholder="admin@admin.com" class="form-control form-control-lg" />
-                        <label class="form-label" for="useremail">Email</label>
+                      <label class="form-label" for="user-email">Email</label>
+                        <input type="email" name="email" id="user-email" placeholder="admin@admin.com" class="form-control form-control-lg" />
+                        <p id="register-email"></p>
                     </div>
                     <div class="form-outline mb-4">
-                        <input type="password" name="password" id="userpassword" placeholder="User Password"class="form-control form-control-lg" />
-                        <label class="form-label" for="userpassword">Password</label>
+                      <label class="form-label" for="user-password">Password</label>
+                        <input type="password" name="password" id="user-password" placeholder="User Password"class="form-control form-control-lg" /> 
+                        <p id="register-password"></p>
                     </div>
-                    <div class="form-check d-flex justify-content-start mb-4">
+                    <div class="form-check d-flex justify-content-start ">
                         <input class="form-check-input" type="checkbox"  id="accept" name="accept">
                         <label class="form-check-label" for="accept">I've read and accept the
-                             <a href="terms-and-conditions.html" class="red-text">term & condition</a></label>
-                    </div>
+                             <a href="terms-and-conditions.html" class="red-text">term & condition</a>
+                            </label>
+                            </div>
+                            <p id="register-accept"></p>
+                              
+                             
                     <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
                 </form>
                 

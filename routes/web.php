@@ -118,5 +118,9 @@ Route::post('cart/update','ProductsController@cartUpdate');
 Route::post('cart/delete','ProductsController@cartDelete');
  //user login/Register
  Route::get('user/login-register','UserController@loginRegister');
+ //user register
+ Route::post('user/register','UserController@userRegister');
+ //user logout
+ Route::get('user/logout','UserController@userLogout');
 });
 
