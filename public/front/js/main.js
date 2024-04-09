@@ -90,6 +90,7 @@ $(window).scroll(function() {
 
 
 $(document).ready(function() {
+  
     $("#getPrice").change(function() {
        
 
@@ -184,14 +185,21 @@ $(document).ready(function() {
 
     //register form validation
     $("#registerForm").submit(function(){
+        
         var formdata=$(this).serialize();
       $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         url:"/user/register",
         type:"POST",
         data:formdata,
         success:function(resp){
+            
            // alert (resp.url);
             if(resp.type=="error"){
+              //  $(".loader").hide();
+              //  $(".overlay").hide();
               $.each(resp.errors,function(i,error){
                 $("#register-"+i).attr('style','color:red');
                 $("#register-"+i).html(error);
@@ -202,6 +210,9 @@ $(document).ready(function() {
               },3000);
             });
             }else if(resp.type=="success"){
+                alert(resp.message);
+          //      $(".loader").hide();
+           //     $(".overlay").hide();
                 window.location.href=resp.url;
             }
           
@@ -209,7 +220,45 @@ $(document).ready(function() {
             alert("Error");
         }
       })
-    })
+    });
+
+     //login form validation
+     $("#loginForm").submit(function(){
+        var formdata=$(this).serialize();
+      $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url:"/user/login",
+        type:"POST",
+        data:formdata,
+        success:function(resp){
+            if(resp.type=="error"){
+                $.each(resp.errors,function(i,error){
+                  $("#login-"+i).attr('style','color:red');
+                  $("#login-"+i).html(error);
+                setTimeout(function(){
+                  $("#login-"+i).css({
+                      'display':'none'
+                  });
+                },3000);
+              });
+            }else if(resp.type=="incorrect"){
+                //alert(resp.message);
+                $("#login-error").attr('style','color:red');
+                $("#login-error").html(resp.message);
+            }else if(resp.type=="inactive"){
+                      //alert(resp.message);
+                $("#login-error").attr('style','color:red');
+                $("#login-error").html(resp.message);          
+            }else if(resp.type=="success"){
+                window.location.href=resp.url;
+            }
+        },error:function(){
+            alert("Error");
+        }
+      })
+    });
 });
 function get_filter(class_name){
     var filter=[];

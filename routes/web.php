@@ -120,7 +120,11 @@ Route::post('cart/delete','ProductsController@cartDelete');
  Route::get('user/login-register','UserController@loginRegister');
  //user register
  Route::post('user/register','UserController@userRegister');
+ //user login
+ Route::post('user/login','UserController@userLogin');
  //user logout
  Route::get('user/logout','UserController@userLogout');
+ //confirm user account
+ Route::get('user/confirm/{code}','UserController@confirmAccount');
 });
 

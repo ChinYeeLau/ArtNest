@@ -39,15 +39,18 @@
             <div class="card-body p-5 text-center">
   
               <h3 class="mb-5">Login</h3>
-              <form  action="{{url('admin/login')}}" method="post" >@csrf
+              <p id="login-error"></p>
+              <form id="loginForm" action="javascript:;" method="post" >@csrf
               <div class="form-outline mb-4">
-                <input  type="email" name="email" id="email" class="form-control form-control-lg"  placeholder="Username" required="" class="form-control form-control-lg" />
-                <label class="form-label" for="user-email">Email</label>
+                <label class="form-label" for="users-email">Email</label>
+                <input  type="email" name="email" id="users-email" class="form-control form-control-lg"  placeholder="Username" required="" class="form-control form-control-lg" />
+               <p id="login-email"></p>
               </div>
   
               <div class="form-outline mb-4">
-                <input type="password" name="password" id="password" class="form-control form-control-lg"  placeholder="Password"required="" class="form-control form-control-lg" />
-                <label class="form-label" for="user-password">Password</label>
+                <label class="form-label" for="users-password">Password</label>
+                <input type="password" name="password" id="users-password" class="form-control form-control-lg"  placeholder="Password"required="" class="form-control form-control-lg" />
+                <p id="login-password"></p>
               </div>
   
               <!-- Checkbox -->
@@ -80,7 +83,7 @@
                     </div>
                     <div class="form-outline mb-4">
                       <label class="form-label" for="user-email">Email</label>
-                        <input type="email" name="email" id="user-email" placeholder="admin@admin.com" class="form-control form-control-lg" />
+                        <input type="email" name="email" id="user-email" placeholder="user@user.com" class="form-control form-control-lg" />
                         <p id="register-email"></p>
                     </div>
                     <div class="form-outline mb-4">
