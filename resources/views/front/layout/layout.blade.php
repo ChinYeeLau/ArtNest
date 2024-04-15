@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Fruitables - Vegetable Website Template</title>
+        <title>ArtNest</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <meta content="" name="keywords">
@@ -36,16 +36,16 @@
     </head>
 
     <body>
-     <!-- <div class="overlay"></div> 
+      <div class="overlay"></div> 
 
-    <div class="loader"></div>*/-->
-<div id="app">
+    <div class="loader"></div>
+
       @include('front.layout.header')
 
     @include('front.layout.modals')
     @yield('content')
      @include('front.layout.footer')
-</div>
+
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
@@ -94,21 +94,7 @@
 			}
 		});
 	</script>
-  <script>
- /*// Show loader and overlay when the window starts loading
-window.addEventListener('load', function() {
-    document.querySelector('.loader').style.display = 'block'; // Show loader
-    document.querySelector('.overlay').style.display = 'block'; // Show overlay
-  
-});
-
-// Hide loader and overlay, and show image when the image finishes loading
-document.querySelector('.image').addEventListener('load', function() {
-    document.querySelector('.loader').style.display = 'none'; // Hide loader
-    document.querySelector('.overlay').style.display = 'none'; // Hide overlay
-   
-});
-  </script>
+ 
     @include('front.layout.scripts')
 
     </body>

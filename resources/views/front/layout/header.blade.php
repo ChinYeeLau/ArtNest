@@ -47,9 +47,22 @@ $sections=Section::sections();
                     <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass fa-2x" style="color: #f26b4e;"></i></button>
                     </form>
                     <div class="d-flex">
-                    <a href="vendor.html" class="nav-item nav-link"><i class="fa-solid fa-store fa-2x" style="color: #f26b4e;"></i></a>   
+                    <!-- Vendor Dropdown -->
+                <div class="dropdown" style="float:right;">
+                    <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-store fa-2x" style="color: #f26b4e; "></i></button>
+                    <div class="dropdown-content" style="position: absolute; right: 0;">
+                       
+                            <a href="{{url('vendor/login')}}">Log in</a>
+                            <a href="{{url('vendor/register')}}">Register</a>
+                        
+                    </div>
+                </div>     
+                   <!-- Favorites and Cart Links -->
+                   <div class="navbar-nav ml-auto">
                     <a href="favourite.html" class="nav-item nav-link"><i class="fa-solid fa-heart fa-2x" style="color: #f26b4e;"></i></a> 
-                    <a href="cart.html" class="nav-item nav-link"><i class="fa-solid fa-cart-shopping fa-2x" style="color: #f26b4e;"></i></a> 
+                    <a href="{{url('cart')}}" class="nav-item nav-link"><i class="fa-solid fa-cart-shopping fa-2x" style="color: #f26b4e;"></i></a> 
+                </div>
+            </div>
                     <div class="dropdown" style="float:right;">
                     <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-user fa-2x" style="color: #f26b4e; "></i></button>
                     <div class="m-0 dropdown-content" style="position: absolute; right: 0;">
@@ -59,8 +72,8 @@ $sections=Section::sections();
                             <a href="message.html">Message</a>
                             <a href="{{url('user/logout')}}">Log Out</a>
                         @else  
-                            <a href="{{url('user/login-register')}}">User Login</a>  
-                            <a href="{{url('user/login-register')}}">User Register</a>     
+                            <a href="{{url('user/login')}}">User Login</a>  
+                            <a href="{{url('user/register')}}">User Register</a>     
                         @endif
                     </div>
                 </div>    

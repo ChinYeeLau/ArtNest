@@ -8,7 +8,7 @@
    <!-- Fruits Shop Start-->
     <div class="container-fluid fruite py-5">
         <div class="container py-5">
-            <h1 class="mb-4">Fresh fruits shop</h1>
+            <h1 class="mb-4">Welcome to ArtNest</h1>
             <div class="row g-4">
                 <div class="col-lg-12">
                     <div class="row g-4">
@@ -24,13 +24,13 @@
                         <div class="col-lg-3">
                             <div class="row g-4">
                                 <div class="col-lg-12">
-                                    <div class="mb-3">
+                                    <div class="mb-3 fruite-name-bg ">
                                         <h4>Categories</h4>
-                                        <ul class="list-unstyled fruite-categorie">
+                                        <ul class="list-unstyled fruite-categorie ">
                                             @foreach($sections as $section)
                                         <ul class="list-unstyled fruite-categorie">
                                             <li>
-                                                <div class="d-flex justify-content-between ">
+                                                <div class="d-flex justify-content-between fruite-name">
                                                     <a ><i class=""></i>{{$section['name']}}</a>
                                                 </div>
                                                     @if(count($section['categories']) > 0)

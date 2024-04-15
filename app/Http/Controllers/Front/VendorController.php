@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class VendorController extends Controller
 {
-   public function loginRegister(){
-    return view('front.vendors.login_register');
+   public function login(){
+    return view('front.vendors.login');
+   }
+   public function register(){
+    return view('front.vendors.register');
    }
    public function vendorRegister(Request $request){
       if($request->isMethod('post')){
@@ -99,7 +102,7 @@ class VendorController extends Controller
        $vendorDetails = Vendor::where('email', $email)->first();
        if($vendorDetails->confirm == "Yes"){
            $message = "Your Vendor Account is already confirmed. You can login.";
-           return redirect('vendor/login-register')->with('error_message', $message);
+           return redirect('vendor/login')->with('error_message', $message);
        } else {
            // Update confirm column to 'Yes' in admin and vendor table to activate
            Admin::where('email', $email)->update(['confirm' => 'Yes']);
@@ -117,7 +120,7 @@ class VendorController extends Controller
 
            // Redirect to vendor login/register page with success message
            $message = "Your Vendor email account is confirmed. You can login and add your personal, business and bank details to activate your Vendor Account to add products";
-           return redirect('vendor/login-register')->with('success_message', $message);
+           return redirect('vendor/login')->with('success_message', $message);
        }
    } else {
        abort(404);

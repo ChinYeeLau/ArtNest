@@ -198,8 +198,7 @@ $(document).ready(function() {
             
            // alert (resp.url);
             if(resp.type=="error"){
-              //  $(".loader").hide();
-              //  $(".overlay").hide();
+              
               $.each(resp.errors,function(i,error){
                 $("#register-"+i).attr('style','color:red');
                 $("#register-"+i).html(error);
@@ -211,8 +210,7 @@ $(document).ready(function() {
             });
             }else if(resp.type=="success"){
                 alert(resp.message);
-          //      $(".loader").hide();
-           //     $(".overlay").hide();
+             
                 window.location.href=resp.url;
             }
           

@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
-    public function loginRegister(){
-        return view('front.users.login_register');
+    public function login(){
+        return view('front.users.login');
     }
+    public function register(){
+        return view('front.users.register');
+    }
+
+
     public function userRegister(Request $request){
         if($request->ajax()){
             $data=$request->all();
@@ -49,7 +54,7 @@ class UserController extends Controller
                 $message->to($email)->subject('Confirm your ArtNest Account');
             });
             //redirect back with success message
-            $redirectTo=url('user/login-register');
+            $redirectTo=url('user/register');
             return response()->json(['type'=>'success','url'=>$redirectTo,'message'=>'Please confirm your email to activate your account!']);
 
            //Activate  user without confirming email 
@@ -126,7 +131,7 @@ class UserController extends Controller
            $userDetails=User::where('email',$email)->first();
            if($userDetails->status==1){
             //redirect to login register
-            return redirect('user/login-register')->with('error_message','Your account is already activated.You can login now.');
+            return redirect('user/register')->with('error_message','Your account is already activated.You can login now.');
            }else{
             User::where('email',$email)->update(['status'=>1]);
              //send welcome email
@@ -135,7 +140,7 @@ class UserController extends Controller
                  $message->to($email)->subject('Welcome to ArtNest');
             });
              //redirect to login register with sucess message
-            return redirect('user/login-register')->with('success_message','Your account is activated.You can login now.');
+            return redirect('user/login')->with('success_message','Your account is activated.You can login now.');
 
            }
          }else{

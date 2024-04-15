@@ -103,7 +103,9 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
  //get product attribute price
  Route::post('get-product-price','ProductsController@getProductPrice');
  //vendor login/Register
- Route::get('vendor/login-register','VendorController@loginRegister');
+ Route::get('vendor/login','VendorController@login');
+  //vendor login/Register
+  Route::get('vendor/register','VendorController@register');
  //vendor register
  Route::post( 'vendor/register', 'VendorController@vendorRegister');
  //confirm vendor acc
@@ -117,7 +119,9 @@ Route::post('cart/update','ProductsController@cartUpdate');
 //delete cart item
 Route::post('cart/delete','ProductsController@cartDelete');
  //user login/Register
- Route::get('user/login-register','UserController@loginRegister');
+ Route::get('user/login','UserController@login');
+  //user login/Register
+  Route::get('user/register','UserController@register');
  //user register
  Route::post('user/register','UserController@userRegister');
  //user login
