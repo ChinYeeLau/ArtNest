@@ -6,7 +6,7 @@
     
     <div class="container py-5 h-100">
         
-      <div class="row d-flex justify-content-center align-items-start h-100" style="padding-top:200px">
+      <div class="row d-flex justify-content-center align-items-start h-100" style="padding-top:100px">
         @if(Session::has('success_message'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Success</strong> {{Session::get('success_message')}}
