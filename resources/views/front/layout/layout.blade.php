@@ -36,9 +36,7 @@
     </head>
 
     <body>
-      <div class="overlay"></div> 
 
-    <div class="loader"></div>
 
       @include('front.layout.header')
 
