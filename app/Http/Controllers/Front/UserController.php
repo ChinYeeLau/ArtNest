@@ -7,8 +7,10 @@ use Session;
 use Validator;
 use App\Models\Cart;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Hash;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -54,8 +56,8 @@ class UserController extends Controller
                 $message->to($email)->subject('Confirm your ArtNest Account');
             });
             //redirect back with success message
-            $redirectTo=url('user/register');
-            return response()->json(['type'=>'success','url'=>$redirectTo,'message'=>'Please confirm your email to activate your account!']);
+        
+            return response()->json(['type'=>'success','message'=>'Please confirm your email to activate your account!']);
 
            //Activate  user without confirming email 
 
@@ -84,6 +86,114 @@ class UserController extends Controller
         
     
         }
+    }
+
+    public function userAccount(Request $request){
+        if ($request->ajax()){
+            $data=$request->all();
+           //   echo"<pre>";print_r($data);die;
+              $validator = Validator::make($request->all(),[
+                'name'=>'required|string|max:100',
+                'address'=>'required|string|max:100',
+                'state'=>'required|string|max:100',
+                'mobile'=>'required|string|digits:10',
+    
+               ]
+               
+               );
+               if($validator->passes()){
+                  //update user details
+                  User::where('id', Auth::user()->id)->update([
+                    'name' => $data['name'],
+                    'address' => $data['address'],
+                    'state' => $data['state'],
+                    'mobile' => $data['mobile']
+                ]);
+             //redirect back user with success message
+            
+             return response()->json(['type'=>'success','message'=>'Your contact/billing details successfully updated!']);
+
+                }else{
+                    
+                return response()->json(['type'=>'error','errors'=>$validator->messages()]);
+            }
+        }else{
+            return view('front.users.user_account');
+        }
+    }
+    public function userUpdatePassword(Request $request){
+        if ($request->ajax()){
+            $data=$request->all();
+           //   echo"<pre>";print_r($data);die;
+              $validator = Validator::make($request->all(),[
+                'current_password'=>'required',
+                'new_password'=>'required|min:6',
+                'confirm_password'=>'required|min:6|same:new_password',
+                
+               ]
+               
+               );
+               if($validator->passes()){
+              $current_password=$data['current_password'];
+              $checkPassword=User::where('id',Auth::user()->id)->first();
+              if(Hash::check($current_password,$checkPassword->password)){
+                 //update user current password
+                 $user=User::find(Auth::user()->id);
+                 $user->password=bcrypt($data['new_password']);
+                 $user->save();
+                 //redirect back user with success message
+            
+             return response()->json(['type'=>'success','message'=>'Account Password is updated']);
+
+              }else{
+                return response()->json(['type'=>'incorrect','message'=>'Your current password is incorrect!']);
+
+              }
+
+                }else{
+                    
+                return response()->json(['type'=>'error','errors'=>$validator->messages()]);
+            }
+        }else{
+            return view('front.users.user_account');
+        }
+    }
+
+    public function forgotPassword(Request $request){
+        if($request->ajax()){
+            $data=$request->all();
+          //  echo"<pre>";print_r($data);die;
+            $validator = Validator::make($request->all(),[   
+                'email'=>'required|email|max:150|exists:users',
+    
+               ],
+               [
+                'email.exists'=>'Email does not exist!'
+               ]
+               );
+               if($validator->passes()){
+                //generate new password
+               $new_password=Str::random(16); 
+               //update new password
+               User::where('email',$data['email'])->update(['password'=>bcrypt($new_password)]);
+            //get user detail
+            $userDetails = User::where('email', $data['email'])->first()->toArray();
+            //send email to user
+              $email=$data['email'];
+              $messageData=['name'=> $userDetails['name'],'email'=>$email,'password'=> $new_password];
+             Mail::send('emails.user_forgot_password',$messageData,function($message)use($email){
+                $message->to($email)->subject('New Password -ArtNest');
+             });
+             //Show Success Message
+
+             return response()->json(['type'=>'success','message'=>'New Password sent to your registered email.']);
+            }else{
+                  return response()->json(['type'=>'error','errors'=>$validator->messages()]);
+               }
+        }else{
+            return view ('front.users.forgot_password');
+        }
+       
     }
     public function userLogin(Request $request){
     if($request->Ajax()){

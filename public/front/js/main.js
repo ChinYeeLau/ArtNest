@@ -183,43 +183,120 @@ $(document).ready(function() {
      
     });
 
-    //register form validation
-    $("#registerForm").submit(function(){
-        
-        var formdata=$(this).serialize();
-      $.ajax({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url:"/user/register",
-        type:"POST",
-        data:formdata,
-        success:function(resp){
-            
-           // alert (resp.url);
-            if(resp.type=="error"){
-              
-              $.each(resp.errors,function(i,error){
-                $("#register-"+i).attr('style','color:red');
-                $("#register-"+i).html(error);
-              setTimeout(function(){
-                $("#register-"+i).css({
-                    'display':'none'
-                });
-              },3000);
-            });
-            }else if(resp.type=="success"){
-                alert(resp.message);
-             
-                window.location.href=resp.url;
+    $("#registerForm").submit(function(e){
+        e.preventDefault(); // Prevent the default form submission
+    
+        var formdata = $(this).serialize();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "/user/register",
+            type: "POST",
+            data: formdata,
+            success: function(resp) {
+                if (resp.type == "error") {
+                    $.each(resp.errors, function(i, error) {
+                        $("#register-" + i).attr('style', 'color:red');
+                        $("#register-" + i).html(error);
+                        setTimeout(function() {
+                            $("#register-" + i).css({
+                                'display': 'none'
+                            });
+                        }, 3000);
+                    });
+                } else if (resp.type == "success") {
+                    $("#register-success").attr('style', 'color:green');
+                    $("#register-success").html(resp.message).fadeIn();
+                    setTimeout(function(){
+                        location.reload();
+                    }, 5000); // Refresh after 5 seconds
+                }
+            },
+            error: function() {
+                alert("Error occurred while processing your request.");
             }
-          
-        },error:function(){
-            alert("Error");
-        }
-      })
+        });
     });
-
+    //accountform
+    $("#accountForm").submit(function(e){
+        e.preventDefault(); // Prevent the default form submission
+    
+        var formdata = $(this).serialize();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "/user/account",
+            type: "POST",
+            data: formdata,
+            success: function(resp) {
+                if (resp.type == "error") {
+                    $.each(resp.errors, function(i, error) {
+                        $("#account-" + i).attr('style', 'color:red');
+                        $("#account-" + i).html(error);
+                        setTimeout(function() {
+                            $("#account-" + i).css({
+                                'display': 'none'
+                            });
+                        }, 3000);
+                    });
+                } else if (resp.type == "success") {
+                    $("#account-success").attr('style', 'color:green');
+                    $("#account-success").html(resp.message).fadeIn();
+                    setTimeout(function(){
+                        location.reload();
+                    }, 3000); // Refresh after 3 seconds
+                }
+            },
+            error: function() {
+                alert("Error occurred while processing your request.");
+            }
+        });
+    });
+    //passwordform
+    $("#passwordForm").submit(function(e){
+        e.preventDefault(); // Prevent the default form submission
+    
+        var formdata = $(this).serialize();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "/user/update-password",
+            type: "POST",
+            data: formdata,
+            success: function(resp) {
+                if (resp.type == "error") {
+                    $.each(resp.errors, function(i, error) {
+                        $("#password-" + i).attr('style', 'color:red');
+                        $("#password-" + i).html(error);
+                        setTimeout(function() {
+                            $("#password-" + i).css({
+                                'display': 'none'
+                            });
+                        }, 3000);
+                    });
+                } else if (resp.type == "incorrect") {
+                    $("#password-error").attr('style', 'color:red');
+                    $("#password-error").html(resp.message).fadeIn();
+                    setTimeout(function(){
+                        location.reload();
+                    }, 3000); // Refresh after 3 seconds
+                
+                } else if (resp.type == "success") {
+                    $("#password-success").attr('style', 'color:green');
+                    $("#password-success").html(resp.message).fadeIn();
+                    setTimeout(function(){
+                        location.reload();
+                    }, 3000); // Refresh after 3 seconds
+                }
+            },
+            error: function() {
+                alert("Error occurred while processing your request.");
+            }
+        });
+    });
      //login form validation
      $("#loginForm").submit(function(){
         var formdata=$(this).serialize();
@@ -256,6 +333,46 @@ $(document).ready(function() {
             alert("Error");
         }
       })
+    });
+});
+$("#forgotForm").submit(function(e){
+    e.preventDefault(); // Prevent the default form submission
+
+    var formdata = $(this).serialize();
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: "/user/forgot-password",
+        type: "POST",
+        data: formdata,
+        success: function(resp) {
+            if (resp.type == "error") {
+                // Handle errors if any
+                $.each(resp.errors, function(i, error) {
+                    $("#forgot-" + i).attr('style', 'color:red');
+                    $("#forgot-" + i).html(error);
+                    setTimeout(function() {
+                        $("#forgot-" + i).css({
+                            'display': 'none'
+                        });
+                    }, 3000);
+                });
+            } else if (resp.type == "success") {
+                // Show success message
+                $("#forgot-success").attr('style', 'color:green');
+                $("#forgot-success").html(resp.message).fadeIn();
+                // Optionally, you can redirect to a specific page after showing the success message
+                // window.location.href = "/success-page";
+                // Alternatively, you can refresh the current page after a delay
+                setTimeout(function(){
+                    location.reload();
+                }, 3000); // Refresh after 3 seconds
+            }
+        },
+        error: function() {
+            alert("Error occurred while processing your request.");
+        }
     });
 });
 function get_filter(class_name){

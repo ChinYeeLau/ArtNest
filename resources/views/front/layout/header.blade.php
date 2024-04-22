@@ -6,7 +6,7 @@ $sections=Section::sections();
   
  <!-- Spinner Start -->
  <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
-    <div class="spinner-grow " style="color: #f26b4e;" role="status"></div>
+    <div class="spinner-grow " style="color: #f26b4e;" role=""></div>
 </div>
 <!-- Spinner End -->
 
@@ -56,18 +56,20 @@ $sections=Section::sections();
                             <a href="{{url('vendor/register')}}">Register</a>
                         
                     </div>
-                </div>     
+                </div>  
+            
                    <!-- Favorites and Cart Links -->
-                   <div class="navbar-nav ml-auto">
-                    <a href="favourite.html" class="nav-item nav-link"><i class="fa-solid fa-heart fa-2x" style="color: #f26b4e;"></i></a> 
+                   <div class="navbar-nav ml-auto ">
+                    <a href="{{url('cart')}}" class="nav-item nav-link"><i class="fa-solid fa-heart fa-2x" style="color: #f26b4e;"></i></a>  </div>
+                    <div class="navbar-nav ml-auto ">
                     <a href="{{url('cart')}}" class="nav-item nav-link"><i class="fa-solid fa-cart-shopping fa-2x" style="color: #f26b4e;"></i></a> 
                 </div>
-            </div>
+            
                     <div class="dropdown" style="float:right;">
                     <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-user fa-2x" style="color: #f26b4e; "></i></button>
                     <div class="m-0 dropdown-content" style="position: absolute; right: 0;">
                         @if (Auth::check())
-                            <a href="profile.html">Profile</a>
+                            <a href="{{url('user/account')}}">Profile</a>
                             <a href="trackorder.html">Track Order</a>
                             <a href="message.html">Message</a>
                             <a href="{{url('user/logout')}}">Log Out</a>

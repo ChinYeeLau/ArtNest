@@ -38,33 +38,21 @@
            
             <div class="card-body p-5 text-center">
   
-              <h3 class="mb-5">Login</h3>
-              <p id="login-error"></p>
-            
-              <form id="loginForm" action="javascript:;" method="post" >@csrf
+              <h3 class="mb-5">Forgot Password?</h3>
+              <p id="forgot-error"></p>
+              <p id="forgot-success"></p>
+              <form id="forgotForm" action="javascript:;" method="post" >@csrf
               <div class="form-outline mb-4">
                 <label class="form-label" for="users-email">Email</label>
                 <input  type="email" name="email" id="users-email" class="form-control form-control-lg"  placeholder="Username" required="" class="form-control form-control-lg" />
-               <p id="login-email"></p>
+               <p id="forgot-email"></p>
               </div>
-  
-              <div class="form-outline mb-4">
-                <label class="form-label" for="users-password">Password</label>
-                <input type="password" name="password" id="users-password" class="form-control form-control-lg"  placeholder="Password"required="" class="form-control form-control-lg" />
-                <p id="login-password"></p>
+              <div style="text-align: start;"> 
+                <a href="{{url('user/login')}}">Back To Login</a>
               </div>
-             <div style="text-align: start;"> 
-              <a href="{{url('user/forgot-password')}}">forgot password?</a>
-            </div>
-              <!-- Checkbox -->
-              
-               
-                  
              
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-              <br><br><div style="text-align: start;"> 
-                <a href="{{url('user/register')}}">Register Account</a>
-              </div>
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+  
               </form>
   
             </div>

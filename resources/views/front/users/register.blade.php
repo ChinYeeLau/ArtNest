@@ -37,6 +37,8 @@
             <div class="card shadow-2-strong" style="border-radius: 1rem;">
               <div class="card-body p-5 text-center">
                 <h3 class="mb-5">Register</h3>
+                <p id="register-error"></p>
+                <p id="register-success"></p>
                 <form id="registerForm" action="javascript:;" method="POST">@csrf
                    
                     <div class="form-outline mb-4">
@@ -69,8 +71,11 @@
                               
                              
                     <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
-                </form>
-                
+                   <br><br> <div style="text-align: start;"> 
+                      <a href="{{url('user/login')}}">Already have an account?</a>
+                    </div>
+                  </form>
+               
               </div>
             </div>
           </div>

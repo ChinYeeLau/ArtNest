@@ -118,14 +118,25 @@ Route::get('cart','ProductsController@cart');
 Route::post('cart/update','ProductsController@cartUpdate');
 //delete cart item
 Route::post('cart/delete','ProductsController@cartDelete');
- //user login/Register
- Route::get('user/login','UserController@login');
-  //user login/Register
+ //user login
+ Route::get('user/login', ['as' => 'login', 'uses' => 'UserController@login']);
+ //user Register
   Route::get('user/register','UserController@register');
  //user register
  Route::post('user/register','UserController@userRegister');
+
+Route::group(['middleware'=>['auth']],function(){
+
+ //user account
+ Route::match(['get','post'],'user/account','UserController@userAccount');
+ //user update password
+ Route::post('user/update-password','UserController@userUpdatePassword');
+});
+
  //user login
  Route::post('user/login','UserController@userLogin');
+ //user forgot password
+ Route::match(['get','post'],'user/forgot-password','UserController@forgotPassword');
  //user logout
  Route::get('user/logout','UserController@userLogout');
  //confirm user account

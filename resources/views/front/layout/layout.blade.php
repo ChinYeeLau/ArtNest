@@ -37,7 +37,6 @@
 
     <body>
 
-
       @include('front.layout.header')
 
     @include('front.layout.modals')
