@@ -2,6 +2,7 @@
 use App\Models\Section;
 $sections=Section::sections();
 /*echo"<pre>";print_r($sections);die;*/
+ $totalCartItems=totalCartItems();
 ?>
   
  <!-- Spinner Start -->
@@ -24,7 +25,7 @@ $sections=Section::sections();
                 <div class="d-flex flex-column flex-xl-row">
                     <div class="dropdown" style="float:right;">
                         <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</button>
-                        <div class=" dropdown-content" style=" position: absolute;right: 0;">
+                        <div class=" m-0 dropdown-content" style=" position: absolute;">
                             @foreach($sections as $section)
                                 <strong style="padding-left:15px; color: #f26b4e;font-size:24px;">{{$section['name']}}</strong>
                                 @if(count($section['categories']) > 0)
@@ -62,8 +63,10 @@ $sections=Section::sections();
                    <div class="navbar-nav ml-auto ">
                     <a href="{{url('cart')}}" class="nav-item nav-link"><i class="fa-solid fa-heart fa-2x" style="color: #f26b4e;"></i></a>  </div>
                     <div class="navbar-nav ml-auto ">
-                    <a href="{{url('cart')}}" class="nav-item nav-link"><i class="fa-solid fa-cart-shopping fa-2x" style="color: #f26b4e;"></i></a> 
-                </div>
+                        <a href="{{url('cart')}}" class="nav-item nav-link cart-link">
+                            <i class="fa-solid fa-cart-shopping fa-2x cart-icon"></i>
+                            <span class="cart-items totalCartItems">{{$totalCartItems}}</span>
+                        </a>                </div>
             
                     <div class="dropdown" style="float:right;">
                     <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-user fa-2x" style="color: #f26b4e; "></i></button>

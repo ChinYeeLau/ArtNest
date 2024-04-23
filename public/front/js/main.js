@@ -148,6 +148,7 @@ $(document).ready(function() {
         url:'/cart/update',
         type:'post',
         success:function(resp){
+            $(".totalCartItems").html(resp.totalCartItems);
             if(resp.status==false){
                 alert(resp.message);
             }
@@ -173,6 +174,7 @@ $(document).ready(function() {
                 url:'/cart/delete',
                 type:'post',
                 success:function(resp){
+                    $(".totalCartItems").html(resp.totalCartItems);
                     $("#appendCartItems").html(resp.view);
         
                 },error:function(){
