@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\CouponsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,7 +85,13 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
        Route::post('update-banner-status',[BannersController::class, 'updateBannerStatus']);
        Route::get('delete-banner/{id}',[BannersController::class, 'deleteBanner']);
         Route::match(['get','post'],'add-edit-banner/{id?}',[BannersController::class,'addEditBanner']);
-        });
+       //Coupons
+        Route::get('coupons','CouponsController@coupons');
+        Route::post('update-coupon-status','CouponsController@updateCouponStatus');
+        Route::get('delete-coupon/{id}','CouponsController@deleteCoupon');
+        Route::match(['get','post'],'add-edit-coupon/{id?}','CouponsController@addEditCoupon');
+
+    });
         
 });
 
