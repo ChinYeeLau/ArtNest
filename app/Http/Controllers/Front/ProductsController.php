@@ -7,6 +7,7 @@ use Auth;
 use Session;
 use App\Models\Cart;
 use App\Models\Banner;
+use App\Models\Coupon;
 use App\Models\Vendor;
 use App\Models\Product;
 use App\Models\Category;
@@ -241,7 +242,8 @@ class ProductsController extends Controller
         return response()->json([
          'status'=>true,
          'totalCartItems'=>$totalCartItems,
-         'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+         'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+
       ]);
       }
 
@@ -255,8 +257,33 @@ class ProductsController extends Controller
         $totalCartItems=totalCartItems();
         return response()->json([
          'totalCartItems'=>$totalCartItems,
-         'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+         'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+         'headerview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+
      ]);
        }
     }
+    public function applyCoupon(Request $request){
+   if($requet->ajax()){
+      $data=$request->all();
+      //echo"<pre>";print_r($data);die;
+      $getCartItems =Cart::getCartItems();
+      $totalCartItems=totalCartItems();
+      $couponCount=Coupon::where('coupon_code',$data['code'])->count();
+      if($couponCount==0){
+         return response()->json([
+            'status'=>false,
+            'totalCartItems'=>$totalCartItems,
+            'message'=>'The Coupon is not Valid',
+         'view'=>(String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+         'headerview'=>(String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+
+         ]);
+      }else{
+         echo "Check for other coupon condition";
+         
+      }
+   }
+    }
 }
+

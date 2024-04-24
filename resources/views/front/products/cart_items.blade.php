@@ -68,10 +68,18 @@
         </tbody>
     </table>
 </div>
-<div class="mt-5">
-    <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
-    <button class="btn border-secondary rounded-pill align-items: center; justify-content: center;" type="button">Apply Coupon</button>
-</div>
+
+
+
+
+    <div class="mt-5">
+        <form id="ApplyCoupon" method="post" action="javascript:void(0);" @if(Auth::check()) user="1" @endif > @csrf
+        <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4 text-field" id="code" name="code" placeholder="Enter Coupon Code">
+        <button class="btn border-secondary rounded-pill align-items: center; justify-content: center;" type="submit" >Apply Coupon</button>
+    </form>
+    </div>
+
+
 <div class="row g-4 justify-content-end">
     <div class="col-8"></div>
     <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">

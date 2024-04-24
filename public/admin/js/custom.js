@@ -368,9 +368,6 @@ $("#couponField").show();
 $("#AutomaticCoupon").click(function(){
     $("#couponField").hide();
     });
-
-
-
 });
 
  

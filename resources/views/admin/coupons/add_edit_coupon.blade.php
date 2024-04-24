@@ -85,7 +85,7 @@
                     </div>
                     <div class="form-group">
                         <label for="amount" >Amount</label>
-                        <input  type="text" name="amount" id="amount" class="form-control" rows="3"  @if(isset($coupon['amount'])) value="{{$coupon['amount']}}" @else value="{{old ['amount']}}" @endif></input>
+                        <input  type="text" name="amount" id="amount" class="form-control" rows="3"  @if(isset($coupon['amount'])) value="{{old('amount')}}" @endif></input>
                       </div>
                       
                     <div class="form-group">
@@ -113,7 +113,7 @@
                       </div>
                       <div class="form-group">
                         <label for="expiry_date" > Expiry Date</label>
-                        <input  type="date" name="expiry_date" id="expiry_date" class="form-control" placeholder="Enter Expiry Date" rows="3" @if(isset($coupon['expiry_date'])) value="{{$coupon['expiry_date']}}" @else value="{{old ['expiry_date']}}" @endif></input>
+                        <input  type="date" name="expiry_date" id="expiry_date" class="form-control" placeholder="Enter Expiry Date" rows="3" @if(isset($coupon['expiry_date'])) value="{{$coupon['expiry_date']}}" @else value="{{old ('expiry_date')}}" @endif></input>
                       </div>
                
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
