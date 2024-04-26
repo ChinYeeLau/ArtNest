@@ -387,7 +387,7 @@ $("#ApplyCoupon").submit(function(){
     return false;
    }
    var code= $("#code").val();
-   $ajax({
+   $.ajax({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },

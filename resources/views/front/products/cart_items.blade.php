@@ -72,12 +72,12 @@
 
 
 
-    <div class="mt-5">
-        <form id="ApplyCoupon" method="post" action="javascript:void(0);" @if(Auth::check()) user="1" @endif > @csrf
+<div class="mt-5">
+    <form id="ApplyCoupon" method="post" action="javascript:void(0);" @if(Auth::check()) user="1" @endif >@csrf
         <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4 text-field" id="code" name="code" placeholder="Enter Coupon Code">
-        <button class="btn border-secondary rounded-pill align-items: center; justify-content: center;" type="submit" >Apply Coupon</button>
+        <button class="btn border-secondary rounded-pill align-items-center justify-content-center" type="submit">Apply Coupon</button>
     </form>
-    </div>
+</div>
 
 
 <div class="row g-4 justify-content-end">
