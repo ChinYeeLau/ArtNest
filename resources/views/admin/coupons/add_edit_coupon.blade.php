@@ -84,9 +84,10 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="amount" >Amount</label>
-                        <input  type="text" name="amount" id="amount" class="form-control" rows="3"  @if(isset($coupon['amount'])) value="{{old('amount')}}" @endif></input>
-                      </div>
+                      <label for="amount">Amount</label>
+                      <input type="text" name="amount" id="amount" class="form-control" 
+                      @if(!empty($coupon['amount'])) value="{{ $coupon['amount']}}"@else value="{{old('amount')}}" @endif>
+                  </div>
                       
                     <div class="form-group">
                         <label for="categories"  >Select Category</label>

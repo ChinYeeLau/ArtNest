@@ -376,8 +376,10 @@ $("#forgotForm").submit(function(e){
             alert("Error occurred while processing your request.");
         }
     });
-//apply coupon
-$("#ApplyCoupon").submit(function(){
+   
+});
+   //apply coupon
+   $("#ApplyCoupon").submit(function(){
     var user=$(this).attr("user");
    // alert(user);
    if(user==1){
@@ -395,19 +397,19 @@ $("#ApplyCoupon").submit(function(){
     data:{code:code},
     url:'/apply-coupon',
     success:function(resp){
-        if(resp.message!=""){
+        
+       if(resp.message!=""){
             alert(resp.message)
         }
         $(".totalCartItems").html(resp.totalCartItems);
         $("#appendCartItems").html(resp.view);
 
-    },error:function(){
+    },error:function(xhr, status, error){
         alert("Error");
     }
    })
    });
-   
-});
+
 function get_filter(class_name){
     var filter=[];
     $('.'+class_name+':checked').each(function(){

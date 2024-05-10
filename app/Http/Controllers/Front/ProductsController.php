@@ -264,9 +264,10 @@ class ProductsController extends Controller
     }
     public function applyCoupon(Request $request){
    if($request->ajax()){
+    
       $data=$request->all();
-      //echo"<pre>";print_r($data);die;
-      $getCartItems =Cart::getCartItems();
+     // echo"<pre>";print_r($data);die;
+    $getCartItems =Cart::getCartItems();
       $totalCartItems=totalCartItems();
       $couponCount=Coupon::where('coupon_code',$data['code'])->count();
       if($couponCount==0){
@@ -286,5 +287,4 @@ class ProductsController extends Controller
       }
    }
     }
-}
-
+   }
