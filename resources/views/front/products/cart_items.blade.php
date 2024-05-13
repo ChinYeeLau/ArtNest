@@ -93,14 +93,19 @@
                 <div class="d-flex justify-content-between">
                     <h5 class="mb-0 me-4">Coupon Discount:</h5>
                     <div class="">
-                        <p class="mb-0">RM 0</p>
+                        <p class="mb-0 couponAmount">
+                            @if(Session::has('couponAmount'))
+                            RM {{Session::get('couponAmount')}}
+                        @else
+                        RM 0
+                    @endif</p>
                     </div>
                 </div>
                
             </div>
             <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                 <h5 class="mb-0 ps-4 me-4">Total</h5>
-                <p class="mb-0 pe-4">RM {{$total_price}}</p>
+                <p class="mb-0 pe-4 grand_total">RM {{$total_price-Session::get('CouponAmount')}}</p>
             </div>
             <button class="btn border-secondary rounded-pill  align-items: center; justify-content: center; mb-4 ms-4" type="button">Proceed Checkout</button>
         </div>

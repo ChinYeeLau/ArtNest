@@ -396,18 +396,25 @@ $("#forgotForm").submit(function(e){
     type:"post",
     data:{code:code},
     url:'/apply-coupon',
-    success:function(resp){
-        
+    success:function(resp){  
        if(resp.message!=""){
             alert(resp.message)
         }
         $(".totalCartItems").html(resp.totalCartItems);
         $("#appendCartItems").html(resp.view);
-
-    },error:function(xhr, status, error){
+         if(resp.couponAmount>0){
+            $(".couponAmount").text("RM" + (resp.couponAmount));
+        }else{
+            $(".couponAmount").text("RM0");
+         }
+         if(resp.grand_total>0){
+            $(".grand_total").text("RM" + (resp.grand_total));
+         }
+    },
+    error: function() {
         alert("Error");
     }
-   })
+})
    });
 
 function get_filter(class_name){

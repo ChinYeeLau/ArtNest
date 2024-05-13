@@ -30,12 +30,12 @@
                                             @foreach($sections as $section)
                                         <ul class="list-unstyled fruite-categorie">
                                             <li>
-                                                <div class="d-flex justify-content-between fruite-name">
+                                                <div class="d-flex justify-content-between ">
                                                     <a ><i class=""></i>{{$section['name']}}</a>
                                                 </div>
                                                     @if(count($section['categories']) > 0)
                                                     @foreach($section['categories'] as $category)
-                                                    <div class="flex justify-content-between fruite-name" >
+                                                    <div class="flex justify-content-between " >
                                                     <a href="{{url('/'.$category['category_name'])}}"><i class="fas fa-apple-alt me-2"></i>{{$category['category_name']}}</a>
                                                    
                                                     @endforeach
