@@ -143,6 +143,8 @@ Route::group(['middleware'=>['auth']],function(){
  Route::post('user/update-password','UserController@userUpdatePassword');
  //apply coupon
  Route::post('/apply-coupon','ProductsController@applyCoupon');
+ //Checkout
+ Route::match(['get','post'],'/checkout','ProductsController@checkout');
 });
 
  //user login

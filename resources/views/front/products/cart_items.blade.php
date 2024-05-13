@@ -107,7 +107,7 @@
                 <h5 class="mb-0 ps-4 me-4">Total</h5>
                 <p class="mb-0 pe-4 grand_total">RM {{$total_price-Session::get('CouponAmount')}}</p>
             </div>
-            <button class="btn border-secondary rounded-pill  align-items: center; justify-content: center; mb-4 ms-4" type="button">Proceed Checkout</button>
+            <a href="{{url('/checkout')}}" class="btn border-secondary rounded-pill align-items-center justify-content-center mb-4 ms-4" role="button">Proceed Checkout</a>
         </div>
     </div>
 </div>

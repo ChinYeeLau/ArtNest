@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Models;
+
+use Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class DeliveryAddress extends Model
+{
+    use HasFactory;
+    public static function deliveryAddresses(){
+        $deliveryAddresses=DeliveryAddress::where('user_id',Auth::user()->id)->get()->toArray();
+        return $deliveryAddresses;
+    }
+}

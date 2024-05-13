@@ -6,14 +6,15 @@ use DB;
 use Auth;
 use Session;
 use App\Models\Cart;
+use App\Models\User;
 use App\Models\Banner;
 use App\Models\Coupon;
-use App\Models\User;
 use App\Models\Vendor;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\ProductsFilter;
+use App\Models\DeliveryAddress;
 use App\Models\ProductsAttribute;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
@@ -389,4 +390,9 @@ class ProductsController extends Controller
       }
    }
     }
+    public function checkout(){
+      $deliveryAddresses=DeliveryAddress::deliveryAddresses();
+      return view('front.products.checkout')->with(compact('deliveryAddresses'));
+    }
+
    }
