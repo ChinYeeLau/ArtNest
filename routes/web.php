@@ -145,6 +145,10 @@ Route::group(['middleware'=>['auth']],function(){
  Route::post('/apply-coupon','ProductsController@applyCoupon');
  //Checkout
  Route::match(['get','post'],'/checkout','ProductsController@checkout');
+ //get delivery address
+ Route::post('get-delivery-address','AddressController@getDeliveryAddress');
+ //save delivery address
+ Route::post('save-delivery-address','AddressController@saveDeliveryAddress');
 });
 
  //user login

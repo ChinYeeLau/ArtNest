@@ -6,88 +6,17 @@
 
         <!-- Checkout Page Start -->
         <div class="container-fluid py-5">
-            <div class="container py-5">
-                @if (count($deliveryAddresses)>0)
-                <h4 class="mb-4"> Delivery Addresses</h4>
-                @foreach($deliveryAddresses as $address)
-                <div style="float:left;margin-right:8px;"><input type="radio" id="address{{$address['id']}}" name="address_id" value="{{$address['id']}}"></div>
-                <div><label >{{$address['name']}}, {{$address['address']}}, {{$address['state']}}, {{$address['postcode']}} ({{$address['mobile']}})</label></div>
-                @endforeach
-                <br>
-                <h4 class="mb-4"> Add New Delivery Address</h4>
-                <div class="form-item">
-                    <label class="form-label my-3"> Name<sup>*</sup></label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="form-item">
-                    <label class="form-label my-3">Address <sup>*</sup></label>
-                    <input type="text" class="form-control" placeholder="House Number Street Name">
-                </div>
-                <div class="form-item">
-                    <label class="form-label my-3">State<sup>*</sup></label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="form-item">
-                    <label class="form-label my-3">Mobile<sup>*</sup></label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="form-item">
-                    <label class="form-label my-3">Postcode<sup>*</sup></label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="form-item">
-                    <label class="form-label my-3">Mobile<sup>*</sup></label>
-                    <input type="tel" class="form-control">
-                </div>
-                @else
-                <h4 class="mb-4">Add New Delivery Address</h4>
-                <form action="#">
+            <div class="container py-5 ">
+ 
                     <div class="row g-5">
-                        <div class="col-md-12 col-lg-6 col-xl-7">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-6">
-                                    <div class="form-item w-100">
-                                        <label class="form-label my-3">First Name<sup>*</sup></label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-lg-6">
-                                    <div class="form-item w-100">
-                                        <label class="form-label my-3">Last Name<sup>*</sup></label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-item">
-                                <label class="form-label my-3">Address <sup>*</sup></label>
-                                <input type="text" class="form-control" placeholder="House Number Street Name">
-                            </div>
-                            <div class="form-item">
-                                <label class="form-label my-3">State<sup>*</sup></label>
-                                <input type="text" class="form-control">
-                            </div>
-                            
-                            <div class="form-item">
-                                <label class="form-label my-3">Postcode<sup>*</sup></label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-item">
-                                <label class="form-label my-3">Mobile<sup>*</sup></label>
-                                <input type="tel" class="form-control">
-                            </div>
-                          
-                            @endif
-                            <hr>
-                            <div class="form-check my-3">
-                                <input class="form-check-input" type="checkbox" id="Address-1" name="Address" value="Address">
-                                <label class="form-check-label" for="Address-1">Ship to a different address?</label>
-                            </div>
-                            <div class="form-item">
-                                <textarea name="text" class="form-control" spellcheck="false" cols="30" rows="11" placeholder="Oreder Notes (Optional)"></textarea>
+                        <div class="col-md-12 col-lg-6 col-xl-7" style="padding-top:50px;">
+
+                            <div id="deliveryAddresses">
+                                @include('front.products.delivery_addresses')
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-6 col-xl-5">
+                        <div class="col-md-12 col-lg-6 col-xl-5" style="padding-top:50px;">
+                            <h4>Your Order</h4>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -103,7 +32,7 @@
                                         <tr>
                                             <th scope="row">
                                                 <div class="d-flex align-items-center mt-2">
-                                                    <img src="img/vegetable-item-2.jpg" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
+                                                    <img src="" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
                                                 </div>
                                             </th>
                                             <td class="py-5">Awesome Brocoli</td>
@@ -114,7 +43,7 @@
                                         <tr>
                                             <th scope="row">
                                                 <div class="d-flex align-items-center mt-2">
-                                                    <img src="img/vegetable-item-5.jpg" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
+                                                    <img src="" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
                                                 </div>
                                             </th>
                                             <td class="py-5">Potatoes</td>
@@ -125,7 +54,7 @@
                                         <tr>
                                             <th scope="row">
                                                 <div class="d-flex align-items-center mt-2">
-                                                    <img src="img/vegetable-item-3.png" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
+                                                    <img src="" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
                                                 </div>
                                             </th>
                                             <td class="py-5">Big Banana</td>
@@ -223,7 +152,6 @@
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
         <!-- Checkout Page End -->

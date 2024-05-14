@@ -416,7 +416,52 @@ $("#forgotForm").submit(function(e){
     }
 })
    });
+   
+   //edit delivery address
+   $(document).on('click','.editAddress',function(){
+      var addressid = $(this).data("addressid");
+      $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+      data:{addressid:addressid},
+      url:'/get-delivery-address',
+      type:'post',
+      success:function(resp){
+        $("#myCheck").prop('checked', true);
+        toggleForm();  // Call toggleForm to ensure the form is shown    
+        $(".newAddress").hide();
+        $(".deliveryText").text("Edit Delivery Address");
+        $('[name=delivery_id]').val(resp.address['id']);
+        $('[name=delivery_name]').val(resp.address['name']);
+        $('[name=delivery_address]').val(resp.address['address']);
+        $('[name=delivery_state]').val(resp.address['state']);
+        $('[name=delivery_postcode]').val(resp.address['postcode']);
+        $('[name=delivery_mobile]').val(resp.address['mobile']);
+      },error:function(){
+        alert ("Error");
+      }
+      });
+   });
+//save delivery address
+$(document).on('submit',"#addressAddEditForm",function(){
 
+    var formdata=$("#addressAddEditForm").serialize();
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url:'/save-delivery-address',
+        type:'post',
+        data:formdata,
+        success:function(data){
+           $("#deliveryAddresses").html(data.view);
+           $("#formContainer").hide();
+        },error:function(){
+            alert("Error");
+        }
+    });
+});
 function get_filter(class_name){
     var filter=[];
     $('.'+class_name+':checked').each(function(){
@@ -436,4 +481,36 @@ function change_image(element) {
         var imageSrc = element.src;
         document.getElementById('main-image').src = imageSrc;
     }
+//add new address checkbox
+function toggleForm() {
+    var checkBox = document.getElementById("myCheck");
+    var formContainer = document.getElementById("formContainer");
 
+    if (checkBox.checked) {
+        formContainer.style.display = "block";
+    } else {
+        formContainer.style.display = "none";
+    }
+}
+
+// Checkbox state management
+$(document).ready(function() {
+    var checkboxState = localStorage.getItem("checkboxState");
+    if (checkboxState === "checked") {
+        $("#myCheck").prop('checked', true);
+    } else {
+        $("#myCheck").prop('checked', false);
+    }
+    toggleForm(); // Call toggleForm to ensure the form is shown or hidden based on the checkbox state
+
+    $('#myCheck').on('change', function() {
+        if ($(this).is(':checked')) {
+            localStorage.setItem("checkboxState", "checked");
+        } else {
+            localStorage.setItem("checkboxState", "unchecked");
+        }
+        toggleForm(); // Call toggleForm to toggle form visibility
+    });
+});
+
+  
