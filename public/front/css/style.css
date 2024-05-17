@@ -613,3 +613,10 @@
     color: #f26b4e; /* Adjust as needed */
 }
 
+.close-button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+   
+}

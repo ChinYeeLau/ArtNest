@@ -399,6 +399,7 @@ $("#forgotForm").submit(function(e){
     success:function(resp){  
        if(resp.message!=""){
             alert(resp.message)
+            location.reload();
         }
         $(".totalCartItems").html(resp.totalCartItems);
         $("#appendCartItems").html(resp.view);
@@ -446,6 +447,7 @@ $("#forgotForm").submit(function(e){
 //save delivery address
 $(document).on('submit',"#addressAddEditForm",function(){
 
+
     var formdata=$("#addressAddEditForm").serialize();
     $.ajax({
         headers: {
@@ -454,14 +456,51 @@ $(document).on('submit',"#addressAddEditForm",function(){
         url:'/save-delivery-address',
         type:'post',
         data:formdata,
-        success:function(data){
-           $("#deliveryAddresses").html(data.view);
-           $("#formContainer").hide();
+        success:function(resp){
+            if (resp.type == "error") {
+                $.each(resp.errors, function(i, error) {
+                    $("#delivery-" + i).attr('style', 'color:red');
+                    $("#delivery-" + i).html(error);
+                    setTimeout(function() {
+                        $("#delivery-" + i).css({
+                            'display': 'none'
+                        });
+                    }, 3000);
+                });
+            } else{
+                $("#deliveryAddresses").html(resp.view);
+                $("#formContainer").hide();
+            }
         },error:function(){
             alert("Error");
         }
     });
 });
+
+//remove delivery address
+$(document).on('click','.removeAddress',function(){
+ if(confirm("Are you sure to remove this?")){
+    var addressid = $(this).data("addressid");
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url:'/remove-delivery-address',
+        type:'post',
+        data:{addressid:addressid},
+        success:function(resp){
+          $("#deliveryAddresses").html(resp.view);
+
+        },error:function(){
+            alert("Error");
+        }
+
+    });
+}
+
+});
+
+
 function get_filter(class_name){
     var filter=[];
     $('.'+class_name+':checked').each(function(){
@@ -495,22 +534,32 @@ function toggleForm() {
 
 // Checkbox state management
 $(document).ready(function() {
+    // Retrieve the checkbox state from localStorage
     var checkboxState = localStorage.getItem("checkboxState");
     if (checkboxState === "checked") {
         $("#myCheck").prop('checked', true);
     } else {
         $("#myCheck").prop('checked', false);
     }
-    toggleForm(); // Call toggleForm to ensure the form is shown or hidden based on the checkbox state
+    toggleForm(); // Ensure the form is shown or hidden based on the checkbox state
 
+    // Event listener for checkbox state change
     $('#myCheck').on('change', function() {
         if ($(this).is(':checked')) {
             localStorage.setItem("checkboxState", "checked");
         } else {
             localStorage.setItem("checkboxState", "unchecked");
         }
-        toggleForm(); // Call toggleForm to toggle form visibility
+        toggleForm(); // Toggle form visibility based on checkbox state
     });
 });
 
+// Function to toggle form visibility
+function toggleForm() {
+    if ($('#myCheck').is(':checked')) {
+        $('#formContainer').show();
+    } else {
+        $('#formContainer').hide();
+    }
+}
   

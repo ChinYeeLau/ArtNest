@@ -149,6 +149,8 @@ Route::group(['middleware'=>['auth']],function(){
  Route::post('get-delivery-address','AddressController@getDeliveryAddress');
  //save delivery address
  Route::post('save-delivery-address','AddressController@saveDeliveryAddress');
+ //remove delivery address
+ Route::post('remove-delivery-address','AddressController@removeDeliveryAddress');
 });
 
  //user login
