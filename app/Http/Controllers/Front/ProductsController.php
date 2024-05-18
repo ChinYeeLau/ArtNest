@@ -12,6 +12,8 @@ use App\Models\Coupon;
 use App\Models\Vendor;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrdersProducts;
 use Illuminate\Http\Request;
 use App\Models\ProductsFilter;
 use App\Models\DeliveryAddress;
@@ -391,6 +393,13 @@ class ProductsController extends Controller
    }
     }
     public function checkout(Request $request){
+      $deliveryAddresses=DeliveryAddress::deliveryAddresses();
+      $getCartItems=Cart::getCartItems();
+      //dd($getCartItems);
+      if(count($getCartItems)==0){
+         $message="Shopping Cart is empty!Please add products to checkout!";
+         return redirect('cart')->with('error_message',$message);
+      }
       if($request->isMethod('post')){
          $data=$request->all();
         // echo "<pre>";print_r($data);die;
@@ -404,11 +413,62 @@ class ProductsController extends Controller
          $message="Please select Payment Method!";
          return redirect()->back()->with('error_message',$message);
         }
-        echo "Ready to placeorder"; die;
+        //echo "<pre>";print_r($data);die;
+        //get delivery address from address_id
+        $deliveryAddress=DeliveryAddress::where('id',$data['address_id'])->first()->toArray();
+        // dd($deliveryAddress);
+         //set payment method as cod if cod selected otherwise set as prepaid
+         if($data['payment_gateway']=="COD"){
+            $payment_method="COD";
+            $order_status="New";
+         }else{
+            $payment_method="Prepaid";
+            $order_status="Pending";
+         }
+
+         DB::beginTransaction();
+         //calculate total
+         $total_price=0;
+         foreach($getCartItems as $item){
+            $getDiscountAttributePrice=Product::getDiscountAttributePrice($item['product_id'],$item['size']);
+            $total_price=$total_price + ($getDiscountAttributePrice['final_price']*$item['quantity']);
+         }
+         //calculate shipping charges
+         $shipping_charges=0;
+         //calculate grand total
+         $grand_total=$total_price+$shipping_charges-Session::get('couponAmount');
+         //insert grand total in session variable
+         Session::put('grand_total',$grand_total);
+         //insert order detail
+         $order= new Order;
+         $order->user_id=Auth::user()->id;
+         $order->name=$deliveryAddress['name'];
+         $order->address=$deliveryAddress['address'];
+         $order->state=$deliveryAddress['state'];
+         $order->postcode=$deliveryAddress['postcode'];
+         $order->mobile=$deliveryAddress['mobile'];
+         $order->email=Auth::user()->email;
+         $order->shipping_charges=$shipping_charges;
+         $order->coupon_code=Session::get('couponCode');
+         $order->coupon_amount=Session::get('couponAmount');
+         $order->order_status=$order_status;
+         $order->payment_method=$payment_method;
+         $order->payment_gateway=$data['payment_gateway'];
+         $order->grand_total=$grand_total;
+         $order->save();
+         $order_id=DB::getPdo()->lastInsertId();
+
+         foreach($getCartItems as $item){
+            $cartItem=new OrdersProducts;
+            $cartItem->order_id=$order_id;
+            $cartItem->user_id=Auth::user()->id;
+            $getProductDetails=Product::select('product_code','product_name','product_color','admin_id','vendor_id')->where('id',$item['product_id'])->first()->toArray();
+            dd($getProductDetails);
+
+         }
+         DB::commit();
       }
-      $deliveryAddresses=DeliveryAddress::deliveryAddresses();
-      $getCartItems=Cart::getCartItems();
-      //dd($getCartItems);
+     
       return view('front.products.checkout')->with(compact('deliveryAddresses','getCartItems'));
     }
 

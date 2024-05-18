@@ -14,7 +14,7 @@
                             @if(Session::has('error_message'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                               <strong>Error</strong> {{Session::get('error_message')}}
-                              <button type="button" class="close close-button"style="float:right;" data-dismiss="alert" aria-label="Close">
+                              <button type="button" class="close close-button" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
@@ -22,7 +22,7 @@
                             @if(Session::has('success_message'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                               <strong>Success</strong> {{Session::get('success_message')}}
-                              <button type="button" class="close close-button"style="float:right;"  data-dismiss="alert" aria-label="Close">
+                              <button type="button" class="close close-button"  data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
@@ -48,7 +48,8 @@
                                         </tr>
                                     </thead>
                                     
-            <tbody> @php $total_price=0 @endphp
+            <tbody> 
+                @php $total_price=0 @endphp
                 @foreach($getCartItems as $item)
                 <?php $getDiscountAttributePrice=Product::getDiscountAttributePrice($item['product_id'],$item['size']);
                 ?>

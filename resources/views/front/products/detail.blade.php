@@ -43,7 +43,7 @@
                                 @if(Session::has('error_message'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                   <strong>Error</strong> <?php echo Session::get('error_message'); ?>
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <button type="button" class="close close-button" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
@@ -51,7 +51,7 @@
                                 @if(Session::has('success_message'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                   <strong>Success</strong>  <?php echo Session::get('success_message'); ?>
-                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                  <button type="button" class="close close-button" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
@@ -118,7 +118,7 @@
                             <br>
                             <span>Sold by:</span>
                             <div  >
-                                <a href="/products/{{$productDetails['vendor']['id']}}">
+                                <a href="/products/{{$productDetails['vendor']['id']?? ''}}">
                                 @if(!empty(Auth::guard('admin')->user()->image))
                                 <img style="border-radius: 50%; width:50px; height:50px;" src="{{ url('admin/images/photos/' . Auth::guard('admin')->user()->image) }}" alt="Admin/Vendor Image">
                             @else
