@@ -39,7 +39,6 @@ class AddressController extends Controller
                 $address['state']=$data['delivery_state'];
                 $address['postcode']=$data['delivery_postcode'];
                 $address['mobile']=$data['delivery_mobile'];
-                $address['status']=1;
      
                 if(!empty($data['delivery_id'])){
                   //edit delivery address

@@ -3,6 +3,7 @@
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Admin\FilterController;
 use App\Http\Controllers\Admin\BannersController;
@@ -93,7 +94,13 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         //Users
         Route::get('users','UserController@users');
         Route::post('update-user-status','UserController@updateUserStatus');
+        //CMS Pages
+         Route::get('cms_pages','CmsController@cmspages');
+         Route::post('update-cms-page-status','CmsController@updatePageStatus');
+         Route::get('delete-page/{id}','CmsController@deletePage');
 
+         //Orders
+         Route::get('orders',[OrderController::class,'orders']);
     });
         
 });
@@ -155,6 +162,7 @@ Route::group(['middleware'=>['auth']],function(){
  Route::get('thanks','ProductsController@thanks');
  //users orders
  Route::get('user/orders/{id?}','OrderController@orders');
+
 });
 
  //user login

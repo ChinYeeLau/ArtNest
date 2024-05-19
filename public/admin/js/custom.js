@@ -1,5 +1,7 @@
 $(document).ready(function(){
     //call dataTable 
+    $('#orders').DataTable();
+    $('#pages').DataTable();
     $('#sections').DataTable();
     $('#categories').DataTable();
     $('#products').DataTable();
@@ -54,6 +56,30 @@ $(document).ready(function(){
                 $("#admin-"+admin_id).html("<i style='font-size:25px'class='mdi mdi-bookmark-outline' status='Inactive'></i>");
             } else if(resp['status'] == 1){
                 $("#admin-" + admin_id).html("<i style='font-size:25px'class='mdi mdi-bookmark-check' status='Active'></i>");
+            }
+        },
+        error: function(){
+            alert("Error");
+        }
+    })
+    });
+     //update Page Status
+     $(document).on("click",".updatePageStatus",function(){
+        var status = $(this).children("i").attr("status");
+        var page_id=$(this).attr("page_id");
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type:'post',
+            url:'/admin/update-cms-page-status',
+            data:{status:status,page_id:page_id},
+            success:function(resp){
+               // alert(resp);
+              if(resp['status']==0){
+                $("#page-"+page_id).html("<i style='font-size:25px'class='mdi mdi-bookmark-outline' status='Inactive'></i>");
+            } else if(resp['status'] == 1){
+                $("#page-" + page_id).html("<i style='font-size:25px'class='mdi mdi-bookmark-check' status='Active'></i>");
             }
         },
         error: function(){
