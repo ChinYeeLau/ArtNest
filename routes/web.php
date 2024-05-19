@@ -6,10 +6,10 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Admin\FilterController;
 use App\Http\Controllers\Admin\BannersController;
+use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
-use App\Http\Controllers\Admin\CouponsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -151,6 +151,10 @@ Route::group(['middleware'=>['auth']],function(){
  Route::post('save-delivery-address','AddressController@saveDeliveryAddress');
  //remove delivery address
  Route::post('remove-delivery-address','AddressController@removeDeliveryAddress');
+ //thanks 
+ Route::get('thanks','ProductsController@thanks');
+ //users orders
+ Route::get('user/orders/{id?}','OrderController@orders');
 });
 
  //user login

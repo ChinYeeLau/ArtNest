@@ -45,7 +45,7 @@ class AddressController extends Controller
                   //edit delivery address
                   DeliveryAddress::where('id',$data['delivery_id'])->update($address);
                 }else{
-                // $address['status']=1;
+                 
                  //add delivery address
                  DeliveryAddress::create($address);
              }

@@ -446,8 +446,7 @@ $("#forgotForm").submit(function(e){
    });
 //save delivery address
 $(document).on('submit',"#addressAddEditForm",function(){
-
-
+   
     var formdata=$("#addressAddEditForm").serialize();
     $.ajax({
         headers: {
@@ -469,7 +468,7 @@ $(document).on('submit',"#addressAddEditForm",function(){
                 });
             } else{
                 $("#deliveryAddresses").html(resp.view);
-                $("#formContainer").hide();
+           
             }
         },error:function(){
             alert("Error");

@@ -73,6 +73,7 @@ $sections=Section::sections();
                     <div class="m-0 dropdown-content" style="position: absolute; right: 0;">
                         @if (Auth::check())
                             <a href="{{url('user/account')}}">Profile</a>
+                            <a href="{{url('user/orders')}}">My Orders</a>
                             <a href="trackorder.html">Track Order</a>
                             <a href="message.html">Message</a>
                             <a href="{{url('user/logout')}}">Log Out</a>

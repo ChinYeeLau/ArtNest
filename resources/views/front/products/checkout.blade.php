@@ -7,8 +7,10 @@
         <!-- Checkout Page Start -->
         <div class="container-fluid py-5">
             <div class="container py-5 ">
- <form name="checkoutForm" id="checkoutForm" action="{{url('/checkout')}}" method="post">@csrf
+                <form name="checkoutForm" id="checkoutForm" action="{{url('/checkout')}}" method="post">@csrf
+
                     <div class="row g-5">
+
                         <div class="col-md-12 col-lg-6 col-xl-6" style="padding-top:50px;">
                            
                             @if(Session::has('error_message'))
@@ -31,7 +33,9 @@
                             <div id="deliveryAddresses">
                                 @include('front.products.delivery_addresses')
                             </div>
+                            
                         </div>
+                        
                         <div class="col-md-12 col-lg-6 col-xl-6" style="padding-top:50px;">
 
                             <h4>Your Order</h4>
@@ -48,11 +52,11 @@
                                         </tr>
                                     </thead>
                                     
-            <tbody> 
-                @php $total_price=0 @endphp
-                @foreach($getCartItems as $item)
-                <?php $getDiscountAttributePrice=Product::getDiscountAttributePrice($item['product_id'],$item['size']);
-                ?>
+                                    <tbody> 
+                 @php $total_price=0 @endphp
+                 @foreach($getCartItems as $item)
+                 <?php $getDiscountAttributePrice=Product::getDiscountAttributePrice($item['product_id'],$item['size']);
+                 ?>
 
                                         <tr>
                                             <th scope="row">
@@ -174,7 +178,9 @@
                             <div class="row g-4 text-center align-items-center justify-content-center pt-4">
                                 <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</button>
                             </div>
+                       
                         </div>
+                 
                     </div>
                 </form>
             </div>

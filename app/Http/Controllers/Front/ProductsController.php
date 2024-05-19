@@ -13,7 +13,7 @@ use App\Models\Vendor;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Order;
-use App\Models\OrdersProducts;
+use App\Models\OrdersProduct;
 use Illuminate\Http\Request;
 use App\Models\ProductsFilter;
 use App\Models\DeliveryAddress;
@@ -415,7 +415,7 @@ class ProductsController extends Controller
         }
         //echo "<pre>";print_r($data);die;
         //get delivery address from address_id
-        $deliveryAddress=DeliveryAddress::where('id',$data['address_id'])->first()->toArray();
+        $deliveryAddress = DeliveryAddress::where('id', $data['address_id'])->first()->toArray();
         // dd($deliveryAddress);
          //set payment method as cod if cod selected otherwise set as prepaid
          if($data['payment_gateway']=="COD"){
@@ -425,7 +425,7 @@ class ProductsController extends Controller
             $payment_method="Prepaid";
             $order_status="Pending";
          }
-
+        
          DB::beginTransaction();
          //calculate total
          $total_price=0;
@@ -447,10 +447,10 @@ class ProductsController extends Controller
          $order->state=$deliveryAddress['state'];
          $order->postcode=$deliveryAddress['postcode'];
          $order->mobile=$deliveryAddress['mobile'];
-         $order->email=Auth::user()->email;
+         $order->email= Auth::user()->email;
          $order->shipping_charges=$shipping_charges;
-         $order->coupon_code=Session::get('couponCode');
-         $order->coupon_amount=Session::get('couponAmount');
+         $order->coupon_code= Session::get('couponCode');
+         $order->coupon_amount= Session::get('couponAmount');
          $order->order_status=$order_status;
          $order->payment_method=$payment_method;
          $order->payment_gateway=$data['payment_gateway'];
@@ -459,17 +459,40 @@ class ProductsController extends Controller
          $order_id=DB::getPdo()->lastInsertId();
 
          foreach($getCartItems as $item){
-            $cartItem=new OrdersProducts;
+            $cartItem=new OrdersProduct;
             $cartItem->order_id=$order_id;
             $cartItem->user_id=Auth::user()->id;
             $getProductDetails=Product::select('product_code','product_name','product_color','admin_id','vendor_id')->where('id',$item['product_id'])->first()->toArray();
-            dd($getProductDetails);
-
+            //dd($getProductDetails);
+             $cartItem->admin_id=$getProductDetails['admin_id'];
+             $cartItem->vendor_id=$getProductDetails['vendor_id'];
+             $cartItem->product_id=$item['product_id'];
+             $cartItem->product_code=$getProductDetails['product_code'];
+             $cartItem->product_name=$getProductDetails['product_name'];
+             $cartItem->product_color=$getProductDetails['product_color'];
+             $cartItem->product_size=$item['size'];
+             $getDiscountAttributePrice=Product::getDiscountAttributePrice($item['product_id'],$item['size']);
+             $cartItem->product_price=$getDiscountAttributePrice['final_price'];
+             $cartItem->product_qty=$item['quantity'];
+             $cartItem->save();
          }
+         //insert order id in session variable
+         Session::put('order_id',$order_id);
          DB::commit();
+       return redirect('thanks');
       }
      
       return view('front.products.checkout')->with(compact('deliveryAddresses','getCartItems'));
     }
 
+     public function thanks(){
+      if(Session::has('order_id')){
+         //empty cart
+         Cart::where('user_id',Auth::user()->id)->delete();
+         return view('front.products.thanks');
+
+      }else{
+         return redirect('cart');
+      }
+     }
    }

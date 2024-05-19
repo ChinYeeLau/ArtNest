@@ -1,0 +1,78 @@
+<?php use App\Models\Product; ?>
+@extends('front.layout.layout')
+@section('content')
+   <!-- Cart Page Start -->
+  
+   <div class="container py-5 h-100">
+    <div class="container-fluid py-5 mt-5">
+    <div class="container py-5" style="text-align: center;">
+       <h3> Order Details #{{$orderDetails['id']}}</h3>   
+       <a href="{{url('user/orders')}}">Orders</a>
+    </div>
+<table class="table ">
+   
+    <tr class="table-info"> <td colspan="2"><strong>Order Details</strong></td></tr>
+    <tr> <td>Order Date </td>
+    <td>{{ date('Y-m-d h:i:s', strtotime($orderDetails['created_at'])) }}</td>
+    </tr>
+    <tr>  <td>Order Status</td>
+    <td>{{$orderDetails['order_status']}}</td> </tr>
+    <tr>  <td>Order Total </td>
+    <td>{{$orderDetails['order_status']}}</td> </tr>
+    <tr>  <td>Shipping Charges </td>
+    <td>{{$orderDetails['shipping_charges']}}</td></tr>
+    <tr> 
+        @if($orderDetails['coupon_code']!="")
+        <td>Coupon Code </td>
+    <td>{{$orderDetails['coupon_code']}}</td> </tr>
+    <tr>  <td>Coupon Amount </td>
+    <td>{{$orderDetails['coupon_amount']}}</td> </tr>
+    @endif
+    <tr> 
+        <td>Payment Method</td>
+    <td>{{$orderDetails['payment_method']}}</td>
+    </tr>
+    
+</table>
+<table class="table ">
+      <tr class="table-info">
+        <th>  Product Image</th>
+        <th>  Product Code </th>
+        <th>  Product Name  </th>
+        <th>  Product Size</th>
+        <th> Product Color </th>
+        <th> Product Quantity</th>
+    </tr>
+    @foreach($orderDetails['orders_products'] as $product)
+    <tr>
+        <td> @php $getProductImage=Product::getProductImage($product['product_id'])@endphp 
+       <a href="{{url('product/'.$product['product_id'])}}"> <img style="width:80px" src="{{asset('front/images/product_images/small/'.$getProductImage)}}"></a>
+        </td>
+        <td>  {{$product['product_code']}} </td>
+        <td>   {{$product['product_name']}} </td>
+        <td>   {{$product['product_size']}}</td>
+        <td> {{$product['product_color']}} </td>
+        <td>  {{$product['product_qty']}}</td>
+    </tr>
+    @endforeach
+</table>
+<table class="table ">
+   
+    <tr class="table-info"> <td colspan="2"><strong>Delivery Address</strong></td></tr>
+    <tr>  <td>Name</td>
+    <td>{{$orderDetails['name']}}</td> </tr>
+    <tr>  <td>Address </td>
+    <td>{{$orderDetails['address']}}</td> </tr>
+    <tr>  <td>State</td>
+    <td>{{$orderDetails['state']}}</td></tr>
+    <tr>  <td>Postcode </td>
+    <td>{{$orderDetails['postcode']}}</td> </tr>
+    <tr>  <td> Mobile</td>
+    <td>{{$orderDetails['mobile']}}</td> </tr>
+   
+    
+</table>
+</div>
+</div>
+<!-- Cart Page End -->
+@endsection

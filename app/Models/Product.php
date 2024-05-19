@@ -79,6 +79,9 @@ public static function isProductNew($product_id){
  }
  return $isProductNew;
 }
-
+public static function getProductImage($product_id){
+   $getProductImage=Product::select('product_image')->where('id',$product_id)->first()->toArray();
+   return $getProductImage['product_image'];
+}
 }
 
