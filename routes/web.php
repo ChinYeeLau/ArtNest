@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\Category;
+use App\Models\CmsPage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Admin\FilterController;
 use App\Http\Controllers\Admin\BannersController;
@@ -95,12 +95,17 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('users','UserController@users');
         Route::post('update-user-status','UserController@updateUserStatus');
         //CMS Pages
-         Route::get('cms_pages','CmsController@cmspages');
+         Route::get('cms-pages','CmsController@cmspages');
          Route::post('update-cms-page-status','CmsController@updatePageStatus');
          Route::get('delete-page/{id}','CmsController@deletePage');
+         Route::match(['get','post'],'add-edit-cms-page/{id?}','CmsController@addEditCmsPage');
 
          //Orders
-         Route::get('orders',[OrderController::class,'orders']);
+         Route::get('orders','OrderController@orders');
+         Route::get('orders/{id}','OrderController@orderDetails');
+         Route::post('update-order-status','OrderController@updateOrderStatus');
+         Route::post('update-order-item-status','OrderController@updateOrderItemStatus');
+
     });
         
 });
@@ -113,6 +118,11 @@ Route::namespace('App\Http\Controllers\Front')->group(function(){
  foreach($catUrls as $key=>$url){
     Route::match(['get','post'],'/'.$url,'ProductsController@listing');
  }
+ //CMS Pages routes
+$cmsUrls=CmsPage::select('url')->where('status',1)->get()->pluck('url')->toArray();
+foreach($cmsUrls as $url){
+    Route::get($url,'CmsController@cmsPage');
+}
  //vendor products
  Route::get('/products/{vendorid}','ProductsController@vendorListing');
  //product detail page

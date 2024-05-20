@@ -11,7 +11,7 @@
                         <!--<p class="card-description">
                             Add class <code>.table-bordered</code>
                         </p>-->
-                        <a style="max-width:150px; float:right; display:inlineblock;" href="{{url('admin/add-edit-category')}}" class="btn btn-block btn-primary ">Add CMS Page</a>
+                        <a style="max-width:150px; float:right; display:inlineblock;" href="{{url('admin/add-edit-cms-page')}}" class="btn btn-block btn-primary ">Add CMS Page</a>
                         @if(Session::has('success_message'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Success</strong> {{Session::get('success_message')}}
@@ -64,7 +64,7 @@
                                         </td>
                                         <td>
                                            
-                                            <a href="{{url('admin/add-edit-page/'.$page['id'])}}"><i  style="font-size:25px" class="mdi mdi-pencil-box"></i></a>
+                                            <a href="{{url('admin/add-edit-cms-page/'.$page['id'])}}"><i  style="font-size:25px" class="mdi mdi-pencil-box"></i></a>
                                             <?php /*<a title="Page" class="confirmDelete"  href="{{url('admin/delete-page/'.$page['id'])}}" ><i style="font-size:25px" class="mdi mdi-file-excel-box"></i></a>*/ ?>
                                             <a href="javascript:void(0)" class="confirmDelete" module="page" moduleid="{{$page['id']}}"><i style="font-size:25px" class="mdi mdi-file-excel-box"></i></a>
 
