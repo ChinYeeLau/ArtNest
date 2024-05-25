@@ -6,11 +6,13 @@ use Auth;
 use Session;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\OrdersLog;
 use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 use App\Models\OrdersProduct;
 use App\Models\OrderItemStatus;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -58,7 +60,8 @@ class OrderController extends Controller
         $userDetails=User::where('id',$orderDetails['user_id'])->first()->toArray();
         $orderStatuses=OrderStatus::where('status',1)->get()->toArray();
         $orderItemStatuses=OrderItemStatus::where('status',1)->get()->toArray();
-        return view('admin.orders.order_details')->with(compact('orderDetails','userDetails','orderStatuses','orderItemStatuses'));
+        $orderLog=OrdersLog::where('order_id',$id)->get()->toArray();
+        return view('admin.orders.order_details')->with(compact('orderDetails','userDetails','orderStatuses','orderItemStatuses','orderLog'));
       }
     
       public function updateOrderStatus(Request $request){
@@ -67,7 +70,27 @@ class OrderController extends Controller
           $data= $request->all();
           //update order status
           Order::where('id',$data['order_id'])->update(['order_status'=>$data['order_status']]);
-         $message="Order Status has been updated successfully!";
+        //update order log
+        $log= new OrdersLog;
+        $log->order_id=$data['order_id'];
+        $log->order_status=$data['order_status'];
+        $log->save();
+          //get delivery details
+         $deliveryDetails=Order::select('mobile','email','name')->where('id',$data['order_id'])->first()->toArray();
+         $orderDetails=Order::with('orders_products')->where('id',$data['order_id'])->first()->toArray();
+         $email=$deliveryDetails['email'];
+          //send order status update email
+          $messageData = [
+            'email' => $email,
+            'name' =>  $deliveryDetails['name'],
+            'order_id' => $data['order_id'],
+            'orderDetails' => $orderDetails,
+            'order_status'=>$data['order_status'],
+        ];
+        Mail::send('emails.order_status', $messageData, function($message) use ($email) {
+            $message->to($email)->subject('Order Status Updated- ArtNest.online');
+        });
+          $message="Order Status has been updated successfully!";
           return redirect()->back()->with('success_message',$message);
         }
       }
@@ -76,7 +99,27 @@ class OrderController extends Controller
           $data= $request->all();
           //update order item status
           OrdersProduct::where('id',$data['order_item_id'])->update(['item_status'=>$data['order_item_status']]);
-         $message="Order Item Status has been updated successfully!";
+          $getOrderId=OrdersProduct::select('order_id')->where('id',$data['order_item_id'])->first()->toArray();
+          //get delivery details
+          $deliveryDetails=Order::select('mobile','email','name')->where('id',$getOrderId['order_id'])->first()->toArray();
+          $orderDetails=Order::with('orders_products')->where('id',$getOrderId['order_id'])->first()->toArray();
+          $email=$deliveryDetails['email'];
+           //send order status update email
+           $messageData = [
+             'email' => $email,
+             'name' =>  $deliveryDetails['name'],
+             'order_id' => $getOrderId['order_id'],
+             'orderDetails' => $orderDetails,
+             'order_status'=>$data['order_item_status'],
+             'order_item_id' => $data['order_item_id'], 
+            'order_item_status' => $data['order_item_status'], 
+         ];
+         Mail::send('emails.order_item_status', $messageData, function($message) use ($email) {
+             $message->to($email)->subject('Order Status Updated- ArtNest.online');
+         });
+         
+         
+          $message="Order Item Status has been updated successfully!";
           return redirect()->back()->with('success_message',$message);
         }
       }

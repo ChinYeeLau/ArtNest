@@ -7,19 +7,20 @@ use Auth;
 use Session;
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Banner;
 use App\Models\Coupon;
 use App\Models\Vendor;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Order;
-use App\Models\OrdersProduct;
 use Illuminate\Http\Request;
+use App\Models\OrdersProduct;
 use App\Models\ProductsFilter;
 use App\Models\DeliveryAddress;
 use App\Models\ProductsAttribute;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 
@@ -479,6 +480,25 @@ class ProductsController extends Controller
          //insert order id in session variable
          Session::put('order_id',$order_id);
          DB::commit();
+         $orderDetails = Order::with('orders_products')->where('id', $order_id)->first()->toArray();
+
+         if ($data['payment_gateway'] == "COD") {
+             // Send order email
+             $email = Auth::user()->email;
+             $messageData = [
+                 'email' => $email,
+                 'name' => Auth::user()->name,
+                 'order_id' => $order_id,
+                 'orderDetails' => $orderDetails
+             ];
+             Mail::send('emails.order', $messageData, function($message) use ($email) {
+                 $message->to($email)->subject('Order Placed - ArtNest.online');
+             });
+         } else {
+             // Handle other payment gateways
+             echo "Prepaid payment methods coming soon";
+         }
+
        return redirect('thanks');
       }
      
