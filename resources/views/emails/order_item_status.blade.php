@@ -18,6 +18,9 @@
         <tr>
             <td>Order No. {{ $order_id }}</td>
         </tr>
+        @if(!empty($courier_name)&&!empty($tracking_number))
+        <tr><td>Courier Name is {{$courier_name}} and Tracking Number is {{$tracking_number}}</td></tr>
+        <tr>@endif
         <tr>
             <td>
                 <table style="width:95%" cellpadding="5" cellspacing="0" border="1">
@@ -42,6 +45,7 @@
                         <td>{{ $orderProduct['product_qty'] }}</td>
                         <td>{{ $orderProduct['product_price'] }}</td>
                     </tr>
+                    
                     @endif
                     @endforeach
                 </tbody>

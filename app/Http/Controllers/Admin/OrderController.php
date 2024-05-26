@@ -60,7 +60,7 @@ class OrderController extends Controller
         $userDetails=User::where('id',$orderDetails['user_id'])->first()->toArray();
         $orderStatuses=OrderStatus::where('status',1)->get()->toArray();
         $orderItemStatuses=OrderItemStatus::where('status',1)->get()->toArray();
-        $orderLog=OrdersLog::where('order_id',$id)->get()->toArray();
+        $orderLog=OrdersLog::with('orders_products')->where('order_id',$id)->orderBy('id','Desc')->get()->toArray();
         return view('admin.orders.order_details')->with(compact('orderDetails','userDetails','orderStatuses','orderItemStatuses','orderLog'));
       }
     
@@ -70,7 +70,11 @@ class OrderController extends Controller
           $data= $request->all();
           //update order status
           Order::where('id',$data['order_id'])->update(['order_status'=>$data['order_status']]);
-        //update order log
+          //update courier name and tracking number
+          if(!empty($data['courier_name'])&&!empty($data['tracking_number'])){
+            Order::where('id',$data['order_id'])->update(['courier_name'=>$data['courier_name'],'tracking_number'=>$data['tracking_number']]);
+          }
+          //update order log
         $log= new OrdersLog;
         $log->order_id=$data['order_id'];
         $log->order_status=$data['order_status'];
@@ -78,18 +82,38 @@ class OrderController extends Controller
           //get delivery details
          $deliveryDetails=Order::select('mobile','email','name')->where('id',$data['order_id'])->first()->toArray();
          $orderDetails=Order::with('orders_products')->where('id',$data['order_id'])->first()->toArray();
+        
+         if(!empty($data['courier_name'])&&!empty($data['tracking_number'])){
+            //send order status update email
          $email=$deliveryDetails['email'];
-          //send order status update email
-          $messageData = [
-            'email' => $email,
-            'name' =>  $deliveryDetails['name'],
-            'order_id' => $data['order_id'],
-            'orderDetails' => $orderDetails,
-            'order_status'=>$data['order_status'],
-        ];
-        Mail::send('emails.order_status', $messageData, function($message) use ($email) {
-            $message->to($email)->subject('Order Status Updated- ArtNest.online');
-        });
+         $messageData = [
+           'email' => $email,
+           'name' =>  $deliveryDetails['name'],
+           'order_id' => $data['order_id'],
+           'orderDetails' => $orderDetails,
+           'order_status'=>$data['order_status'],
+           'courier_name'=>$data['courier_name'],
+           'tracking_number'=>$data['tracking_number'],
+
+       ];
+       Mail::send('emails.order_status', $messageData, function($message) use ($email) {
+           $message->to($email)->subject('Order Status Updated- ArtNest.online');
+       });
+         }else{
+            //send order status update email
+         $email=$deliveryDetails['email'];
+         $messageData = [
+           'email' => $email,
+           'name' =>  $deliveryDetails['name'],
+           'order_id' => $data['order_id'],
+           'orderDetails' => $orderDetails,
+           'order_status'=>$data['order_status'],
+       ];
+       Mail::send('emails.order_status', $messageData, function($message) use ($email) {
+           $message->to($email)->subject('Order Status Updated- ArtNest.online');
+       });
+         }
+            
           $message="Order Status has been updated successfully!";
           return redirect()->back()->with('success_message',$message);
         }
@@ -99,24 +123,57 @@ class OrderController extends Controller
           $data= $request->all();
           //update order item status
           OrdersProduct::where('id',$data['order_item_id'])->update(['item_status'=>$data['order_item_status']]);
+           //update courier name and tracking number
+           if(!empty($data['item_courier_name'])&&!empty($data['item_tracking_number'])){
+            OrdersProduct::where('id',$data['order_item_id'])->update(['courier_name'=>$data['item_courier_name'],'tracking_number'=>$data['item_tracking_number']]);
+          }
+
           $getOrderId=OrdersProduct::select('order_id')->where('id',$data['order_item_id'])->first()->toArray();
+
+            //update order log
+          $log= new OrdersLog;
+          $log->order_id=$getOrderId['order_id'];
+          $log->order_item_id=$data['order_item_id'];
+          $log->order_status=$data['order_item_status'];
+          $log->save();
           //get delivery details
           $deliveryDetails=Order::select('mobile','email','name')->where('id',$getOrderId['order_id'])->first()->toArray();
           $orderDetails=Order::with('orders_products')->where('id',$getOrderId['order_id'])->first()->toArray();
+          if(!empty($data['item_courier_name'])&&!empty($data['item_tracking_number'])){
+               //send order status update email
           $email=$deliveryDetails['email'];
-           //send order status update email
-           $messageData = [
-             'email' => $email,
-             'name' =>  $deliveryDetails['name'],
-             'order_id' => $getOrderId['order_id'],
-             'orderDetails' => $orderDetails,
-             'order_status'=>$data['order_item_status'],
-             'order_item_id' => $data['order_item_id'], 
-            'order_item_status' => $data['order_item_status'], 
-         ];
-         Mail::send('emails.order_item_status', $messageData, function($message) use ($email) {
-             $message->to($email)->subject('Order Status Updated- ArtNest.online');
-         });
+          $messageData = [
+            'email' => $email,
+            'name' =>  $deliveryDetails['name'],
+            'order_id' => $getOrderId['order_id'],
+            'orderDetails' => $orderDetails,
+            'order_status'=>$data['order_item_status'],
+            'order_item_id' => $data['order_item_id'], 
+           'order_item_status' => $data['order_item_status'],
+           'courier_name'=>$data['item_courier_name'], 
+           'tracking_number'=>$data['item_tracking_number'], 
+        ];
+        Mail::send('emails.order_item_status', $messageData, function($message) use ($email) {
+            $message->to($email)->subject('Order Status Updated- ArtNest.online');
+        });
+
+          }else{
+                //send order status update email
+          $email=$deliveryDetails['email'];
+          $messageData = [
+            'email' => $email,
+            'name' =>  $deliveryDetails['name'],
+            'order_id' => $getOrderId['order_id'],
+            'orderDetails' => $orderDetails,
+            'order_status'=>$data['order_item_status'],
+            'order_item_id' => $data['order_item_id'], 
+           'order_item_status' => $data['order_item_status'], 
+        ];
+        Mail::send('emails.order_item_status', $messageData, function($message) use ($email) {
+            $message->to($email)->subject('Order Status Updated- ArtNest.online');
+        });
+          }
+      
          
          
           $message="Order Item Status has been updated successfully!";
