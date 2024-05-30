@@ -176,6 +176,11 @@ Route::group(['middleware'=>['auth']],function(){
  Route::get('thanks','ProductsController@thanks');
  //users orders
  Route::get('user/orders/{id?}','OrderController@orders');
+//paypal
+Route::get('paypal','PaypalController@paypal');
+Route::post('pay','PaypalController@pay')->name('payment');
+Route::get('success','PaypalController@success');
+Route::get('error','PaypalController@error');
 
 });
 

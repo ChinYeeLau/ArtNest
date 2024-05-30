@@ -6,8 +6,9 @@
    <div class="container py-5 h-100">
     <div class="container-fluid py-5 mt-5">
     <div class="container py-5" style="text-align: center;">
-       <h3>YOUR ORDER HAS BEEN PLACED SUCCESSFULLY</h3>
-       <p>Your order number is {{Session::get('order_id')}} and Grand total is RM {{Session::get('grand_total')}}</p>
+       <h3>YOUR PAYMENT HAS BEEN CONFIRMED</h3>
+       <P>Thanks for the Payment.We will process your order very soon.</P>
+       <p>Your order number is {{Session::get('order_id')}} and total amount paid is RM {{Session::get('grand_total')}}</p>
        
     </div>
 </div>

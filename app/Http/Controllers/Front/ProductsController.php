@@ -501,9 +501,13 @@ class ProductsController extends Controller
              Mail::send('emails.order', $messageData, function($message) use ($email) {
                  $message->to($email)->subject('Order Placed - ArtNest.online');
              });
+            }
+            if ($data['payment_gateway'] == "Paypal") {
+               //Paypal->redirect user to paypal page after saving order
+               return redirect('/paypal');
          } else {
              // Handle other payment gateways
-             echo "Prepaid payment methods coming soon";
+             echo "Other Prepaid payment methods coming soon";
          }
 
        return redirect('thanks');
