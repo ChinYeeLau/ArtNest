@@ -51,7 +51,7 @@
                           <p id="account-name"></p>
                       </div>
                       <div class="form-outline mb-4">
-                        <label class="form-label" for="user-address">Address</label>
+                        <label class="form-label" for="user-address">Full Address</label>
                           <input type="text" name="address" id="user-address"  class="form-control form-control-lg" value="{{Auth::user()->address}}" />
                           <p id="account-address"></p>
                       </div>

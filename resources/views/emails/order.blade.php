@@ -82,6 +82,10 @@
         <tr>
             <td>{{ $orderDetails['mobile'] }}</td>
         </tr>
+        <hr>
+        <tr>
+            <td><a href="{{url('orders/invoice/download/'.$orderDetails['id'])}}">Click here to download Order Invoice</a></td>
+        </tr>
         <tr>
             <td>For any queries, you can contact us at <a href="mailto:info@artnest.online">info@artnest.online</a></td>
         </tr>

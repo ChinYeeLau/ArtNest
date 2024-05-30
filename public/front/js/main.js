@@ -184,6 +184,10 @@ $(document).ready(function() {
         }
      
     });
+    //add loadeer when click place order
+    $(document).on('click', '#placeOrder', function() {
+        $("#spinner").addClass('show');  // Assuming you have a 'show' class to display the spinner
+    });
 
     $("#registerForm").submit(function(e){
         e.preventDefault(); // Prevent the default form submission
@@ -468,7 +472,8 @@ $(document).on('submit',"#addressAddEditForm",function(){
                 });
             } else{
                 $("#deliveryAddresses").html(resp.view);
-           
+                window.location.href="checkout";
+               
             }
         },error:function(){
             alert("Error");
@@ -489,6 +494,7 @@ $(document).on('click','.removeAddress',function(){
         data:{addressid:addressid},
         success:function(resp){
           $("#deliveryAddresses").html(resp.view);
+          window.location.href="checkout";
 
         },error:function(){
             alert("Error");

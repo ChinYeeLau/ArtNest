@@ -1,23 +1,11 @@
-@if (count($deliveryAddresses)>0)
-<h4 class="mb-4"> Delivery Addresses</h4>
-<div id="deliveryAddresses">
-
-@foreach($deliveryAddresses as $address)
-<div style="float:left;margin-right:8px;" class="control-group">
-    <input type="radio"  id="address{{$address['id']}}" name="address_id" value="{{$address['id']}}" ></div>
-<div>
-    <label class="control-label">{{$address['name']}}, {{$address['address']}}, {{$address['state']}}, {{$address['postcode']}} ({{$address['mobile']}})</label>
-    <a style="float:right;" href="javascript:;" data-addressid="{{$address['id']}}" class="removeAddress">Remove</a>
-    <a style="float:right;margin-right:10px;" href="javascript:;" data-addressid="{{$address['id']}}" class="editAddress">Edit</a>
-
-</div>
-<br>
-<br>
-@endforeach
-</div>
-@endif
 <h4 class="deliveryText">Add New Delivery Address</h4>
+@if (count($deliveryAddresses)>0)
+
 <p class="newAddress"><input type="checkbox" id="myCheck" class="newAddress" onclick="toggleForm()">Ship to a different Address?</p>
+@else
+<p class="newAddress"><input type="checkbox" id="myCheck" class="newAddress" onclick="toggleForm()">Check to add Delivery Address</p>
+
+@endif
 <form id="addressAddEditForm" action="javascript:;" method="post">@csrf    
 
 <input type="hidden" name="delivery_id"  >

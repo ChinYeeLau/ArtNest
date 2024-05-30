@@ -1,18 +1,18 @@
 <?php use App\Models\Product; ?>
 @extends('front.layout.layout')
 @section('content')
+
 <!-- Checkout Page Start -->
 <div class="container-fluid py-5">
     <div class="container py-5">
-        <form name="checkoutForm" id="checkoutForm" action="{{ url('/checkout') }}" method="post">
-            @csrf
+       
             <div class="row g-5">
                 <div class="col-md-12 col-lg-6 col-xl-6" style="padding-top:50px;">
                     <!-- Error and Success Messages -->
                     @if(Session::has('error_message'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Error</strong> {{ Session::get('error_message') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="close close-button" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -20,7 +20,7 @@
                     @if(Session::has('success_message'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <strong>Success</strong> {{ Session::get('success_message') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <button type="button" class="close close-button" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -31,6 +31,25 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6 col-xl-6" style="padding-top:50px;">
+                    <form name="checkoutForm" id="checkoutForm" action="{{ url('/checkout') }}" method="post">
+                        @csrf
+                    @if (count($deliveryAddresses)>0)
+                    <h4 class="mb-4"> Delivery Addresses</h4>
+                    <div id="deliveryAddresses">
+                  @foreach($deliveryAddresses as $address)
+                <div style="float:left;margin-right:8px;" class="control-group">
+                <input type="radio"  id="address{{$address['id']}}" name="address_id" value="{{$address['id']}}" ></div>
+                <div>
+                 <label class="control-label">{{$address['name']}}, {{$address['address']}}, {{$address['state']}}, {{$address['postcode']}} ({{$address['mobile']}})</label>
+                 <a style="float:right;" href="javascript:;" data-addressid="{{$address['id']}}" class="removeAddress">Remove</a>
+                 <a style="float:right;margin-right:10px;" href="javascript:;" data-addressid="{{$address['id']}}" class="editAddress">Edit</a>
+ 
+                </div>
+                <br>
+                <br>
+                @endforeach
+               </div>
+                   @endif
                     <h4>Your Order</h4>
                     <div class="table-responsive">
                         <table class="table">
@@ -144,12 +163,14 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                        <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</button>
+                        <button id= "placeOrder" type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</button>
                     </div>
+                </form>
                 </div>
             </div>
-        </form>
+       
     </div>
 </div>
 <!-- Checkout Page End -->

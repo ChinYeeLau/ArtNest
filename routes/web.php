@@ -105,10 +105,14 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
          Route::get('orders/{id}','OrderController@orderDetails');
          Route::post('update-order-status','OrderController@updateOrderStatus');
          Route::post('update-order-item-status','OrderController@updateOrderItemStatus');
+         //order invoices
+         Route::get('orders/invoice/{id}','OrderController@viewOrderInvoice');
+         Route::get('orders/invoice/pdf/{id}','OrderController@viewPDFInvoice');
 
     });
         
 });
+Route::get('orders/invoice/download/{id}','App\Http\Controllers\Admin\OrderController@viewPDFInvoice');
 
 Route::namespace('App\Http\Controllers\Front')->group(function(){
      Route::get('/',[IndexController::class, 'index']);
