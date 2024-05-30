@@ -102,7 +102,7 @@
                                 <tr>
                                     <th scope="row"></th>
                                     <td class="py-5">
-                                        <p class="mb-0 text-dark py-4">Shipping Fees</p>
+                                        <p class="mb-0 text-dark py-4">Shipping Charges</p>
                                     </td>
                                     <td class="py-5"></td>
                                     <td class="py-5"></td>
