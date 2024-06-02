@@ -38,7 +38,7 @@
                     <div id="deliveryAddresses">
                   @foreach($deliveryAddresses as $address)
                 <div style="float:left;margin-right:8px;" class="control-group">
-                <input type="radio"  id="address{{$address['id']}}" name="address_id" value="{{$address['id']}}" ></div>
+                <input type="radio"  id="address{{$address['id']}}" name="address_id" value="{{$address['id']}}" shipping_charges="{{$address['shipping_charges']}}" total_price="{{$total_price}}" coupon_amount="{{Session::get('couponAmount')}}"></div>
                 <div>
                  <label class="control-label">{{$address['name']}}, {{$address['address']}}, {{$address['state']}}, {{$address['postcode']}} ({{$address['mobile']}})</label>
                  <a style="float:right;" href="javascript:;" data-addressid="{{$address['id']}}" class="removeAddress">Remove</a>
@@ -102,13 +102,13 @@
                                 <tr>
                                     <th scope="row"></th>
                                     <td class="py-5">
-                                        <p class="mb-0 text-dark py-4">Shipping Charges</p>
+                                        <p class="mb-0 text-dark py-4 ">Shipping Charges</p>
                                     </td>
                                     <td class="py-5"></td>
                                     <td class="py-5"></td>
                                     <td class="py-5">
                                         <div class="py-3 border-bottom border-top">
-                                            <p class="mb-0 text-dark">RM 0</p>
+                                            <p class="mb-0 text-dark shipping_charges">RM 0</p>
                                         </div>
                                     </td>
                                 </tr>
@@ -121,7 +121,7 @@
                                     <td class="py-5"></td>
                                     <td class="py-5">
                                         <div class="py-3 border-bottom border-top">
-                                            <p class="mb-0 text-dark">
+                                            <p class="mb-0 text-dark couponAmount">
                                                 @if(Session::has('couponAmount'))
                                                     RM {{ Session::get('couponAmount') }}
                                                 @else
@@ -140,7 +140,7 @@
                                     <td class="py-5"></td>
                                     <td class="py-5">
                                         <div class="py-3 border-bottom border-top">
-                                            <p class="mb-0 text-dark">RM {{ $total_price - Session::get('couponAmount', 0) }}</p>
+                                            <p class="mb-0 text-dark"><strong class="grand_total">RM {{ $total_price - Session::get('couponAmount', 0) }}</strong></p>
                                         </div>
                                     </td>
                                 </tr>

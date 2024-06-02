@@ -18,15 +18,15 @@
     <tr>  <td>Order Status</td>
     <td>{{$orderDetails['order_status']}}</td> </tr>
     <tr>  <td>Order Total </td>
-    <td>{{$orderDetails['order_status']}}</td> </tr>
+    <td>RM {{$orderDetails['grand_total']}}</td> </tr>
     <tr>  <td>Shipping Charges </td>
-    <td>{{$orderDetails['shipping_charges']}}</td></tr>
+    <td>RM {{$orderDetails['shipping_charges']}}</td></tr>
     <tr> 
         @if($orderDetails['coupon_code']!="")
         <td>Coupon Code </td>
     <td>{{$orderDetails['coupon_code']}}</td> </tr>
     <tr>  <td>Coupon Amount </td>
-    <td>{{$orderDetails['coupon_amount']}}</td> </tr>
+    <td>RM {{$orderDetails['coupon_amount']}}</td> </tr>
     @endif
      @if($orderDetails['courier_name']!="")
         <td>Courier Name </td>

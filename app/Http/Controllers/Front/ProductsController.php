@@ -16,6 +16,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\OrdersProduct;
 use App\Models\ProductsFilter;
+use App\Models\ShippingCharge;
 use App\Models\DeliveryAddress;
 use App\Models\ProductsAttribute;
 use App\Http\Controllers\Controller;
@@ -401,13 +402,28 @@ class ProductsController extends Controller
    }
     }
     public function checkout(Request $request){
-      $deliveryAddresses=DeliveryAddress::deliveryAddresses();
       $getCartItems=Cart::getCartItems();
       //dd($getCartItems);
       if(count($getCartItems)==0){
          $message="Shopping Cart is empty!Please add products to checkout!";
          return redirect('cart')->with('error_message',$message);
       }
+       $total_price=0;
+       $total_weight=0;
+       foreach ($getCartItems as $item){
+          //echo "<pre>";print_r($item);die;
+         $attrPrice=Product::getDiscountAttributePrice($item['product_id'],$item['size']);
+         $total_price=$total_price+($attrPrice['final_price']*$item['quantity']);
+         $product_weight=$item['product']['product_weight'];
+         $total_weight=$total_weight+$product_weight;
+       }
+      $deliveryAddresses=DeliveryAddress::deliveryAddresses();
+      foreach($deliveryAddresses as $key =>$value){
+         $shippingCharges=ShippingCharge::getShippingCharges($total_weight,$value['state']);
+         $deliveryAddresses[$key]['shipping_charges']=$shippingCharges;
+      }
+      //dd ($deliveryAddresses);
+     
       if($request->isMethod('post')){
          $data=$request->all();
         // echo "<pre>";print_r($data);die;
@@ -443,6 +459,8 @@ class ProductsController extends Controller
          }
          //calculate shipping charges
          $shipping_charges=0;
+         //get shipping charges
+         $shipping_charges=ShippingCharge::getShippingCharges($total_weight,$deliveryAddress['state']);
          //calculate grand total
          $grand_total=$total_price+$shipping_charges-Session::get('couponAmount');
          //insert grand total in session variable
@@ -483,6 +501,7 @@ class ProductsController extends Controller
              $cartItem->product_price=$getDiscountAttributePrice['final_price'];
              $cartItem->product_qty=$item['quantity'];
              $cartItem->save();
+
          }
          //insert order id in session variable
          Session::put('order_id',$order_id);
@@ -501,6 +520,10 @@ class ProductsController extends Controller
              Mail::send('emails.order', $messageData, function($message) use ($email) {
                  $message->to($email)->subject('Order Placed - ArtNest.online');
              });
+               //reduce stock 
+               $getProductStock=ProductsAttribute::getProductStock($item['product_id'],$item['size']);
+               $newStock= $getProductStock-$item['quantity'];
+               ProductsAttribute::where(['product_id'=>$item['product_id'],'size'=>$item['size']])->update(['stock'=>$newStock]);
             }
             if ($data['payment_gateway'] == "Paypal") {
                //Paypal->redirect user to paypal page after saving order
@@ -513,7 +536,8 @@ class ProductsController extends Controller
        return redirect('thanks');
       }
      
-      return view('front.products.checkout')->with(compact('deliveryAddresses','getCartItems'));
+      
+      return view('front.products.checkout')->with(compact('deliveryAddresses','getCartItems','total_price'));
     }
 
      public function thanks(){

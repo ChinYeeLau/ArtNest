@@ -12,9 +12,7 @@
                 <div class="row justify-content-center ">
                     <div class="col-lg-8 col-xl-9">
                         <div class="row mt-5 ">
-                            <a href="{{ url()->previous() }}"><p>Back</p></a>
                             <div class="col-lg-6">
-                              
                                 <div class="border rounded ">
                                     <div class="images p-3 ">
                                         <div class="text-center p-4 easyzoom easyzoom--overlay easyzoom--with-thumbnails">
@@ -62,7 +60,7 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
                                         @if(isset($categoryDetails['categoryDetails']['section']['name']))
-                                        <li class="breadcrumb-item"><a href="javascript:;">{{$categoryDetails['categoryDetails']['section']['name']}}</a></li>
+                                        <li class="breadcrumb-item"><a>{{$categoryDetails['categoryDetails']['section']['name']}}</a></li>
                                     @endif
                                       <?php echo $categoryDetails['breadcrumbs']; ?>
                                     </ol>

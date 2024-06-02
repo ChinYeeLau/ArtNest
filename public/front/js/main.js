@@ -505,6 +505,24 @@ $(document).on('click','.removeAddress',function(){
 
 });
 
+//calculate grand total
+$("input[name=address_id]").bind('change',function(){
+   var shipping_charges=$(this).attr("shipping_charges");
+   var total_price=$(this).attr("total_price");
+   var coupon_amount=$(this).attr("coupon_amount");
+   $(".shipping_charges").html("RM"+shipping_charges);
+   if(coupon_amount==""){
+    coupon_amount=0;
+   }
+   $(".couponAmount").html("RM"+coupon_amount);
+
+   var grand_total=parseInt(total_price)+parseInt(shipping_charges)-parseInt(coupon_amount);
+   //alert(grand_total);
+   $(".grand_total").html("RM"+grand_total);
+   
+
+
+});
 
 function get_filter(class_name){
     var filter=[];

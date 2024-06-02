@@ -108,6 +108,10 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
          //order invoices
          Route::get('orders/invoice/{id}','OrderController@viewOrderInvoice');
          Route::get('orders/invoice/pdf/{id}','OrderController@viewPDFInvoice');
+        //shipping charges
+        Route::get('shipping-charges','ShippingController@shippingCharges');
+        Route::post('update-shipping-status','ShippingController@updateShippingStatus');
+        Route::match(['get','post'],'edit-shipping-charges/{id}','ShippingController@editShippingCharges');
 
     });
         

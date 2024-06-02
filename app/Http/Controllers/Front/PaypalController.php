@@ -10,6 +10,7 @@ use Omnipay\Omnipay;
 use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use App\Models\ProductsAttribute;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
@@ -88,6 +89,13 @@ class PaypalController extends Controller
              Mail::send('emails.order', $messageData, function($message) use ($email) {
                  $message->to($email)->subject('Order Placed - ArtNest.online');
              });
+              //reduce stock 
+              foreach($orderDetails['orders_products'] as $key =>$order){
+                $getProductStock=ProductsAttribute::getProductStock($order['product_id'],$order['product_size']);
+                $newStock= $getProductStock-$order['product_qty'];
+                ProductsAttribute::where(['product_id'=>$order['product_id'],'size'=>$order['product_size']])->update(['stock'=>$newStock]);
+              }
+             
               //empty cart
              Cart::where('user_id',Auth::user()->id)->delete();
              return view('front.paypal.success');
