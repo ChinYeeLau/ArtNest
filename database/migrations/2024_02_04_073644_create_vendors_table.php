@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('state');
             $table->string('mobile');
             $table->string('email')->unique();
+            $table->enum('confirm', ['No', 'Yes'])->default('No');
             $table->string('currentstatus');
             $table->string('portfolio')->nullable();
             $table->tinyInteger('status');

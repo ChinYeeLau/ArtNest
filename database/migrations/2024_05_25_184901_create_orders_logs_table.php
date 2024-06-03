@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orders_logs', function (Blueprint $table) {
             $table->id();
             $table->integer('order_id');
+            $table->integer('order_item_id');
             $table->string('order_status');
             $table->timestamps();
         });
