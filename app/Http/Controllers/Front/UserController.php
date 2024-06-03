@@ -232,6 +232,7 @@ class UserController extends Controller
     }
     public function userLogout(){
         Auth::logout();
+        Session::flush();
         return redirect('/');
     }
     public function confirmAccount($code){

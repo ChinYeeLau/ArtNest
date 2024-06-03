@@ -12,6 +12,7 @@ use App\Models\Banner;
 use App\Models\Coupon;
 use App\Models\Vendor;
 use App\Models\Product;
+use App\Models\Section;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\OrdersProduct;
@@ -426,7 +427,49 @@ class ProductsController extends Controller
      
       if($request->isMethod('post')){
          $data=$request->all();
-        // echo "<pre>";print_r($data);die;
+         //echo "<pre>";print_r($data);die;
+        //website security
+        foreach ($getCartItems as $item){
+          //prevent disable products to order
+          $product_status =Product::getProductStatus($item['product_id']);
+          if($product_status==0){
+            //Product::deleteCartProduct($item['product_id']);
+            $message=$item['product']['product_name']. "-" .$item['size']. " is not available .Please remove it choose other product.";
+            return redirect('/cart')->with('error_message',$message);
+          }
+          //prevent sold out products to order
+          $getProductStock=ProductsAttribute::getProductStock($item['product_id'],$item['size']);
+          if($getProductStock==0){
+           // Product::deleteCartProduct($item['product_id']);
+            $message=$item['product']['product_name']."-".$item['size']." is not available .Please remove it  choose other product.";
+            return redirect('/cart')->with('error_message',$message);
+          }
+           //prevent disable attribute to order
+           $getAttributeStatus=ProductsAttribute::getAttributeStatus($item['product_id'],$item['size']);
+           if($getAttributeStatus==0){
+            // Product::deleteCartProduct($item['product_id']);
+             $message=$item['product']['product_name']."-".$item['size']." is not available .Please remove it  choose other product.";
+             return redirect('/cart')->with('error_message',$message);
+           }
+            //prevent disable attribute to order
+            $getAttributeStatus=ProductsAttribute::getAttributeStatus($item['product_id'],$item['size']);
+            if($getAttributeStatus==0){
+             // Product::deleteCartProduct($item['product_id']);
+              $message=$item['product']['product_name']."-".$item['size'].".Product Variable is not available.Please remove it  choose other product.";
+              return redirect('/cart')->with('error_message',$message);
+            }
+             //prevent disable category products to order
+             $getCategoryStatus=Category::getCategoryStatus($item['product']['category_id']);
+             if($getCategoryStatus==0){
+               //Product::deleteCartProduct($item['product_id']);
+               $message=$item['product']['product_name']."-".$item['size']." is not available.Please remove it choose other product.";
+               return redirect('/cart')->with('error_message',$message);
+              }
+           
+             
+        }
+        
+
         //delivery address validation
         if(empty($data['address_id'])){
          $message="Please select Delivery Address!";
