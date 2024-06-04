@@ -159,6 +159,9 @@ Route::post('cart/delete','ProductsController@cartDelete');
   Route::get('user/register','UserController@register');
  //user register
  Route::post('user/register','UserController@userRegister');
+//search products
+Route::get('search-products','ProductsController@listing');
+
 
 Route::group(['middleware'=>['auth']],function(){
 

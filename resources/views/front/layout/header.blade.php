@@ -43,8 +43,9 @@ $sections=Section::sections();
                 </div>
                 <div class="navbar-nav mx-auto">    
                 </div>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="border: none; border-radius: 30px; height: 45px;">
+                <form class="d-flex" action="{{url('/search-products')}}" method="get">
+                    <input name="search" class="form-control me-2" type="search" placeholder="Search"  @if(isset($_REQUEST['search']) && !empty($_REQUEST['search'])) value="{{$_REQUEST['search']}}" @endif
+                        aria-label="Search" style="border: none; border-radius: 30px; height: 45px;">
                     <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass fa-2x" style="color: #f26b4e;"></i></button>
                     </form>
                     <div class="d-flex">

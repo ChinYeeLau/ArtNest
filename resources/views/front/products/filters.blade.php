@@ -9,17 +9,9 @@
     <div class="container-fluid fruite py-5">
         <div class="container py-5">
             <h1 class="mb-4">Welcome to ArtNest</h1>
-            <div class="row g-4">
+            <div class="row g-4"style="display:flex;">
                 <div class="col-lg-12">
-                    <div class="row g-4">
-                        <div class="col-xl-3">
-                         
-                        </div>
-                        <div class="col-6"></div>
-                        <div class="col-xl-3">
-                            
-                        </div>
-                    </div>
+                   
                     <div class="row g-4">
                         <div class="col-lg-3">
                             <div class="row g-4">
@@ -56,6 +48,8 @@
                                         <output id="amount" name="amount" min-velue="0" max-value="500" for="rangeInput">0</output>
                                     </div>
                                 </div>-->
+                                @if(!isset($_REQUEST['search']))
+
                                 <div class="col-lg-12">
                                     @foreach ($productFilters as $filter)
                                         <?php
@@ -148,7 +142,7 @@
                                     </div>
                                     @endforeach
                                 </div>
-                                   
+                                @endif
                                 <div class="col-lg-12">
                                     <div class="position-relative" >
                                         @if(isset($fixBanners[0]['image']))
@@ -157,11 +151,11 @@
                                                 <img class="img-fluid" style="height:300px"title="{{ $fixBanners[1]['title'] }}" src="{{ asset('front/images/banner_images/'.$fixBanners[1]['image']) }}" alt="{{ $fixBanners[1]['alt'] }}">
                                             </a>
                                         </div>
-                                        @endif                                        <div class="position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);">
-                                            <h3 class="text-secondary fw-bold">Fresh <br> Fruits <br> Banner</h3>
-                                        </div>
+                                        @endif                                       
+                                        
                                     </div>
                                 </div>
+                               
                             </div>
                         </div>
                      

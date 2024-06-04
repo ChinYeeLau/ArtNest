@@ -37,7 +37,7 @@ public static function getDiscountPrice($product_id){
 
    }else if($catDetails['category_discount']>0){
       //if product discount is not added but category discount added from the admin panel
-      $discounted_price=$proDetails['product_price']-($proDetails['product_price']*$proDetails['category_discount']/100);
+      $discounted_price=$proDetails['product_price']-($proDetails['product_price']*$catDetails['category_discount']/100);
    }else{
       $discounted_price=0;
    }

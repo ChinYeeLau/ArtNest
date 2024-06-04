@@ -25,6 +25,7 @@ $sections=Section::sections();
                     <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                 </div>
             </div>
+            @if(!isset($_REQUEST['search']))
 
             <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-3">       
             <label for="sort" >Default By:</label>
@@ -43,6 +44,7 @@ $sections=Section::sections();
                                             
                                             </form>
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
     

@@ -116,40 +116,61 @@ class ProductsController extends Controller
             abort(404);
          }
       }else{
-         $url=Route::getFacadeRoot()->current()->uri();
-         $categoryCount=Category::where(['url'=>$url,'status'=>1])->count();
-         if ($categoryCount>0){
-            //get category detail
-            $categoryDetails=Category::categoryDetails($url);
-         
-            $categoryProducts=Product::whereIn('category_id',$categoryDetails['catIds'])->where('status',1);
-            //dd($categoryProducts);
-            //echo"Category exist";
-            //check for sort
-            if(isset($_GET ['sort'])&&!empty($_GET['sort'])){
-               if($_GET['sort']=="product_latest"){
-                  $categoryProducts ->orderBy('products.id', 'Desc');
-               }else if($_GET['sort']=="name_a_z"){
-                  $categoryProducts->orderBy('products.product_name','Asc');
-               }else if($_GET['sort']=="name_z_a"){
-                  $categoryProducts->orderBy('products.product_name','Desc');
-               }else if($_GET['sort']=="price_lowest"){
-                  $categoryProducts->orderBy('products.product_price','Asc');
-               }else if($_GET['sort']=="price_highest"){
-                  $categoryProducts->orderBy('products.product_price','Desc');
-            
-            }
-         }
-         $featuredProducts=Product::where('is_featured','Yes')->where('status',1)->limit(4)->inRandomOrder()->get()->toArray();
-         $fixBanners=Banner::where('type','Fix')->where('status',1)->get()->toArray();
+         if(isset($_REQUEST['search']) && !empty($_REQUEST['search'])){
+            $search_product=$_REQUEST['search'];
+            $categoryDetails['breadcrumbs']=$search_product;
+            $categoryDetails['categoryDetails']['category_name']=$search_product;
+            $categoryDetails['categoryDetails']['description']="Search Product for ".$search_product;
+            $categoryProducts=Product::select('products.id','products.id','products.section_id','products.category_id','products.vendor_id','products.product_code','products.product_name','products.product_color','products.product_price','products.product_discount','products.product_weight','products.product_image','products.description')->join('categories','categories.id','=','products.category_id')->where(function($query)use($search_product){
+            $query->where('products.product_name','like','%'.$search_product.'%')
+            ->orWhere('products.product_code','like','%'.$search_product.'%')
+            ->orWhere('products.product_color','like','%'.$search_product.'%')
+            ->orWhere('products.description','like','%'.$search_product.'%')
+            ->orWhere('categories.category_name','like','%'.$search_product.'%');
 
+            })->where('products.status',1);
+          
+            $categoryProducts=$categoryProducts->get();
+           // dd($categoryProducts);
+            return view('front.products.listing')->with(compact('categoryDetails','categoryProducts'));
 
-           $categoryProducts=$categoryProducts->orderBy('products.id', 'asc')->paginate(3);
-            return view('front.products.listing')->with(compact('categoryDetails','categoryProducts','url','featuredProducts','fixBanners'));
          }else{
-            abort(404);
+            $url=Route::getFacadeRoot()->current()->uri();
+            $categoryCount=Category::where(['url'=>$url,'status'=>1])->count();
+            if ($categoryCount>0){
+               //get category detail
+               $categoryDetails=Category::categoryDetails($url);
+            
+               $categoryProducts=Product::whereIn('category_id',$categoryDetails['catIds'])->where('status',1);
+               //dd($categoryProducts);
+               //echo"Category exist";
+               //check for sort
+               if(isset($_GET ['sort'])&&!empty($_GET['sort'])){
+                  if($_GET['sort']=="product_latest"){
+                     $categoryProducts ->orderBy('products.id', 'Desc');
+                  }else if($_GET['sort']=="name_a_z"){
+                     $categoryProducts->orderBy('products.product_name','Asc');
+                  }else if($_GET['sort']=="name_z_a"){
+                     $categoryProducts->orderBy('products.product_name','Desc');
+                  }else if($_GET['sort']=="price_lowest"){
+                     $categoryProducts->orderBy('products.product_price','Asc');
+                  }else if($_GET['sort']=="price_highest"){
+                     $categoryProducts->orderBy('products.product_price','Desc');
+               
+               }
+            }
+            $featuredProducts=Product::where('is_featured','Yes')->where('status',1)->limit(4)->inRandomOrder()->get()->toArray();
+            $fixBanners=Banner::where('type','Fix')->where('status',1)->get()->toArray();
+   
+   
+              $categoryProducts=$categoryProducts->orderBy('products.id', 'asc')->paginate(3);
+               return view('front.products.listing')->with(compact('categoryDetails','categoryProducts','url','featuredProducts','fixBanners'));
+            }else{
+               abort(404);
+            }
+   
          }
-
+         
       }
         
     }
@@ -433,8 +454,8 @@ class ProductsController extends Controller
           //prevent disable products to order
           $product_status =Product::getProductStatus($item['product_id']);
           if($product_status==0){
-            //Product::deleteCartProduct($item['product_id']);
-            $message=$item['product']['product_name']. "-" .$item['size']. " is not available .Please remove it choose other product.";
+            Product::deleteCartProduct($item['product_id']);
+            $message=$item['product']['product_name']. " is not available and has been removed .Please choose other product.";
             return redirect('/cart')->with('error_message',$message);
           }
           //prevent sold out products to order

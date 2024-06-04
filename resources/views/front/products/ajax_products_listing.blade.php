@@ -29,10 +29,7 @@
                 @else 
                     <p class="text-dark fs-5 fw-bold mb-0 product-price">RM{{ $product['product_price'] }}</p>
                 @endif
-                    <div>
-                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to Wishlist</a>
-                        <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -46,8 +43,11 @@
     </div>
     @endforeach
 </div>
+@if(!isset($_REQUEST['search']))
+
 @if (isset($_GET['sort']))
 <div>{{$categoryProducts->appends(['sort'=>$_GET['sort']])->links()}}</div>
 @else
 <div>{{$categoryProducts->links()}}</div>
+@endif
 @endif
