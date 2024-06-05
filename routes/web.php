@@ -162,6 +162,8 @@ Route::post('cart/delete','ProductsController@cartDelete');
 //search products
 Route::get('search-products','ProductsController@listing');
 
+Route::match(['GET','POST'],'contact','CMSController@contact');
+
 
 Route::group(['middleware'=>['auth']],function(){
 

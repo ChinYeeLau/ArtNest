@@ -20,4 +20,7 @@ class CmsController extends Controller
             abort(404);
         }
     }
+    public function contact(){
+        return view('front.pages.contact');
+    }
 }

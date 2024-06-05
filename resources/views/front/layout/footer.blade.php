@@ -34,8 +34,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="d-flex flex-column text-start footer-item">
                     <h4 class="text-black mb-3">Shop Info</h4>
-                    <a class="{{url('about-us')}}" href="">About Us</a>
-                    <a class="btn-link" href="">Contact Us</a>
+                    <a class="btn-link" href="{{url('contact')}}">Contact Us</a>
                     <a class="{{url('faq')}}" href="">FAQs & Help</a>
                 </div>
             </div>
@@ -44,22 +43,22 @@
                     <h4 class="text-black mb-3">For You</h4>
                     <div class="d-flex">
                     <div class="col-6">
-                    <a class="btn-link" href="">Art Prints</a>
+                    <a class="btn-link" href="{{url('Prints')}}">Art Prints</a>
                     <br>    
-                    <a class="btn-link" href="">Photography</a>
+                    <a class="btn-link" href="{{url('Photography')}}">Photography</a>
                     <br>     
-                    <a class="btn-link" href="">T-Shirt</a>
+                    <a class="btn-link" href="{{url('T-shirt')}}">T-Shirt</a>
                     <br>     
-                    <a class="btn-link" href="">Hoodies</a>    
+                    <a class="btn-link" href="{{url('Hoodies')}}">Hoodies</a>    
                     </div>
                     <div class="col-6">
-                    <a class="btn-link" href="">Totes</a>
+                    <a class="btn-link" href="{{url('Totes')}}">Totes</a>
                     <br>     
-                    <a class="btn-link" href="">Pouches</a>
+                    <a class="btn-link" href="{{url('Pouches')}}">Pouches</a>
                     <br>     
-                    <a class="btn-link" href="">Necklaces</a>
+                    <a class="btn-link" href="{{url('Necklaces')}}">Necklaces</a>
                     <br>     
-                    <a class="btn-link" href="">Bracelets</a>    
+                    <a class="btn-link" href="{{url('Bracelets')}}">Bracelets</a>    
                     </div>
                     </div>    
                 </div>
