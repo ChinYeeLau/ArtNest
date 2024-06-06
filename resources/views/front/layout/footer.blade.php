@@ -34,8 +34,9 @@
             <div class="col-lg-3 col-md-6">
                 <div class="d-flex flex-column text-start footer-item">
                     <h4 class="text-black mb-3">Shop Info</h4>
+                    <a class="btn-link  " href="{{url('about-us')}}">About Us</a>
                     <a class="btn-link" href="{{url('contact')}}">Contact Us</a>
-                    <a class="{{url('faq')}}" href="">FAQs & Help</a>
+                    <a class="btn-link" href="{{url('faq')}}">FAQs & Help</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">

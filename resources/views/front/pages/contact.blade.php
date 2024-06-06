@@ -24,11 +24,28 @@
                         loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
+                @if(Session::has('success_message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>Success</strong>  <?php echo Session::get('success_message'); ?>
+                  <button type="button" class="close close-button" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                @endif
+                @if($errors->any())              
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <strong>Error</strong>  <?php echo implode('', $errors->all('<div>:message</div>')); ?>
+                  <button type="button" class="close" data-dismiss="alert" style="border:none;background-color: transparent;position: absolute;top: 0; right: 0;font-size: 1.5rem;" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                @endif
                 <div class="col-lg-7">
-                    <form action="" class="">
-                        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Your Name">
-                        <input type="email" class="w-100 form-control border-0 py-3 mb-4" placeholder="Enter Your Email">
-                        <textarea class="w-100 form-control border-0 mb-4" rows="5" cols="10" placeholder="Your Message"></textarea>
+                    <form action="{{url('contact')}}" method="post" >@csrf
+                        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Your Name" id="contact-name" name="name" value="{{old('name')}}" required>
+                        <input type="email" class="w-100 form-control border-0 py-3 mb-4" placeholder="Enter Your Email" id="contact-email" name="email" value="{{old('email')}}" required >
+                        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Enter Your Subject" id="contact-subject" name="subject" value="{{old('subject')}}" required>
+                        <textarea class="w-100 form-control border-0 mb-4" rows="5" cols="10" placeholder="Your Message" id="contact-message" name="message" value="{{old('message')}}" required></textarea>
                         <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary " type="submit">Submit</button>
                     </form>
                 </div>

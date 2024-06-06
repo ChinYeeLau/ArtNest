@@ -16,7 +16,7 @@ class Category extends Model
     }
 
     public static function categoryDetails($url){
-        $categoryDetails = Category::select('id','parent_id','category_name','url','description','section_id')
+        $categoryDetails = Category::select('id','parent_id','category_name','url','description','section_id','meta_title','meta_description','meta_keywords')
                                     ->with('section:id,name')
                                     ->where('url', $url)
                                     ->first();

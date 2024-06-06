@@ -619,5 +619,16 @@
     background-color: transparent;
     cursor: pointer;
     float:right;
-   
 }
+.stripe-paynow{
+    background-color: #6772e5;
+    color: #ffffff;
+    font-size: 16px; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 4px;
+     cursor: pointer;
+}
+.stripe-paynow:hover {
+    background-color: #5469d4;
+  }

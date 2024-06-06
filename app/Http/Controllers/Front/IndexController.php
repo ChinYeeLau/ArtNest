@@ -16,6 +16,9 @@ class IndexController extends Controller
         $bestSellers=Product::where('is_bestseller','Yes')->where('status',1)->inRandomOrder()->get()->toArray();
         $discountedProducts=Product::where('product_discount','>',0)->where('status',1)->limit(8)->inRandomOrder()->get()->toArray();
         $featuredProducts=Product::where('is_featured','Yes')->where('status',1)->limit(8)->inRandomOrder()->get()->toArray();
-        return view ('front.index')->with(compact('sliderBanners','fixBanners','newProducts','bestSellers','discountedProducts','featuredProducts'));
+        $meta_title="E-Commerce Platform for Art Enthusiasts";
+        $meta_description="Online Shopping Website for Arts";
+        $meta_keywords="eshop website,online shopping,art,prints,tshirt,hoodies,jewelry,bracelets";
+        return view ('front.index')->with(compact('sliderBanners','fixBanners','newProducts','bestSellers','discountedProducts','featuredProducts','meta_title','meta_description','meta_keywords'));
     }
 }

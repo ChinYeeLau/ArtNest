@@ -190,7 +190,11 @@ Route::get('paypal','PaypalController@paypal');
 Route::post('pay','PaypalController@pay')->name('payment');
 Route::get('success','PaypalController@success');
 Route::get('error','PaypalController@error');
-
+//stripe route
+Route::get('stripe','StripeController@stripe')->name('stripe.index');
+Route::post('stripe/pay','StripeController@pay')->name('stripe.pay');
+Route::get('success','StripeController@success')->name('stripe.success');
+Route::get('error','StripeController@error')->name('stripe.error');
 });
 
  //user login

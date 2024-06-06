@@ -3,12 +3,14 @@
 
     <head>
         <meta charset="utf-8">
-        <title>ArtNest</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <meta content="" name="keywords">
-        <meta content="" name="description">
-
+        <meta name="author" content="">
+        <title>@if(!empty($meta_title)) {{ $meta_title }} @else ArtNest: Malaysia's Premier E-Commerce Platform for Art Enthusiasts @endif</title>
+       @if(!empty($meta_description))<meta name="description" content="{{ $meta_description }}">
+       @endif
+@if(!empty($meta_keywords))<meta name="keywords" content="{{ $meta_keywords }}"> 
+       @endif
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,7 +56,7 @@
     <script src="{{url('front/lib/waypoints/waypoints.min.js')}}"></script>
     <script src="{{url('front/lib/lightbox/js/lightbox.min.js')}}"></script>
     <script src="{{url('front/lib/owlcarousel/owl.carousel.min.js')}}"></script>
-    
+
     <!-- Template Javascript -->
     
     <script src="{{url('front/js/main.js')}}"></script>

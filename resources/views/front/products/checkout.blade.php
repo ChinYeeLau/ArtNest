@@ -162,6 +162,12 @@
                                 <label class="form-check-label" for="paypal">Paypal</label>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <div class="form-check text-start my-3">
+                                <input type="radio" class="form-check-input bg-primary border-0" id="stripe" name="payment_gateway" value="Stripe">
+                                <label class="form-check-label" for="stripe">Stripe</label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row g-4 text-center align-items-center justify-content-center pt-4">
