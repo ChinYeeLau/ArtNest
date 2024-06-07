@@ -8,7 +8,9 @@
     <div class="container py-5" style="text-align: center;">
        <h3>YOUR PAYMENT HAS BEEN CONFIRMED</h3>
        <P>Thanks for the Payment.We will process your order very soon.</P>
-       <p>Your order number is {{Session::get('order_id')}} and total amount paid is RM {{Session::get('grand_total')}}</p>
+       @php  $fee = Session::get('grand_total') * 0.03+1; 
+            $tax=round($fee * 0.06 + $fee, 2); @endphp
+       <p>Your order number is {{Session::get('order_id')}} and total amount paid is RM {{Session::get('grand_total')}}+Transaction fees with tax RM {{$tax}}</p>
        
     </div>
 </div>

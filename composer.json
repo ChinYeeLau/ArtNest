@@ -16,7 +16,6 @@
         "league/omnipay": "^3.2",
         "milon/barcode": "^11.0",
         "omnipay/paypal": "^3.0",
-        "omnipay/stripe": "^3.2",
         "stripe/stripe-php": "^14.9"
     },
     "require-dev": {

@@ -92,7 +92,7 @@
 			}
 		});
 	</script>
- 
+
     @include('front.layout.scripts')
 
     </body>

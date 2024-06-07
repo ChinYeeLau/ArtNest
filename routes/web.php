@@ -192,9 +192,9 @@ Route::get('success','PaypalController@success');
 Route::get('error','PaypalController@error');
 //stripe route
 Route::get('stripe','StripeController@stripe');
-Route::post('pay','StripeController@pay')->name('payment');
-Route::get('success','StripeController@success');
-Route::get('error','StripeController@error');
+Route::post('pay','StripeController@stripePay')->name('stripe.pay');
+Route::get('success','StripeController@success')->name('payment.success');
+Route::get('error','StripeController@error')->name('payment.error');
 });
 
  //user login
