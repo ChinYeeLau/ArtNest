@@ -89,8 +89,7 @@
                                                 @else 
                                                     <p class="text-dark fs-5 fw-bold mb-0 product-price">RM{{ $product['product_price'] }}</p>
                                                 @endif
-                                                        <a href="#" class="btn rounded-pill px-3 text-white" style="background-color: #f26b4e; box-shadow: none;"><i class="fa fa-shopping-bag me-2"></i> Add to cart</a>
-                                                    <span id="clickableAwesomeFont" style="align-self:center;"><i class="fa-regular fa-heart" style="color: #f26b4e;" onclick="changeIcon(this)"></i></span>
+                                                     
                                                 
                                             </div>
                                             </div>
@@ -132,8 +131,7 @@
                                                             <p class="text-dark fs-5 fw-bold mb-0">{{$product['product_price']}}</p>
                                                            
                                                             @endif
-                                                            <a href="#" class="btn rounded-pill px-3 text-white" style="background-color: #f26b4e; box-shadow: none;"><i class="fa fa-shopping-bag me-2"></i> Add to cart</a>
-                                                            <span id="clickableAwesomeFont" style="align-self:center;"><i class="fa-regular fa-heart" style="color: #f26b4e;" onclick="changeIcon(this)"></i></span>
+                                                          
                                                     </div>
                                                     </div>
                                                 </div>
@@ -175,8 +173,7 @@
                                                         <p class="text-dark fs-5 fw-bold mb-0">{{$product['product_price']}}</p>
                                                        
                                                         @endif
-                                                        <a href="#" class="btn rounded-pill px-3 text-white" style="background-color: #f26b4e; box-shadow: none;"><i class="fa fa-shopping-bag me-2"></i> Add to cart</a>
-                                                        <span id="clickableAwesomeFont" style="align-self:center;"><i class="fa-regular fa-heart" style="color: #f26b4e;" onclick="changeIcon(this)"></i></span>
+                                                        
                                                 </div>
                                                 </div>
                                             </div>
@@ -218,8 +215,7 @@
                                                         <p class="text-dark fs-5 fw-bold mb-0">{{$product['product_price']}}</p>
                                                        
                                                         @endif
-                                                        <a href="#" class="btn rounded-pill px-3 text-white" style="background-color: #f26b4e; box-shadow: none;"><i class="fa fa-shopping-bag me-2"></i> Add to cart</a>
-                                                        <span id="clickableAwesomeFont" style="align-self:center;"><i class="fa-regular fa-heart" style="color: #f26b4e;" onclick="changeIcon(this)"></i></span>
+                                                      
                                                 </div>
                                                 </div>
                                             </div>

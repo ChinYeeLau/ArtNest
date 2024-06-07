@@ -7,6 +7,7 @@ use Throwable;
 use Stripe\Charge;
 use Stripe\Stripe;
 use Stripe\Customer;
+use App\Models\StripePayment;
 use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -29,11 +30,11 @@ class StripeController extends Controller
     public function stripePay(Request $request)
     {
         try {
+        
             // Set Stripe API key
             Stripe::setApiKey(env('STRIPE_TEST_SK'));
     
             // Create a customer
-
             $customer = Customer::create([
                 "address" => [
                     "line1" => Session::get('order_address'),
@@ -46,21 +47,22 @@ class StripeController extends Controller
                 "name" => Auth::user()->name,
                 "source" => $request->stripeToken
             ]);
-          
+    
             // Charge the customer
             $grand_total = Session::get('grand_total'); // Get the grand total from the session
-            $fee = $grand_total * 0.03+1; 
-            $tax=$fee*0.06;
-            $total_amount = $grand_total + $fee+$tax; // Add the fee to the grand total
-            
+            $fee = $grand_total * 0.03 + 1; 
+            $tax = $fee * 0.06;
+            $total_amount = $grand_total + $fee + $tax; // Add the fee to the grand total
+    
             // Convert the total amount to the smallest currency unit (cents for MYR)
-            $orderId=Session::get('order_id');
-            $stripe_amount = round($total_amount * 100);          
-              $charge = Charge::create([
+            $orderId = Session::get('order_id');
+            $stripe_amount = round($total_amount * 100);
+            
+            $charge = Charge::create([
                 "amount" => $stripe_amount,
                 "currency" => "myr",
                 "customer" => $customer->id,
-                "description" => "Order ID  $orderId",
+                "description" => "Order ID $orderId",
                 "shipping" => [
                     "name" => Auth::user()->name,
                     "address" => [
@@ -75,7 +77,35 @@ class StripeController extends Controller
     
             if ($charge->status == 'succeeded') {
                 // Payment was successful
-                return view('front.stripe.success');
+    
+                // Update the order status
+                Order::where('id', $orderId)->update(['order_status' => 'Paid']);
+              
+                
+                // Send order email
+                $orderDetails = Order::with('orders_products')->where('id', $orderId)->first()->toArray();
+                $email = Auth::user()->email;
+                $messageData = [
+                    'email' => $email,
+                    'name' => Auth::user()->name,
+                    'order_id' => $orderId,
+                    'orderDetails' => $orderDetails
+                ];
+                Mail::send('emails.order', $messageData, function ($message) use ($email) {
+                    $message->to($email)->subject('Order Placed - ArtNest.online');
+                });
+    
+                // Reduce stock
+                foreach ($orderDetails['orders_products'] as $order) {
+                    $getProductStock = ProductsAttribute::getProductStock($order['product_id'], $order['product_size']);
+                    $newStock = $getProductStock - $order['product_qty'];
+                    ProductsAttribute::where(['product_id' => $order['product_id'], 'size' => $order['product_size']])->update(['stock' => $newStock]);
+                }
+    
+                // Clear the cart
+                Cart::where('user_id', Auth::user()->id)->delete();
+    
+                return $this->success($charge);
             } else {
                 // Payment failed
                 return view('front.stripe.fail');
@@ -88,64 +118,13 @@ class StripeController extends Controller
     
     public function success(Charge $charge)
 {
-    if($request->input('paymentId')&&$request->input('CustomerID')){
-        $transaction=$this->gateway->completePurchase(array(
-           'customer_id'=>$request->input('CustomerID'),
-           'transactionReference'=>$request->input('paymentId')
-
-        ));
-           $response=$transaction->send();
-           if ($response->isSuccessful()){
-               $arr=$response->getData();
-               $payment=new Payment;
-                $payment->order_id= Session::get('order_id');
-                $payment->user_id= Auth::user()->id;
-                $payment->payment_id=$arr['id'];
-                $payment->payer_id=$arr['customer']['customer_info']['customer_id'];
-                $payment->payer_email=$arr['customer']['customer_info']['email'];
-                $payment->amount=$arr['transactions'][0]['amount']['total'];
-                $payment->currency='MYR';
-                $payment->payment_status=$arr['state'];
-                $payment->save();
-            // Handle successful payment
-            // Update the order status
-            $order_id = Session::get('order_id');
-            Order::where('id', $order_id)->update(['order_status' => 'Paid']);
-
-            // Send order email
-            $orderDetails = Order::with('orders_products')->where('id', $order_id)->first()->toArray();
-            $email = Auth::user()->email;
-            $messageData = [
-                'email' => $email,
-                'name' => Auth::user()->name,
-                'order_id' => $order_id,
-                'orderDetails' => $orderDetails
-            ];
-            Mail::send('emails.order', $messageData, function ($message) use ($email) {
-                $message->to($email)->subject('Order Placed - ArtNest.online');
-            });
-
-            // Reduce stock
-            foreach ($orderDetails['orders_products'] as $key => $order) {
-                $getProductStock = ProductsAttribute::getProductStock($order['product_id'], $order['product_size']);
-                $newStock = $getProductStock - $order['product_qty'];
-                ProductsAttribute::where(['product_id' => $order['product_id'], 'size' => $order['product_size']])->update(['stock' => $newStock]);
-            
-            }
-        
-
-            // Empty cart
-            Cart::where('user_id', Auth::user()->id)->delete();
+    
 
             // Redirect to success page
             return view('front.stripe.success');
     }
-        } else {
-            // Handle unsuccessful payment
-            return redirect()->route('payment.error')->with('error', $response->getMessage());
-        }
-    
-}
+        
+
 
 
     public function error()

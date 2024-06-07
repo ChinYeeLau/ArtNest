@@ -1,41 +1,48 @@
 @extends('front.layout.layout')
 @section('content')
 <div class="container py-5 h-100">
-   <div class="container-fluid py-5 mt-5">
-         <div class="container py-5 text-center">
-            @php  $fee = Session::get('grand_total') * 0.03+1; 
-            $tax=round($fee * 0.06 + $fee, 2); @endphp
-            <h3>PLEASE MAKE <span style="color:#f26b4e"> RM {{ round(Session::get('grand_total'), 2) }} +Transaction fees with tax RM {{$tax}}</span> PAYMENT FOR YOUR ORDER </h3>
-         
-        
-        
-
-         <form class="require-validation" method="POST" action="{{ route('stripe.pay') }}">@csrf
-               <div class='col-lg-15 form-group required'>
-                   <label class='control-label'>Name on Card</label> 
-                   <input class='form-control' size='4' type='text'>
-               </div>
-          
-
-            <div class="col-lg-15 form-group required">
-                <span for="card-element">Credit or debit card</span>
-                <div id="card-element">
-                    <!-- Stripe Element will be inserted here -->
+    <div class="container-fluid py-5 mt-5 ">
+        <div class="container py-5" style="text-align: center;">
+            <div class="card">
+                <div class="card-header text-center">
+                    @php
+                        $fee = Session::get('grand_total') * 0.03 + 1; 
+                        $tax = round($fee * 0.06 + $fee, 2);
+                    @endphp
+                    <h3>PLEASE MAKE <span style="color:#f26b4e"> RM {{ round(Session::get('grand_total'), 2) }} + Transaction fees with tax RM {{$tax}}</span> PAYMENT FOR YOUR ORDER </h3>
                 </div>
-                <div id="card-errors" role="alert"></div>
+
+                <div class="card-body">
+                    <form class="require-validation" method="POST" action="{{ route('stripe.pay') }}">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="card-name" class="col-md-4 col-form-label text-md-right">Name on Card</label>
+                            <div class="col-md-6">
+                                <input id="card-name" type="text" class="form-control" name="card-name" required autofocus>
+                            </div>
+                        </div><br>
+
+                        <div class="form-group row">
+                            <label for="card-element" class="col-md-4 col-form-label text-md-right">Credit or Debit Card</label>
+                            <div class="col-md-6">
+                                <div id="card-element" class="form-control">
+                                    <!-- Stripe Element will be inserted here -->
+                                </div>
+                                <div id="card-errors" role="alert"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button class="stripe-paynow" type="submit">Pay Now</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="text-center">
-               <a href="{{ route('stripe.pay') }}">
-                  <button class="stripe-paynow">Pay Now</button>
-               </a>
-            </div>
-        </form>
-    
-       </div>
-             
-     
-      </div>
-   </div>
+        </div>
+    </div>
+</div>
    <script src="https://js.stripe.com/v3/"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
