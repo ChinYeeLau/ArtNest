@@ -42,7 +42,7 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
        //View Admins Vendors
        Route::get('admins/{type?}', [AdminController::class, 'admins']);
        //view vendor detail
-       Route::get('view-vendor-details/{id}',[AdminController::class, 'viewVendorDetails']);
+       Route::get('view-vendor-details/{id}',[AdminController::class, 'viewVendorDetails'])->name('viewVendorDetails');
        //update admin status
        Route::post('update-admin-status',[AdminController::class, 'updateAdminStatus']);
        //Admin Logout

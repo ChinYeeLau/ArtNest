@@ -17,6 +17,4 @@ class Vendor extends Model
         'status'
         // Add more attributes as needed
     ];
-
-    
 }

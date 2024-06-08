@@ -154,6 +154,7 @@ class ProductsController extends Controller
                     $categoryDetails['categoryDetails']['description']="Discounted Products" ;
                     $categoryProducts=Product::select('products.id','products.id','products.section_id','products.category_id','products.vendor_id','products.product_code','products.product_name','products.product_color','products.product_price','products.product_discount','products.product_weight','products.product_image','products.description')->join('categories','categories.id','=','products.category_id')
                     ->where('products.status',1)->where('products.product_discount','>',0);
+                 
                   }else{
                $search_product=$_REQUEST['search'];
                $categoryDetails['breadcrumbs']=$search_product;

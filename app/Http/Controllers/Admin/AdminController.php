@@ -340,14 +340,17 @@ class AdminController extends Controller
 
     }
     public function viewVendorDetails($id){
-        $vendorDetails=Admin::with('vendorPersonal','vendorBusiness','vendorBank')->where('id',$id)->first();
+        Session::put('page','view_vendor_details');
+        $vendorDetails = Admin::with('vendorPersonal', 'vendorBusiness', 'vendorBank')->where('id', $id)->first();
+        //dd($vendorDetails);
         $vendorDetails=json_decode(json_encode($vendorDetails),true);
-       //dd($vendorDetails);
+      
         
         return view('admin.admins.view_vendor_details')->with(compact('vendorDetails'));
 
     }
     public function updateAdminStatus(Request $request){
+        Session::put('page','view_admins');
         if($request->ajax()){
             $data = $request->all();
             /*echo "<pre>"; print_r($data); die;*/
