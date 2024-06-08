@@ -4,21 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use Hash;
 use Session;
+use App\Models\User;
 use App\Models\Admin;
+use App\Models\Order;
+use App\Models\Coupon;
 use App\Models\Vendor;
+use App\Models\Product;
+use App\Models\Section;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\VendorsBankDetail;
 use App\Http\Controllers\Controller;
+use App\Models\NewsletterSubscriber;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\VendorsBusinessDetail;
 use Intervention\Image\Facades\Image;
-use App\Models\Section;
-use App\Models\Category;
-use App\Models\Product;
-use App\Models\Coupon;
-use App\Models\Order;
-use App\Models\User;
 
 class AdminController extends Controller
 
@@ -31,8 +32,8 @@ class AdminController extends Controller
         $couponsCount=Coupon::count();
         $ordersCount=Order::count();
         $usersCount=User::count();
-
-        return view('admin.dashboard')->with(compact('sectionsCount','categoriesCount','productsCount','couponsCount','ordersCount','usersCount'));
+        $subscribersCount=NewsletterSubscriber::count();
+        return view('admin.dashboard')->with(compact('sectionsCount','categoriesCount','productsCount','couponsCount','ordersCount','usersCount','subscribersCount'));
     }
     public function updateAdminPassword(Request $request){
         Session::put('page','update_admin_password');

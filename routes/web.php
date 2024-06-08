@@ -112,7 +112,10 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('shipping-charges','ShippingController@shippingCharges');
         Route::post('update-shipping-status','ShippingController@updateShippingStatus');
         Route::match(['get','post'],'edit-shipping-charges/{id}','ShippingController@editShippingCharges');
-
+        // newsletter subscriber
+        Route::get('subscribers','NewsletterController@subscribers');
+        Route::post('update-subscriber-status','NewsletterController@updateSubscriberStatus');
+        Route::get('delete-subscriber/{id}','NewsletterController@deleteSubscriber');
     });
         
 });
@@ -161,8 +164,10 @@ Route::post('cart/delete','ProductsController@cartDelete');
  Route::post('user/register','UserController@userRegister');
 //search products
 Route::get('search-products','ProductsController@listing');
-
+//contct page
 Route::match(['GET','POST'],'contact','CMSController@contact');
+// add subscriber email
+Route::post('add-subscriber-email','NewsletterController@addSubscriber');
 
 
 Route::group(['middleware'=>['auth']],function(){

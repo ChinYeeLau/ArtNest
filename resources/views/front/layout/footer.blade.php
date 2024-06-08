@@ -10,10 +10,10 @@
                     </a>
                 </div>
                 <div class="col-lg-6">
-                    <div class="position-relative mx-auto">
-                        <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="email" placeholder="Your Email">
-                        <button type="submit" class="btn py-3 px-4 position-absolute rounded-pill text-white" style="top: 0; right: 0; background-color: #f26b4e; display: flex; align-items: center; justify-content: center; box-shadow: none;">Subscribe Now</button>
-                    </div>
+                    <form class="position-relative mx-auto" >@csrf
+                        <input class="form-control border-0 w-100 py-3 px-4 rounded-pill" type="email" placeholder="Your Email" name="subscriber_email" id="subscriber_email" required>
+                        <button type="button" class="btn py-3 px-4 position-absolute rounded-pill text-white" style="top: 0; right: 0; background-color: #f26b4e; display: flex; align-items: center; justify-content: center; box-shadow: none;" onclick="addSubscriber()">Subscribe Now</button>
+                    </form>
                 </div>
                 <div class="col-lg-3">
                     <div class="d-flex justify-content-end pt-3">

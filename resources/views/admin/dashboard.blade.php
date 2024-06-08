@@ -91,7 +91,7 @@
                       <div class="card card-light-blue">
                           <div class="card-body">
                             <p class="mb-4">Total Subscribers</p>
-                            <p class="fs-30 mb-2">200</p>
+                            <p class="fs-30 mb-2">{{$subscribersCount}}</p>
                           </div>
                       </div>
                   </div>
