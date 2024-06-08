@@ -13,13 +13,26 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\VendorsBusinessDetail;
 use Intervention\Image\Facades\Image;
+use App\Models\Section;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Coupon;
+use App\Models\Order;
+use App\Models\User;
 
 class AdminController extends Controller
 
 {
     public function dashboard(){
         Session::put('page','dashboard');
-        return view('admin.dashboard');
+        $sectionsCount=Section::count();
+        $categoriesCount=Category::count();
+        $productsCount=Product::count();
+        $couponsCount=Coupon::count();
+        $ordersCount=Order::count();
+        $usersCount=User::count();
+
+        return view('admin.dashboard')->with(compact('sectionsCount','categoriesCount','productsCount','couponsCount','ordersCount','usersCount'));
     }
     public function updateAdminPassword(Request $request){
         Session::put('page','update_admin_password');
@@ -169,7 +182,7 @@ class AdminController extends Controller
             }
             $vendorDetails = Vendor::where('id', Auth::guard('admin')->user()->vendor_id)->first()->toArray();
 
-        }elseif($slug=="business"){
+        }else if($slug=="business"){
             Session::put('page','update_business_details');
             if($request->isMethod('post')){
                 $data=$request->all();
@@ -219,7 +232,7 @@ class AdminController extends Controller
          
 
 
-        }elseif($slug=="bank"){
+        }else if($slug=="bank"){
             Session::put('page','update_bank_details');
             if($request->isMethod('post')){
                 $data=$request->all();
@@ -329,7 +342,7 @@ class AdminController extends Controller
     public function viewVendorDetails($id){
         $vendorDetails=Admin::with('vendorPersonal','vendorBusiness','vendorBank')->where('id',$id)->first();
         $vendorDetails=json_decode(json_encode($vendorDetails),true);
-        /*dd($vendorDetails);*/
+       //dd($vendorDetails);
         
         return view('admin.admins.view_vendor_details')->with(compact('vendorDetails'));
 

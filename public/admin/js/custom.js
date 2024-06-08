@@ -10,6 +10,7 @@ $(document).ready(function(){
     $('#filters').DataTable();
     $('#coupons').DataTable();
     $('#users').DataTable();
+    $('#admins').DataTable();
     $(".nav-item").removeClass("active");
     $(".nav-link").removeClass("active");
     // Check Admin Password 

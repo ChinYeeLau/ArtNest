@@ -152,18 +152,20 @@ if ($categoryDetails) {
     $product->category_id = 0; // Default category_id when category is not found
     return redirect()->back()->with('error_message', 'Category not found. Please select a valid category.');
 }
-
-$adminType=Auth::guard('admin')->user()->type;
-$vendor_id=Auth::guard('admin')->user()->vendor_id;
-$admin_id=Auth::guard('admin')->user()->id;
-
-$product->admin_type=$adminType;
-$product->admin_id=$admin_id;
-if($adminType=="vendor"){
-    $product->vendor_id=$vendor_id;
-}else{
-    $product->vendor_id=0;
+if($id==""){
+    $adminType=Auth::guard('admin')->user()->type;
+    $vendor_id=Auth::guard('admin')->user()->vendor_id;
+    $admin_id=Auth::guard('admin')->user()->id;
+    
+    $product->admin_type=$adminType;
+    $product->admin_id=$admin_id;
+    if($adminType=="vendor"){
+        $product->vendor_id=$vendor_id;
+    }else{
+        $product->vendor_id=0;
+    }
 }
+
 $product->product_name=$data['product_name'];
  $product->product_code=$data['product_code'];
  $product->product_color=$data['product_color'];
