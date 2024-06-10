@@ -708,7 +708,7 @@ class ProductsController extends Controller
   
           if ($countProducts > 0) {
   // Product already exists in the wishlist
-  // Remove the product from the cart
+  // Remove the product from the wishlist
   Wishlist::where('product_id', $data['product_id'])
       ->where(function($query) use ($user_id, $session_id) {
           $query->where('user_id', $user_id)

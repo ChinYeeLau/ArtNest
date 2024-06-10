@@ -80,7 +80,6 @@
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h6>{{$product['product_code']}}</h6>
                                                 <h4>{{$product['product_name']}}</h4>
-                                                <p>{{$product['description']}}</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                     @if($getDiscountPrice > 0)
@@ -121,7 +120,6 @@
                                                     <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                         <h6>{{$product['product_code']}}</h6>
                                                         <h4>{{$product['product_name']}}</h4>
-                                                        <p>{{$product['description']}}</p>
                                                         <div class="d-flex justify-content-between flex-lg-wrap">
                                                             <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                             @if($getDiscountPrice>0)
@@ -163,7 +161,6 @@
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h6>{{$product['product_code']}}</h6>
                                                     <h4>{{$product['product_name']}}</h4>
-                                                    <p>{{$product['description']}}</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                         @if($getDiscountPrice>0)
@@ -205,7 +202,6 @@
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h6>{{$product['product_code']}}</h6>
                                                     <h4>{{$product['product_name']}}</h4>
-                                                    <p>{{$product['description']}}</p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                         @if($getDiscountPrice>0)

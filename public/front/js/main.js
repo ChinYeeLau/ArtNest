@@ -198,6 +198,7 @@ $(document).ready(function() {
                 success: function(resp) {
                     $(".totalWishlistItems").html(resp.totalWishlistItems);
                     $("#appendWishlistItems").html(resp.view);
+                    $(".fa fa-heart ").html("")
                 },
                 error: function() {
                     alert("Error");

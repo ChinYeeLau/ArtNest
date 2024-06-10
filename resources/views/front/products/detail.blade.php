@@ -102,7 +102,9 @@
                                 @endif
                                </div>
                                <br>
-                               <form action="{{url('cart/add')}}" method="Post">@csrf
+                               <div class="d-column ">
+                                  <div>
+                               <form action="{{url('cart/add')}}" method="Post"   >@csrf
                                 <input type="hidden" name="product_id" value={{$productDetails['id']}}>
                                <div>
                                 <span>Available Sizes:</span>
@@ -148,10 +150,12 @@
                                         </button>
                                     </div>
                                 </div>
-                                <button class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary" type="submit"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
+                                <div class="d-flex ">
+                                <button class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary" type="submit"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                            
                         </form>
-                        <form action="{{ url('wishlist/add-remove') }}" method="post" id="wishlist-form" > @csrf
+                        <form action="{{ url('wishlist/add-remove') }}" method="post" id="wishlist-form" class="px-4"> @csrf
                             <input type="hidden" name="product_id" value="{{ request()->route('id') }}">
                             <button type="submit" class="btn border border-secondary rounded-pill px-4 py-2 mb-4">
                                 <div class="heart-icon">
@@ -163,8 +167,10 @@
 
                                     </div>
                             </button>
+                        </div>
+                        </div>
                         </form>
-                      
+                            </div>
                             <div class="col-lg-12">
                              <h1>Reviews</h1>
                                
