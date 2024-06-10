@@ -198,7 +198,12 @@ $(document).ready(function() {
                 success: function(resp) {
                     $(".totalWishlistItems").html(resp.totalWishlistItems);
                     $("#appendWishlistItems").html(resp.view);
-                    $(".fa fa-heart ").html("")
+                      // Check if the item was removed from the wishlist
+                if (resp.inWishlist) {
+                    heartIcon.removeClass('fa-regular').addClass('fa');
+                } else {
+                    heartIcon.removeClass('fa').addClass('fa-regular');
+                }
                 },
                 error: function() {
                     alert("Error");
@@ -206,6 +211,7 @@ $(document).ready(function() {
             });
         }
     });
+   
     
     //add loadeer when click place order
     $(document).on('click', '#placeOrder', function() {

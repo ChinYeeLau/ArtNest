@@ -19,7 +19,6 @@
                         </a>
                     </th>
                     <td>
-                        
                         <button class="btn btn-md rounded-circle bg-light border mt-4  deleteWishlistItem" data-wishlistid="{{$item['id']}}">
                             <i class="fa fa-times text-danger"></i>
                         </button>

@@ -240,14 +240,23 @@ class ProductsController extends Controller
       $categoryDetails = Category::categoryDetails($productDetails['category']['url']);
       $product = Product::find($id);
       $session_id = Session::get('session_id');
-      $user_id = Auth::check() ? Auth::user()->id : 0;
-  
+      //check if user login or not
+      if (Auth::check()){
+      $user_id=Auth::user()->id;  
       $inWishlist = Wishlist::where('product_id', $id)
           ->where(function($query) use ($user_id, $session_id) {
-              $query->where('user_id', $user_id)
-                  ->orWhere('session_id', $session_id);
+              $query->where('user_id', $user_id);
+                 
           })->exists();
-  
+         }else{
+            $user_id=0;
+            $inWishlist = Wishlist::where('product_id', $id)
+            ->where(function($query) use ($user_id, $session_id) {
+                $query->where('session_id', $session_id);
+                   
+            })->exists();
+         }
+      //dd($inWishlist);
       $totalStock = ProductsAttribute::where('product_id', $id)->sum('stock'); 
       $meta_title = $productDetails['meta_title'];
       $meta_description = $productDetails['meta_description'];
@@ -688,36 +697,48 @@ class ProductsController extends Controller
       if($request->isMethod('post')){
           $data = $request->all();
   
-          // Generate session id if not exists
-          $session_id = Session::get('session_id');
-          if(empty($session_id)){
-              $session_id = Session::getId();
-              Session::put('session_id', $session_id);
-          }
   
-          $user_id = Auth::check() ? Auth::user()->id : 0;
-  
-          // Check if product already exists in wishlist
-          $countProducts = Wishlist::where(function($query) use ($data, $user_id, $session_id) {
-              $query->where('product_id', $data['product_id'])
-                    ->where(function($subquery) use ($user_id, $session_id) {
-                        $subquery->where('user_id', $user_id)
-                                 ->orWhere('session_id', $session_id);
-                    });
-          })->count();
-  
-          if ($countProducts > 0) {
-  // Product already exists in the wishlist
-  // Remove the product from the wishlist
-  Wishlist::where('product_id', $data['product_id'])
-      ->where(function($query) use ($user_id, $session_id) {
-          $query->where('user_id', $user_id)
-                ->orWhere('session_id', $session_id);
-      })
-      ->delete();
-     
-  // Return with success message indicating removal from the wishlist
-  return redirect()->back()->with('success_message', 'Item already removed from the wishlist!');
+        // Determine user ID or default to 0 if not authenticated
+$user_id = Auth::check() ? Auth::user()->id : 0;
+
+// Generate session ID if it doesn't exist
+$session_id = Session::get('session_id', function() {
+    $session_id = Session::getId();
+    Session::put('session_id', $session_id);
+    return $session_id;
+});
+
+// Check if product already exists in the wishlist
+$countWishlist = Wishlist::where('product_id', $data['product_id'])
+    ->where(function($query) use ($user_id, $session_id) {
+        $query->where('user_id', $user_id)
+              ->orWhere('session_id', $session_id);
+    })->count();
+
+// Check if product already exists in the wishlist
+$countWishlist =Wishlist::where('product_id', $data['product_id'])
+    ->where(function($query) use ($user_id, $session_id) {
+        if ($user_id) {
+            $query->where('user_id', $user_id);
+        } else {
+            $query->where('session_id', $session_id);
+        }
+    })->count();
+    $isInWishlist =Wishlist::where('product_id', $data['product_id'])
+    ->where(function($query) use ($user_id, $session_id) {
+        $query->where('user_id', $user_id)
+              ->orWhere('session_id', $session_id);
+    })->exists();
+
+// If product exists in the wishlist, remove it and return a success message
+if ($countWishlist > 0) {
+    Wishlist::where('product_id', $data['product_id'])
+        ->where(function($query) use ($user_id, $session_id) {
+            $query->where('user_id', $user_id)
+                  ->orWhere('session_id', $session_id);
+        })->delete();
+
+    return redirect()->back()->with('success_message', 'Item already removed from the wishlist!');
 }
   
           // Save product in wishlist table

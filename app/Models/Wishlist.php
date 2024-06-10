@@ -35,9 +35,10 @@ class Wishlist extends Model
         // You may need to query your database or use any other method to determine this
         // For example, assuming you have a 'wishlist_items' table containing user_id and product_id fields:
         $userId = auth()->id(); // Assuming you're using authentication
-        return self::where('user_id', $userId)
+        $isInWishlist::where('user_id', $userId)
                     ->where('product_id', $productId)
                     ->exists();
+                    return  $isInWishlist;
     }
 }
 

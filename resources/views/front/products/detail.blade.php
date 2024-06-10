@@ -156,6 +156,7 @@
                             
                         </form>
                         <form action="{{ url('wishlist/add-remove') }}" method="post" id="wishlist-form" class="px-4"> @csrf
+                  
                             <input type="hidden" name="product_id" value="{{ request()->route('id') }}">
                             <button type="submit" class="btn border border-secondary rounded-pill px-4 py-2 mb-4">
                                 <div class="heart-icon">

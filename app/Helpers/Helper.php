@@ -1,5 +1,7 @@
 <?php
 use App\Models\Cart;
+use App\Models\Wishlist;
+use Illuminate\Support\Facades\Session;
 
 function totalCartItems(){
     if(Auth::check()){
@@ -11,4 +13,8 @@ function totalCartItems(){
 
     }
     return $totalCartItems;
+    
 }
+
+
+
