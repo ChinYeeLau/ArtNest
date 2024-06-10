@@ -15,12 +15,12 @@ class Wishlist extends Model
         if(Auth::check()){
            //if user logged in/pick auth id of the user
            $getWishlistItems = Wishlist::with(['product' => function ($query) {
-            $query->select('id', 'category_id', 'product_name', 'product_code', 'product_color', 'product_image','product_weight');
+            $query->select('id', 'category_id', 'product_name', 'product_code', 'product_image');
         }])->orderby('id','Desc')->where('user_id',Auth::user()->id)->get()->toArray();
         }else{
           //if user not logged in /pick session id 
           $getWishlistItems = Wishlist::with(['product' => function ($query) {
-            $query->select('id', 'category_id', 'product_name', 'product_code', 'product_color', 'product_image','product_weight');
+            $query->select('id', 'category_id', 'product_name', 'product_code','product_image');
         }])->orderby('id','Desc')->where('session_id',Session::get('session_id'))->get()->toArray();
 
         }

@@ -236,7 +236,7 @@ class ProductsController extends Controller
       $productDetails = Product::with(['section','category','vendor','attributes'=>function($query){
           $query->where('stock','>',0)->where('status',1);
       },'images'])->find($id)->toArray();
-  
+  //dd($productDetails);
       $categoryDetails = Category::categoryDetails($productDetails['category']['url']);
       $product = Product::find($id);
       $session_id = Session::get('session_id');
@@ -244,17 +244,15 @@ class ProductsController extends Controller
       if (Auth::check()){
       $user_id=Auth::user()->id;  
       $inWishlist = Wishlist::where('product_id', $id)
-          ->where(function($query) use ($user_id, $session_id) {
-              $query->where('user_id', $user_id);
-                 
-          })->exists();
+      ->where('user_id', $user_id)
+      ->count();    
+       
          }else{
             $user_id=0;
             $inWishlist = Wishlist::where('product_id', $id)
-            ->where(function($query) use ($user_id, $session_id) {
-                $query->where('session_id', $session_id);
-                   
-            })->exists();
+            ->where('session_id', $session_id)
+            ->count();    
+                  
          }
       //dd($inWishlist);
       $totalStock = ProductsAttribute::where('product_id', $id)->sum('stock'); 
@@ -708,12 +706,6 @@ $session_id = Session::get('session_id', function() {
     return $session_id;
 });
 
-// Check if product already exists in the wishlist
-$countWishlist = Wishlist::where('product_id', $data['product_id'])
-    ->where(function($query) use ($user_id, $session_id) {
-        $query->where('user_id', $user_id)
-              ->orWhere('session_id', $session_id);
-    })->count();
 
 // Check if product already exists in the wishlist
 $countWishlist =Wishlist::where('product_id', $data['product_id'])
@@ -724,6 +716,7 @@ $countWishlist =Wishlist::where('product_id', $data['product_id'])
             $query->where('session_id', $session_id);
         }
     })->count();
+    
     $isInWishlist =Wishlist::where('product_id', $data['product_id'])
     ->where(function($query) use ($user_id, $session_id) {
         $query->where('user_id', $user_id)
@@ -765,7 +758,7 @@ if ($countWishlist > 0) {
   }
   public function wishlist(){
       $getWishlistItems = Wishlist::getWishlistitems(); // Retrieve wishlist items using Wishlist model
-  
+  //dd($getWishlistItems );
       $meta_title = "Shopping Wishlist - ArtNest";
       $meta_description = "ArtNest - Online Shopping Website for Arts";
       $meta_keywords = "eshop website, online shopping, shopping Wishlist";

@@ -14,7 +14,7 @@
                         <a href="{{url('product/'.$item['product_id'])}}">
                             <div class="d-flex align-items-center">
                                 <img src="{{asset('front/images/product_images/small/'.$item['product']['product_image'])}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="Product">
-                                <h6>{{$item['product']['product_name']}}</h6>
+                                <h6>({{$item['product']['product_code']}})-{{$item['product']['product_name']}}</h6>
                             </div>
                         </a>
                     </th>

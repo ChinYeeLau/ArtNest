@@ -208,7 +208,7 @@ class UserController extends Controller
         if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']])){
             if(Auth::user()->status==0){
                 Auth::logout();
-                return response()->json(['type'=>'inactive','message'=>'Your account is not activated!Please confirm your account to acctivate your account.']);
+                return response()->json(['type'=>'inactive','message'=>'Your account is not activated!Please confirm your account to activate your account.']);
             
             }
             //update user cart with user id
