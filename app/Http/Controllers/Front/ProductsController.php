@@ -14,6 +14,7 @@ use App\Models\Vendor;
 use App\Models\Product;
 use App\Models\Section;
 use App\Models\Category;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Models\OrdersProduct;
 use App\Models\ProductsFilter;
@@ -231,16 +232,30 @@ class ProductsController extends Controller
      return view('front.products.vendor_listing')->with(compact('getVendorShop','vendorProducts','vendor'));
    }
 
-    public function detail($id){
-      $productDetails=Product::with(['section','category','vendor','attributes'=>function($query){$query->where('stock','>',0)->where('status',1);},'images'])->find ($id)->toArray();
-      $categoryDetails=Category::categoryDetails($productDetails['category']['url']);
-      //dd( $productDetails);
-      $totalStock=ProductsAttribute::where('product_id',$id)->sum('stock'); 
-      $meta_title=$productDetails['meta_title'];
-      $meta_description=$productDetails['meta_description'];
-      $meta_keywords=$productDetails['meta_keywords'];
-      return view('front.products.detail')->with(compact('productDetails','categoryDetails','totalStock','meta_title','meta_description','meta_keywords'));
-    }
+   public function detail($id){
+      $productDetails = Product::with(['section','category','vendor','attributes'=>function($query){
+          $query->where('stock','>',0)->where('status',1);
+      },'images'])->find($id)->toArray();
+  
+      $categoryDetails = Category::categoryDetails($productDetails['category']['url']);
+      $product = Product::find($id);
+      $session_id = Session::get('session_id');
+      $user_id = Auth::check() ? Auth::user()->id : 0;
+  
+      $inWishlist = Wishlist::where('product_id', $id)
+          ->where(function($query) use ($user_id, $session_id) {
+              $query->where('user_id', $user_id)
+                  ->orWhere('session_id', $session_id);
+          })->exists();
+  
+      $totalStock = ProductsAttribute::where('product_id', $id)->sum('stock'); 
+      $meta_title = $productDetails['meta_title'];
+      $meta_description = $productDetails['meta_description'];
+      $meta_keywords = $productDetails['meta_keywords'];
+  
+      // Now, we pass the required data to the view
+      return view('front.products.detail')->with(compact('productDetails','categoryDetails','totalStock','meta_title','meta_description','meta_keywords', 'product', 'inWishlist'));
+  }
     public function getProductPrice(Request $request){
         if($request->ajax()){
          $data=$request->all();
@@ -361,6 +376,7 @@ class ProductsController extends Controller
      ]);
        }
     }
+
     public function applyCoupon(Request $request){
    if($request->ajax()){
       $data=$request->all();
@@ -667,4 +683,79 @@ class ProductsController extends Controller
          return redirect('cart');
       }
      }
+    
+     public function wishlistAddRemove(Request $request){
+      if($request->isMethod('post')){
+          $data = $request->all();
+  
+          // Generate session id if not exists
+          $session_id = Session::get('session_id');
+          if(empty($session_id)){
+              $session_id = Session::getId();
+              Session::put('session_id', $session_id);
+          }
+  
+          $user_id = Auth::check() ? Auth::user()->id : 0;
+  
+          // Check if product already exists in wishlist
+          $countProducts = Wishlist::where(function($query) use ($data, $user_id, $session_id) {
+              $query->where('product_id', $data['product_id'])
+                    ->where(function($subquery) use ($user_id, $session_id) {
+                        $subquery->where('user_id', $user_id)
+                                 ->orWhere('session_id', $session_id);
+                    });
+          })->count();
+  
+          if ($countProducts > 0) {
+  // Product already exists in the wishlist
+  // Remove the product from the cart
+  Wishlist::where('product_id', $data['product_id'])
+      ->where(function($query) use ($user_id, $session_id) {
+          $query->where('user_id', $user_id)
+                ->orWhere('session_id', $session_id);
+      })
+      ->delete();
+     
+  // Return with success message indicating removal from the wishlist
+  return redirect()->back()->with('success_message', 'Item already removed from the wishlist!');
+}
+  
+          // Save product in wishlist table
+          $item = new Wishlist;
+          $item->session_id = $session_id;
+          $item->user_id = $user_id;
+          $item->product_id = $data['product_id'];
+          $item->save();
+
+          return redirect()->back()->with('success_message', 'Product has been added to wishlist! <a href="/wishlist">View Wishlist</a>');
+      }
+  }
+  public function wishlistDelete(Request $request){
+      if ($request->ajax()){
+          $data = $request->all();
+          Wishlist::where('id', $data['wishlistid'])->delete();
+          $getWishlistItems = Wishlist::getWishlistitems();
+          $totalWishlistItems = totalCartItems(); // Assuming this is a typo and should be totalWishlistItems
+          return response()->json([
+              'totalWishlistItems' => $totalWishlistItems,
+              'view' => (string) view('front.products.wishlist_items')->with(compact('getWishlistItems')),
+          ]);
+      }
+  }
+  public function wishlist(){
+      $getWishlistItems = Wishlist::getWishlistitems(); // Retrieve wishlist items using Wishlist model
+  
+      $meta_title = "Shopping Wishlist - ArtNest";
+      $meta_description = "ArtNest - Online Shopping Website for Arts";
+      $meta_keywords = "eshop website, online shopping, shopping Wishlist";
+  
+      return view('front.products.wishlist')->with(compact('getWishlistItems', 'meta_title', 'meta_description', 'meta_keywords'));
+  }
+ 
+ 
+  
+ 
+
+
+
    }

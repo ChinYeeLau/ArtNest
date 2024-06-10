@@ -151,6 +151,20 @@
                                 <button class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary" type="submit"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                             </div>
                         </form>
+                        <form action="{{ url('wishlist/add-remove') }}" method="post" id="wishlist-form" > @csrf
+                            <input type="hidden" name="product_id" value="{{ request()->route('id') }}">
+                            <button type="submit" class="btn border border-secondary rounded-pill px-4 py-2 mb-4">
+                                <div class="heart-icon">
+                                    @if($inWishlist)
+                                    <i class="fa fa-heart  "></i>
+                                    @else
+                                    <i class="fa-regular fa-heart"></i>
+                                  @endif
+
+                                    </div>
+                            </button>
+                        </form>
+                      
                             <div class="col-lg-12">
                              <h1>Reviews</h1>
                                

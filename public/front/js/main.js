@@ -184,6 +184,28 @@ $(document).ready(function() {
         }
      
     });
+    $(document).on('click', '.deleteWishlistItem', function() {
+        var wishlistid = $(this).data('wishlistid'); // Fix variable name
+        var result = confirm("Are you sure to delete this Wishlist Item?");
+        if (result) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: { wishlistid: wishlistid }, // Fix variable name
+                url: '/wishlist/delete',
+                type: 'post',
+                success: function(resp) {
+                    $(".totalWishlistItems").html(resp.totalWishlistItems);
+                    $("#appendWishlistItems").html(resp.view);
+                },
+                error: function() {
+                    alert("Error");
+                }
+            });
+        }
+    });
+    
     //add loadeer when click place order
     $(document).on('click', '#placeOrder', function() {
         $("#spinner").addClass('show');  // Assuming you have a 'show' class to display the spinner

@@ -62,7 +62,7 @@ $sections=Section::sections();
             
                    <!-- Favorites and Cart Links -->
                    <div class="navbar-nav ml-auto ">
-                    <a href="{{url('cart')}}" class="nav-item nav-link"><i class="fa-solid fa-heart fa-2x" style="color: #f26b4e;"></i></a>  </div>
+                    <a href="{{url('wishlist')}}" class="nav-item nav-link"><i class="fa-solid fa-heart fa-2x" style="color: #f26b4e;"></i></a>  </div>
                     <div class="navbar-nav ml-auto ">
                         <a href="{{url('cart')}}" class="nav-item nav-link cart-link">
                             <i class="fa-solid fa-cart-shopping fa-2x cart-icon"></i>

@@ -168,6 +168,13 @@ Route::get('search-products','ProductsController@listing');
 Route::match(['GET','POST'],'contact','CMSController@contact');
 // add subscriber email
 Route::post('add-subscriber-email','NewsletterController@addSubscriber');
+//add to wishlist 
+Route::post('wishlist/add-remove','ProductsController@wishlistAddRemove');
+//wishlist route
+Route::get('wishlist','ProductsController@wishlist');
+//delete wishlist item through wishlist_items
+Route::post('wishlist/delete','ProductsController@wishlistDelete');
+
 
 
 Route::group(['middleware'=>['auth']],function(){
