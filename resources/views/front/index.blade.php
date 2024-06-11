@@ -37,24 +37,25 @@
                         <ul class="nav nav-pills d-inline-flex text-center mb-5 justify-content-center">
                             <li class="nav-item">
                                 <a class="d-flex m-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
-                                    <span class="text-dark">Featured Products</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
                                     <span class="text-dark">New Products</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
+                                <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
                                     <span class="text-dark">Best Seller</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
+                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
                                     <span class="text-dark">Discounted Products</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
+                                    <span class="text-dark">Featured Products</span>
+                                </a>
+                            </li>
+                            
                         </ul>
                     </div>
                 </div>
