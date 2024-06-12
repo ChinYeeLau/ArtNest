@@ -267,18 +267,23 @@ class ProductsController extends Controller
      $ratingFourStarCount=Rating::where(['product_id'=>$id,'status'=>1,'rating'=>4])->count();
      $ratingFiveStarCount=Rating::where(['product_id'=>$id,'status'=>1,'rating'=>5])->count();
 
-     if($ratingCount>0){
-      $avgRating=round($ratingSum/$ratingCount,2);
-      $avgStarRating=round($ratingSum/$ratingCount);
+     $avgRating = 0;
+     $avgStarRating = 0;
+     
+     if($ratingCount > 0){
+         $avgRating = round($ratingSum / $ratingCount, 2);
+         $avgStarRating = round($ratingSum / $ratingCount);
      }
-      $totalStock = ProductsAttribute::where('product_id', $id)->sum('stock'); 
-      $meta_title = $productDetails['meta_title'];
-      $meta_description = $productDetails['meta_description'];
-      $meta_keywords = $productDetails['meta_keywords'];
-  
+     
+     $totalStock = ProductsAttribute::where('product_id', $id)->sum('stock');
+     $meta_title = $productDetails['meta_title'];
+     $meta_description = $productDetails['meta_description'];
+     $meta_keywords = $productDetails['meta_keywords'];
+     
       // Now, we pass the required data to the view
-      return view('front.products.detail')->with(compact('productDetails','categoryDetails','totalStock','meta_title','meta_description','meta_keywords', 'product', 'inWishlist','ratings','avgRating','avgStarRating','ratingOneStarCount','ratingTwoStarCount','ratingThreeStarCount','ratingFourStarCount','ratingFiveStarCount'));
-  }
+      return view('front.products.detail')->with(compact( 'productDetails', 'categoryDetails', 'totalStock', 'meta_title', 'meta_description',  'meta_keywords', 'product', 'inWishlist', 'ratings', 'avgRating', 'avgStarRating', 
+         'ratingOneStarCount', 'ratingTwoStarCount', 'ratingThreeStarCount', 'ratingFourStarCount',  'ratingFiveStarCount' ));  
+   }
     public function getProductPrice(Request $request){
         if($request->ajax()){
          $data=$request->all();
