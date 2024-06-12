@@ -116,6 +116,10 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('subscribers','NewsletterController@subscribers');
         Route::post('update-subscriber-status','NewsletterController@updateSubscriberStatus');
         Route::get('delete-subscriber/{id}','NewsletterController@deleteSubscriber');
+        //ratings
+        Route::get('ratings','RatingController@ratings');
+        Route::post('update-rating-status','RatingController@updateRatingStatus');
+        Route::get('delete-rating/{id}','RatingController@deleteRating');
     });
         
 });
@@ -174,6 +178,8 @@ Route::post('wishlist/add-remove','ProductsController@wishlistAddRemove');
 Route::get('wishlist','ProductsController@wishlist');
 //delete wishlist item through wishlist_items
 Route::post('wishlist/delete','ProductsController@wishlistDelete');
+//add rating review
+Route::post('add-rating','RatingController@addRating');
 
 
 

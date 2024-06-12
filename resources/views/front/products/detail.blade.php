@@ -56,6 +56,14 @@
                                 @endif
                             </div>
                                 <h4 class="fw-bold mb-3">{{$productDetails['product_name']}}</h4>
+                                <div class="d-flex " style="color:gold; font-size:17px;" title="{{$avgRating}}out of 5-based on {{count($ratings)}} Reviews ">
+                                    @if($avgStarRating > 0)
+                               @for($star = 1; $star <= $avgStarRating; $star++)
+                                <span>&#9733;</span>
+                                  @endfor
+                                 @endif
+                                <h6 class="mx-2">({{($avgRating)}})</h6>
+                            </div>
                               <div aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
@@ -172,82 +180,92 @@
                         </div>
                         </form>
                             </div>
-                            <div class="col-lg-12">
-                                <form action="#">
-                                    <h4 class="mb-5 fw-bold">Leave a Review</h4>
-                                    <div class="row g-4">
+                            <div>
+                                <div class="d-flex justify-content-between" style="max-width:250px">
+                                <div>Five Stars</div>
+                                <div> &#9733;  &#9733; &#9733; &#9733; &#9733;</div>
+                                <div>({{$ratingFiveStarCount}})</div>
+                            </div>
+                            <div class="d-flex justify-content-between" style="max-width:250px">
+                                <div>Four Stars</div>
+                                <div style="padding-right:3px"> &#9733;  &#9733; &#9733; &#9733; &#9733;</div>
+                                <div>({{$ratingFourStarCount}})</div>
+                            </div>
+                            <div class="d-flex justify-content-between" style="max-width:250px">
+                                <div>Three Stars</div>
+                                <div style="padding-right:12px"> &#9733;  &#9733; &#9733; &#9733; &#9733;</div>
+                                <div>({{$ratingThreeStarCount}})</div>
+                            </div>
+                            <div class="d-flex justify-content-between" style="max-width:250px">
+                                <div>Two Stars</div>
+                                <div > &#9733;  &#9733; &#9733; &#9733; &#9733;</div>
+                                <div>({{$ratingTwoStarCount}})</div>
+                            </div>
+                            <div class="d-flex justify-content-between" style="max-width:250px">
+                                <div>One Stars</div>
+                                <div > &#9733;  &#9733; &#9733; &#9733; &#9733;</div>
+                                <div>({{$ratingOneStarCount}})</div>
+                            </div>                                   
+                                </div>
+                            <div class="col-lg-12 ">
+                                <form action="{{url('add-rating')}}" method="POST" name="formRating" id="formRating">@csrf
+                                    <input type="hidden" name="product_id" value="{{$productDetails['id']}}">
+                                    <br><h4 class="fw-bold">Leave a Review</h4>
+                                    <div >
                                           <div class="d-flex">
-                                                    <p class="mb-0 me-3">Please rate:</p>
-                                                    <div class="d-flex align-items-center" style="font-size: 12px;">
-                                                        <i class="fa fa-star text-muted"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    <p >Please rate:</p>
+                                                    <div class="rate">
+                                                        <input style="display:none;" type="radio" id="star5" name="rating" value="5" />
+                                                        <label for="star5" title="text">5 stars</label>
+                                                        <input style="display:none;" type="radio" id="star4" name="rating" value="4" />
+                                                        <label for="star4" title="text">4 stars</label>
+                                                        <input style="display:none;" type="radio" id="star3" name="rating" value="3" />
+                                                        <label for="star3" title="text">3 stars</label>
+                                                        <input style="display:none;" type="radio" id="star2" name="rating" value="2" />
+                                                        <label for="star2" title="text">2 stars</label>
+                                                        <input style="display:none;" type="radio" id="star1" name="rating" value="1" />
+                                                        <label for="star1" title="text">1 star</label>
+                                                      </div>
                                                 </div>
-                                        <div class="col-lg-6">
-                                            <div class="border-bottom rounded">
-                                                <input type="text" class="form-control border-0 me-4" placeholder="Your Name *">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="border-bottom rounded">
-                                                <input type="email" class="form-control border-0" placeholder="Your Email *">
-                                            </div>
-                                        </div>
+                                       
+                                       
                                         <div class="col-lg-12">
                                             <div class="border-bottom rounded my-4">
-                                                <textarea name="" id="" class="form-control border-0" cols="30" rows="4" placeholder="Your Review *" spellcheck="false"></textarea>
+                                                <textarea name="review" id="review" class="form-control border-0" cols="30" rows="4" placeholder="Your Review *" spellcheck="false" required=""></textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="d-flex justify-content-end py-3 mb-5">
                                               
-                                                <a href="#" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</a>
+                                                <button type="submit" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
-                             <h1>Reviews</h1>
+                             <h1>Reviews({{count($ratings)}})</h1>
                                
                                     <div class="tab-pane" id="nav-mission" role="tabpanel" aria-labelledby="nav-mission-tab">
+                                       @if(count($ratings)>0)
+                                         @foreach($ratings as $rating)
                                         <div class="d-flex">
-                                            <img src="" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
                                             <div class="">
-                                                <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
+                                                <p class="mb-2" style="font-size: 14px;">{{date("d-m-Y H:i:s",strtotime($rating['created_at']))}}</p>
                                                 <div class="d-flex justify-content-between">
-                                                    <h5>Jason Smith</h5>
-                                                    <div class="d-flex mb-3">
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    <h5>{{$rating['user']['name']}}</h5>
+                                                    <div class="rate">
+                                                   <?php
+                                                   $count=0;
+                                                   while($count<$rating['rating']){
+                                                   ?>
+                                                   <span style="color:gold;"> &#9733;</span>
+                                                   <?php $count++;} ?>
                                                 </div>
-                                                <p>The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
-                                                    words etc. Susp endisse ultricies nisi vel quam suscipit </p>
+                                                </div>
+                                                <p>{{$rating['review']}} </p>
                                             </div>
                                         </div>
-                                        <div class="d-flex">
-                                            <img src="" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
-                                            <div class="">
-                                                <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                                <div class="d-flex justify-content-between">
-                                                    <h5>Sam Peters</h5>
-                                                    <div class="d-flex mb-3">
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <p class="text-dark">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic 
-                                                    words etc. Susp endisse ultricies nisi vel quam suscipit </p>
-                                            </div>
-                                        </div>
+                                        @endforeach
+                                       @endif
                                     </div>
                                  
                                 </div>

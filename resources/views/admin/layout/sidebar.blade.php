@@ -50,6 +50,7 @@
                 </ul>
             </div>
         </li>
+        
         @else
         <li class="nav-item">
             <a @if(Session::get('page')=="update_admin_password"||Session::get('page')=="update_admin_details")style="background:#4B49AC !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-settings" aria-expanded="false" aria-controls="ui-settings">
@@ -106,6 +107,20 @@
                 <ul class="nav flex-column sub-menu" style="background:#fff!important;color:#4B49AC !important;">
                     <li class="nav-item">
                         <a @if(Session::get('page')=="orders")style="background:#4B49AC !important; color:#fff!important;"@else style="background:#fff !important;color:#4B49AC!important" @endif class="nav-link" href="{{url('admin/orders')}}" > Orders</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a @if(Session::get('page')=="ratings")style="background:#4B49AC !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-ratings" aria-expanded="false" aria-controls="ui-ratings">
+                <i class="icon-layout menu-icon"></i>
+                <span class="menu-title">Ratings Management</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-ratings">
+                <ul class="nav flex-column sub-menu" style="background:#fff!important;color:#4B49AC !important;">
+                    <li class="nav-item">
+                        <a @if(Session::get('page')=="ratings")style="background:#4B49AC !important; color:#fff!important;"@else style="background:#fff !important;color:#4B49AC!important" @endif class="nav-link" href="{{url('admin/ratings')}}" > Ratings & Reviews</a>
                     </li>
                 </ul>
             </div>

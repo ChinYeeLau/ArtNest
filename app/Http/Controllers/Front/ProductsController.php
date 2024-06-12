@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Banner;
 use App\Models\Coupon;
+use App\Models\Rating;
 use App\Models\Vendor;
 use App\Models\Product;
 use App\Models\Section;
@@ -254,14 +255,29 @@ class ProductsController extends Controller
             ->count();    
                   
          }
-      //dd($inWishlist);
+         //get all ratings
+         $ratings=Rating::with('user')->where(['product_id'=>$id,'status'=>1])->get()->toArray();
+     //get Average rating of products
+     $ratingSum=Rating::where(['product_id'=>$id,'status'=>1])->sum('rating');
+     $ratingCount=Rating::where(['product_id'=>$id,'status'=>1])->count();
+     //get star rating
+     $ratingOneStarCount=Rating::where(['product_id'=>$id,'status'=>1,'rating'=>1])->count();
+     $ratingTwoStarCount=Rating::where(['product_id'=>$id,'status'=>1,'rating'=>2])->count();
+     $ratingThreeStarCount=Rating::where(['product_id'=>$id,'status'=>1,'rating'=>3])->count();
+     $ratingFourStarCount=Rating::where(['product_id'=>$id,'status'=>1,'rating'=>4])->count();
+     $ratingFiveStarCount=Rating::where(['product_id'=>$id,'status'=>1,'rating'=>5])->count();
+
+     if($ratingCount>0){
+      $avgRating=round($ratingSum/$ratingCount,2);
+      $avgStarRating=round($ratingSum/$ratingCount);
+     }
       $totalStock = ProductsAttribute::where('product_id', $id)->sum('stock'); 
       $meta_title = $productDetails['meta_title'];
       $meta_description = $productDetails['meta_description'];
       $meta_keywords = $productDetails['meta_keywords'];
   
       // Now, we pass the required data to the view
-      return view('front.products.detail')->with(compact('productDetails','categoryDetails','totalStock','meta_title','meta_description','meta_keywords', 'product', 'inWishlist'));
+      return view('front.products.detail')->with(compact('productDetails','categoryDetails','totalStock','meta_title','meta_description','meta_keywords', 'product', 'inWishlist','ratings','avgRating','avgStarRating','ratingOneStarCount','ratingTwoStarCount','ratingThreeStarCount','ratingFourStarCount','ratingFiveStarCount'));
   }
     public function getProductPrice(Request $request){
         if($request->ajax()){
