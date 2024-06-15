@@ -515,6 +515,7 @@ class OrderController extends Controller
 						Order Amount:RM '.$orderDetails['grand_total'].'<br>
             Order Status: '.$orderDetails['order_status'].'<br>
            Payment Method: '.$orderDetails['payment_method'].'<br>
+		   Payment made by:'.$orderDetails['payment_gateway'].'<br>
 					</div>
 				</div>
 			</div>

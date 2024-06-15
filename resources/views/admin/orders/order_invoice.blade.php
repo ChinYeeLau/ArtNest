@@ -44,7 +44,7 @@
     			<div class="col-xs-6">
     				<address>
     					<strong>Payment Method:</strong><br>
-    					{{$orderDetails['payment_method']}}{{$orderDetails['payment_gateway']}}
+    					{{$orderDetails['payment_method']}}
     				</address>
     			</div>
     			<div class="col-xs-6 text-right">
