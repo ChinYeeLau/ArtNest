@@ -205,8 +205,8 @@ Route::group(['middleware'=>['auth']],function(){
  Route::get('user/orders/{id?}','OrderController@orders');
 //paypal
 Route::get('paypal','PaypalController@paypal');
-Route::post('pay','PaypalController@pay')->name('payment');
-Route::get('success','PaypalController@success');
+Route::post('paypal','PaypalController@pay')->name('paypal.pay');
+Route::get('success','PaypalController@success')->name('paypal.success');
 Route::get('error','PaypalController@error');
 //stripe route
 Route::get('stripe','StripeController@stripe');
