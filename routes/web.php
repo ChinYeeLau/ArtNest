@@ -205,14 +205,14 @@ Route::group(['middleware'=>['auth']],function(){
  Route::get('user/orders/{id?}','OrderController@orders');
 //paypal
 Route::get('paypal','PaypalController@paypal');
-Route::post('paypal','PaypalController@pay')->name('paypal.pay');
-Route::get('success','PaypalController@success')->name('paypal.success');
-Route::get('error','PaypalController@error');
+Route::post('paypal/pay','PaypalController@pay')->name('paypal.pay');
+Route::get('paypal/success','PaypalController@success')->name('paypal.success');
+Route::get('paypal/error','PaypalController@error');
 //stripe route
 Route::get('stripe','StripeController@stripe');
-Route::post('pay','StripeController@stripePay')->name('stripe.pay');
-Route::get('success','StripeController@success')->name('payment.success');
-Route::get('error','StripeController@error')->name('payment.error');
+Route::post('stripe/pay','StripeController@stripePay')->name('stripe.pay');
+Route::get('stripe/success','StripeController@success')->name('payment.success');
+Route::get('paypal/error','StripeController@error')->name('payment.error');
 });
 
  //user login
