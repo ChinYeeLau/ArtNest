@@ -217,6 +217,10 @@ $(document).ready(function() {
     $(document).on('click', '#placeOrder', function() {
         $("#spinner").addClass('show');  // Assuming you have a 'show' class to display the spinner
     });
+    //add loadeer when click place order
+    $(document).on('click', '#stripePayNow', function() {
+        $("#spinner").addClass('show');  // Assuming you have a 'show' class to display the spinner
+    });
 
     $("#registerForm").submit(function(e){
         e.preventDefault(); // Prevent the default form submission

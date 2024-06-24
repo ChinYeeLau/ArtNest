@@ -34,7 +34,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button class="stripe-paynow" type="submit">Pay Now</button>
+                                <button class="stripe-paynow" id="stripePayNow" type="submit">Pay Now</button>
                             </div>
                         </div>
                     </form>
