@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('address')->after('name');
             $table->string('state')->after('address');
             $table->string('mobile')->after('state');
-            $table->tinyInteger('status')->after('password');
+            $table->string('image')->after('password');
+            $table->tinyInteger('status')->after('image');
 
         });
     }
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->dropColumn('address');
             $table->dropColumn('state');
             $table->dropColumn('mobile');
+            $table->dropColumn('image');
             $table->dropColumn('status');
 
         });

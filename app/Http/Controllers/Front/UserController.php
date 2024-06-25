@@ -7,11 +7,11 @@ use Session;
 use Validator;
 use App\Models\Cart;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Hash;
 use Illuminate\Support\Facades\Mail;
+use Image;
 
 class UserController extends Controller
 {
@@ -88,39 +88,54 @@ class UserController extends Controller
         }
     }
 
-    public function userAccount(Request $request){
-        if ($request->ajax()){
-            $data=$request->all();
-           //   echo"<pre>";print_r($data);die;
-              $validator = Validator::make($request->all(),[
-                'name'=>'required|string|max:100',
-                'address'=>'required|string|max:100',
-                'state'=>'required|string|max:100',
-                'mobile'=>'required|string|digits:10',
-    
-               ]
-               
-               );
-               if($validator->passes()){
-                  //update user details
-                  User::where('id', Auth::user()->id)->update([
-                    'name' => $data['name'],
-                    'address' => $data['address'],
-                    'state' => $data['state'],
-                    'mobile' => $data['mobile']
-                ]);
-             //redirect back user with success message
-            
-             return response()->json(['type'=>'success','message'=>'Your contact/billing details successfully updated!']);
+    public function userAccount(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            // Validate form input
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:100',
+                'address' => 'required|string|max:100',
+                'state' => 'required|string|max:100',
+                'mobile' => 'required|string|digits:10',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000', // Adjust max file size as needed
+            ]);
 
-                }else{
-                    
-                return response()->json(['type'=>'error','errors'=>$validator->messages()]);
+            if ($validator->fails()) {
+                return response()->json(['type' => 'error', 'errors' => $validator->errors()], 422);
             }
-        }else{
+
+             // Handle image upload if a file is present
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $imagePath = 'front/images/photos/' . $imageName;
+
+            // Move the uploaded file to the specified path
+            $image->move(public_path('front/images/photos'), $imageName);
+
+            // Optionally, use Intervention Image to resize or manipulate the image
+            Image::make(public_path($imagePath))->resize(300, 200)->save(public_path($imagePath));
+
+            // Update user's image field in database
+            Auth::user()->image = $imageName;
+            Auth::user()->save(); // Save the updated user model
+        }
+
+            // Update user details
+            $user = Auth::user();
+            $user->name = $request->input('name');
+            $user->address = $request->input('address');
+            $user->state = $request->input('state');
+            $user->mobile = $request->input('mobile');
+            $user->save();
+
+            return response()->json(['type' => 'success', 'message' => 'Profile updated successfully.']);
+        } else {
+            // If it's a GET request (assuming to load the form), return view or redirect as needed
             return view('front.users.user_account');
         }
     }
+
     public function userUpdatePassword(Request $request){
         if ($request->ajax()){
             $data=$request->all();

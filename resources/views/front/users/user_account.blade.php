@@ -38,8 +38,20 @@
                 <h3 class="md-6 ">Update Contact Details</h3>
                 <p id="account-error"></p>
               <p id="account-success"></p>
-                <form id="accountForm" action="javascript:;" method="POST">@csrf
+                <form id="accountForm" action="{{ url('user/account') }}" action="javascript:;" method="POST"  enctype="multipart/form-data">@csrf
 
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="user-image">Photo</label>
+                    <input type="file" class="form-control" id="user-image" name="image">
+                    @if(!empty(Auth::user()->image))
+                        <div class="mt-2">
+                            <img src="{{ asset('front/images/photos/' . Auth::user()->image) }}" alt="User Image" style="max-width: 200px; max-height: 200px;">
+                            <br>
+                            <a target="_blank" href="{{ asset('front/images/photos/' . Auth::user()->image) }}">View Image</a>
+                            <input type="hidden" name="current_user_image" value="{{ Auth::user()->image }}">
+                        </div>
+                    @endif
+                </div>
                     <div class="form-outline mb-4">
                       <label class="form-label" for="user-email">Email</label>
                         <input type="email" name="email" id="user-email"  class="form-control form-control-lg" value="{{Auth::user()->email}}" readonly=""/>

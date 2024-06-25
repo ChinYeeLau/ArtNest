@@ -1,11 +1,12 @@
 <?php
 
-use App\Models\Category;
 use App\Models\CmsPage;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Admin\FilterController;
+use App\Http\Controllers\Front\PusherController;
 use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Admin\CouponsController;
 use App\Http\Controllers\Admin\SectionController;
@@ -213,6 +214,11 @@ Route::get('stripe','StripeController@stripe');
 Route::post('stripe/pay','StripeController@stripePay')->name('stripe.pay');
 Route::get('stripe/success','StripeController@success')->name('payment.success');
 Route::get('paypal/error','StripeController@error')->name('payment.error');
+//pusher
+Route::get('user/chat', [PusherController::class, 'userChat']);
+Route::post('user/broadcast', [PusherController::class, 'userBroadcast']);
+Route::post('user/receive', [PusherController::class, 'userReceive']);
+
 });
 
  //user login
