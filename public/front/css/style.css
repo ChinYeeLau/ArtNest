@@ -859,3 +859,10 @@
     height: 2.35rem;
     background: url("https://assets.edlin.app/icons/font-awesome/paper-plane/paper-plane-regular.svg") center no-repeat;
   }
+
+  .user-photo {
+    width: 50px; /* Adjust according to your design */
+    height: 50px; /* Adjust according to your design */
+    border-radius: 50%; /* Ensures the image is round */
+    object-fit: cover; /* Ensures the image covers the entire area */
+}

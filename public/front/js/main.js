@@ -258,8 +258,7 @@ $(document).ready(function() {
         });
     });
     //accountform
-    $("#accountForm").submit(function(e){
-        e.preventDefault(); // Prevent the default form submission
+    $("#accountForm").submit(function(){
     
         var formdata = $(this).serialize();
         $.ajax({
@@ -270,7 +269,8 @@ $(document).ready(function() {
             type: "POST",
             data: formdata,
             success: function(resp) {
-                if (resp.type == "error") {
+                if (resp.type=='error') {
+                    $("#spinner").hide();
                     $.each(resp.errors, function(i, error) {
                         $("#account-" + i).attr('style', 'color:red');
                         $("#account-" + i).html(error);
@@ -280,17 +280,21 @@ $(document).ready(function() {
                             });
                         }, 3000);
                     });
-                } else if (resp.type == "success") {
+               
+                } else if (resp.type == 'success') {
                     $("#account-success").attr('style', 'color:green');
                     $("#account-success").html(resp.message).fadeIn();
                     setTimeout(function(){
-                        location.reload();
-                    }, 3000); // Refresh after 3 seconds
+                        $("#account-success").css({
+                            'display': 'none'
+                        });
+                    }, 3000); // Hide success message after 3 seconds
                 }
             },
             error: function() {
-                alert("Error occurred while processing your request.");
-            }
+                    alert("Error occurred while processing your request.");
+                }
+            
         });
     });
     //passwordform
@@ -307,6 +311,7 @@ $(document).ready(function() {
             data: formdata,
             success: function(resp) {
                 if (resp.type == "error") {
+                     $("#spinner").hide();
                     $.each(resp.errors, function(i, error) {
                         $("#password-" + i).attr('style', 'color:red');
                         $("#password-" + i).html(error);
@@ -320,7 +325,9 @@ $(document).ready(function() {
                     $("#password-error").attr('style', 'color:red');
                     $("#password-error").html(resp.message).fadeIn();
                     setTimeout(function(){
-                        location.reload();
+                        $("#password-error" ).css({
+                            'display': 'none'
+                        });
                     }, 3000); // Refresh after 3 seconds
                 
                 } else if (resp.type == "success") {

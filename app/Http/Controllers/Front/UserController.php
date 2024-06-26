@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Front;
 
 use Auth;
+use Hash;
 use Session;
 use Validator;
 use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Hash;
 use Illuminate\Support\Facades\Mail;
-use Image;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -91,50 +92,51 @@ class UserController extends Controller
     public function userAccount(Request $request)
     {
         if ($request->isMethod('post')) {
+            $data = $request->all();
+            //dd($data); 
             // Validate form input
-            $validator = Validator::make($request->all(), [
+            $validator = Validator::make($data, [
                 'name' => 'required|string|max:100',
                 'address' => 'required|string|max:100',
                 'state' => 'required|string|max:100',
-                'mobile' => 'required|string|digits:10',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5000', // Adjust max file size as needed
+                'mobile' => 'required|numeric|string|digits:10',
+               'image' => 'nullable|image',
             ]);
 
-            if ($validator->fails()) {
-                return response()->json(['type' => 'error', 'errors' => $validator->errors()], 422);
+            if ($request->hasFile('image')) {
+                $image_tmp = $request->file('image');
+                if ($image_tmp->isValid()) {
+                    $extension = $image_tmp->getClientOriginalExtension();
+                    $imageName = rand(111, 99999).'.'.$extension;
+                    $imagePath = 'front/images/photos/'.$imageName;
+                    Image::make($image_tmp)->save($imagePath);
+                }
+            } elseif (!empty($data['current_user_image'])) {
+                $imageName = $data['current_user_image'];
+            }else{
+                $imageName = "";
+    
             }
 
-             // Handle image upload if a file is present
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $imagePath = 'front/images/photos/' . $imageName;
-
-            // Move the uploaded file to the specified path
-            $image->move(public_path('front/images/photos'), $imageName);
-
-            // Optionally, use Intervention Image to resize or manipulate the image
-            Image::make(public_path($imagePath))->resize(300, 200)->save(public_path($imagePath));
-
-            // Update user's image field in database
-            Auth::user()->image = $imageName;
-            Auth::user()->save(); // Save the updated user model
+            if ($validator->passes()) {
+               // Update user details
+            User::where('id', Auth::user()->id)->update([ 'name' => $data['name'],'address' => $data['address'],'state' => $data['state'],'mobile' => $data['mobile'], 'image' => $imageName]);
+            if ($request->ajax()) {
+                return response()->json(['type' => 'success', 'message' =>'Profile updated successfully.']);
+            }
+            return redirect()->back()->with(['success', 'message' => 'Profile updated successfully.']);
+            }else{
+                if ($request->ajax()) {
+                    return response()->json(['type' => 'error', 'errors' => $validator->messages()]);
+                }
+                return redirect()->back()->withErrors($validator->messages(),422);
+            }
+           
         }
-
-            // Update user details
-            $user = Auth::user();
-            $user->name = $request->input('name');
-            $user->address = $request->input('address');
-            $user->state = $request->input('state');
-            $user->mobile = $request->input('mobile');
-            $user->save();
-
-            return response()->json(['type' => 'success', 'message' => 'Profile updated successfully.']);
-        } else {
-            // If it's a GET request (assuming to load the form), return view or redirect as needed
-            return view('front.users.user_account');
-        }
+        // Handle non-AJAX request (GET or POST fallback)
+        return view('front.users.user_account');
     }
+    
 
     public function userUpdatePassword(Request $request){
         if ($request->ajax()){

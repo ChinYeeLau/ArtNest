@@ -70,7 +70,14 @@ $sections=Section::sections();
                         </a>                </div>
             
                     <div class="dropdown" style="float:right;">
-                    <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-user fa-2x" style="color: #f26b4e; "></i></button>
+                        
+                        <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        @if(!empty(Auth::user()->image))
+                       <img src=" {{ url('front/images/photos/' . Auth::user()->image) }}"  alt="User Photo" class="user-photo">
+                       @else
+                 <i class="fa-solid fa-user fa-2x" style="color: #f26b4e; "></i>
+                     @endif
+                    </button>
                     <div class="m-0 dropdown-content" style="position: absolute; right: 0;">
                         @if (Auth::check())
                             <a href="{{url('user/account')}}">Profile</a>
