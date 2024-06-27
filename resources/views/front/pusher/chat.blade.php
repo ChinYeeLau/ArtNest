@@ -6,16 +6,21 @@
 <div class="chat">
     <p>Test</p>
  <div class="top">
-    <div>
+    @if(!empty(Auth::user()->image))
+    <img src=" {{ url('front/images/photos/' . Auth::user()->image) }}"  alt="User Photo" class="user-photo">
+    @else
+<i class="fa-solid fa-user fa-2x" style="color: #f26b4e; "></i>
+  @endif
+   
     <p>Test</p>
     <small>Online</small>
-</div>
+
  </div>
  <div class="messages">
-     @include('front.pusher.userreceive',['message'=>"hey"])
+     @include('front.pusher.receive',['message'=>"hey"])
  </div>
  <div class="bottom">
-    <form id="chatForm">
+    <form>
         <input type="text" id="message" name="message" placeholder="Enter message..." autocomplete="off">
         <button type="submit"></button>
     </form>
@@ -37,30 +42,31 @@
 
     // Receive messages
     channel.bind('chat', function(data) {
-        $.post("/user/receive", {
+        $.post("/receive", {
             _token: '{{ csrf_token() }}',
             message: data.message,
         }).done(function(res) {
-            $(".messages").append(res);
+            $(".messages >.message").last().after(res);
             $(document).scrollTop($(document).height());
         });
     });
 
     // Broadcast message
-    $("#chatForm").submit(function(event) {
+    $("form").submit(function(event) {
         event.preventDefault();
         $.ajax({
-            url: "/user/broadcast",
+            url: "/broadcast",
             method: 'POST',
             headers: {
                 'X-Socket-Id': pusher.connection.socket_id
             },
             data: {
                 _token: '{{ csrf_token() }}',
-                message: $("#message").val(),
+                message: $("form #message").val(),
             }
         }).done(function(res) {
-            $("#message").val('');
+            $(".messages >.message").last().after(res);
+            $("form #message").val('');
             $(document).scrollTop($(document).height());
         });
     });

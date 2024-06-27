@@ -16,12 +16,14 @@ class PusherBroadcast implements ShouldBroadcast
 
     public string $message;
 
+
     /**
      * Create a new event instance.
      */
     public function __construct(string $message)
     {
         $this->message = $message;
+        
     }
 
     /**
@@ -29,9 +31,9 @@ class PusherBroadcast implements ShouldBroadcast
      *
      * @return \Illuminate\Broadcasting\Channel
      */
-    public function broadcastOn()
+    public function broadcastOn():array
     {
-        return new Channel('public');
+        return ['public'];
     }
 
     /**
@@ -39,7 +41,7 @@ class PusherBroadcast implements ShouldBroadcast
      *
      * @return string
      */
-    public function broadcastAs()
+    public function broadcastAs():string
     {
         return 'chat'; // Return a string, not an array
     }

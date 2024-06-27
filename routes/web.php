@@ -215,9 +215,9 @@ Route::post('stripe/pay','StripeController@stripePay')->name('stripe.pay');
 Route::get('stripe/success','StripeController@success')->name('payment.success');
 Route::get('paypal/error','StripeController@error')->name('payment.error');
 //pusher
-Route::get('user/chat', [PusherController::class, 'userChat']);
-Route::post('user/broadcast', [PusherController::class, 'userBroadcast']);
-Route::post('user/receive', [PusherController::class, 'userReceive']);
+Route::get('/chat', [PusherController::class, 'chat']);
+Route::post('/broadcast', [PusherController::class, 'broadcast']);
+Route::post('/receive', [PusherController::class, 'receive']);
 
 });
 

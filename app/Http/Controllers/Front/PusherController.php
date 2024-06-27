@@ -8,22 +8,20 @@ use App\Http\Controllers\Controller;
 
 class PusherController extends Controller
 {
-    public function userChat()
+    public function chat()
     {
-        return view('front.pusher.userchat');
+        return view('front.pusher.chat');
     }
 
-    public function userBroadcast(Request $request)
+    public function broadcast(Request $request)
     {
-        $request->validate(['message' => 'required|string']);
-        broadcast(new PusherBroadcast($request->message))->toOthers();
-        return view('front.pusher.userboardcast', ['message' => $message]);
+        broadcast(new PusherBroadcast($request->get('message')))->toOthers();
+        return view('front.pusher.broadcast', ['message' =>$request->get('message')]);
     }
 
-    public function userReceive(Request $request)
+    public function receive(Request $request)
     {
-        $request->validate(['message' => 'required|string']);
-        return view('front.pusher.userreceive', ['message' => $request->message]);
+        return view('front.pusher.receive', ['message' => $request->get('message')]);
     }
 
 }
