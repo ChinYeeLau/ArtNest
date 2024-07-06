@@ -79,7 +79,7 @@
     
                                             @endif
                                             </a>
-                                            <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: #f26b4e;">New Products</div>
+                                           <!-- <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: #f26b4e;">New Products</div>-->
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4>{{$product['product_name']}}</h4>
                                                 <h6>{{$product['product_code']}}</h6>
@@ -119,7 +119,7 @@
                         
                                                     @endif
                                                     </a>
-                                                    <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: #f26b4e;">Best Seller</div>
+                                                   <!--  <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: #f26b4e;">Best Seller</div>-->
                                                     <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                         <h4>{{$product['product_name']}}</h4>
                                                         <h6>{{$product['product_code']}}</h6>
@@ -160,7 +160,7 @@
                         
                                                 @endif
                                                 </a>
-                                                <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: #f26b4e;">Discounted Products</div>
+                                                <!-- <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: #f26b4e;">Discounted Products</div>-->
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>{{$product['product_name']}}</h4>
                                                     <h6>{{$product['product_code']}}</h6>
@@ -201,7 +201,7 @@
                         
                                                 @endif
                                                 </a>
-                                                <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: #f26b4e;">Featured Products</div>
+                                               <!--  <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: #f26b4e;">Featured Products</div>-->
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                     <h4>{{$product['product_name']}}</h4>
                                                  <h6>{{$product['product_code']}}</h6>

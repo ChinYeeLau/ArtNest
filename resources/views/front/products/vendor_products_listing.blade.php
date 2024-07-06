@@ -1,22 +1,33 @@
 <?php use App\Models\Product; ?>
 
-<div class="row justify-content-center"style="text-align: center;">
-    <div style="text-align:center">
-        <h1>{{$getVendorShop}}</h1>
+<div class="row justify-content-center ">
+    <div class="d-flex justify-content-center">
+        <div>
          @if($vendor)
          @if(!empty(Auth::guard('admin')->user()->image))
-    <img src="{{ url('admin/images/photos/' . Auth::guard('admin')->user()->image) }}" alt="Admin Photo">
+    <img src="{{ url('admin/images/photos/' . Auth::guard('admin')->user()->image) }}" style="width:200px;height:200px;" alt="Admin Photo">
     <input type="hidden" name="current_vendor_image" value="{{ Auth::guard('admin')->user()->image }}">
 @else
-    <img src="{{ url('admin/images/photos/no-image.png') }}" alt="No Image">
+    <img src="{{ url('admin/images/photos/no-image.png') }}" style="width:200px;height:200px;" alt="No Image">
 @endif
-        <p>{{$vendor->name}}</p>
-        <p>{{$vendor->state}}</p>
-        <p>{{$vendor->current_status}}</p>
-        <a href="{{ url($vendor->portfolio) }}"><p>{{ $vendor->portfolio }}</p></a>
+</div>
+<div style="flex-direction: column;">
+<h1>{{$getVendorShop}}</h1>
+<p><strong>Name:</strong>{{$vendor->name}}</p>
+        <p><strong>State:</strong>{{$vendor->state}}</p>
+        <p><strong>Status:</strong>{{$vendor->current_status}}</p>
+        @if(!empty( $vendor['portfolio'] ))
+        <p><strong>Portfolio:</strong><a href="{{ url($vendor->portfolio) }}">{{ $vendor->portfolio }}</a></p>
+        @endif
         <!-- Add more vendor personal details here if needed -->
     @endif
     </div>
+</div>
+<div class="row justify-content-center" style="text-align: center;">
+    <div class="col-md-6 col-lg-6 col-xl-4">
+    <h1>Products</h1>
+</div>
+</div>
     @foreach($vendorProducts as $product)
     <div class="col-md-6 col-lg-6 col-xl-4">
         <!-- Product Card -->
