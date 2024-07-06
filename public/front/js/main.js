@@ -50,8 +50,22 @@ $(window).scroll(function() {
 
     // Modal Video
     
-
-
+    document.addEventListener('DOMContentLoaded', function() {
+        const tabLinks = document.querySelectorAll('.tab-link');
+        
+        tabLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                tabLinks.forEach(l => {
+                    l.classList.remove('active');
+                    l.querySelector('span').classList.remove('text-white');
+                    l.querySelector('span').classList.add('text-dark');
+                });
+                this.classList.add('active');
+                this.querySelector('span').classList.remove('text-dark');
+                this.querySelector('span').classList.add('text-white');
+            });
+        });
+    });
     // Product Quantity
     
         $('.quantity button').on('click', function (event) {

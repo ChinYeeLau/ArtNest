@@ -6,7 +6,7 @@
                 <div class="col-lg-3">
                     <a href="#">
                         <img src="{{asset('front/img/logo2.png')}}" style="margin-bottom: 5px;">
-                        <p class="mb-0" style="color: #f26b4e;">Entrepreneurial Spirit </p>
+                        <p class="mb-0" style="color: #f26b4e;">Entrepreneurial Spirit For A <br> Brighter Future </p>
                     </a>
                 </div>
                 <div class="col-lg-6">
@@ -15,10 +15,14 @@
                         <button type="button" class="btn py-3 px-4 position-absolute rounded-pill text-white" style="top: 0; right: 0; background-color: #f26b4e; display: flex; align-items: center; justify-content: center; box-shadow: none;" onclick="addSubscriber()">Subscribe Now</button>
                     </form>
                 </div>
-                <div class="col-lg-3">
-                    <div class="d-flex justify-content-end pt-3">
-                        <a class="btn me-2 btn-md-square rounded-circle" href="" style="border-color: #f26b4e;"><i class="fa-brands fa-instagram" style="color: #f26b4e;"></i></a>
-                        <a class="btn me-2 btn-md-square rounded-circle" href="" style="border-color: #f26b4e;"><i class="fa-brands fa-facebook-f" style="color: #f26b4e;"></i></a>
+                <div class="col-lg-3 col-md-12">
+                    <div class="d-flex justify-content-lg-end justify-content-left pt-3">
+                        <a class="btn me-2 btn-md-square rounded-circle social-btn" href="#" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a class="btn me-2 btn-md-square rounded-circle social-btn" href="#" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -28,14 +32,12 @@
                 <div class="footer-item">
                     <h4 class="text-black mb-3">Why People Like us!</h4>
                     <p class="mb-4" style="color: #474747;">We provide a free platform and opportunity for everyone who interested can start their business here without any charges. </p>
-                    <a href="about.html" class="btn border-secondary py-2 px-4 rounded-pill">Read More</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="d-flex flex-column text-start footer-item">
                     <h4 class="text-black mb-3">Shop Info</h4>
                     <a class="btn-link  " href="{{url('about-us')}}">About Us</a>
-                    <a class="btn-link" href="{{url('contact')}}">Contact Us</a>
                     <a class="btn-link" href="{{url('faq')}}">FAQs & Help</a>
                 </div>
             </div>
@@ -67,7 +69,7 @@
             <div class="col-lg-3 col-md-6">
                 <div class="footer-item">
                     <h4 class="text-black mb-3">Contact</h4>
-                    <a href="message.html" class="btn border-secondary py-2 px-4 rounded-pill">Chat Now</a>
+                    <a href="{{url('contact')}}" class="btn border-secondary py-2 px-4 rounded-pill">Chat Now</a>
                 </div>
             </div>
         </div>

@@ -18,7 +18,8 @@
         "pusher-js": "^8.4.0-rc2"
     },
     "dependencies": {
-       "sweetalert2": "^11.6.14",
+        "@mdi/font": "^7.4.47",
+        "sweetalert2": "^11.6.13",
         "vue": "^3.4.30"
     }
 }

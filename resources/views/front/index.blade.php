@@ -17,8 +17,11 @@
                         <div class="container-fluid col-lg-12 pad" style=" background-image: url('{{ asset('front/images/banner_images/'.$fixBanners[3]['image']) }}');  background-size: cover;background-position: center; background-repeat: no-repeat;">
                             <div class="text-overlay col-lg-12" style="padding-top:100px;padding-bottom:100px;"> <!-- Adjust padding as needed -->
                                 <h1 class="display-3" style="text-align: center; font-weight: 600; align-items: center;padding-bottom:30px;">Entrepreneurial Spirit For A Brighter Future</h1>
-                                <p class="text-dark bannerdescription" style="text-align: center; font-weight: 400;font-size:22px;">Where Malaysian designers flourish,<br>connecting talent with opportunities,<br>boosting our economy in line with NEP 2030 goals.</p> 
-                                <a href="shop.html" class="banner-btn rounded-pill text-white ml-2" style="background-color: #f26b4e;  display:flex; align-items: center; justify-content: center; margin: auto;">SHOP NOW</a>
+                                <p class="text-dark bannerdescription text-center">
+                                    Where Malaysian designers flourish, connecting talent with opportunities, 
+                                    boosting our economy in line with NEP 2030 goals.
+                                </p>
+                                 <a href="shop.html" class="banner-btn rounded-pill text-white ml-2" style="background-color: #f26b4e;  display:flex; align-items: center; justify-content: center; margin: auto;">SHOP NOW</a>
                             </div>
                         </div>
                     @endif
@@ -36,26 +39,25 @@
                     <div class="col-lg-12">
                         <ul class="nav nav-pills d-inline-flex text-center mb-5 justify-content-center">
                             <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
+                                <a class="d-flex m-2 py-2 bg-light rounded-pill active tab-link" data-bs-toggle="pill" href="#tab-1">
                                     <span class="text-dark">New Products</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
+                                <a class="d-flex py-2 m-2 bg-light rounded-pill tab-link" data-bs-toggle="pill" href="#tab-2">
                                     <span class="text-dark">Best Seller</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
+                                <a class="d-flex m-2 py-2 bg-light rounded-pill tab-link" data-bs-toggle="pill" href="#tab-3">
                                     <span class="text-dark">Discounted Products</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
+                                <a class="d-flex m-2 py-2 bg-light rounded-pill tab-link" data-bs-toggle="pill" href="#tab-4">
                                     <span class="text-dark">Featured Products</span>
                                 </a>
                             </li>
-                            
                         </ul>
                     </div>
                 </div>
@@ -79,8 +81,8 @@
                                             </a>
                                             <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: #f26b4e;">New Products</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                <h6>{{$product['product_code']}}</h6>
                                                 <h4>{{$product['product_name']}}</h4>
+                                                <h6>{{$product['product_code']}}</h6>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                                     <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                     @if($getDiscountPrice > 0)
@@ -119,8 +121,8 @@
                                                     </a>
                                                     <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: #f26b4e;">Best Seller</div>
                                                     <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h6>{{$product['product_code']}}</h6>
                                                         <h4>{{$product['product_name']}}</h4>
+                                                        <h6>{{$product['product_code']}}</h6>
                                                         <div class="d-flex justify-content-between flex-lg-wrap">
                                                             <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                             @if($getDiscountPrice>0)
@@ -160,8 +162,8 @@
                                                 </a>
                                                 <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: #f26b4e;">Discounted Products</div>
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h6>{{$product['product_code']}}</h6>
                                                     <h4>{{$product['product_name']}}</h4>
+                                                    <h6>{{$product['product_code']}}</h6>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                         @if($getDiscountPrice>0)
@@ -201,8 +203,8 @@
                                                 </a>
                                                 <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; background-color: #f26b4e;">Featured Products</div>
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h6>{{$product['product_code']}}</h6>
                                                     <h4>{{$product['product_name']}}</h4>
+                                                 <h6>{{$product['product_code']}}</h6>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                         @if($getDiscountPrice>0)

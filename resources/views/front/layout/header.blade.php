@@ -51,7 +51,7 @@ $sections=Section::sections();
                     <div class="d-flex">
                     <!-- Vendor Dropdown -->
                 <div class="dropdown" style="float:right;">
-                    <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa-solid fa-store fa-2x" style="color: #f26b4e; "></i></button>
+                    <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="mdi mdi-store fa-2x" style="color: #f26b4e; "></i></button>
                     <div class="dropdown-content" style="position: absolute; right: 0;">
                        
                             <a href="{{url('vendor/login')}}">Log in</a>
@@ -62,10 +62,10 @@ $sections=Section::sections();
             
                    <!-- Favorites and Cart Links -->
                    <div class="navbar-nav ml-auto ">
-                    <a href="{{url('wishlist')}}" class="nav-item nav-link"><i class="fa-solid fa-heart fa-2x" style="color: #f26b4e;"></i></a>  </div>
+                    <a href="{{url('wishlist')}}" class="nav-item nav-link"><i class="mdi mdi-heart-outline fa-2x" style="color: #f26b4e;"></i></a>  </div>
                     <div class="navbar-nav ml-auto ">
                         <a href="{{url('cart')}}" class="nav-item nav-link cart-link">
-                            <i class="fa-solid fa-cart-shopping fa-2x cart-icon"></i>
+                            <i class="mdi mdi-cart-outline fa-2x cart-icon"></i>
                             <span class="cart-items totalCartItems">{{$totalCartItems}}</span>
                         </a>                </div>
             
@@ -75,7 +75,7 @@ $sections=Section::sections();
                         @if(!empty(Auth::user()->image))
                        <img src=" {{ url('front/images/photos/' . Auth::user()->image) }}"  alt="User Photo" class="user-photo">
                        @else
-                 <i class="fa-solid fa-user fa-2x" style="color: #f26b4e; "></i>
+                 <i class="mdi mdi-account-outline fa-2x" style="color: #f26b4e; "></i>
                      @endif
                     </button>
                     <div class="m-0 dropdown-content" style="position: absolute; right: 0;">
