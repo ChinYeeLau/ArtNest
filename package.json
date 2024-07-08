@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@mdi/font": "^7.4.47",
+        "material-design-icons": "^3.0.1",
         "sweetalert2": "^11.6.13",
         "vue": "^3.4.30"
     }

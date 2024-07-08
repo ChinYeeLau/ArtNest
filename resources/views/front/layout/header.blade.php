@@ -16,10 +16,10 @@ $sections=Section::sections();
 
  <div class="container-fluid fixed-top" style="padding-left:50px;padding-right:50px;">  
     <div class="container-fluid px-0">
-        <nav class="navbar navbar-light navbar-expand-xl" style="background-color: #fdc3b5;">
+        <nav class="navbar navbar-light navbar-expand-xl" >
             <a href="{{url('/')}}" class="navbar-brand d-xl-none"><img src="{{asset('front/img/ART.NEST.png')}}" class="logo" alt="logo"></a>
             <button class="navbar-toggler shadow-none border-0 py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <i class="fa-solid fa-bars" style="color: #f26b4e;"></i>
+                <i class="fa-solid fa-bars" style="color: #000000"></i>
             </button>  
             <div class="collapse navbar-collapse" style="width: 100%;" id="navbarCollapse" >
                 <div class="d-flex flex-column flex-xl-row">
@@ -27,7 +27,7 @@ $sections=Section::sections();
                         <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">Category</button>
                         <div class=" m-0 dropdown-content" style=" position: absolute;">
                             @foreach($sections as $section)
-                                <strong style="padding-left:15px; color: #f26b4e;font-size:24px;">{{$section['name']}}</strong>
+                                <strong style="padding-left:15px; color: #f26b4e;font-size:21px;">{{$section['name']}}</strong>
                                 @if(count($section['categories']) > 0)
                                     @foreach($section['categories'] as $category)
                                         @if(isset($category['category_name']))
@@ -44,14 +44,15 @@ $sections=Section::sections();
                 <div class="navbar-nav mx-auto">    
                 </div>
                 <form class="d-flex" action="{{url('/search-products')}}" method="get">
-                    <input name="search" class="form-control me-2" type="search" placeholder="Search"  @if(isset($_REQUEST['search']) && !empty($_REQUEST['search'])) value="{{$_REQUEST['search']}}" @endif
-                        aria-label="Search" style="border: none; border-radius: 30px; height: 45px;">
-                    <button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass fa-2x" style="color: #f26b4e;"></i></button>
+                    <input name="search" class="form-control me-2 search-nav" type="search" placeholder="Search"  @if(isset($_REQUEST['search']) && !empty($_REQUEST['search'])) value="{{$_REQUEST['search']}}" @endif
+                        aria-label="Search" style="border: 1; border-radius: 30px;height:35px;margin-top:15px ;">
+                    <button class="btn" type="submit"><i class="material-symbols-outlined icon"> search </i></button>
                     </form>
                     <div class="d-flex">
                     <!-- Vendor Dropdown -->
                 <div class="dropdown" style="float:right;">
-                    <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="mdi mdi-store fa-2x" style="color: #f26b4e; "></i></button>
+                    <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="material-symbols-outlined icon" > storefront </i></button>
                     <div class="dropdown-content" style="position: absolute; right: 0;">
                        
                             <a href="{{url('vendor/login')}}">Log in</a>
@@ -62,10 +63,10 @@ $sections=Section::sections();
             
                    <!-- Favorites and Cart Links -->
                    <div class="navbar-nav ml-auto ">
-                    <a href="{{url('wishlist')}}" class="nav-item nav-link"><i class="mdi mdi-heart-outline fa-2x" style="color: #f26b4e;"></i></a>  </div>
+                    <a href="{{url('wishlist')}}" class="nav-item nav-link"><i class="material-symbols-outlined icon">favorite</i></a>  </div>
                     <div class="navbar-nav ml-auto ">
                         <a href="{{url('cart')}}" class="nav-item nav-link cart-link">
-                            <i class="mdi mdi-cart-outline fa-2x cart-icon"></i>
+                            <i class="material-symbols-outlined shopping-cart-nav" style="padding-top:5px;color:#000000;font-size: 30px;">shopping_cart </i>
                             <span class="cart-items totalCartItems">{{$totalCartItems}}</span>
                         </a>                </div>
             
@@ -73,10 +74,10 @@ $sections=Section::sections();
                         
                         <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         @if(!empty(Auth::user()->image))
-                       <img src=" {{ url('front/images/photos/' . Auth::user()->image) }}"  alt="User Photo" class="user-photo">
+                       <img src=" {{ url('front/images/photos/' . Auth::user()->image) }}"  alt="User Photo" class="user-photo "style="margin-top:5px;">
                        @else
-                 <i class="mdi mdi-account-outline fa-2x" style="color: #f26b4e; "></i>
-                     @endif
+                       <span class="material-symbols-outlined icon"> person </span>   
+                    @endif
                     </button>
                     <div class="m-0 dropdown-content" style="position: absolute; right: 0;">
                         @if (Auth::check())

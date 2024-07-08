@@ -22,7 +22,24 @@
      
      
  }
-
+ .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  }
+  .icon {
+    font-size: 30px;
+    padding-top:10px;
+    color:#000000;
+  }
  .back-to-top {
     position: fixed;
     right: 30px;
@@ -42,8 +59,7 @@
 /*** Button Start ***/
 .btn {
     font-weight: 600;
-    transition: .5s;
-    color: #f26b4e;
+    color: #000;
 }
 
 
@@ -79,7 +95,7 @@
 }
 
 .border-secondary{
-    border-color: #f26b4e !important;
+    border-color: #000 !important;
 }
 
 .btn.border-secondary {
@@ -87,8 +103,11 @@
 }
 
 .btn.border-secondary:hover {
-    background: #f26b4e(--bs-secondary) !important;
-    color: var(--bs-white) !important;
+    background: #000(--bs-secondary) !important;
+    color: #000!important;
+}
+.btn:active,.btn:focus {
+    box-shadow: none;
 }
 
 .rounded-pill{
@@ -106,7 +125,7 @@
 /*** Navbar Start ***/
 .nav-link{
     color: black;
-    background-color: #fdc3b5;
+    background-color: #ffffff;
 }
 
 .nav-link:hover {
@@ -114,7 +133,7 @@
 }
 
 .fixed-top{
-    background-color: #fdc3b5;
+    background-color: #ffffff;
 }
 
 .navbar-brand{
@@ -307,6 +326,13 @@
     .pad{
         padding-top: 50px;
         padding-bottom: 50px;
+    }
+    .shopping-cart-nav{
+        margin-top:3px;
+    }
+    .search-nav{
+        width:185px ;
+        margin-left:10px;
     }
 }
 
@@ -555,7 +581,7 @@
 }
 
 .footer .footer-item .btn-link:hover {
-    color: #f26b4e !important;
+    color:  #000 !important;
 }
 
 .footer .footer-item p.mb-4 {
@@ -620,7 +646,7 @@
 .cart-items {
     font-size: 18px; /* Adjust as needed */
     font-weight: bold;
-    color: #f26b4e; /* Adjust as needed */
+    color:#000000; /* Adjust as needed */
 }
 
 .close-button {
@@ -827,8 +853,8 @@
   }
 
   .user-photo {
-    width: 50px; /* Adjust according to your design */
-    height: 50px; /* Adjust according to your design */
+    width: 40px; /* Adjust according to your design */
+    height: 40px; /* Adjust according to your design */
     border-radius: 50%; /* Ensures the image is round */
     object-fit: cover; /* Ensures the image covers the entire area */
 }
