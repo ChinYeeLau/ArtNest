@@ -504,7 +504,6 @@ $("#forgotForm").submit(function(e){
    });
 //save delivery address
 $(document).on('submit',"#addressAddEditForm",function(){
-   
     var formdata=$("#addressAddEditForm").serialize();
     $.ajax({
         headers: {
@@ -526,14 +525,13 @@ $(document).on('submit',"#addressAddEditForm",function(){
                 });
             } else{
                 $("#deliveryAddresses").html(resp.view);
-                window.location.href="checkout";
-               
+                window.location.href="checkout";  
             }
         },error:function(){
-            alert("Error");
+            alert("error");
         }
     });
-});
+})
 
 //remove delivery address
 $(document).on('click','.removeAddress',function(){
@@ -639,6 +637,7 @@ function toggleForm() {
         $('#formContainer').hide();
     }
 }
+
 //subscribe
 function addSubscriber() {
     var subscriber_email=$("#subscriber_email").val();

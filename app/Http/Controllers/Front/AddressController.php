@@ -25,7 +25,7 @@ class AddressController extends Controller
             $validator=Validator::make($request->all(),[
                'delivery_name'=>'required|string|max:100',
                'delivery_address'=>'required|string|max:100',
-               'delivery_state'=>'required|string|max:100',
+               'delivery_state'=>'required',
                'delivery_postcode'=>'required|string||numeric|digits:5',
                'delivery_mobile'=>'required|numeric|digits:10',
             ]);
@@ -39,7 +39,8 @@ class AddressController extends Controller
                 $address['state']=$data['delivery_state'];
                 $address['postcode']=$data['delivery_postcode'];
                 $address['mobile']=$data['delivery_mobile'];
-     
+                $address['status']=1;
+                
                 if(!empty($data['delivery_id'])){
                   //edit delivery address
                   DeliveryAddress::where('id',$data['delivery_id'])->update($address);
@@ -48,8 +49,9 @@ class AddressController extends Controller
                  //add delivery address
                  DeliveryAddress::create($address);
              }
-                 $deliveryAddresses=DeliveryAddress::deliveryAddresses();
-                return response()->json(['view'=>(string)View::make('front.products.delivery_addresses')->with(compact('deliveryAddresses'))
+                  // Retrieve updated delivery addresses
+                   $deliveryAddresses = DeliveryAddress::deliveryAddresses();
+                 return response()->json(['view'=>(string)View::make('front.products.delivery_addresses')->with(compact('deliveryAddresses'))
              ]);
             }else{
                 return response()->json(['type'=>'error','errors'=>$validator->messages()]);

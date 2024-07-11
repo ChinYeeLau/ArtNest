@@ -108,7 +108,7 @@ class StripeController extends Controller
                 return $this->success($charge);
             } else {
                 // Payment failed
-                return view('front.stripe.fail');
+                return view('front.stripe.success');
             }
         } catch (\Throwable $th) {
             // Handle any errors that occurred during payment

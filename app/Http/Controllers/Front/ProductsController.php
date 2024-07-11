@@ -582,10 +582,8 @@ class ProductsController extends Controller
                return redirect('/cart')->with('error_message',$message);
               }
            
-             
-        }
+            
         
-
         //delivery address validation
         if(empty($data['address_id'])){
          $message="Please select Delivery Address!";
@@ -608,7 +606,7 @@ class ProductsController extends Controller
             $payment_method="Prepaid";
             $order_status="Pending";
          }
-        
+      }
          DB::beginTransaction();
          //calculate total
          $total_price=0;
@@ -662,6 +660,7 @@ class ProductsController extends Controller
              $cartItem->save();
 
          }
+      
          //insert order id in session variable
          Session::put('order_id',$order_id);
          DB::commit();
@@ -693,10 +692,10 @@ class ProductsController extends Controller
              // Handle other payment gateways
              echo "Other Prepaid payment methods coming soon";
          }
-
+      
        return redirect('thanks');
       }
-     
+   
       
       return view('front.products.checkout')->with(compact('deliveryAddresses','getCartItems','total_price'));
     }

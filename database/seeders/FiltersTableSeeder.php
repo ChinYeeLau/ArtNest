@@ -16,7 +16,7 @@ class FiltersTableSeeder extends Seeder
     public function run()
     {
         $filterRecords = [
-           ['id'=>1,'cat_ids'=>'1,2,4,5,6,7,9,10','filter_name'=>'Color','filter_column'=>'color','status'=>1]
+           ['id'=>1,'cat_ids'=>'1,2,3,4,5,6,7,8','filter_name'=>'Color','filter_column'=>'color','status'=>1]
         ];
         ProductsFilter::insert($filterRecords);
 }

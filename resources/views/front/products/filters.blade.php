@@ -70,7 +70,7 @@
                                         @endif
                                     @endforeach
                                 </div>
-                                <?php $getSizes=ProductsFilter::getSizes($url);?>
+                               <!-- <?php $getSizes=ProductsFilter::getSizes($url);?>
                                 <div class="col-lg-12">
                                     <h4 class="mb-3">Size</h4>
                                     <form action="#" method="post">
@@ -83,7 +83,7 @@
                                             @endforeach
                                       
                                     </form>
-                                </div>
+                                </div>-->
                                 <?php $getColors=ProductsFilter::getColors($url);?>
                                 <div class="col-lg-12">
                                     <h4 class="mb-3">Color</h4>
@@ -145,7 +145,7 @@
                                 @endif
                                 <div class="col-lg-12">
                                     <div class="position-relative" >
-                                        @if(isset($fixBanners[0]['image']))
+                                        @if(isset($fixBanners[1]['image']))
                                         <div class="container" >
                                             <a href="{{ url($fixBanners[1]['link']) }}">
                                                 <img class="img-fluid" style="height:300px"title="{{ $fixBanners[1]['title'] }}" src="{{ asset('front/images/banner_images/'.$fixBanners[1]['image']) }}" alt="{{ $fixBanners[1]['alt'] }}">

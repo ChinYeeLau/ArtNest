@@ -3,6 +3,8 @@
 use App\Models\CmsPage;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Admin\FilterController;
@@ -214,10 +216,11 @@ Route::get('stripe','StripeController@stripe');
 Route::post('stripe/pay','StripeController@stripePay')->name('stripe.pay');
 Route::get('stripe/success','StripeController@success')->name('payment.success');
 Route::get('paypal/error','StripeController@error')->name('payment.error');
-//pusher
-Route::get('/chat', [PusherController::class, 'chat']);
-Route::post('/broadcast', [PusherController::class, 'broadcast']);
-Route::post('/receive', [PusherController::class, 'receive']);
+//chat
+Route::get('/chats', [ChatController::class, 'index'])->name('chats.chat');
+Route::get('/chats/{chat}', [ChatController::class, 'show'])->name('chats.show');
+Route::put('/chats/{chat}/messages', [MessageController::class, 'store'])->name('messages.store');
+Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
 
 });
 

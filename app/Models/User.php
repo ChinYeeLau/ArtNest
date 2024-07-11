@@ -43,5 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function isUser()
+    {
+        return $this->role === 'user';
+    }
 
+    public function isVendor()
+    {
+        return $this->role === 'vendor';
+    }
 }

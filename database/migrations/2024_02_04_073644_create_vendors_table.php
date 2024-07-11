@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('state');
+            $table->string('state')->nullable();
             $table->string('mobile');
             $table->string('email')->unique();
             $table->enum('confirm', ['No', 'Yes'])->default('No');
-            $table->string('currentstatus');
+            $table->string('currentstatus')->nullable();
             $table->string('portfolio')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();

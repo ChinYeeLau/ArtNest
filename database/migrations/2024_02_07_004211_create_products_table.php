@@ -28,9 +28,9 @@ return new class extends Migration
             $table->integer('product_weight');
             $table->string('product_image');
             $table->string('description');
-            $table->string('meta_title');
-            $table->string('meta_description');
-            $table->string('meta_keywords');
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();
             $table->enum('is_featured',['No','Yes']);
             $table->tinyInteger('status');
             $table->timestamps();

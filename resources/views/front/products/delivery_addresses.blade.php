@@ -6,7 +6,7 @@
 <p class="newAddress"><input type="checkbox" id="myCheck" class="newAddress" onclick="toggleForm()">Check to add Delivery Address</p>
 
 @endif
-<form id="addressAddEditForm" action="javascript:;" method="post">@csrf    
+<form id="addressAddEditForm" action="javascript:;" method="POST">@csrf    
 
 <input type="hidden" name="delivery_id"  >
 
@@ -23,7 +23,7 @@
     </div>
     <div class="form-item">
         <label class="form-label my-3">State<sup>*</sup></label>
-        <select name="delivery_state" id="delivery_state" class="form-control">
+        <select name="delivery_state" id="delivery_state" class="form-control" type="text">
             <option value="">Select State</option>
             <option value="Johor">Johor</option>
             <option value="Kedah">Kedah</option>

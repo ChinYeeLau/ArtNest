@@ -13,8 +13,8 @@
               <div class="col-lg-12" style=" position: relative;">
                
                 
-                    @if(isset($fixBanners[3]['image']))
-                        <div class="container-fluid col-lg-12 pad" style=" background-image: url('{{ asset('front/images/banner_images/'.$fixBanners[3]['image']) }}');  background-size: cover;background-position: center; background-repeat: no-repeat;">
+                    @if(isset($fixBanners[0]['image']))
+                        <div class="container-fluid col-lg-12 pad" style=" background-image: url('{{ asset('front/images/banner_images/'.$fixBanners[0]['image']) }}');  background-size: cover;background-position: center; background-repeat: no-repeat;">
                             <div class="text-overlay col-lg-12" style="padding-top:100px;padding-bottom:100px;"> <!-- Adjust padding as needed -->
                                 <h1 class="display-3" style="text-align: center; font-weight: 600; align-items: center;padding-bottom:30px;">Entrepreneurial Spirit For A Brighter Future</h1>
                                 <p class="text-dark bannerdescription text-center">
