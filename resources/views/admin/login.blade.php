@@ -60,7 +60,7 @@
                   <input type="password" name="password" id="password" class="form-control form-control-lg"  placeholder="Password"required="" >
                 </div>
                 <div class="mt-3">
-                  <button type="submit"  class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
+                  <button type="submit"  class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" style="background-color:#f26b4e;border:none;">SIGN IN</button>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
