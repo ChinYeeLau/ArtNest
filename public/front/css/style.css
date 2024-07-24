@@ -420,13 +420,15 @@
  
   
   .display-3{
-      font-size: 48px;
+      font-size: 64px;
+      margin-left: 100px;
+      color:#000;
   }
   
 
 
  
-  .banner .banner-btn:hover {
+  /*.banner .banner-btn:hover {
       background: var(--bs-primary);
   }
   
@@ -434,13 +436,14 @@
       width: 189px; 
       height: 24px;
       padding: 30px 48px;
-  }
+  }*/
   .bannerdescription {
     font-weight: 400;
     font-size: 18px;
     line-height: 1.5;
     max-width: 600px;
-    margin: 0 auto 30px;
+    margin-left:100px;
+    color:#000 !important;
 }
 
 
@@ -448,10 +451,12 @@
   @media (max-width: 768px) {
       .display-3{
           font-size: 32px;
+          margin-left: 50px;
       }    
       .bannerdescription {
         font-size: 16px;
         max-width: 90%;
+        margin-left: 50px;
     }
       
   }
