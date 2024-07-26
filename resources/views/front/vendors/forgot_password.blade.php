@@ -38,33 +38,27 @@
            
             <div class="card-body p-5 text-center">
   
-              <h3 class="mb-5">Login</h3>
-              <form  action="{{url('admin/login')}}" method="post" >@csrf
+              <h3 class="mb-5">Forgot Password?</h3>
+              <p id="forgot-error"></p>
+              <p id="forgot-success"></p>
+              <form id="forgotVendorForm" action="javascript:;" method="post" >@csrf
               <div class="form-outline mb-4">
-                <input  type="email" name="email" id="email" class="form-control form-control-lg"  placeholder="Username" required="" class="form-control form-control-lg" />
-                <label class="form-label" for="vendor-email">Email</label>
-              </div>
-  
-              <div class="form-outline mb-4">
-                <input type="password" name="password" id="password" class="form-control form-control-lg"  placeholder="Password"required="" class="form-control form-control-lg" />
-                <label class="form-label" for="vendor-password">Password</label>
+                <label class="form-label" for="admins-email">Email</label>
+                <input  type="email" name="email" id="admins-email" class="form-control form-control-lg"  placeholder="Username" required="" class="form-control form-control-lg" />
+               <p id="forgot-email"></p>
               </div>
               <div style="text-align: start;"> 
-                <a href="{{url('vendor/forgot-password')}}">forgot password?</a>
+                <a href="{{url('vendor/login')}}">Back To Login</a>
               </div>
-              <!-- Checkbox -->
-              
-               
-                  
              
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+              <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
   
               </form>
   
             </div>
           </div>
         </div>
-       
+  
       </div>
     </div>
     

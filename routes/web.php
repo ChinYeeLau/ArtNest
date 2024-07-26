@@ -155,6 +155,8 @@ foreach($cmsUrls as $url){
  Route::post( 'vendor/register', 'VendorController@vendorRegister');
  //confirm vendor acc
  Route::get('vendor/confirm/{code}', 'VendorController@confirmVendor')->name('vendor.confirm');
+  //vendor forgot password
+  Route::match(['get','post'],'vendor/forgot-password','VendorController@vendorForgotPassword');
 //add to cart 
 Route::post('cart/add','ProductsController@cartAdd');
 //cart route

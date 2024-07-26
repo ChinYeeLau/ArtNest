@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use Validator;
 use App\Models\Admin;
 use App\Models\Vendor;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -126,4 +127,47 @@ class VendorController extends Controller
        abort(404);
    }
 }
+public function vendorForgotPassword(Request $request)
+{
+
+        if ($request->ajax()) {
+            $data = $request->all();
+
+            // Validation
+            $validator = Validator::make($data, [
+                'email' => 'required|email|max:150|exists:admins,email',
+            ], [
+                'email.exists' => 'Email does not exist!',
+            ]);
+
+            if ($validator->passes()) {
+                // Generate new password
+                $new_password = Str::random(16);
+
+                // Update new password
+                Admin::where('email', $data['email'])->update(['password' => bcrypt($new_password)]);
+
+                // Get admin details
+                $adminDetails = Admin::where('email', $data['email'])->first();
+
+                // Send email to the vendor with the new password
+                $email = $data['email'];
+                $messageData = [
+                    'name' => $adminDetails->name,
+                    'email' => $email,
+                    'password' => $new_password
+                ];
+                Mail::send('emails.vendor_forgot_password', $messageData, function($message) use ($email) {
+                    $message->to($email)->subject('New Password - ArtNest');
+                });
+
+                return response()->json(['type' => 'success', 'message' => 'New Password sent to your registered email.']);
+            } else {
+                return response()->json(['type' => 'error', 'errors' => $validator->messages()]);
+            }
+        } else {
+            return view('front.vendors.forgot_password');
+        }
+    } 
 }
+    

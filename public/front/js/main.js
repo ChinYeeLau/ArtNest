@@ -436,6 +436,48 @@ $("#forgotForm").submit(function(e){
     });
    
 });
+$("#forgotVendorForm").submit(function(e){
+    e.preventDefault(); // Prevent the default form submission
+
+    var formdata = $(this).serialize();
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: "/vendor/forgot-password",
+        type: "POST",
+        data: formdata,
+        success: function(resp) {
+            if (resp.type == "error") {
+                // Handle errors if any
+                $.each(resp.errors, function(i, error) {
+                    $("#forgot-" + i).attr('style', 'color:red');
+                    $("#forgot-" + i).html(error);
+                    setTimeout(function() {
+                        $("#forgot-" + i).css({
+                            'display': 'none'
+                        });
+                    }, 3000);
+                });
+            } else if (resp.type == "success") {
+                // Show success message
+                $("#forgot-success").attr('style', 'color:green');
+                $("#forgot-success").html(resp.message).fadeIn();
+                setTimeout(function(){
+                    location.reload();
+                }, 3000); // Refresh after 3 seconds
+            }
+        },
+        error: function(xhr, status, error) {
+            // Handle different error status codes
+            console.error("AJAX error:", status, error);
+            var errorMessage = xhr.status + ': ' + xhr.statusText;
+            alert("Error occurred while processing your request. " + errorMessage);
+        }
+    });
+});
+   
+
    //apply coupon
    $("#ApplyCoupon").submit(function(){
     var user=$(this).attr("user");
