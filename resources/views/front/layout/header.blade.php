@@ -83,7 +83,7 @@ $sections=Section::sections();
                         @if (Auth::check())
                             <a href="{{url('user/account')}}">Profile</a>
                             <a href="{{url('user/orders')}}">My Orders</a>
-                            <a href="{{route('chats.chat')}}">Message</a>
+                            <a href="{{url('chat')}}">Message</a>
                             <a href="{{url('user/logout')}}">Log Out</a>
                         @else  
                             <a href="{{url('user/login')}}">User Login</a>  

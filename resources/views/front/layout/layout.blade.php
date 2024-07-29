@@ -59,6 +59,7 @@
     <script src="{{url('front/lib/owlcarousel/owl.carousel.min.js')}}"></script>
     <script src="http://js.pusher.com/7.2/pusher.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
     <!-- Template Javascript -->
     
     <script src="{{url('front/js/main.js')}}"></script>

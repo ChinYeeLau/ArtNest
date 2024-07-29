@@ -123,6 +123,11 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::get('ratings','RatingController@ratings');
         Route::post('update-rating-status','RatingController@updateRatingStatus');
         Route::get('delete-rating/{id}','RatingController@deleteRating');
+       //chat
+       Route::get('/chat', [ChatController::class, 'chat']);
+       Route::post('/broadcast', [ChatController::class, 'broadcast']);
+       Route::post('/receive', [ChatController::class, 'receive']);
+
     });
         
 });
@@ -219,10 +224,9 @@ Route::post('stripe/pay','StripeController@stripePay')->name('stripe.pay');
 Route::get('stripe/success','StripeController@success')->name('payment.success');
 Route::get('paypal/error','StripeController@error')->name('payment.error');
 //chat
-Route::get('/chats', [ChatController::class, 'index'])->name('chats.chat');
-Route::get('/chats/{chat}', [ChatController::class, 'show'])->name('chats.show');
-Route::put('/chats/{chat}/messages', [MessageController::class, 'store'])->name('messages.store');
-Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
+Route::get('/chat', [ChatController::class, 'chat']);
+Route::post('/broadcast', [ChatController::class, 'broadcast']);
+Route::post('/receive', [ChatController::class, 'receive']);
 
 });
 

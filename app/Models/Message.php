@@ -10,13 +10,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Message extends Model
 {
     use HasFactory;
-    public function chat()
-    {
-        return $this->belongsTo(Chat::class);
-    }
 
+    protected $fillable = [
+        'sender_id',
+        'sender_type',
+        'receiver_id',
+        'receiver_type',
+        'message',
+    ];
+
+    // Define relationships if needed
     public function sender()
     {
-        return $this->belongsTo(User::class, 'sender_id');
+        return $this->morphTo();
+    }
+
+    public function receiver()
+    {
+        return $this->morphTo();
     }
 }

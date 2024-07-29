@@ -2,46 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chat;
+use Inertia\Inertia;
+use App\Events\MessageSent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
-    public function index()
+   
+    public function chat()
     {
-        $chats = Chat::where('user_id', auth()->id())
-            ->orWhere('vendor_id', auth()->id())
-            ->with(['user', 'vendor'])
-            ->get();
-
-        foreach ($chats as $chat) {
-            $chat->lastMessage = $chat->messages()
-                ->when(auth()->user()->isUser(), function ($query) {
-                    return $query->where('is_deleted_by_user', false);
-                })
-                ->when(auth()->user()->isVendor(), function ($query) {
-                    return $query->where('is_deleted_by_vendor', false);
-                })
-                ->latest()
-                ->first();
-        }
-
-        return view('chats.chat', compact('chats'));
+        return view('chats.chat');
     }
 
-    public function show($id)
+    public function broadcast(Request $request)
     {
-        $chat = Chat::findOrFail($id);
+        $user = Auth::user(); 
+        broadcast(new MessageSent($request->get('message'),$user->image))->toOthers();
 
-        $messages = $chat->messages()
-            ->when(auth()->user()->isUser(), function ($query) {
-                return $query->where('is_deleted_by_user', false);
-            })
-            ->when(auth()->user()->isVendor(), function ($query) {
-                return $query->where('is_deleted_by_vendor', false);
-            })
-            ->get();
+        return view('chats.broadcast', ['message' => $request->get('message'),'senderImage' => $user->image]); // Pass sender's image URL
+    }
 
-        return view('chats.show', compact('chat', 'messages'));
+    public function receive(Request $request)
+    {
+        return view('chats.receive', ['message' => $request->get('message'),'senderImage' => $request->get('senderImage')]);
     }
 }
