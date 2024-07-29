@@ -3,8 +3,9 @@
 use App\Models\CmsPage;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ChatController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\Front\ChatController;
+use App\Http\Controllers\Admin\ChatController as AdminChatController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Admin\FilterController;
@@ -124,9 +125,9 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-rating-status','RatingController@updateRatingStatus');
         Route::get('delete-rating/{id}','RatingController@deleteRating');
        //chat
-       Route::get('/chat', [ChatController::class, 'chat']);
-       Route::post('/broadcast', [ChatController::class, 'broadcast']);
-       Route::post('/receive', [ChatController::class, 'receive']);
+       Route::get('admin/chat',  [AdminChatController::class,'chat']);
+       Route::post('admin/broadcast', [AdminChatController::class,'broadcast']);
+       Route::post('admin/receive',  [AdminChatController::class,'receive']);
 
     });
         
@@ -224,9 +225,9 @@ Route::post('stripe/pay','StripeController@stripePay')->name('stripe.pay');
 Route::get('stripe/success','StripeController@success')->name('payment.success');
 Route::get('paypal/error','StripeController@error')->name('payment.error');
 //chat
-Route::get('/chat', [ChatController::class, 'chat']);
-Route::post('/broadcast', [ChatController::class, 'broadcast']);
-Route::post('/receive', [ChatController::class, 'receive']);
+Route::get('user/chat', 'ChatController@chat');
+Route::post('user/broadcast','ChatController@broadcast');
+Route::post('user/receive', 'ChatController@receive');
 
 });
 

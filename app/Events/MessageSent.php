@@ -18,7 +18,7 @@ class MessageSent implements ShouldBroadcast
     public string $message;
     public ?string $senderImage;
 
-    public function __construct(string $message, ?string $senderImage = null)
+    public function __construct(string $message, string $senderImage)
     {
         $this->message = $message;
         $this->senderImage = $senderImage;

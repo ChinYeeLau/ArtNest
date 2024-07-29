@@ -45,49 +45,38 @@
     const pusher = new Pusher('{{config('broadcasting.connections.pusher.key')}}', { cluster: 'ap1' });
     const channel = pusher.subscribe('public');
 
-    //Receive messages
-    channel.bind('chat', function (data) {
-        $.post("/receive", {
+    $("form").submit(function(event) {
+    event.preventDefault();
+    $.ajax({
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        url: "/user/broadcast",
+        method: 'POST',
+        data: {
             _token: '{{csrf_token()}}',
-            message: data.message,
-            senderImage: data.senderImage // Include sender's image URL
-        })
-        .done(function (res) {
-            $(".messages > .message").last().after(res);
-
-            // Check if user is at the bottom of the chat
-            if ($(window).scrollTop() + $(window).height() === $(document).height()) {
-                $(document).scrollTop($(document).height());
-            }
-        });
+            message: $("form #message").val()
+        }
+    }).done(function(res) {
+        console.log('Message sent:', res); // Debugging
+        $(".messages").append('<div class="right message">' + res + '</div>');
+        $("form #message").val('');
+        scrollToBottom(); // Call the function to scroll to the bottom
+    }).fail(function(xhr, status, error) {
+        console.error("Failed to send message:", status, error);
     });
+});
 
-    //Broadcast messages
-    $("form").submit(function (event) {
-        event.preventDefault();
-
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: "/broadcast",
-            method: 'POST',
-            headers: {
-                'X-Socket-Id': pusher.connection.socket_id
-            },
-            data: {
-                _token: '{{csrf_token()}}',
-                message: $("form #message").val(),
-            }
-        }).done(function (res) {
-            $(".messages > .message").last().after(res);
-            $("form #message").val('');
-
-            // Check if user is at the bottom of the chat
-            if ($(window).scrollTop() + $(window).height() === $(document).height()) {
-                $(document).scrollTop($(document).height());
-            }
-        });
+channel.bind('chat', function(data) {
+    $.post("/user/receive", {
+        _token: '{{csrf_token()}}',
+        message: data.message,
+        senderImage: data.senderImage
+    }).done(function(res) {
+        console.log('Received HTML:', res); // Debugging
+        $(".messages").append('<div class="left message">' + res + '</div>');
+        scrollToBottom(); // Call the function to scroll to the bottom
+    }).fail(function(xhr, status, error) {
+        console.error("Failed to receive message:", status, error);
     });
+});
 </script>
 @endsection

@@ -1,5 +1,6 @@
 $(document).ready(function(){
     //call dataTable 
+    $('#chats').DataTable();
     $('#ratings').DataTable();
     $('#shipping').DataTable();
     $('#orders').DataTable();
@@ -42,6 +43,7 @@ $(document).ready(function(){
             });
 
     });
+        
     //update Admin Status
     $(document).on("click",".updateAdminStatus",function(){
         var status = $(this).children("i").attr("status");
