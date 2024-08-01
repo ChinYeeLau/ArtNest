@@ -128,7 +128,6 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
        Route::get('admin/chat',  [AdminChatController::class,'chat']);
        Route::post('admin/broadcast', [AdminChatController::class,'broadcast']);
        Route::post('admin/receive',  [AdminChatController::class,'receive']);
-
     });
         
 });
@@ -181,6 +180,10 @@ Route::post('cart/delete','ProductsController@cartDelete');
 Route::get('search-products','ProductsController@listing');
 //contct page
 Route::match(['GET','POST'],'contact','CMSController@contact');
+//about page
+Route::get('aboutus','CMSController@aboutUs');
+//sell on us page
+Route::get('sell-on-us','CMSController@sellOnUs');
 // add subscriber email
 Route::post('add-subscriber-email','NewsletterController@addSubscriber');
 //add to wishlist 

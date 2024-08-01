@@ -65,4 +65,11 @@ class CmsController extends Controller
         $meta_keywords="eshop website,online shopping,contact us";
         return view('front.pages.contact')->with(compact('meta_title','meta_description','meta_keywords'));
     }
+
+    public function aboutUs(){
+        return view('front.pages.aboutus');
+    }
+    public function sellOnUs(){
+        return view('front.pages.sellonus');
+    }
 }

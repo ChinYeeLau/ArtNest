@@ -115,9 +115,9 @@
                                <form action="{{url('cart/add')}}" method="Post" >@csrf
                                 <input type="hidden" name="product_id" value={{$productDetails['id']}}>
                                <div>
-                                <span>Available Sizes:</span>
+                                <span>Available Variable:</span>
                               <select name="size" id="getPrice" product-id="{{ $productDetails['id'] }}" required="">
-                     <option value="">Select Size</option>
+                     <option value="">Select Variable</option>
                          @foreach($productDetails['attributes'] as $attribute)
                       <option value="{{ $attribute['size'] }}">{{ $attribute['size'] }}</option>
                            @endforeach
@@ -160,13 +160,13 @@
                                 </div>
                             </div>
                                 <div class="d-flex ">
-                                <button class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary" type="submit"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                                <button class="btn3 px-4 py-2 mb-4 " type="submit">Add to cart</button>
                             
                         </form>
                         <form action="{{ url('wishlist/add-remove') }}" method="post" id="wishlist-form" class="px-4"> @csrf
                   
                             <input type="hidden" name="product_id" value="{{ request()->route('id') }}">
-                            <button type="submit" class="btn border border-secondary rounded-pill px-4 py-2 mb-4">
+                            <button type="submit" class="btn3  px-4 py-2 mb-4">
                                 <div class="heart-icon">
                                     @if($inWishlist)
                                     <i class="fa fa-heart  "></i>
@@ -237,7 +237,7 @@
                                         <div class="col-lg-12">
                                             <div class="d-flex justify-content-end py-3 mb-5">
                                               
-                                                <button type="submit" class="btn border border-secondary text-primary rounded-pill px-4 py-3"> Post Comment</button>
+                                                <button type="submit" class="btn3  px-4 py-3" style="margin:0px;"> Post Comment</button>
                                             </div>
                                         </div>
                                     </div>

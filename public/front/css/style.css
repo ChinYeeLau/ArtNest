@@ -59,7 +59,7 @@
 /*** Button Start ***/
 .btn {
     font-weight: 600;
-    color: #000;
+    color: #fff;
 }
 
 
@@ -106,10 +106,11 @@
     background: #000(--bs-secondary) !important;
     color: #000!important;
 }
-.btn:active,.btn:focus {
+/*.btn:active,.btn:focus {
     box-shadow: none;
+     color:none ;
 }
-
+*/
 .rounded-pill{
     width: 189px;
     height: 40px;
@@ -723,13 +724,23 @@
 
 /*index age select tab*/
 .tab-link.active {
-    background-color: #f26b4e !important;
+    background-color:none !important;
+    background-image: linear-gradient(to right, #f8a239, #f26b4e);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px !important;
+    border:none !important;
+
 }
 
 .tab-link.active span {
     color: white !important;
 }
-
+.tab-link{
+    background-color:#fff!important;
+    border-radius: 10px !important;
+    border:solid 1px !important;
+    border-color: #000 !important;
+}
 /**/
 .chat {
     margin-top: 5rem;
@@ -929,3 +940,56 @@
 .send-button:focus {
     outline: none;            /* Remove default focus outline */
 }
+
+/**/
+.btn-primary { 
+    background-image: linear-gradient(to right, #f8a239, #f26b4e);
+     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+ width: 169px;
+height: 55px;
+ border-radius: 10px;
+ font-size: 24px;
+font-weight: 400;
+ -webkit-text-stroke: #fff ;
+ -webkit-text-stroke-width: 1px;
+ display:flex;
+ align-items: center;
+ justify-content: center;
+ margin: auto;
+ border:none;
+ background-color:none;
+} 
+.btn3{
+    width: 198px;
+     height: 47px;
+     display:flex;
+     align-items: center;
+     justify-content: center;
+     margin: auto;
+     padding: 20px 20px;
+    border: none;
+     outline: none;
+     position: relative;
+    border-radius: 10px;
+     background: linear-gradient(to right, #f8a239, #f26b4e);
+     z-index: 1;
+     color: #f26b4e !important;
+
+    }
+    
+   
+    .btn3::before {
+     content: "";
+     position: absolute;
+     top: 1px;
+     right: 1px;
+    bottom: 1px;
+     left: 1px;
+     background-color: white;
+     border-radius: 9px;
+     z-index: -1;
+    }
+    
+  
+       
+    

@@ -58,10 +58,8 @@
             </div>
               <!-- Checkbox -->
               
-               
-                  
              
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+              <button class="btn btn-primary btn-lg " type="submit">Login</button>
               <br><br><div style="text-align: start;"> 
                 <a href="{{url('user/register')}}">Register Account</a>
               </div>
