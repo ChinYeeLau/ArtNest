@@ -38,7 +38,7 @@ $sections=Section::sections();
                             @endforeach
                         </div>
                     </div>
-                    <a href="{{url('contact')}}" class="nav-item nav-link">Contact Us</a> 
+                    <a href="{{url('aboutus')}}" class="nav-item nav-link">About Us</a> 
                     <a href="{{url('/')}}" class="navbar-brand d-none d-xl-block"><img src="{{asset('front/img/ART.NEST.png')}}" class="logo" alt="logo" style="padding: 8px 16px;"></a> 
                 </div>
                 <div class="navbar-nav mx-auto">    

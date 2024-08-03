@@ -990,6 +990,109 @@ font-weight: 400;
      z-index: -1;
     }
     
-  
-       
+ 
+  /*** About Us Start ***/
+.accordion-button:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+    box-shadow: none;
+    background-color: white;
+}
+
+@media (max-width: 1024px){
+    .aboutus_des{
+        padding: 0 100px 0 100px !important;
+    }
+}
+
+@media (max-width: 435px){
+.aboutus_des{
+    padding: 0px !important;
+}
+
+.aboutus_title2{
+    font-size: 21px !important;
+}
+
+.aboutus_icon{
+    width: 90px !important;
+}
+}
+
+.gradient-icon {
+    width: 100px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    font-size: 90px;
+    background: linear-gradient(to right, #f8a239, #f26b4e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+/*** About Us End ***/
+
+ /*** Sell on ArtNest Start ***/
+
+@media (max-width: 1024px) {
+
+    .centered{
+        width: 700px;
+    }
+
+    .sellonArtNesttitle1{   
+        margin-bottom: 0 !important;
+    }    
+
+    .sellonArtNesttitle2{
+        font-size: 18px;
+    }    
+
+    .sellonArtNestdes{
+        font-size: 16px !important;
+       color: black; 
+         justify-content: center; 
+          display: flex;
+    } 
+
+}      
+@media (max-width: 435px){
+
+ 
+    .sellonArtNestbanner1{
+        height: 450px !important;
+      
+    }
+
+        .sellonArtNesttitle1{ 
+            font-size: 18px;    
+        }    
     
+        .sellonArtNesttitle2{
+            font-size: 16px;
+        }    
+    
+        .sellonArtNestdes{
+            font-size: 14px !important;
+            margin-bottom: 10px !important;
+            color: black; 
+         justify-content: center; 
+          display: flex;
+        } 
+    
+        .sellonArtNesttitle3{
+            font-size: 20px;
+            margin-bottom: 10px !important;
+            color: black; 
+            font-weight: 700; 
+              font-family: 'Open Sans', sans-serif;
+        } 
+    
+      
+       
+    }
+    /*** Sell on ArtNest End ***/
