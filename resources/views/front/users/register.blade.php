@@ -4,9 +4,18 @@
 
 
     
-    <div class="container py-5 h-100">
-        
-      <div class="row d-flex justify-content-center align-items-start h-100" style="padding-top:100px">
+<div class="container-fluid py-5 h-100" style="padding:0px">
+  <div class="row d-flex " >
+      <!-- Left Banner Section (50%) -->
+      <div class="col-12 col-md-7 d-none d-md-flex " >
+          <div >
+              <img src="{{asset('front/images/banner_images/4839.png')}}" alt="Banner" style="width:100%;" >
+          </div>
+      </div>
+
+      <!-- Right Form Section (50%) -->
+      <div class="col-12 col-md-5 d-flex justify-content-center">
+          <div class="w-75"> <!-- Adjust width as needed -->
         @if(Session::has('success_message'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Success</strong> {{Session::get('success_message')}}
@@ -33,9 +42,8 @@
               @endif
    
       
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div class="card shadow-2-strong" style="border-radius: 1rem;">
-              <div class="card-body p-5 text-center">
+              <div  style="padding-top:50px;">
+                <div class="card-body p-5 text-center" >
                 <h3 class="mb-5">Register</h3>
                 <p id="register-error"></p>
                 <p id="register-success"></p>
@@ -77,9 +85,10 @@
                   </form>
                
               </div>
-            </div>
+              </div>
           </div>
       </div>
-    </div>
+  </div>
+</div>
     
 @endsection

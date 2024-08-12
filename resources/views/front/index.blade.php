@@ -10,24 +10,48 @@
     <div class="container py-5">
         <div class="row g-4">
               Banner Section Start-->
-              <div class="col-lg-12" style=" position: relative;">
-               
-                
-                    @if(isset($fixBanners[0]['image']))
+             <!-- <div class="col-lg-12" style=" position: relative;">
+                  @if(isset($fixBanners[0]['image']))
                         <div class="container-fluid col-lg-12 pad" style=" background-image: url('{{ asset('front/images/banner_images/'.$fixBanners[0]['image']) }}');  background-size: cover;background-position: center; background-repeat: no-repeat;">
-                            <div class="text-overlay col-lg-12" style="padding-top:100px;padding-bottom:100px;"> <!-- Adjust padding as needed -->
+                            <div class="text-overlay col-lg-12" style="padding-top:100px;padding-bottom:100px;">  Adjust padding as needed 
                                 <h1 class="display-3" style="text-align: left; font-weight: 600; align-items:left;padding-bottom:30px;">Entrepreneurial Spirit <br>For A Brighter Future</h1>
                                 <p class="text-dark bannerdescription "  style="text-align: left;align-items:left;">
                                     Where Malaysian designers flourish, connecting talent with opportunities, 
                                     boosting our economy in line with National Entrepreneurship Policy (NEP) 2030 goals.
                                 </p>
-                               <!--  <a href="shop.html" class="banner-btn rounded-pill text-white ml-2" style="background-color: #f26b4e;  display:flex; align-items: center; justify-content: center; margin: auto;">SHOP NOW</a>-->
+                               <a href="shop.html" class="banner-btn rounded-pill text-white ml-2" style="background-color: #f26b4e;  display:flex; align-items: center; justify-content: center; margin: auto;">SHOP NOW</a>
                             </div>
                         </div>
-                    @endif
+                    @endif-->
                 
+            </div>-->
+            <div class="col-lg-12" style="position: relative;">
+                <div class="container-fluid col-lg-12 pad" 
+                     style="background-image: url('front/images/banner_images/4839.png'); 
+                            background-size: cover; 
+                            background-position: center; 
+                            background-repeat: no-repeat;">
+                    <div class="row" style="padding-top:100px; padding-bottom:100px;">
+                        <div class="col-lg-6 text-overlay">
+                            <!-- Adjust padding as needed -->
+                            <h1 class="display-3" style="text-align: left; font-weight: 600; padding-bottom:30px;">
+                                Entrepreneurial Spirit <br>For A Brighter Future
+                            </h1>
+                            <p class="text-dark bannerdescription" style="text-align: left;">
+                                Where Malaysian designers flourish, connecting talent with opportunities, 
+                                boosting our economy in line with National Entrepreneurship Policy (NEP) 2030 goals.
+                            </p>
+                            <!-- Uncomment the button below if needed -->
+                            <!-- <a href="shop.html" class="banner-btn rounded-pill text-white ml-2" 
+                               style="background-color: #f26b4e; display:flex; align-items: center; 
+                                      justify-content: center; margin: auto;">SHOP NOW</a>-->
+                        </div>
+                        <div class="col-lg-6 d-flex justify-content-end align-items-center">
+                            <img src="front/images/banner_images/nestropuffpallandingpage2.png" style="width: 900px;margin-top: -200px;">
+                        </div>
+                    </div>
+                </div>
             </div>
-
      <!-- Fruits Shop Start-->
    <div class="container">
                     <div class="col-lg-12">

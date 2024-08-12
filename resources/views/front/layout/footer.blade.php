@@ -1,5 +1,5 @@
   <!-- Footer Start -->
-  <div class="container-fluid text-white-50 footer pt-5 mt-5" style="background-color: #ffffff;">
+  <div class="container-fluid text-white-50 footer pt-5" style="background-color: #ffffff;">
     <div class="container py-5 ">
         <div class="pb-4 mb-4" >
             <div class="row g-4">

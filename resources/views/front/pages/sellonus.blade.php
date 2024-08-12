@@ -139,7 +139,7 @@
                     <p class="mb-4 sellonArtNestdes" >
                         Build, promote and start selling from ArtNest.
                     </p>
-                    <a href="#" 
+                    <a href="{{url('vendor/register')}}" 
                        class=" text-white ml-2" 
                        style="background-image: linear-gradient(to right, #f8a239, #f26b4e); box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1); 
                               width: 198px; 
