@@ -49,22 +49,22 @@
                 <p id="register-success"></p>
                 <form id="registerForm" action="javascript:;" method="POST">@csrf
                    
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4"  style="text-align: left !important;">
                       <label class="form-label" for="user-name">Username</label>
                         <input type="text" name="name" id="user-name" placeholder="User Name" class="form-control form-control-lg" />
                         <p id="register-name"></p>
                     </div>
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4"  style="text-align: left !important;">
                       <label class="form-label" for="user-mobile">Mobile</label>
                         <input type="text" name="mobile" id="user-mobile" placeholder="User Mobile" class="form-control form-control-lg" />
                         <p id="register-mobile"></p>
                     </div>
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4"  style="text-align: left !important;">
                       <label class="form-label" for="user-email">Email</label>
                         <input type="email" name="email" id="user-email" placeholder="user@user.com" class="form-control form-control-lg" />
                         <p id="register-email"></p>
                     </div>
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4"  style="text-align: left !important;">
                       <label class="form-label" for="user-password">Password</label>
                         <input type="password" name="password" id="user-password" placeholder="User Password"class="form-control form-control-lg" /> 
                         <p id="register-password"></p>

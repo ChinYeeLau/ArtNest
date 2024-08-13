@@ -47,13 +47,13 @@
                       <p id="login-error"></p>
 
                       <form id="loginForm" action="javascript:;" method="post">@csrf
-                          <div class="form-outline mb-4">
+                          <div class="form-outline mb-4" style="text-align: left !important;">
                             <label class="form-label" for="users-email">Email</label>
                               <input type="email" name="email" id="users-email" class="form-control form-control-lg" placeholder="user@user.com" required />
                               <p id="login-email"></p>
                           </div>
 
-                          <div class="form-outline mb-4">
+                          <div class="form-outline mb-4" style="text-align: left !important;">
                             <label class="form-label" for="users-password">Password</label>
                             <input type="password" name="password" id="users-password" class="form-control form-control-lg" placeholder="Password" required />
                               <p id="login-password"></p>

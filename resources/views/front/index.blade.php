@@ -26,15 +26,15 @@
                 
             </div>-->
             <div class="col-lg-12" style="position: relative;">
-                <div class="container-fluid col-lg-12 pad" 
+                <div class="container-fluid col-lg-12 pad " 
                      style="background-image: url('front/images/banner_images/4839.png'); 
                             background-size: cover; 
                             background-position: center; 
                             background-repeat: no-repeat;">
-                    <div class="row" style="padding-top:100px; padding-bottom:100px;">
+                    <div class="row" style=" padding-bottom:100px;">
                         <div class="col-lg-6 text-overlay">
                             <!-- Adjust padding as needed -->
-                            <h1 class="display-3" style="text-align: left; font-weight: 600; padding-bottom:30px;">
+                            <h1 class="display-3" style="text-align: left; font-weight: 600; padding-bottom:30px;padding-top:100px;">
                                 Entrepreneurial Spirit <br>For A Brighter Future
                             </h1>
                             <p class="text-dark bannerdescription" style="text-align: left;">
@@ -46,8 +46,8 @@
                                style="background-color: #f26b4e; display:flex; align-items: center; 
                                       justify-content: center; margin: auto;">SHOP NOW</a>-->
                         </div>
-                        <div class="col-lg-6 d-flex justify-content-end align-items-center">
-                            <img src="front/images/banner_images/nestropuffpallandingpage2.png" style="width: 900px;margin-top: -200px;">
+                        <div class="col-lg-6 d-none d-md-flex justify-content-end align-items-center">
+                            <img src="front/images/banner_images/nestropuffpallandingpage2.png" style="width: 900px;margin-top: -80px;">
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <div class="col-lg-12">
             <div class="tab-class text-center">
                 <div class="row g-4">
-                    <div class="col-lg-12" style="margin-top:50px;">
+                    <div class="col-lg-12" style="margin-top:-80px;">
                         <h1>Products</h1>
                     </div>
                     <div class="col-lg-12">

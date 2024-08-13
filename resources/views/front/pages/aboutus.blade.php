@@ -7,7 +7,7 @@
 <div class="container relative"> 
     <div class="row">   
         <h1 class="" style="text-align: center; align-items: center; color: black; font-weight: 700; font-family: Open Sans; margin-bottom: 30px; margin-top: 150px;">About Us</h1>
-        <p class="aboutus_des" style="text-align: center; color: black; font-size: 18px; font-weight: 400; padding: 0 250px 0 250px; margin-bottom: 100px;">Our mission is to create a platform to acheive NEP2030 which enable users to have an opportunity to start their business and earn extra income.</p>
+        <p class="aboutus_des" style="text-align: center; color: black; font-size: 18px; font-weight: 400; padding: 0 250px 0 250px; margin-bottom: 100px;">Our mission is to create a platform to achieve  National Entrepreneurship Policy (NEP) 2030 goals which enable users to have an opportunity to start their business and earn extra income.</p>
     </div>        
 </div>
 <!-- Banner Section End -->

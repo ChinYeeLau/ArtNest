@@ -45,19 +45,19 @@
                 <h3 class="mb-5">Register</h3>
                 <form id="vendorForm" action="{{ url('/vendor/register') }}" method="POST">@csrf
                    
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4"  style="text-align: left !important;">
                       <label class="form-label" for="vendorname">Username</label>
                         <input type="text" name="name" id="vendorname" placeholder="Vendor Name" class="form-control form-control-lg" />
                     </div>
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4"  style="text-align: left !important;">
                       <label class="form-label" for="vendormobile">Mobile</label>
                         <input type="text" name="mobile" id="vendormobile" placeholder="Vendor Mobile" class="form-control form-control-lg" />
                     </div>
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4"  style="text-align: left !important;">
                       <label class="form-label" for="vendoremail">Email</label>
                         <input type="email" name="email" id="vendoremail" placeholder="vendor@vendor.com" class="form-control form-control-lg" />
                     </div>
-                    <div class="form-outline mb-4">
+                    <div class="form-outline mb-4"  style="text-align: left !important;">
                       <label class="form-label" for="vendorpassword">Password</label>
                         <input type="password" name="password" id="vendorpassword" placeholder="Vendor Password"class="form-control form-control-lg" />
                     </div>
