@@ -61,12 +61,12 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer-item" >
                    <!-- <h4 class="text-black mb-3">Contact</h4>-->
-                    <a href="{{url('contact')}}" class="btn border-secondary py-2 px-4 rounded-pill">Contact Us </a>
+                    <a href="{{url('contact')}}" class="btn-contact btn border-secondary py-2 px-4 rounded-pill" >Contact Us </a>
                         <div class="d-flex " >
-                            <a class="btn me-2 btn-md-square rounded-circle social-btn"  href="#" aria-label="Instagram">
+                            <a class="btn btn-contact me-2 btn-md-square rounded-circle social-btn"  href="#" aria-label="Instagram">
                                 <i class="fa-brands fa-instagram"></i>
                             </a>
-                            <a class="btn me-2 btn-md-square rounded-circle social-btn"  href="#" aria-label="Facebook">
+                            <a class="btn btn-contact me-2 btn-md-square rounded-circle social-btn"  href="#" aria-label="Facebook">
                                 <i class="fa-brands fa-facebook-f"></i>
                             </a>
                     </div>

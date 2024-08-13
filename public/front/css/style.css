@@ -102,7 +102,7 @@
     transition: 0.5s;  
 }
 
-.btn.border-secondary:hover {
+/*.btn.border-secondary:hover {
     background: #000(--bs-secondary) !important;
     color: #000!important;
 }
@@ -579,7 +579,15 @@
 
 
 /*** Footer Start ***/
-
+.btn-contact {
+    font-weight: 600;
+    color: rgb(71, 71, 71);
+}
+/*** Footer Start ***/
+.btn-contact:hover {
+    font-weight: 600;
+    color: #000;
+}
 .footer .footer-item .btn-link {
     line-height: 35px;
     color: #474747;
@@ -959,6 +967,21 @@ font-weight: 400;
  border:none;
  background-color:none;
 } 
+
+/* Change text color to white on hover */
+.btn-primary:hover {
+    color: #fff;
+}
+
+/* Remove border and shadow on focus */
+.btn-primary:focus {
+    outline: none; /* Remove any default focus outline */
+    box-shadow: none; /* Remove box shadow on focus */
+    border: none; /* Ensure no border is applied on focus */
+    color: #fff !important;
+}
+
+
 .btn3{
     width: 198px;
      height: 47px;
@@ -1097,4 +1120,15 @@ font-weight: 400;
     }
     /*** Sell on ArtNest End ***/
     
-  
+    input[type="checkbox"]:checked {
+        background-color: orange; /* Orange background for checked state */
+        border: none;
+    }
+
+    input[type="checkbox"]:focus {
+        outline: none;
+        box-shadow: none; /* Remove any drop shadow or focus outline */
+    }
+    :root {
+        --bs-primary: #fff !important; /* Sets the primary color to white globally */
+    }

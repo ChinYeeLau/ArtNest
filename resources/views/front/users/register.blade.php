@@ -9,7 +9,7 @@
       <!-- Left Banner Section (50%) -->
       <div class="col-12 col-md-7 d-none d-md-flex " >
           <div >
-              <img src="{{asset('front/images/banner_images/4839.png')}}" alt="Banner" style="width:100%;" >
+              <img src="{{ asset('front/img/Group87.png') }}" alt="Banner" style="width:100%;" >
           </div>
       </div>
 
@@ -78,9 +78,9 @@
                             <p id="register-accept"></p>
                               
                              
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+                    <button class="btn btn-primary btn-lg btn-block " type="submit">Register</button>
                    <br><br> <div style="text-align: start;"> 
-                      <a href="{{url('user/login')}}">Already have an account?</a>
+                      <a href="{{url('user/login')}}" style="color:darkorange !important;">Already have an account?</a>
                     </div>
                   </form>
                

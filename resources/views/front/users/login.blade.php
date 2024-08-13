@@ -9,7 +9,7 @@
       <!-- Left Banner Section (50%) -->
       <div class="col-12 col-md-7 d-none d-md-flex " >
           <div >
-              <img src="{{asset('front/images/banner_images/4839.png')}}" alt="Banner" style="width:100%;" >
+              <img src="{{ asset('front/img/Group87.png') }}" alt="Banner" style="width:100%;" >
           </div>
       </div>
 
@@ -58,14 +58,14 @@
                             <input type="password" name="password" id="users-password" class="form-control form-control-lg" placeholder="Password" required />
                               <p id="login-password"></p>
                           </div>
-                          <div style="text-align: start;">
-                              <a href="{{ url('user/forgot-password') }}">Forgot password?</a>
+                          <div style="text-align: start;" >
+                              <a href="{{ url('user/forgot-password') }}" style="color:darkorange !important;">Forgot password?</a>
                           </div>
 
                           <button class="btn btn-primary btn-lg mt-4" type="submit">Login</button>
                           <br><br>
                           <div style="text-align: start;">
-                              <a href="{{ url('user/register') }}">Register Account</a>
+                              <a href="{{ url('user/register') }}" style="color:darkorange !important;">Register Account</a>
                           </div>
                       </form>
 
