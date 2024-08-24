@@ -9,7 +9,7 @@
       <!-- Left Banner Section (50%) -->
       <div class="col-12 col-md-7 d-flex d-none d-md-flex "  style="margin-top:30px;">
           <div class="login-vendor">
-              <img src="{{ asset('front/img/Group87.png') }}" alt="Banner" style="width:100%;"  >
+              <img src="{{ asset('front/img/Group97.png') }}" alt="Banner" style="width:100%;"  >
           </div>
       </div>
 
@@ -55,7 +55,7 @@
                 <input type="password" name="password" id="password" class="form-control form-control-lg"  placeholder="Password"required="" class="form-control form-control-lg" />
               </div>
               <div style="text-align: start;"> 
-                <a href="{{url('vendor/forgot-password')}}"style="color:darkorange !important;">forgot password?</a>
+                <a href="{{url('vendor/forgot-password')}}"style="color:darkorange !important;">Forgot Password?</a>
               </div>
               <button class="btn btn-primary btn-lg mt-4" type="submit">Login</button>
   

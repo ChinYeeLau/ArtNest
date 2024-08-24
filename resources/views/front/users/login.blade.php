@@ -9,7 +9,7 @@
       <!-- Left Banner Section (50%) -->
       <div class="col-12 col-md-7 d-none d-md-flex "  style="margin-top:30px;">
           <div >
-              <img src="{{ asset('front/img/Group87.png') }}" alt="Banner" style="width:100%;" >
+              <img src="{{ asset('front/img/Group95.png') }}" alt="Banner" style="width:100%;" >
           </div>
       </div>
 
@@ -58,7 +58,7 @@
                               <p id="login-password"></p>
                           </div>
                           <div style="text-align: start;" >
-                              <a href="{{ url('user/forgot-password') }}" style="color:darkorange !important;">Forgot password?</a>
+                              <a href="{{ url('user/forgot-password') }}" style="color:darkorange !important;">Forgot Password?</a>
                           </div>
 
                           <button class="btn btn-primary btn-lg mt-4" type="submit">Login</button>
