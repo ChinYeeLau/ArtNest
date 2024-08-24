@@ -45,23 +45,18 @@
                 <div class="card-body p-5 text-center" >
               <h3 class="mb-5">Login</h3>
               <form  action="{{url('admin/login')}}" method="post" >@csrf
-              <div class="form-outline mb-4"  style="text-align: left !important;">
+              <div class="form-outline mb-3"  style="text-align: left !important;">
                 <label class="form-label" for="vendor-email">Email</label>
                 <input  type="email" name="email" id="email" class="form-control form-control-lg"  placeholder="vendor@vendor.com" required="" class="form-control form-control-lg" />
               </div>
-  
-              <div class="form-outline mb-4"  style="text-align: left !important;">
+
+              <div class="form-outline mb-3"  style="text-align: left !important;">
                 <label class="form-label" for="vendor-password">Password</label>
                 <input type="password" name="password" id="password" class="form-control form-control-lg"  placeholder="Password"required="" class="form-control form-control-lg" />
               </div>
               <div style="text-align: start;"> 
-                <a href="{{url('vendor/forgot-password')}}">forgot password?</a>
+                <a href="{{url('vendor/forgot-password')}}"style="color:darkorange !important;">forgot password?</a>
               </div>
-              <!-- Checkbox -->
-              
-               
-                  
-             
               <button class="btn btn-primary btn-lg mt-4" type="submit">Login</button>
   
               </form>
