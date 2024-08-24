@@ -7,7 +7,7 @@
 <div class="container-fluid py-5 h-100" style="padding:0px;padding-bottom:0px !important;">
   <div class="row d-flex ">
       <!-- Left Banner Section (50%) -->
-      <div class="col-12 col-md-7 d-flex d-none d-md-flex " >
+      <div class="col-12 col-md-7 d-flex d-none d-md-flex "  style="margin-top:30px;">
           <div class="login-vendor">
               <img src="{{ asset('front/img/Group87.png') }}" alt="Banner" style="width:100%;"  >
           </div>

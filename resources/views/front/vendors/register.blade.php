@@ -7,9 +7,9 @@
 <div class="container-fluid py-5 h-100" style="padding:0px">
   <div class="row d-flex " >
       <!-- Left Banner Section (50%) -->
-      <div class="col-12 col-md-7 d-none d-md-flex " >
+      <div class="col-12 col-md-7 d-none d-md-flex " style="margin-top:30px;">
           <div >
-              <img src="{{asset('front/images/banner_images/4839.png')}}" alt="Banner" style="width:100%;" >
+              <img src="{{ asset('front/img/Group93.png') }}" alt="Banner" style="width:100%;" >
           </div>
       </div>
 
@@ -40,7 +40,7 @@
                 </button>
               </div>
               @endif
-              <div style="padding-top:50px;">
+              <div style="padding-top:20px;">
                 <div class="card-body p-5 text-center" >
                 <h3 class="mb-5">Register</h3>
                 <form id="vendorForm" action="{{ url('/vendor/register') }}" method="POST">@csrf

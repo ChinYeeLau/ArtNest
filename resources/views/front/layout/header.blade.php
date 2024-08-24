@@ -53,7 +53,7 @@ $sections=Section::sections();
                 <div class="dropdown" style="float:right;">
                     <button class="dropbtn nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <i class="material-symbols-outlined icon" > storefront </i></button>
-                    <div class="dropdown-content" style="position: absolute; right: 0;">
+                    <div class="dropdown-content" style="position: absolute; right: 0;padding-left:15px;">
                        
                             <a href="{{url('vendor/login')}}">Log in</a>
                             <a href="{{url('vendor/register')}}">Register</a>

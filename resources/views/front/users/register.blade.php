@@ -7,7 +7,7 @@
 <div class="container-fluid py-5 h-100" style="padding:0px">
   <div class="row d-flex " >
       <!-- Left Banner Section (50%) -->
-      <div class="col-12 col-md-7 d-none d-md-flex " >
+      <div class="col-12 col-md-7 d-none d-md-flex "  style="margin-top:30px;" >
           <div >
               <img src="{{ asset('front/img/Group87.png') }}" alt="Banner" style="width:100%;" >
           </div>
@@ -42,7 +42,7 @@
               @endif
    
       
-              <div  style="padding-top:50px;">
+              <div  style="padding-top:20px;">
                 <div class="card-body p-5 text-center" >
                 <h3 class="mb-5">Register</h3>
                 <p id="register-error"></p>
@@ -51,7 +51,7 @@
                    
                     <div class="form-outline mb-4"  style="text-align: left !important;">
                       <label class="form-label" for="user-name">Username</label>
-                        <input type="text" name="name" id="user-name" placeholder="User Name" class="form-control form-control-lg" />
+                        <input type="text" name="name" id="user-name" placeholder="Username" class="form-control form-control-lg" />
                         <p id="register-name"></p>
                     </div>
                     <div class="form-outline mb-4"  style="text-align: left !important;">
@@ -79,7 +79,7 @@
                               
                              
                     <button class="btn btn-primary btn-lg btn-block " type="submit">Register</button>
-                   <br><br> <div style="text-align: start;"> 
+                   <div style="text-align: start;padding-top:10px;"> 
                       <a href="{{url('user/login')}}" style="color:darkorange !important;">Already have an account?</a>
                     </div>
                   </form>

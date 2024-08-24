@@ -451,15 +451,15 @@
   
   @media (max-width: 768px) {
       .display-3{
-          font-size: 32px;
-          margin-left: 50px;
+          font-size: 32px !important;
+          margin-left: 30px !important;
       }    
       .bannerdescription {
         font-size: 16px;
         max-width: 90%;
-        margin-left: 50px;
+        margin-left: 30px!important;
     }
-      
+   
   }
   
   @media (max-width: 435px){

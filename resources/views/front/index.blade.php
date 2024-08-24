@@ -34,7 +34,7 @@
                     <div class="row" style=" padding-bottom:100px;">
                         <div class="col-lg-6 text-overlay">
                             <!-- Adjust padding as needed -->
-                            <h1 class="display-3" style="text-align: left; font-weight: 600; padding-bottom:30px;padding-top:100px;">
+                            <h1 class="display-3" style="text-align: left; font-weight: 600; padding-bottom:30px;padding-top:30px;">
                                 Entrepreneurial Spirit <br>For A Brighter Future
                             </h1>
                             <p class="text-dark bannerdescription" style="text-align: left;">
@@ -47,7 +47,7 @@
                                       justify-content: center; margin: auto;">SHOP NOW</a>-->
                         </div>
                         <div class="col-lg-6 d-none d-md-flex justify-content-end align-items-center">
-                            <img src="front/images/banner_images/nestropuffpallandingpage2.png" style="width: 900px;margin-top: -80px;">
+                            <img src="front/images/banner_images/nestropuffpallandingpage2.png" style="width: 900px;margin-top: -130px;">
                         </div>
                     </div>
                 </div>
