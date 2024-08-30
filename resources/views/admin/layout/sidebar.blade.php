@@ -72,7 +72,7 @@
             <div class="collapse" id="ui-chats">
                 <ul class="nav flex-column sub-menu" style="background:#fff!important;color:#f26b4e !important;">
                     <li class="nav-item">
-                        <a @if(Session::get('page')=="chats")style="background:#f26b4e !important; color:#fff!important;"@else style="background:#fff !important;color:#f26b4e!important" @endif class="nav-link" href="{{url('admin/admin/chat')}}">Chats</a>
+                        <a @if(Session::get('page')=="chats")style="background:#f26b4e !important; color:#fff!important;"@else style="background:#fff !important;color:#f26b4e!important" @endif class="nav-link" href="{{url('admin/chat')}}">Chats</a>
                     </li>
                 </ul>
             </div>

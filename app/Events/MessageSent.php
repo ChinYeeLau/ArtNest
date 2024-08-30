@@ -31,6 +31,6 @@ class MessageSent implements ShouldBroadcast
 
     public function broadcastAs(): string
     {
-        return 'chat';
+        return new PrivateChannel('chat');
     }
 }

@@ -10284,3 +10284,116 @@ a.text-dark:hover, a.text-dark:focus {
   }
  
 }
+
+
+/*chat*/
+/* Base styles for the chat container */
+.chat-container {
+  display: flex;
+  height: 80vh; /* Full viewport height */
+  overflow: hidden;
+}
+
+/* Sidebar styles */
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.contact-item.active {
+  background-color: #f0f0f0;
+}
+
+.contact-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.contact-info {
+  flex-grow: 1;
+}
+
+.contact-name {
+  font-weight: bold;
+}
+
+.last-message {
+  color: #888;
+}
+
+/* Chat area styles */
+.chat-area {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Header styles */
+.top {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Footer styles */
+.bottom {
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.textareachat{
+width: 80%;
+}
+.send-button {
+  background-color:#f26b4e;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Responsive styles for tablets and below */
+@media (max-width: 768px) {
+  .chat-container {
+      flex-direction: column;
+  }
+
+  .sidebar2 {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #ddd;
+  }
+
+  .chat-area {
+      width: 100%;
+  }
+}
+

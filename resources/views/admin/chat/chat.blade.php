@@ -1,62 +1,75 @@
 @extends('admin.layout.layout')
+
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
-           
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="font-weight-bold">Coupons Management</h4>
-                        <h6 class="font-weight-normal mb-0">Coupons</h6>
-<div class="chat">
+                        <h4 class="font-weight-bold">Chats Management</h4>
+                        <div class="chat-container">
+                            <!-- Sidebar -->
+                            <div class="sidebar2">
+                                <h5>Contacts</h5>
+                                <ul class="contact-list">
+                                    <li class="contact-item active">
+                                       
+                                        <img src="{{ url('admin/images/photos/no-image.png') }}" class="user-photo">
+                                
+                                        <div class="contact-info">
+                                            <p class="contact-name" style="padding-right:50px">John Doe</p>
+                                        </div>
+                                    </li>
+                                    <!-- Repeat for more contacts -->
+                                </ul>
+                            </div>
+                            <!-- End Sidebar -->
 
-    <!-- Header -->
-    <div class="top">
-        @if(!empty(Auth::guard('admin')->user()->image))
-               <img src="{{ url('admin/images/photos/' . Auth::guard('admin')->user()->image) }}" class="user-photo">
-               <input type="hidden" name="current_vendor_image" value="{{ Auth::guard('admin')->user()->image }}">
-           @else
-               <img src="{{ url('admin/images/photos/no-image.png') }}"class="user-photo" >
-           @endif
-      <div>
-        <p>test</p>
-        <small>Online</small>
-      </div>
+                            <!-- Chat Area -->
+                            <div class="chat-area">
+                                <!-- Header -->
+                                <div class="top">
+                                  
+                                        <img src="{{ url('admin/images/photos/no-image.png') }}" class="user-photo">
+                                   
+                                    <div>
+                                        <p>test</p>
+                                        <small>Online</small>
+                                    </div>
+                                </div>
+                                <!-- End Header -->
+
+                                <!-- Chat -->
+                                <div class="messages">
+                                    @include('admin.chat.receive', ['message' => "Hey! What's up! "])
+                                </div>
+                                <!-- End Chat -->
+
+                                <div class="bottom">
+                                    <form>
+                                        <input type="text" id="message" name="message" placeholder="Enter message..." autocomplete="off" class="textareachat">
+                                        <button type="submit" class="send-button">Send</button>
+                                    </form>
+                                </div>
+                                <!-- End Footer -->
+                            </div>
+                            <!-- End Chat Area -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- End Header -->
-  
-    <!-- Chat -->
-    <div class="messages">
-      @include('admin.chat.receive', ['message' => "Hey! What's up! "])
-      
-    </div>
-    <!-- End Chat -->
-  
-    <!-- Footer -->
-    <div class="bottom">
-      <form>
-        <input type="text" id="message" name="message" placeholder="Enter message..." autocomplete="off">
-        <button type="submit" class="send-button">Send</button>
-    </form>
-    </div>
-    <!-- End Footer -->
- 
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
+
 <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
 <script>
-  const pusher = new Pusher('{{config('broadcasting.connections.pusher.key')}}', { cluster: 'ap1' });
+    const pusher = new Pusher('{{config('broadcasting.connections.pusher.key')}}', { cluster: 'ap1' });
     const channel = pusher.subscribe('public');
 
-    //Receive messages
+    // Receive messages
     channel.bind('chat', function (data) {
         $.post("/admin/receive", {
             _token: '{{csrf_token()}}',
@@ -73,7 +86,7 @@
         });
     });
 
-    //Broadcast messages
+    // Broadcast messages
     $("form").submit(function (event) {
         event.preventDefault();
 
@@ -101,4 +114,5 @@
         });
     });
 </script>
+
 @endsection

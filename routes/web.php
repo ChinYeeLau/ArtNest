@@ -125,10 +125,11 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
         Route::post('update-rating-status','RatingController@updateRatingStatus');
         Route::get('delete-rating/{id}','RatingController@deleteRating');
        //chat
-       Route::get('admin/chat',  [AdminChatController::class,'chat']);
-       Route::post('admin/broadcast', [AdminChatController::class,'broadcast']);
-       Route::post('admin/receive',  [AdminChatController::class,'receive']);
+       Route::get('chat', [AdminChatController::class, 'chat'])->name('admin.chat');
+       Route::post('broadcast', [AdminChatController::class, 'broadcast']);
+       Route::post('receive', [AdminChatController::class, 'receive']);
     });
+    
         
 });
 Route::get('orders/invoice/download/{id}','App\Http\Controllers\Admin\OrderController@viewPDFInvoice');
