@@ -270,15 +270,11 @@
     color: var(--bs-white) !important; 
 }
 
-.fruite .fruite-categorie .fruite-name {
-    background-color: #eff9ff;
-}
 
 .fruite .fruite-categorie .fruite-name:active {
     background-color: #448bb5;
 }
 .fruite-name-bg{
-    background-color: #eff9ff;
     border-radius: 20px;
 }
 
@@ -1116,3 +1112,14 @@ font-weight: 400;
     :root {
         --bs-primary: #fff !important; /* Sets the primary color to white globally */
     }
+    a{
+        color: black !important;
+    }
+    
+    .section-text a{
+        color: #f26b4e !important;
+        font-weight: 600;
+        font-size: 19px;
+    }
+
+   

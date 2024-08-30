@@ -8,8 +8,7 @@ $sections=Section::sections();
 @include('front.products.filters')
 
     <div class="col-lg-9">
-        <div class="row g-4 justify-content-center">
-            <div class="row g-4">
+        <div class="row  justify-content-center">
             <div class="col-xl-3">
               <!--<div aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -42,7 +41,7 @@ $sections=Section::sections();
                                             </form>
                                         </div>
                                         @endif
-                                    </div>
+                                    
                                 </div>
     
         <div class="filter_products">

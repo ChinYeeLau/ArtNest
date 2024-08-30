@@ -6,29 +6,52 @@
    
    ?>
    <!-- Fruits Shop Start-->
-    <div class="container-fluid fruite py-5">
-        <div class="container py-5">
-            <h1 class="mb-4">Welcome to ArtNest</h1>
+   <div class="row" style="margin-top: 80px;padding: 0px 0;">
+    <div class="container-fluid col-lg-12 pad" 
+    style="background-image: url('{{ asset('front/img/sellonArtNest_banner3.png') }}');  background-size: cover;  background-position: center; background-repeat: no-repeat; padding: 50px 0;">
+        
+        <div class="centered text-overlay">
+            <div class="row mb-4 mt-4">
+                <div class="col-12 text-center" >
+                    <h1 class="mb-4 sellonArtNesttitle3">
+                        <div aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center" style="margin-bottom:0px">
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                                @if(isset($categoryDetails['categoryDetails']['section']['name']))
+                                    <li class="breadcrumb-item"><a href="#">{{ $categoryDetails['categoryDetails']['section']['name'] }}</a></li>
+                                @endif
+                                <?php echo $categoryDetails['breadcrumbs']; ?>
+                            </ol>
+                        </div>
+                    </h1>
+                </div>
+            </div>  
+        </div> 
+    </div>
+</div>
+ 
+
+<div class="container-fluid fruite ">
+    <div class="container py-5">
+          
             <div class="row g-4"style="display:flex;">
                 <div class="col-lg-12">
-                   
                     <div class="row g-4">
                         <div class="col-lg-3">
-                            <div class="row g-4">
                                 <div class="col-lg-12">
                                     <div class="mb-3 fruite-name-bg ">
                                         <h4>Categories</h4>
                                         <ul class="list-unstyled fruite-categorie ">
                                             @foreach($sections as $section)
                                         <ul class="list-unstyled fruite-categorie">
-                                            <li>
-                                                <div class="d-flex justify-content-between ">
-                                                    <a ><i class=""></i>{{$section['name']}}</a>
+                                            <li style="padding-top: 10px">
+                                                <div class="d-flex justify-content-between section-text">
+                                                    <a>{{$section['name']}}</a>
                                                 </div>
                                                     @if(count($section['categories']) > 0)
                                                     @foreach($section['categories'] as $category)
-                                                    <div class="flex justify-content-between " >
-                                                    <a href="{{url('/'.$category['category_name'])}}"><i class="fas fa-apple-alt me-2"></i>{{$category['category_name']}}</a>
+                                                    <div class="flex justify-content-between "  >
+                                                    <a href="{{url('/'.$category['category_name'])}}">{{$category['category_name']}}</a>
                                                    
                                                     @endforeach
                                                     @endif
@@ -156,7 +179,7 @@
                                     </div>
                                 </div>
                                
-                            </div>
+                           
                         </div>
                      
                     
