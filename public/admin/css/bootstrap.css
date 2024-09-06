@@ -10346,7 +10346,7 @@ a.text-dark:hover, a.text-dark:focus {
   display: flex;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
 }
 
 .user-photo {
@@ -10360,13 +10360,14 @@ a.text-dark:hover, a.text-dark:focus {
   flex-grow: 1;
   overflow-y: auto;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
+  border-top:none;
 }
 
 /* Footer styles */
 .bottom {
   padding: 10px;
-  border-top: 1px solid #ddd;
+  border: 1px solid #ddd;
 }
 
 .textareachat{
@@ -10378,6 +10379,10 @@ width: 80%;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
+}
+.sidebar2 {
+  border: 1px solid #ddd ;
+  border-right:none;
 }
 
 /* Responsive styles for tablets and below */

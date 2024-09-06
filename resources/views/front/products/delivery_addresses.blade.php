@@ -1,9 +1,9 @@
 <h4 class="deliveryText">Add New Delivery Address</h4>
 @if (count($deliveryAddresses)>0)
 
-<p class="newAddress"><input type="checkbox" id="myCheck" class="newAddress" onclick="toggleForm()">Ship to a different Address?</p>
+<p class="newAddress"><input type="checkbox" id="myCheck" class="newAddress form-check-newAdd " onclick="toggleForm()">Ship to a different Address?</p>
 @else
-<p class="newAddress"><input type="checkbox" id="myCheck" class="newAddress" onclick="toggleForm()">Check to add Delivery Address</p>
+<p class="newAddress"><input type="checkbox" id="myCheck" class="newAddress form-check-newAdd" onclick="toggleForm()">Check to add Delivery Address</p>
 
 @endif
 <form id="addressAddEditForm" action="javascript:;" method="POST">@csrf    
@@ -54,8 +54,8 @@
         <input type="tel"  name="delivery_mobile" id="delivery_mobile" class="form-control">
         <p id="delivery-delivery_mobile"></p>
     </div>
-    <div class="form-item btn " style="padding-top:20px;">
-        <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Save</button>
+    <div class="form-item  " style="padding-top:20px;">
+        <button type="submit" class="rounded-pill tab-link  text-uppercase ">Save</button>
     </div>
 </div>
 </form>

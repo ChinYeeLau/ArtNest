@@ -123,10 +123,11 @@ class ProductsController extends Controller
             abort(404);
          }
       }else{
+        
          if(isset($_REQUEST['search']) && !empty($_REQUEST['search'])){
             if ($request['search']=="new arrivals"){
                $search_product=$_REQUEST['search'];
-               $categoryDetails['breadcrumbs']="New Arrivals";
+               $categoryDetails['breadcrumbs']="/New Arrivals";
                $categoryDetails['categoryDetails']['category_name']="New Arrivals";
                $categoryDetails['categoryDetails']['description']="New Arrivals Products" ;
                $categoryProducts=Product::select('products.id','products.id','products.section_id','products.category_id','products.vendor_id','products.product_code','products.product_name','products.product_color','products.product_price','products.product_discount','products.product_weight','products.product_image','products.description')->join('categories','categories.id','=','products.category_id')
@@ -135,7 +136,7 @@ class ProductsController extends Controller
             }else if 
                    ($request['search']=="best sellers"){
                      $search_product=$_REQUEST['search'];
-                     $categoryDetails['breadcrumbs']="Best Sellers";
+                     $categoryDetails['breadcrumbs']="/Best Sellers";
                      $categoryDetails['categoryDetails']['category_name']="Best Sellers";
                      $categoryDetails['categoryDetails']['description']="Best Sellers Products" ;
                      $categoryProducts=Product::select('products.id','products.id','products.section_id','products.category_id','products.vendor_id','products.product_code','products.product_name','products.product_color','products.product_price','products.product_discount','products.product_weight','products.product_image','products.description')->join('categories','categories.id','=','products.category_id')
@@ -143,7 +144,7 @@ class ProductsController extends Controller
                   }else if 
                   ($request['search']=="featured"){
                     $search_product=$_REQUEST['search'];
-                    $categoryDetails['breadcrumbs']="Featured";
+                    $categoryDetails['breadcrumbs']="/Featured";
                     $categoryDetails['categoryDetails']['category_name']="Featured";
                     $categoryDetails['categoryDetails']['description']="Featured Products" ;
                     $categoryProducts=Product::select('products.id','products.id','products.section_id','products.category_id','products.vendor_id','products.product_code','products.product_name','products.product_color','products.product_price','products.product_discount','products.product_weight','products.product_image','products.description')->join('categories','categories.id','=','products.category_id')
@@ -151,7 +152,7 @@ class ProductsController extends Controller
                   }else if 
                   ($request['search']=="discounted"){
                     $search_product=$_REQUEST['search'];
-                    $categoryDetails['breadcrumbs']="Discounted";
+                    $categoryDetails['breadcrumbs']="/Discounted";
                     $categoryDetails['categoryDetails']['category_name']="Discounted";
                     $categoryDetails['categoryDetails']['description']="Discounted Products" ;
                     $categoryProducts=Product::select('products.id','products.id','products.section_id','products.category_id','products.vendor_id','products.product_code','products.product_name','products.product_color','products.product_price','products.product_discount','products.product_weight','products.product_image','products.description')->join('categories','categories.id','=','products.category_id')
@@ -159,7 +160,7 @@ class ProductsController extends Controller
                  
                   }else{
                $search_product=$_REQUEST['search'];
-               $categoryDetails['breadcrumbs']=$search_product;
+               $categoryDetails['breadcrumbs']='/' . $search_product;
                $categoryDetails['categoryDetails']['category_name']=$search_product;
                $categoryDetails['categoryDetails']['description']="Search Product for ".$search_product;
                $categoryProducts=Product::select('products.id','products.id','products.section_id','products.category_id','products.vendor_id','products.product_code','products.product_name','products.product_color','products.product_price','products.product_discount','products.product_weight','products.product_image','products.description')->join('categories','categories.id','=','products.category_id')->where(function($query)use($search_product){

@@ -7,7 +7,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="font-weight-normal mb-0">Orders</h6>
+                        <h4 class="font-weight-bold ">Orders</h4>
                         <!--<p class="card-description">
                             Add class <code>.table-bordered</code>
                         </p>-->

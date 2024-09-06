@@ -38,7 +38,7 @@
                     <div id="deliveryAddresses">
                   @foreach($deliveryAddresses as $address)
                 <div style="float:left;margin-right:8px;" class="control-group">
-                <input type="radio"  id="address{{$address['id']}}" name="address_id" value="{{$address['id']}}" shipping_charges="{{$address['shipping_charges']}}" total_price="{{$total_price}}" coupon_amount="{{Session::get('couponAmount')}}"></div>
+                <input type="radio"  class="form-check-input" id="address{{$address['id']}}" name="address_id" value="{{$address['id']}}" shipping_charges="{{$address['shipping_charges']}}" total_price="{{$total_price}}" coupon_amount="{{Session::get('couponAmount')}}"></div>
                 <div>
                  <label class="control-label">{{$address['name']}}, {{$address['address']}}, {{$address['state']}}, {{$address['postcode']}} ({{$address['mobile']}})</label>
                  <a style="float:right;" href="javascript:;" data-addressid="{{$address['id']}}" class="removeAddress">Remove</a>
@@ -150,7 +150,7 @@
                     <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
                         <div class="col-12">
                             <div class="form-check text-start my-3">
-                                <input type="radio" class="form-check-input bg-primary border-0" id="cash-on-delivery" name="payment_gateway" value="COD">
+                                <input type="radio" class="form-check-input  border-0" id="cash-on-delivery" name="payment_gateway" value="COD">
                                 <label class="form-check-label" for="cash-on-delivery">Cash On Delivery</label>
                             </div>
                         </div>
@@ -158,20 +158,20 @@
                     <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
                         <div class="col-12">
                             <div class="form-check text-start my-3">
-                                <input type="radio" class="form-check-input bg-primary border-0" id="paypal" name="payment_gateway" value="Paypal">
+                                <input type="radio" class="form-check-input  border-0" id="paypal" name="payment_gateway" value="Paypal">
                                 <label class="form-check-label" for="paypal">Paypal</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-check text-start my-3">
-                                <input type="radio" class="form-check-input bg-primary border-0" id="stripe" name="payment_gateway" value="Stripe">
+                                <input type="radio" class="form-check-input  border-0" id="stripe" name="payment_gateway" value="Stripe">
                                 <label class="form-check-label" for="stripe">Stripe</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                        <button id= "placeOrder" type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</button>
+                        <button id= "placeOrder" type="submit" class="rounded-pill tab-link text-uppercase w-100 ">Place Order</button>
                     </div>
                 </form>
                 </div>

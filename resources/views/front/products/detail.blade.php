@@ -1,5 +1,5 @@
-<?php use App\Models\Product; ?>
-
+<?php use App\Models\Product; 
+use App\Models\Section;?>
 @extends('front.layout.layout')
 @section('content')
 
@@ -11,6 +11,9 @@
             <div class="container py-5">
                 <div class="row justify-content-center ">
                     <div class="col-lg-8 col-xl-9">
+                        <div class="col-12 text-start">
+                            <a href="javascript:history.back()">&lt; Back</a>
+                        </div>
                         <div class="row mt-5 ">
                             <div class="col-lg-6">
                                 <div class="border rounded ">
@@ -55,6 +58,7 @@
                                 </div>
                                 @endif
                             </div>
+                            <div class="d-flex">
                                 <h4 class="fw-bold mb-3">{{$productDetails['product_name']}}</h4>
                                 <div class="d-flex " style="color:gold; font-size:17px;" title="{{$avgRating}}out of 5-based on {{count($ratings)}} Reviews ">
                                     @if($avgStarRating > 0)
@@ -63,6 +67,7 @@
                                   @endfor
                                  @endif
                                 <h6 class="mx-2">({{($avgRating)}})</h6>
+                            </div>
                             </div>
                               <div aria-label="breadcrumb">
                                     <ol class="breadcrumb">

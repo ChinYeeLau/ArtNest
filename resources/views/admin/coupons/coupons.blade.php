@@ -8,7 +8,6 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="font-weight-bold">Coupons Management</h4>
-                        <h6 class="font-weight-normal mb-0">Coupons</h6>
                         <!--<p class="card-description">
                             Add class <code>.table-bordered</code>
                         </p>-->

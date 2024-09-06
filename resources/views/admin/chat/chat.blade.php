@@ -11,7 +11,6 @@
                         <div class="chat-container">
                             <!-- Sidebar -->
                             <div class="sidebar2">
-                                <h5>Contacts</h5>
                                 <ul class="contact-list">
                                     <li class="contact-item active">
                                        
@@ -33,8 +32,8 @@
                                   
                                         <img src="{{ url('admin/images/photos/no-image.png') }}" class="user-photo">
                                    
-                                    <div>
-                                        <p>test</p>
+                                    <div  >
+                                        <p style="margin-bottom:5px">John Doe</p>
                                         <small>Online</small>
                                     </div>
                                 </div>

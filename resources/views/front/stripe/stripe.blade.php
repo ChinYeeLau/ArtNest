@@ -31,12 +31,13 @@
                                 <div id="card-errors" role="alert"></div>
                             </div>
                         </div>
-
+                       <br>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button class="stripe-paynow" id="stripePayNow" type="submit">Pay Now</button>
+                                <button class="stripe-paynow rounded-pill active tab-link" id="stripePayNow" type="submit">Pay Now</button>
                             </div>
                         </div>
+                        <br>
                     </form>
                 </div>
             </div>

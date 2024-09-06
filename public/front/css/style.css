@@ -59,9 +59,13 @@
 /*** Button Start ***/
 .btn {
     font-weight: 600;
-    color: #fff;
+    
 }
-
+.btn:focus, .btn:active {
+    outline: none;
+    box-shadow: none;
+    border: none;
+}
 
 .btn-square {
     width: 32px;
@@ -299,11 +303,6 @@
     box-shadow: 0 0 55px rgba(0, 0, 0, 0.4);
 }
 
-.fruite .fruite-item .fruite-img {
-    overflow: hidden;
-    transition: 0.5s;
-    border-radius: 10px 10px 0 0;
-}
 
 .fruite .fruite-item .fruite-img img {
     transition: 0.5s;
@@ -688,6 +687,7 @@
 .rate:not(:checked) > input {
     position:inherit;
     top:-9999px;
+ 
 }
 .rate:not(:checked) > label {
     float:right;
@@ -1122,4 +1122,80 @@ font-weight: 400;
         font-size: 19px;
     }
 
+   /*order*/
+   .table-orange {
+    background-color: #FF8C00; /* Dark orange background */
+}
+.table-orange th {
+    color: #FFFFFF; /* White text for table headers */
+}
+
+.table-row-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+.clickable tr {
+    cursor: pointer;
+}
+.clickable tr:hover {
+    background-color: #f0f0f0; /* Add a background color on hover to indicate that the row is clickable */
+}
+/*profile*/
+
+.profile-img {
+    width: 200px; /* Ensure width and height are the same for a perfect circle */
+    height: 200px; /* Same as width to maintain aspect ratio */
+    border-radius: 50%; /* Creates a circular shape */
+    object-fit: cover; /* Ensures the image covers the circle area */
+    border: 2px solid #ddd; /* Optional: add a border for better visibility */
+
+}
+
+.profile-info {
+    margin-top: 20px; /* Space between the image and text */
+}
+
+@media (max-width: 768px) {
    
+    .profile-info {
+        margin-left: 0; /* Remove left margin for smaller screens */
+        margin-top: 10px; /* Add space above the text */
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) { /* For medium devices (tablets) */
+    .profile-img {
+        width: 175px;
+    }
+
+    .profile-info {
+        margin-top: 20px;
+    }
+
+    .profile-info h1 {
+        font-size: 1.75rem;
+    }
+}
+/**/
+.form-check-input {
+    background-color: #ddd !important;
+    border: 1px solid #ccc;
+    box-shadow: none;
+}
+
+.form-check-input:checked {
+    background-color: #ddd !important;
+    border: 1px solid #ccc;
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+    background-color: #FF8C00 !important;
+}
+
+.form-check-input:active {
+    background-color: #ddd !important;
+    border: 1px solid #ccc;
+}
+
+/**/

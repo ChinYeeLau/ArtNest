@@ -67,6 +67,9 @@
   <!-- End custom js for this page-->
   <!--Custom Admin JS-->
   <script src="{{url('admin/js/custom.js')}}"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!--End Custom Admin JS-->
     <!--Confirm Delete-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -5,13 +5,15 @@
   
    <div class="container py-5 h-100">
     <div class="container-fluid py-5 mt-5">
-    <div class="container py-5" style="text-align: center;">
-       <h3> Order Details #{{$orderDetails['id']}}</h3>   
-       <a href="{{url('user/orders')}}">Orders</a>
-    </div>
+        <div class="container py-5">
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <h3>Order Details #{{$orderDetails['id']}}</h3>
+                </div>
+            </div>
 <table class="table ">
    
-    <tr class="table-info"> <td colspan="2"><strong>Order Details</strong></td></tr>
+    <tr class=" table-orange text-white"> <td colspan="2"><strong>Order Details</strong></td></tr>
     <tr> <td>Order Date </td>
     <td>{{ date('Y-m-d h:i:s', strtotime($orderDetails['created_at'])) }}</td>
     </tr>
@@ -41,7 +43,7 @@
     
 </table>
 <table class="table ">
-      <tr class="table-info">
+      <tr class="table-orange text-white">
         <th>  Product Image</th>
         <th>  Product Code </th>
         <th>  Product Name  </th>
@@ -67,7 +69,7 @@
 </table>
 <table class="table ">
    
-    <tr class="table-info"> <td colspan="2"><strong>Delivery Address</strong></td></tr>
+    <tr class="table-orange text-white"> <td colspan="2"><strong>Delivery Address</strong></td></tr>
     <tr>  <td>Name</td>
     <td>{{$orderDetails['name']}}</td> </tr>
     <tr>  <td>Address </td>

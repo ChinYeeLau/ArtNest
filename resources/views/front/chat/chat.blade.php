@@ -8,7 +8,7 @@
             <!-- Sidebar -->
             <div class="sidebar" style="padding:0px ">
                     <!-- Example contact item -->
-                    <li class="contact-item active" style="list-style-type: none;display:flex; padding:10px">
+                    <li class="contact-item active" style="list-style-type: none;display:flex; padding:10px;border-radius: 10px 0 0 0; ">
                         <span class="material-symbols-outlined icon" style="width:50px"> person </span>   
                         <div class="contact-info">
                             <p class="contact-name">John Doe</p>
@@ -21,10 +21,10 @@
             <!-- Chat Area -->
             <div class="chat-area">
                 <!-- Header -->
-                <div class="top" >
+                <div class="top"  style="padding:4px">
                         <span class="material-symbols-outlined icon"> person </span>
                     <div>
-                        <p style="color:black;padding-top:10px;margin-bottom:none;padding-left:10px;">Test</p>
+                        <p style="color:black;padding-top:10px;margin-bottom:5px;padding-left:10px;">John Doe</p>
                         <small>Online</small>
                     </div>
                 </div>

@@ -14,6 +14,7 @@ use App\Models\Section;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\VendorsBankDetail;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\NewsletterSubscriber;
 use Illuminate\Support\Facades\Auth;
@@ -26,15 +27,44 @@ class AdminController extends Controller
 {
     public function dashboard(){
         Session::put('page','dashboard');
-        $sectionsCount=Section::count();
-        $categoriesCount=Category::count();
-        $productsCount=Product::count();
-        $couponsCount=Coupon::count();
-        $ordersCount=Order::count();
-        $usersCount=User::count();
-        $subscribersCount=NewsletterSubscriber::count();
-        return view('admin.dashboard')->with(compact('sectionsCount','categoriesCount','productsCount','couponsCount','ordersCount','usersCount','subscribersCount'));
+    
+        // Get counts for various entities
+        $sectionsCount = Section::count();
+        $categoriesCount = Category::count();
+        $productsCount = Product::count();
+        $couponsCount = Coupon::count();
+        $ordersCount = Order::count();
+        $usersCount = User::count();
+        $subscribersCount = NewsletterSubscriber::count();
+    
+        // Get the current admin ID
+        $adminId = Auth::guard('admin')->user()->id;
+    
+        // Fetch monthly totals based on product price and quantity where admin_id matches
+        $monthlyTotals = DB::table('orders_products')
+            ->where('admin_id', $adminId) // Ensure this column exists in orders_products
+            ->join('orders', 'orders.id', '=', 'orders_products.order_id') // Join to get created_at
+            ->selectRaw('MONTH(orders.created_at) as month, SUM(orders_products.product_price * orders_products.product_qty) as total')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->pluck('total', 'month')
+            ->toArray();
+    
+        // Initialize an array with 12 zeros, one for each month
+        $yValues = array_fill(0, 12, 0);
+    
+        // Populate the yValues array with actual totals from the database
+        foreach ($monthlyTotals as $month => $total) {
+            $yValues[$month - 1] = $total; // Adjust month index for zero-based array
+        }
+    
+        // Debug the yValues array
+        // dd($yValues); // Uncomment for debugging purposes
+    
+
+        return view('admin.dashboard')->with(compact('sectionsCount','categoriesCount','productsCount','couponsCount','ordersCount','usersCount','subscribersCount','yValues'));
     }
+
     public function updateAdminPassword(Request $request){
         Session::put('page','update_admin_password');
         if($request->isMethod('post')){

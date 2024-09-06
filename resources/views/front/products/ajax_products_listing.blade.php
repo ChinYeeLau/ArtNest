@@ -4,16 +4,16 @@
     <div class="col-md-6 col-lg-6 col-xl-4">
         <!-- Product Card -->
         <div class="rounded position-relative fruite-item"> 
-            <div class="fruite-img" href="{{url('product/'.$product['id'])}}">
+            <div >
                 <!-- Product Image -->
                 <?php $product_image_path='front/images/product_images/small/'.$product['product_image']; ?>
                 @if(!empty($product['product_image']) && file_exists($product_image_path))
-                <img src="{{asset($product_image_path)}}" class="img-fluid w-100 rounded-top" alt="">
+                <a href="{{url('product/'.$product['id'])}}"><img src="{{asset($product_image_path)}}" class="img-fluid w-100 rounded-top" alt=""></a>
                 @else
-                <img src="{{ asset('front/images/product_images/small/no-image.png')}}" class="img-fluid w-100 rounded-top" alt="">
+                <a href="{{url('product/'.$product['id'])}}"><img src="{{ asset('front/images/product_images/small/no-image.png')}}" class="img-fluid w-100 rounded-top" alt=""></a>
                 @endif
             </div>
-            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+            <div class="p-4 border border-secondary border-top-0 rounded-bottom" >
                 <!-- Product Details -->
                 <h6>{{$product['product_code']}}</h6>
                 <h4>
