@@ -11,7 +11,6 @@
                         <!--<p class="card-description">
                             Add class <code>.table-bordered</code>
                         </p>-->
-                      
                         <div class="table-responsive pt-3">
                             <table id="orders" class="table table-bordered">
                                 <thead>

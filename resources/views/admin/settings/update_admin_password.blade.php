@@ -32,7 +32,7 @@
               <div class="card">
                 <div class="card-body">
                   
-                  <h4 class="card-title">Update Admin Password</h4>
+                  <h4 class="card-title">Update Password</h4>
                   @if(Session::has('error_message'))
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Error</strong> {{Session::get('error_message')}}
@@ -52,7 +52,7 @@
                   <form class="forms-sample" action="{{url('admin/update-admin-password')}}" method="post" name="updateAdminPasswordForm" id="updateAdminPasswordForm">@csrf
                   
                     <div class="form-group">
-                      <label >Admin Username/Email</label>
+                      <label >Username/Email</label>
                       <input class="form-control" value="{{$adminDetails['email']}}" readonly="">
                     </div>
                     <div class="form-group">

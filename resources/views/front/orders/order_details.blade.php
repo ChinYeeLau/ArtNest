@@ -7,6 +7,11 @@
     <div class="container-fluid py-5 mt-5">
         <div class="container py-5">
             <div class="row mb-4">
+                <div class="pb-5">
+                    <a href="javascript:void(0);" onclick="history.back();">
+                        <h6>&lt; Back</h6>
+                    </a>
+                </div>
                 <div class="col-12 text-center">
                     <h3>Order Details #{{$orderDetails['id']}}</h3>
                 </div>

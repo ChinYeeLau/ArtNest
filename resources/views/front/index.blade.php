@@ -34,7 +34,7 @@
                     <div class="row" style=" padding-bottom:100px;">
                         <div class="col-lg-6 text-overlay">
                             <!-- Adjust padding as needed -->
-                            <h1 class="display-3" style="text-align: left; font-weight: 600; padding-bottom:30px;padding-top:30px;">
+                            <h1 class="display-3 abril-fatface-regular " style="text-align: left;  padding-bottom:30px;padding-top:30px; ">
                                 Entrepreneurial Spirit <br>For A Brighter Future
                             </h1>
                             <p class="text-dark bannerdescription" style="text-align: left;">
@@ -63,23 +63,23 @@
                     <div class="col-lg-12">
                         <ul class="nav nav-pills d-inline-flex text-center mb-5 justify-content-center">
                             <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill active tab-link" data-bs-toggle="pill" href="#tab-1">
-                                    <span class="text-dark">New Products</span>
+                                <a class="d-flex m-2 py-2 bg-light rounded-pill active tab-link " data-bs-toggle="pill" href="#tab-1">
+                                    <span class="color-change" >New Products</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="d-flex py-2 m-2 bg-light rounded-pill tab-link" data-bs-toggle="pill" href="#tab-2">
-                                    <span class="text-dark">Best Seller</span>
+                                    <span >Best Seller</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="d-flex m-2 py-2 bg-light rounded-pill tab-link" data-bs-toggle="pill" href="#tab-3">
-                                    <span class="text-dark">Discounted Products</span>
+                                    <span >Discounted Products</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="d-flex m-2 py-2 bg-light rounded-pill tab-link" data-bs-toggle="pill" href="#tab-4">
-                                    <span class="text-dark">Featured Products</span>
+                                    <span >Featured Products</span>
                                 </a>
                             </li>
                         </ul>

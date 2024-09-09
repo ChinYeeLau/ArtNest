@@ -40,38 +40,38 @@
                     <p id="account-error"></p>
                     <p id="account-success"></p>
                     <form id="accountForm" action="{{url('user/account')}}" method="post" enctype="multipart/form-data">@csrf
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-4" style="text-align: left !important;">
                             <label class="form-label" for="user-image">Photo</label>
                             <input type="file" class="form-control" id="user-image" name="image" value="{{Auth::user()->image}}">
                             <p id="account-image"></p>
                             @if (!empty(Auth::user()->image))
-                                <div class="mt-2">
+                                <div class="mt-2" style="text-align: center !important;">
                                     <a target="_blank" href="{{ url('front/images/photos/' . Auth::user()->image) }}">View Image</a>
                                     <input type="hidden" name="current_user_image" value="{{ Auth::user()->image }}">
                                 </div>
                             @endif
                         </div>
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-4" style="text-align: left !important;" >
                             <label class="form-label" for="user-email">Email</label>
                             <input type="email" name="email" id="user-email" class="form-control form-control-lg" value="{{Auth::user()->email}}" readonly />
                             <p id="account-email"></p>
                         </div>
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-4" style="text-align: left !important;">
                             <label class="form-label" for="user-name">Name</label>
                             <input type="text" name="name" id="user-name" class="form-control form-control-lg" value="{{Auth::user()->name}}" />
                             <p id="account-name"></p>
                         </div>
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-4" style="text-align: left !important;">
                             <label class="form-label" for="user-address">Full Address</label>
                             <input type="text" name="address" id="user-address" class="form-control form-control-lg" value="{{Auth::user()->address}}" />
                             <p id="account-address"></p>
                         </div>
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-4" style="text-align: left !important;">
                             <label class="form-label" for="user-state">State</label>
                             <input type="text" name="state" id="user-state" class="form-control form-control-lg" value="{{Auth::user()->state}}" />
                             <p id="account-state"></p>
                         </div>
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-4" style="text-align: left !important;">
                             <label class="form-label" for="user-mobile">Mobile</label>
                             <input type="text" name="mobile" id="user-mobile" class="form-control form-control-lg" value="{{Auth::user()->mobile}}" />
                             <p id="account-mobile"></p>
@@ -90,17 +90,17 @@
                     <p id="password-error"></p>
                     <p id="password-success"></p>
                     <form id="passwordForm" action="javascript:;" method="POST">@csrf
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-4" style="text-align: left !important;">
                             <label class="form-label" for="current-password">Current Password</label>
                             <input type="password" name="current_password" id="current-password" placeholder="Current Password" class="form-control form-control-lg" />
                             <p id="password-current_password"></p>
                         </div>
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-4" style="text-align: left !important;">
                             <label class="form-label" for="new-password">New Password</label>
                             <input type="password" name="new_password" id="new-password" placeholder="New Password" class="form-control form-control-lg" />
                             <p id="password-new_password"></p>
                         </div>
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-4" style="text-align: left !important;">
                             <label class="form-label" for="confirm-password">Confirm Password</label>
                             <input type="password" name="confirm_password" id="confirm-password" placeholder="Confirm Password" class="form-control form-control-lg" />
                             <p id="password-confirm_password"></p>

@@ -26098,8 +26098,10 @@ body.avgrund-active {
 /* Context Menu */
 .context-menu-icon:before {
   color: #000;
-  font: normal normal normal 15px/1 "themify";
+  padding-right:10px;
+  font: normal normal normal 16px/1 "themify";
 }
+
 
 .context-menu-icon.context-menu-icon-cut:before {
   content: '\e613';
@@ -28525,9 +28527,12 @@ div.tagsinput span.tag a {
   color: #6C7383;
 }
 
+
+
 .rtl .sidebar .nav .nav-item .nav-link i.menu-icon {
   margin-left: 2rem;
   margin-right: 0;
+  
 }
 
 .sidebar .nav .nav-item .nav-link i.menu-icon:before {
@@ -28625,6 +28630,7 @@ div.tagsinput span.tag a {
   background: #f26b4e;
   color: #fff;
 }
+
 
 .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link {
   margin: 0;

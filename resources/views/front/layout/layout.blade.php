@@ -95,7 +95,10 @@
 			}
 		});
 	</script>
-
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+  </style>
+  
     @include('front.layout.scripts')
 
     </body>

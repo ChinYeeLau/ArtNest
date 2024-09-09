@@ -73,7 +73,7 @@
                                             <a href="{{ url('product/' . $item['product_id']) }}">
                                                 <div class="d-flex align-items-center mt-2">
                                                     <img src="{{ asset('front/images/product_images/small/' . $item['product']['product_image']) }}" class="img-fluid me-5" style="width: 80px; height: 80px;" alt="Product">
-                                                    <p>{{ $item['product']['product_name'] }}<br>Size: {{ $item['size'] }}</p>
+                                                    <p>{{ $item['product']['product_name'] }}<br>Variable: {{ $item['size'] }}</p>
                                                 </div>
                                             </a>
                                         </th>
@@ -170,9 +170,10 @@
                         </div>
                     </div>
 
-                    <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                        <button id= "placeOrder" type="submit" class="rounded-pill tab-link text-uppercase w-100 ">Place Order</button>
+                    <div class="row text-center align-item-center justify-content-center pt-4 ">
+                        <button id= "placeOrder" type="submit" class=" active tab-link w-100 fs-3 fw-bold" style="color:white;font-weight:600;padding:20px ">Place Order</button>
                     </div>
+                </div>
                 </form>
                 </div>
             </div>

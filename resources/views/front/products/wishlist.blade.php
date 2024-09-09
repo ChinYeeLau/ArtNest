@@ -5,6 +5,8 @@
   
    <div class="container py-5 h-100">
     <div class="container-fluid py-5 mt-5">
+      <h2 style="text-align:center">My Wishlist</h2>
+
     <div class="container py-5">
         @if(Session::has('error_message'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -23,8 +25,13 @@
         </div>
         @endif
         <div id="appendWishlistItems">
-       @include ('front.products.wishlist_items')
+            @include('front.products.wishlist_items')
+        </div>
+  
+   
     </div>
+   
+ 
     </div>
 </div>
 </div>

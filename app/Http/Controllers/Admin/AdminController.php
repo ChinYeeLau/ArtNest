@@ -27,43 +27,84 @@ class AdminController extends Controller
 {
     public function dashboard(){
         Session::put('page','dashboard');
-    
-        // Get counts for various entities
-        $sectionsCount = Section::count();
-        $categoriesCount = Category::count();
-        $productsCount = Product::count();
-        $couponsCount = Coupon::count();
-        $ordersCount = Order::count();
-        $usersCount = User::count();
-        $subscribersCount = NewsletterSubscriber::count();
-    
-        // Get the current admin ID
-        $adminId = Auth::guard('admin')->user()->id;
-    
-        // Fetch monthly totals based on product price and quantity where admin_id matches
-        $monthlyTotals = DB::table('orders_products')
-            ->where('admin_id', $adminId) // Ensure this column exists in orders_products
-            ->join('orders', 'orders.id', '=', 'orders_products.order_id') // Join to get created_at
-            ->selectRaw('MONTH(orders.created_at) as month, SUM(orders_products.product_price * orders_products.product_qty) as total')
-            ->groupBy('month')
-            ->orderBy('month')
-            ->pluck('total', 'month')
-            ->toArray();
-    
-        // Initialize an array with 12 zeros, one for each month
-        $yValues = array_fill(0, 12, 0);
-    
-        // Populate the yValues array with actual totals from the database
-        foreach ($monthlyTotals as $month => $total) {
-            $yValues[$month - 1] = $total; // Adjust month index for zero-based array
-        }
-    
-        // Debug the yValues array
-        // dd($yValues); // Uncomment for debugging purposes
-    
+        
+            // Get the current admin
+            $admin = Auth::guard('admin')->user();
+            $adminType = $admin->type;
+            $vendorId = $admin->vendor_id;
+        
+            // Get counts for various entities
+            $sectionsCount = Section::count();
+            $categoriesCount = Category::count();
+        
+            if ($adminType == "vendor") {
+                // For vendor type admins, filter counts by vendor_id
+                $productsCount = Product::where('vendor_id', $vendorId)->count();
+                $ordersCount = Order::whereHas('orders_products', function ($query) use ($vendorId) {
+                    $query->where('vendor_id', $vendorId);
+                })->count();
+            } else {
+                // For other admin types, show totals across all vendors
+                $productsCount = Product::count();
+                $ordersCount = Order::count();
+            }
+        
+            $couponsCount = Coupon::count();
+            $usersCount = User::count();
+            $subscribersCount = NewsletterSubscriber::count();
+   // Get the current admin
+   $admin = Auth::guard('admin')->user();
+   $adminId = $admin->id;
+   $adminType = $admin->type;
+   $vendorId = $admin->vendor_id;
 
-        return view('admin.dashboard')->with(compact('sectionsCount','categoriesCount','productsCount','couponsCount','ordersCount','usersCount','subscribersCount','yValues'));
-    }
+   // Fetch monthly totals based on product price and quantity where admin_id matches
+   $monthlyTotals = DB::table('orders_products')
+       ->where('admin_id', $adminId) // Ensure this column exists in orders_products
+       ->join('orders', 'orders.id', '=', 'orders_products.order_id') // Join to get created_at
+       ->selectRaw('MONTH(orders.created_at) as month, SUM(orders_products.product_price * orders_products.product_qty) as total')
+       ->groupBy('month')
+       ->orderBy('month')
+       ->pluck('total', 'month')
+       ->toArray();
+
+   // Initialize an array with 12 zeros, one for each month
+   $yValues = array_fill(0, 12, 0);
+
+   // Populate the yValues array with actual totals from the database
+   foreach ($monthlyTotals as $month => $total) {
+       $yValues[$month - 1] = $total; // Adjust month index for zero-based array
+   }
+
+   // Fetch recent orders based on vendor ID for vendor type
+   if ($adminType == "vendor") {
+       $orders = Order::whereHas('orders_products', function($query) use ($vendorId) {
+           $query->where('vendor_id', $vendorId);
+       })
+       ->orderBy('created_at', 'desc')
+       ->get();
+   } else {
+       // Fetch all orders for other admin types
+       $orders = Order::with('orders_products')
+           ->orderBy('created_at', 'desc')
+           ->get();
+   }
+   // Fetch products based on vendor ID for vendor type
+   $products = Product::with(['section' => function ($query) {
+    $query->select('id', 'name');
+}, 'category' => function ($query) {
+    $query->select('id', 'category_name');
+}]);
+
+if ($adminType == "vendor") {
+    $products = $products->where('vendor_id', $vendorId) ->limit(2)->orderBy('created_at', 'desc');
+}
+
+$products = $products->get();
+
+
+   return view('admin.dashboard')->with(compact('sectionsCount', 'categoriesCount', 'productsCount', 'couponsCount','ordersCount', 'usersCount', 'subscribersCount', 'yValues', 'orders','products' ));
+}
 
     public function updateAdminPassword(Request $request){
         Session::put('page','update_admin_password');

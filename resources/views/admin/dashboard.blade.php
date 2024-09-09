@@ -2,32 +2,6 @@
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="row">
-            <div class="col-md-12 grid-margin">
-                <div class="row">
-                    <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                        <h3 class="font-weight-bold">Welcome {{ Auth::guard('admin')->user()->name }} </h3>
-                        <h6 class="font-weight-normal mb-0">All systems are running smoothly!</h6>
-                    </div>
-                    <div class="col-12 col-xl-4">
-                        <div class="justify-content-end d-flex">
-                            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                                <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                                    <a class="dropdown-item" href="#">January - March</a>
-                                    <a class="dropdown-item" href="#">March - June</a>
-                                    <a class="dropdown-item" href="#">June - August</a>
-                                    <a class="dropdown-item" href="#">August - November</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         @if(Auth::guard('admin')->user()->type == "vendor")
             <!-- Vendor View -->
             <div class="row">
@@ -54,15 +28,176 @@
                         <div class="col-md-12 mb-4 stretch-card transparent">
                             @if(Auth::guard('admin')->user()->type == "vendor")
                             <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-                            @endif                        </div>
+                            @endif                      
+                          </div>
                     </div>
                 </div>
+                <div class="col-md-6 grid-margin transparent">
+                    <h4 class="font-weight-bold " style="padding-bottom:10px">New Products</h4>
+                <div class="table-responsive border-top" >
+                    <table  class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    ID
+                                </th>
+                              
+                               
+                                <th>
+                                    Product 
+                                 </th>
+                                   <th>
+                                   Status
+                                     </th>
+                                     <th>
+                                       Actions
+                                  </th>
+                             </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($products as $product)
+                           
+                            <tr>
+                                <td>
+                                    {{$product['id']}}
+                                </td>
+                              
+                                <td>
+                                    @if(!empty($product['product_image']))
+                                    <img style="width:120px;height:120px;padding-right:10px" src="{{asset('front/images/product_images/small/'.$product['product_image'])}}">{{$product['product_name']}}
+                                    ( @if(isset($product['category']['category_name']))
+                                    {{$product['category']['category_name']}}
+                                      @endif)
+                                    @else
+                                    <img style="width:120px;height:120px;padding-right:10px"  src="{{asset('front/images/product_images/small/no-image.png'.$product['product_image'])}}">{{$product['product_name']}}
+                                    ( @if(isset($product['category']['category_name']))
+                                    {{$product['category']['category_name']}}
+                                      @endif)
+
+                                @endif
+                                </td>
+                                <td>
+                                    @if($product['status']==1)
+                                    <a class="updateProductStatus" id="product-{{$product['id']}}" product_id="{{$product['id']}}" href="javascript:void(0)"><i style="font-size:25px"class="mdi mdi-bookmark-check" status="Active"></i></a>
+                                    @else
+                                    <a class="updateProductStatus" id="product-{{$product['id']}}" product_id="{{$product['id']}}" href="javascript:void(0)"><i style="font-size:25px" class="mdi mdi-bookmark-outline"status="Inactive"></i></a>
+                                    @endif
+                                </td>
+                                <td>
+                                   
+                                    <a title="Edit Product"href="{{url('admin/add-edit-product/'.$product['id'])}}"><i  style="font-size:25px" class="mdi mdi-pencil-box"></i></a>
+                                    <a title="Add Attributes" href="{{url('admin/add-edit-attributes/'.$product['id'])}}"><i  style="font-size:25px" class="mdi mdi-plus-box"></i></a>
+                                    <a title="Add Multiple Images" href="{{url('admin/add-images/'.$product['id'])}}"><i  style="font-size:25px" class="mdi mdi-library-plus"></i></a>
+
+                                    <?php /*<a title="product" class="confirmDelete"  href="{{url('admin/delete-product/'.$product['id'])}}" ><i style="font-size:25px" class="mdi mdi-file-excel-box"></i></a>*/ ?>
+                                    <a href="javascript:void(0)" class="confirmDelete" module="product" moduleid="{{$product['id']}}"><i style="font-size:25px" class="mdi mdi-file-excel-box"></i></a>
+
+                                </td>
+                            </tr>
+                          @endforeach
+                      
+                        </tbody>
+                    </table>
+                    <a href="{{url('admin/products')}}"><h6 style="text-align: right;color:blue">>More Products</h6></a>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+           
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="font-weight-bold ">Orders</h4>
+                            <!--<p class="card-description">
+                                Add class <code>.table-bordered</code>
+                            </p>-->
+                            <div class="table-responsive pt-3">
+                                <table id="orders" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Order ID
+                                            </th>
+                                            <th>
+                                                Order Date
+                                            </th>
+                                            <th>
+                                                Customer Name
+                                            </th>
+                                            <th>
+                                               Customer Email
+                                            </th>
+                                            <th>
+                                               Ordered Products
+                                            </th>
+                                            <th>
+                                                Order Amount
+                                            </th>
+                                            <th>
+                                                Order Status
+                                            </th>
+                                            <th>
+                                               Payment Method
+                                            </th>
+                                                 <th>
+                                                   Actions
+                                              </th>
+                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($orders as $order)
+                                        @if ($order['orders_products'])
+                                        <tr>
+                                            <td>
+                                                {{$order['id']}}
+                                            </td>
+                                            <td>
+                                                {{ date('Y-m-d h:i:s', strtotime($order['created_at'])) }}
+                                            </td>
+                                            <td>
+                                                {{$order['name']}}
+                                            </td>
+                                            <td>
+                                                {{$order['email']}}
+                                            </td>
+                                            <td>
+                                                @foreach($order['orders_products'] as $product)
+                                              {{ $product['product_code'] }} ({{ $product['product_qty'] }} )<br>
+                                              @endforeach
+                                            </td>
+                                            <td>
+                                                {{$order['grand_total']}}
+                                            </td>
+                                            <td>
+                                                {{$order['order_status']}}
+                                            </td>
+                                            <td>
+                                                {{$order['payment_method']}}
+                                            </td>
+                                            <td>
+                                                <a title="View Order Details" href="{{url('admin/orders/'.$order['id'])}}"><i style="font-size:25px" class="mdi mdi-file-document"></i></a>
+                                                <a target="_blank" title="View Order Invoice" href="{{url('admin/orders/invoice/'.$order['id'])}}"><i style="font-size:25px" class="mdi mdi-printer"></i></a>
+                                                <a target="_blank" title="Print PDF Invoice" href="{{url('admin/orders/invoice/pdf/'.$order['id'])}}"><i style="font-size:25px" class="mdi mdi-file-pdf"></i></a>
+                                            </td>
+                                          
+                                           
+                                        </tr>
+                                        @endif
+                                      @endforeach
+                                  
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           
             </div>
         @else
         <div class="row">
-            <div class="col-md-6 grid-margin transparent">
+            <div class="col-md-12 grid-margin transparent">
                 <div class="row">
-                    <div class="col-md-6 mb-4 stretch-card transparent">
+                    <div class="col-md-3 mb-4 stretch-card transparent">
                         <div class="card card-light-blue">
                             <div class="card-body">
                                 <p class="mb-4">Total Products</p>
@@ -70,7 +205,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-4 stretch-card transparent">
+                    
+                    <div class="col-md-3 mb-4 stretch-card transparent">
                         <div class="card card-tale">
                             <div class="card-body">
                                 <p class="mb-4">Total Orders</p>
@@ -78,36 +214,27 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 mb-4 stretch-card transparent">
-                        @if(Auth::guard('admin')->user()->type == "vendor")
-                        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-                        @endif                        </div>
-                </div>
-            </div>
-        </div>
-            <!-- Non-Vendor View -->
-            <div class="row">
-                <div class="col-md-6 grid-margin transparent">
-                    <div class="row">
-                        <div class="col-md-6 mb-4 stretch-card transparent">
-                            <div class="card card-tale">
-                                <div class="card-body">
-                                    <p class="mb-4">Total Sections</p>
-                                    <p class="fs-30 mb-2">{{ $sectionsCount }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4 stretch-card transparent">
-                            <div class="card card-dark-blue">
-                                <div class="card-body">
-                                    <p class="mb-4">Total Categories</p>
-                                    <p class="fs-30 mb-2">{{ $categoriesCount }}</p>
-                                </div>
+                    <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="card card-tale">
+                            <div class="card-body">
+                                <p class="mb-4">Total Sections</p>
+                                <p class="fs-30 mb-2">{{ $sectionsCount }}</p>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="card card-dark-blue">
+                            <div class="card-body">
+                                <p class="mb-4">Total Categories</p>
+                                <p class="fs-30 mb-2">{{ $categoriesCount }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-6 grid-margin transparent">
                     <div class="row">
                         <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                             <div class="card card-light-blue">
@@ -126,30 +253,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 grid-margin transparent">
-                    <div class="row">
-                        <div class="col-md-6 mb-4 stretch-card transparent">
-                            <div class="card card-tale">
-                                <div class="card-body">
-                                    <p class="mb-4">Total Orders</p>
-                                    <p class="fs-30 mb-2">{{ $ordersCount }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4 stretch-card transparent">
-                            <div class="card card-dark-blue">
-                                <div class="card-body">
-                                    <p class="mb-4">Total Users</p>
-                                    <p class="fs-30 mb-2">{{ $usersCount }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-        @endif
+        </div>
     </div>
+            
+        @endif
+        
+    
+
     <!-- content-wrapper ends -->
     @include('admin.layout.footer')
 </div>

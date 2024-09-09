@@ -57,7 +57,7 @@
               <div style="text-align: start;"> 
                 <a href="{{url('vendor/forgot-password')}}"style="color:darkorange !important;">Forgot Password?</a>
               </div>
-              <button class="btn btn-primary btn-lg mt-4" type="submit">Login</button>
+              <button class=" btn-primary btn-lg mt-4 text-white" type="submit">Login</button>
   
               </form>
   

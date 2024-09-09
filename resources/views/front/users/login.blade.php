@@ -61,7 +61,7 @@
                               <a href="{{ url('user/forgot-password') }}" style="color:darkorange !important;">Forgot Password?</a>
                           </div>
 
-                          <button class="btn btn-primary btn-lg mt-4" type="submit">Login</button>
+                          <button class="btn-primary btn-lg mt-4 text-white" type="submit">Login</button>
                           <div style="text-align: start;padding-top:20px;">
                               <a href="{{ url('user/register') }}" style="color:darkorange !important;">Register Account</a>
                           </div>

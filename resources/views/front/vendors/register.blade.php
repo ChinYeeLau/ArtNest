@@ -66,7 +66,7 @@
                         <label class="form-check-label" for="accept">I've read and accept the
                              <a href="terms-and-conditions.html" class="red-text">term & condition</a></label>
                     </div>
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+                    <button class=" btn-primary btn-lg btn-block text-white" type="submit">Register</button>
                 </form>
                 
               </div>

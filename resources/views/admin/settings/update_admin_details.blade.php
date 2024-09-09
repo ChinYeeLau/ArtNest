@@ -32,7 +32,7 @@
               <div class="card">
                 <div class="card-body">
                   
-                  <h4 class="card-title">Update Admin Details</h4>
+                  <h4 class="card-title">Update Details</h4>
                   @if(Session::has('error_message'))
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>Error</strong> {{Session::get('error_message')}}
@@ -63,7 +63,7 @@
                   <form class="forms-sample" action="{{url('admin/update-admin-details')}}" method="post" enctype="multipart/form-data" >@csrf
                   
                     <div class="form-group">
-                      <label >Admin Username/Email</label>
+                      <label > Username/Email</label>
                       <input class="form-control" value="{{Auth::guard('admin')->user()->email}}" readonly="">
                     
                 
@@ -81,7 +81,7 @@
                       <input type="text" class="form-control" id="admin_mobile" placeholder="Enter 10 Digit Mobile Number" name="admin_mobile"value="{{Auth::guard('admin')->user()->mobile}}" required="" maxlength="10"minlength="10">
                     </div>
                     <div class="form-group">
-                      <label for="admin_image">Admin Photo</label>
+                      <label for="admin_image"> Photo</label>
                       <input type="file" class="form-control" id="admin_image"  name="admin_image" >
                       @if(!empty(Auth::guard('admin')->user()->image))
                       <a target="_blank" href="{{url('admin/images/photos/'.Auth::guard('admin')->user()->image)}}">View Image</a>

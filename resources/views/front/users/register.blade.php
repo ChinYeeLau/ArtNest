@@ -78,7 +78,7 @@
                             <p id="register-accept"></p>
                               
                              
-                    <button class="btn btn-primary btn-lg btn-block " type="submit">Register</button>
+                    <button class=" btn-primary btn-lg btn-block text-white" type="submit">Register</button>
                    <div style="text-align: start;padding-top:10px;"> 
                       <a href="{{url('user/login')}}" style="color:darkorange !important;">Already have an account?</a>
                     </div>

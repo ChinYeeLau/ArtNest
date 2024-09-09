@@ -79,7 +79,7 @@ $sections=Section::sections();
                        <span class="material-symbols-outlined icon"> person </span>   
                     @endif
                     </button>
-                    <div class="m-0 dropdown-content" style="position: absolute; right: 2;">
+                    <div class="m-0 dropdown-content" style="position: absolute; right: 0;">
                         @if (Auth::check())
                             <a href="{{url('user/account')}}">Profile</a>
                             <a href="{{url('user/orders')}}">My Orders</a>

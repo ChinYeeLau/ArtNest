@@ -2,7 +2,7 @@
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="{{url('/admin/dashboard')}}"><img src="{{asset('admin/images/ART.NEST.PNG')}}" style="height:20px;margin-left:20px"alt="logo"/></a>
       <!--<h2>ArtNest</h2>-->
-        <a class="navbar-brand brand-logo-mini" href="{{url('/admin/dashboard')}}"><img src="{{asset('admin/images/ART.NEST.PNG')}}" style="height:10px;margin-left:20px" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="{{url('/admin/dashboard')}}"><img src="{{asset('admin/images/ART.NEST.PNG')}}" style="height:10px;margin-left:15px" alt="logo"/></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">

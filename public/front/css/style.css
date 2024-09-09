@@ -1,4 +1,9 @@
-
+.abril-fatface-regular {
+    font-family: "Abril Fatface", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
 .fixed-top {
     transition: top 0.3s ease-in-out;
 }
@@ -119,6 +124,16 @@
     width: 189px;
     height: 40px;
     justify-content: center;
+}
+ .active .color-change{
+    color:#fff !important;
+}
+.tab-link .active{
+    width: 189px;
+    height: 40px;
+    justify-content: center;
+    color:white!important;
+    text-decoration: white !important;
 }
 
 .form-control:focus {
@@ -416,7 +431,7 @@
  
   
   .display-3{
-      font-size: 64px;
+      font-size: 60px;
       margin-left: 100px;
       color:#000;
   }
@@ -736,9 +751,7 @@
 
 }
 
-.tab-link.active span {
-    color: white !important;
-}
+
 .tab-link{
     background-color:#fff!important;
     border-radius: 10px !important;
