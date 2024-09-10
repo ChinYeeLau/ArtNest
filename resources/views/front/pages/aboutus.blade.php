@@ -17,7 +17,7 @@
 <div class="container relative d-block" style="margin-bottom: 100px;">
 <div class="row">
 <video width="1440" controls>
-    <source src="mov_bbb.mp4" type="video/mp4">
+    <source src="{{asset('front/images/intro.mp4')}}" type="video/mp4">
   </video>
 </div> 
 </div>
