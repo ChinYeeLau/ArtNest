@@ -193,6 +193,11 @@
                 </div>
            
             </div>
+            <div>
+            </div>
+    </div>
+            @include('admin.layout.footer')
+
         @else
         <div class="row">
             <div class="col-md-12 grid-margin transparent">
@@ -256,14 +261,16 @@
             </div>
         </div>
     </div>
-            
+    @include('admin.layout.footer')
+
         @endif
         
     
 
     <!-- content-wrapper ends -->
-    @include('admin.layout.footer')
+   
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>

@@ -11083,8 +11083,10 @@ fieldset:disabled .wizard > .actions a,
 
 .btn-primary, .wizard > .actions a {
   color: #fff;
-  background-color: #f26b4e;
-  border-color: #f26b4e;
+  font-weight: bold !important;
+  background-color:none !important;
+    background-image: linear-gradient(to right, #f8a239, #f26b4e);
+    border:none !important;
 }
 
 .btn-primary:hover, .wizard > .actions a:hover {
@@ -11311,6 +11313,7 @@ fieldset:disabled .wizard > .actions a,
   color: #212529;
   background-color: #f8f9fa;
   border-color: #f8f9fa;
+  font-weight: bold !important;
 }
 
 .btn-light:hover {
@@ -19699,7 +19702,7 @@ code {
 
 /* Footer */
 .footer {
-  background: #F5F7FF;
+  background: #fafafa;
   padding: 30px 2.45rem;
   transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
@@ -19973,6 +19976,9 @@ code {
   .demo-chart {
     height: 200px;
   }
+}
+.bg-color th{
+  background-color:#FF8C00 !important;
 }
 
 .documentation {

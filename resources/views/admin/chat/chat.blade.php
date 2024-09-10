@@ -60,7 +60,9 @@
             </div>
         </div>
     </div>
+    @include('admin.layout.footer')
 </div>
+
 
 <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -3,27 +3,14 @@
     <ul class="nav">
         <li class="nav-item">
             <a @if(Session::get('page')=="dashboard")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" href="{{url('admin/dashboard')}}">
-                <i class="material-symbols-outlined menu-icon">  dashboard</i>     
+                <i class="material-symbols-outlined menu-icon"@if(Session::get('page')=="dashboard")style="background:#f26b4e !important; color:#fff!important;"@endif>  dashboard</i>     
                        <span class="menu-title">Dashboard</span>
             </a>
         </li>
         @if(Auth::guard('admin')->user()->type=="vendor")
         <li class="nav-item">
-            <a @if(Session::get('page')=="update_admin_password"||Session::get('page')=="update_admin_details")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-settings" aria-expanded="false" aria-controls="ui-settings">
-                <i class="material-symbols-outlined menu-icon"> settings </i>   
-          <span class="menu-title">Settings</span>
-            <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-settings">
-                <ul class="nav flex-column sub-menu" style="background:#fff!important;color:#f26b4e !important;">
-                    <li class="nav-item"> <a @if(Session::get('page')=="update_admin_details")style="background:#f26b4e !important; color:#fff!important;"@else style="background:#fff !important;color:#f26b4e!important" @endif class="nav-link" href="{{url('admin/update-admin-details')}}"> Update Details</a></li>
-                    <li class="nav-item"> <a  @if(Session::get('page')=="update_admin_password")style="background:#f26b4e !important; color:#fff!important;"@else style="background:#fff !important;color:#f26b4e!important" @endif  class="nav-link" href="{{url('admin/update-admin-password')}}" > Update Password</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a @if(Session::get('page')=="update_personal_details"||Session::get('page')=="update_business_details"||Session::get('page')=="update_bank_details")@endif class="nav-link" data-toggle="collapse" href="#ui-vendors" aria-expanded="false" aria-controls="ui-vendors">
-                <i class="material-symbols-outlined  menu-icon"> person</i>         
+            <a @if(Session::get('page')=="update_personal_details"||Session::get('page')=="update_business_details"||Session::get('page')=="update_bank_details")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-vendors" aria-expanded="false" aria-controls="ui-vendors">
+                <i class="material-symbols-outlined  menu-icon"@if(Session::get('page')=="update_personal_details"||Session::get('page')=="update_business_details"||Session::get('page')=="update_bank_details")style="background:#f26b4e !important; color:#fff!important;"@endif> person</i>         
                        <span class="menu-title">Vendor Details</span>
             <i class="menu-arrow"></i>
             </a>
@@ -37,7 +24,7 @@
         </li>
         <li class="nav-item">
             <a @if(Session::get('page')=="products")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-catalogue" aria-expanded="false" aria-controls="ui-catalogue">
-                <i class="material-symbols-outlined menu-icon"> space_dashboard </i>        
+                <i class="material-symbols-outlined menu-icon "@if(Session::get('page')=="products")style="background:#f26b4e !important; color:#fff!important;"@endif > space_dashboard </i>        
                     <span class="menu-title">Catalogue Management</span>
             <i class="menu-arrow"></i>
             </a>
@@ -51,7 +38,7 @@
         </li>
         <li class="nav-item">
             <a @if(Session::get('page')=="orders")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-orders" aria-expanded="false" aria-controls="ui-orders">
-                <i class="material-symbols-outlined menu-icon">  orders  </i>   
+                <i class="material-symbols-outlined menu-icon"@if(Session::get('page')=="orders")style="background:#f26b4e !important; color:#fff!important;"@endif>  orders  </i>   
                                  <span class="menu-title">Orders Management</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -65,7 +52,7 @@
         </li>
         <li class="nav-item">
             <a @if(Session::get('page')=="chats")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-chats" aria-expanded="false" aria-controls="ui-chats">
-                <i class="material-symbols-outlined menu-icon">forum </i>
+                <i class="material-symbols-outlined menu-icon"@if(Session::get('page')=="chats")style="background:#f26b4e !important; color:#fff!important;"@endif>forum </i>
                 <span class="menu-title">Chat</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -77,11 +64,24 @@
                 </ul>
             </div>
         </li>
+        <li class="nav-item">
+            <a @if(Session::get('page')=="update_admin_password"||Session::get('page')=="update_admin_details")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-settings" aria-expanded="false" aria-controls="ui-settings">
+                <i class="material-symbols-outlined menu-icon"@if(Session::get('page')=="update_admin_password"||Session::get('page')=="update_admin_details")style="background:#f26b4e !important; color:#fff!important;"@endif> settings </i>   
+          <span class="menu-title">Settings</span>
+            <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-settings">
+                <ul class="nav flex-column sub-menu" style="background:#fff!important;color:#f26b4e !important;">
+                    <li class="nav-item"> <a @if(Session::get('page')=="update_admin_details")style="background:#f26b4e !important; color:#fff!important;"@else style="background:#fff !important;color:#f26b4e!important" @endif class="nav-link" href="{{url('admin/update-admin-details')}}"> Update Details</a></li>
+                    <li class="nav-item"> <a  @if(Session::get('page')=="update_admin_password")style="background:#f26b4e !important; color:#fff!important;"@else style="background:#fff !important;color:#f26b4e!important" @endif  class="nav-link" href="{{url('admin/update-admin-password')}}" > Update Password</a></li>
+                </ul>
+            </div>
+        </li>
         @else
         
         <li class="nav-item">
             <a @if(Session::get('page')=="view_admins"||Session::get('page')=="view_vendors"||Session::get('page')=="view_all")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-admins" aria-expanded="false" aria-controls="ui-admins">
-                <i class="material-symbols-outlined menu-icon"> admin_panel_settings</i>     
+                <i class="material-symbols-outlined menu-icon"@if(Session::get('page')=="view_admins"||Session::get('page')=="view_vendors"||Session::get('page')=="view_all")style="background:#f26b4e !important; color:#fff!important;"@endif> admin_panel_settings</i>     
                            <span class="menu-title">Admin Management</span>
             <i class="menu-arrow"></i>
             </a>
@@ -97,7 +97,7 @@
         </li>
         <li class="nav-item">
             <a @if(Session::get('page')=="sections"||Session::get('page')=="categories"||Session::get('page')=="products"||Session::get('page')=="coupons"||Session::get('page')=="filters")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-catalogue" aria-expanded="false" aria-controls="ui-catalogue">
-                <i class="material-symbols-outlined menu-icon"> space_dashboard </i>        
+                <i class="material-symbols-outlined menu-icon"  @if(Session::get('page')=="sections"||Session::get('page')=="categories"||Session::get('page')=="products"||Session::get('page')=="coupons"||Session::get('page')=="filters")style="background:#f26b4e !important; color:#fff!important;"@endif > space_dashboard </i>        
             <span class="menu-title">Catalogue Management</span>
             <i class="menu-arrow"></i>
             </a>
@@ -113,7 +113,7 @@
         </li>
         <li class="nav-item">
             <a @if(Session::get('page')=="orders")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-orders" aria-expanded="false" aria-controls="ui-orders">
-                <i class="material-symbols-outlined menu-icon">  orders  </i>   
+                <i class="material-symbols-outlined menu-icon"@if(Session::get('page')=="orders")style="background:#f26b4e !important; color:#fff!important;"@endif>  orders  </i>   
                 <span class="menu-title">Orders Management</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -127,7 +127,7 @@
         </li>
         <li class="nav-item">
             <a @if(Session::get('page')=="ratings")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-ratings" aria-expanded="false" aria-controls="ui-ratings">
-                <i class="material-symbols-outlined menu-icon"> reviews </i>   
+                <i class="material-symbols-outlined menu-icon"@if(Session::get('page')=="ratings")style="background:#f26b4e !important; color:#fff!important;"@endif> reviews </i>   
                                  <span class="menu-title">Ratings Management</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -141,7 +141,7 @@
         </li>
         <li class="nav-item">
             <a  @if(Session::get('page')=="users"||Session::get('page')=="subscribers")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-users" aria-expanded="false" aria-controls="ui-users">
-                <i class="material-symbols-outlined menu-icon">group_add </i>     
+                <i class="material-symbols-outlined menu-icon"@if(Session::get('page')=="users"||Session::get('page')=="subscribers")style="background:#f26b4e !important; color:#fff!important;"@endif>group_add </i>     
                            <span class="menu-title">Users Management</span>
             <i class="menu-arrow"></i>
             </a>
@@ -155,7 +155,7 @@
        
         <li class="nav-item">
             <a  @if(Session::get('page')=="banners")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-banners" aria-expanded="false" aria-controls="ui-banners">
-                <i class="material-symbols-outlined menu-icon"> ad </i>    
+                <i class="material-symbols-outlined menu-icon"@if(Session::get('page')=="banners")style="background:#f26b4e !important; color:#fff!important;"@endif> ad </i>    
                             <span class="menu-title">Banners Management</span>
             <i class="menu-arrow"></i>
             </a>
@@ -168,7 +168,7 @@
         
         <li class="nav-item">
             <a  @if(Session::get('page')=="cmspages")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-pages" aria-expanded="false" aria-controls="ui-pages">
-                <i class="material-symbols-outlined menu-icon"> pages </i>
+                <i class="material-symbols-outlined menu-icon"@if(Session::get('page')=="cmspages")style="background:#f26b4e !important; color:#fff!important;"@endif> pages </i>
             <span class="menu-title">Pages Management</span>
             <i class="menu-arrow"></i>
             </a>
@@ -180,7 +180,7 @@
         </li>
         <li class="nav-item">
             <a  @if(Session::get('page')=="shipping")style="background:#f26b4e !important; color:#fff!important;"@endif class="nav-link" data-toggle="collapse" href="#ui-shipping" aria-expanded="false" aria-controls="ui-shipping">
-                <i class="material-symbols-outlined menu-icon">  local_shipping </i>       
+                <i class="material-symbols-outlined menu-icon"@if(Session::get('page')=="shipping")style="background:#f26b4e !important; color:#fff!important;"@endif>  local_shipping </i>       
                          <span class="menu-title">Shipping Management</span>
             <i class="menu-arrow"></i>
             </a>
