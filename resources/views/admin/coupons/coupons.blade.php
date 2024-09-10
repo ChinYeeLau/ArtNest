@@ -11,7 +11,7 @@
                         <!--<p class="card-description">
                             Add class <code>.table-bordered</code>
                         </p>-->
-                        <a style="max-width:150px; float:right; display:inlineblock;" href="{{url('admin/add-edit-coupon')}}" class="btn btn-block btn-primary ">Add coupons</a>
+                        <a style="max-width:150px; float:right; display:inlineblock;" href="{{url('admin/add-edit-coupon')}}" class="btn btn-block btn-primary ">Add Coupons</a>
                         @if(Session::has('success_message'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Success</strong> {{Session::get('success_message')}}
@@ -34,7 +34,7 @@
                                             Coupon Type
                                         </th>
                                         <th>
-                                           AmountType
+                                           Amount Type
                                         </th>
                                         <th>
                                             Amount

@@ -17,25 +17,33 @@ use App\Models\Section;?>
                         <div class="row mt-5 ">
                             <div class="col-lg-6">
                                 <div class="border rounded ">
-                                    <div class="images p-3 ">
+                                    <div class="images p-3">
                                         <div class="text-center p-4 easyzoom easyzoom--overlay easyzoom--with-thumbnails">
-                                            <a href="{{ asset('front/images/product_images/large/'.$productDetails['product_image']) }}">
-                                                <img id="main-image" src="{{ asset('front/images/product_images/large/'.$productDetails['product_image']) }}" width="250" height="250" />
+                                            @php
+                                                $mainImage = !empty($productDetails['product_image']) ? 'front/images/product_images/large/'.$productDetails['product_image'] : 'front/images/product_images/small/no-image.png';
+                                            @endphp
+                                            <a href="{{ asset($mainImage) }}">
+                                                <img id="main-image" src="{{ asset($mainImage) }}" width="250" height="250" />
                                             </a>
-                                           
                                         </div>
-                                       <div  class="thumbnails">
-                                        <a href="{{ asset('front/images/product_images/large/'.$productDetails['product_image']) }}" data-standard="{{ asset('front/images/product_images/small/'.$productDetails['product_image']) }}">
-                                            <img src="{{ asset('front/images/product_images/small/'.$productDetails['product_image']) }}" alt="" width="60" height="60" />
-                                        </a>
-                                       
-                                        @foreach($productDetails['images'] as $image)
-                                        <a href="{{ asset('front/images/product_images/large/'.$image['image']) }}" data-standard="{{ asset('front/images/product_images/small/'.$image['image']) }}">
-                                            <img src="{{ asset('front/images/product_images/small/'.$image['image']) }}" alt="" width="60" height="60" />
-                                        </a>
-                                        @endforeach
+                                        <div class="thumbnails">
+                                            @php
+                                                $thumbnailImage = !empty($productDetails['product_image']) ? 'front/images/product_images/small/'.$productDetails['product_image'] : 'front/images/product_images/small/no-image.png';
+                                            @endphp
+                                            <a href="{{ asset($mainImage) }}" data-standard="{{ asset($thumbnailImage) }}">
+                                                <img src="{{ asset($thumbnailImage) }}" alt="item-image" width="60" height="60" />
+                                            </a>
+                                    
+                                            @foreach($productDetails['images'] as $image)
+                                                @php
+                                                    $thumbImage = !empty($image['image']) ? 'front/images/product_images/small/'.$image['image'] : 'front/images/product_images/small/no-image.png';
+                                                @endphp
+                                                <a href="{{ asset('front/images/product_images/large/'.$image['image']) }}" data-standard="{{ asset($thumbImage) }}">
+                                                    <img src="{{ asset($thumbImage) }}" alt="item-image" width="60" height="60" />
+                                                </a>
+                                            @endforeach
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                                 </div>
                           

@@ -31,7 +31,7 @@
                             background-size: cover; 
                             background-position: center; 
                             background-repeat: no-repeat;">
-                    <div class="row" style=" padding-bottom:100px;">
+                    <div class="row" style=" padding-bottom:80px;">
                         <div class="col-lg-6 text-overlay">
                             <!-- Adjust padding as needed -->
                             <h1 class="display-3 abril-fatface-regular " style="text-align: left;  padding-bottom:30px;padding-top:30px; ">
@@ -232,10 +232,33 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" style="padding-top: 80px">
+
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active" data-bs-interval="5000">
+                       <a href="{{url('sell-on-us')}}" target="_blank"> <img src="{{asset('front/img/1.png')}}" class="d-block w-100" alt="Seller"></a>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="5000">
+                        <img src="{{asset('front/img/2.png')}}" class="d-block w-100" alt="coupon">
+                      </div>
+                      <div class="carousel-item" data-bs-interval="5000">
+                        <a href="https://www.kuskop.gov.my/admin/files/med/image/portal/NEP2030-Final.pdf" target="_blank">  <img src="{{asset('front/img/3.png')}}" class="d-block w-100" alt="nep2030" ></a>
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                </div>
             </div>
-         
-    
-                          <!-- Carousel Banner Start-->
+          
+               <!-- Carousel Banner Start
                           <div class="container" style="margin-top:150px ;margin-bottom:150px">
                             <div class="col-lg-12">
                    
@@ -268,7 +291,7 @@
                 </div>
             </div>
         
-        <!-- Carousel Banner End-->
+        Carousel Banner End-->
 
 
             <!-- Banner Section End 
@@ -299,7 +322,7 @@
         </div>
         </div> 
     
- Hero End 
+<-- Hero End 
 @if(isset($fixBanners[0]['image']))
 <div class="container">
     <a href="{{ url($fixBanners[0]['link']) }}">
@@ -312,7 +335,7 @@
     <a href="{{ url($fixBanners[1]['link']) }}">
         <img class="img-fluid" title="{{ $fixBanners[1]['title'] }}" src="{{ asset('front/images/banner_images/'.$fixBanners[1]['image']) }}" alt="{{ $fixBanners[1]['alt'] }}">
     </a>
-</div>
+</div>-->
 @endif
 
  

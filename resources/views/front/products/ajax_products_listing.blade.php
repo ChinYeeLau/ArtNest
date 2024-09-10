@@ -1,5 +1,5 @@
 <?php use App\Models\Product; ?>
-<div class="row g-4 justify-content-center">
+<div class="row g-4 justify-content-start">
     @foreach($categoryProducts as $product)
     <div class="col-md-6 col-lg-6 col-xl-4">
         <!-- Product Card -->

@@ -213,7 +213,7 @@ class ProductsController extends Controller
               $meta_keywords=$categoryDetails['categoryDetails']['meta_keywords'];
               return view('front.products.listing')->with(compact('categoryDetails','categoryProducts','url','featuredProducts','fixBanners','meta_title','meta_description','meta_keywords'));
             }else{
-               abort(404);
+               return redirect()->back();
             }
    
          }
