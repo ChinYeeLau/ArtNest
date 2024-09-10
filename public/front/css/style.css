@@ -125,6 +125,11 @@
     height: 40px;
     justify-content: center;
 }
+.rounded-pill2{
+    width: 169px;
+    height: 55px;
+    justify-content: center;
+}
  .active .color-change{
     color:#fff !important;
 }
@@ -1105,10 +1110,13 @@ font-weight: 400;
             margin-bottom: 10px !important;
             color: black; 
             font-weight: 700; 
-              font-family: 'Open Sans', sans-serif;
+              font-family: 'Open Sans', sans-serif !important;
         } 
     
-      
+ h3{
+    font-family: 'Open Sans', sans-serif !important;
+
+ }
        
     }
     /*** Sell on ArtNest End ***/

@@ -76,7 +76,7 @@
                             <input type="text" name="mobile" id="user-mobile" class="form-control form-control-lg" value="{{Auth::user()->mobile}}" />
                             <p id="account-mobile"></p>
                         </div>
-                        <button class=" rounded-pill active tab-link  btn-block text-white h5 "  type="submit">Update</button>
+                        <button class=" rounded-pill2 active tab-link  btn-block text-white h5 fw-bold "  type="submit">Update</button>
                     </form>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                             <input type="password" name="confirm_password" id="confirm-password" placeholder="Confirm Password" class="form-control form-control-lg" />
                             <p id="password-confirm_password"></p>
                         </div>
-                        <button class="rounded-pill active tab-link  btn-block text-white h5" type="submit">Update</button>
+                        <button class="rounded-pill2 active tab-link  btn-block text-white h5 fw-bold"  type="submit">Update</button>
                     </form>
                 </div>
             </div>

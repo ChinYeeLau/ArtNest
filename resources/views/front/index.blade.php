@@ -126,32 +126,32 @@
                                     <div class="col-lg-12">
                                         <div class="row g-4">
                                             @foreach($bestSellers as $product)
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <?php $product_image_path='front/images/product_images/small/'.$product['product_image'];?>
-                        <div class="rounded position-relative fruite-item">
-                            <a href="{{url('product/'.$product['id'])}}" class="fruite-img">
-                                @if(!empty($product['product_image'])&&file_exists($product_image_path))
-                                <img src="{{asset($product_image_path)}}" class="img-fluid w-100 rounded-top" alt="">
-                                @else
-                                <img src="{{asset('front/images/product_images/small/no-image.png')}}" class="img-fluid w-100 rounded-top" alt="">
-                                @endif
-                            </a>
-                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                <h4 class="fs-sm fs-md-4 fs-lg-5">{{$product['product_name']}}</h4>
-                                <h6 class="fs-xs fs-md-3 fs-lg-4">{{$product['product_code']}}</h6>
-                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                    <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
-                                    @if($getDiscountPrice > 0)
-                                    <p class="text-dark fs-5 fw-bold mb-0 product-price">RM{{$product['product_price']}}</p>
-                                    <p class="text-red fs-5 fw-bold mb-0 product-discount-price" style="color:red;">RM{{$getDiscountPrice}}</p>
-                                    @else 
-                                    <p class="text-dark fs-5 fw-bold mb-0">{{$product['product_price']}}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                                <?php $product_image_path='front/images/product_images/small/'.$product['product_image'];?>
+                                                <div class="rounded position-relative fruite-item">
+                                                    <a href="{{url('product/'.$product['id'])}}" class="fruite-img">
+                                                        @if(!empty($product['product_image'])&&file_exists($product_image_path))
+                                                        <img src="{{asset($product_image_path)}}" class="img-fluid w-100 rounded-top" alt="">
+                                                        @else
+                                                        <img src="{{asset('front/images/product_images/small/no-image.png')}}" class="img-fluid w-100 rounded-top" alt="">
+                                                        @endif
+                                                    </a>
+                                                    <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                                        <h4 class="fs-sm fs-md-4 fs-lg-5">{{$product['product_name']}}</h4>
+                                                        <h6 class="fs-xs fs-md-3 fs-lg-4">{{$product['product_code']}}</h6>
+                                                        <div class="d-flex justify-content-between flex-lg-wrap">
+                                                            <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
+                                                            @if($getDiscountPrice > 0)
+                                                            <p class="red-text fs-5 fw-bold mb-0 product-price">RM{{ $getDiscountPrice }}</p>
+                                                            <p class="text-dark fs-5 fw-bold mb-0 product-discount-price" style="text-decoration: line-through;">RM{{ $product['product_price'] }}</p>
+                                                            @else 
+                                                            <p class="text-dark fs-5 fw-bold mb-0 product-price">RM{{ $product['product_price'] }}</p>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             @endforeach
                                           
                                         </div>
                                     </div>
@@ -178,10 +178,10 @@
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                         @if($getDiscountPrice > 0)
-                                                        <p class="text-dark fs-5 fw-bold mb-0 product-price">RM{{$product['product_price']}}</p>
-                                                        <p class="text-red fs-5 fw-bold mb-0 product-discount-price" style="color:red;">RM{{$getDiscountPrice}}</p>
+                                                        <p class="red-text fs-5 fw-bold mb-0 product-price">RM{{ $getDiscountPrice }}</p>
+                                                        <p class="text-dark fs-5 fw-bold mb-0 product-discount-price" style="text-decoration: line-through;">RM{{ $product['product_price'] }}</p>
                                                         @else 
-                                                        <p class="text-dark fs-5 fw-bold mb-0">{{$product['product_price']}}</p>
+                                                        <p class="text-dark fs-5 fw-bold mb-0 product-price">RM{{ $product['product_price'] }}</p>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -214,10 +214,10 @@
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                         @if($getDiscountPrice > 0)
-                                                        <p class="text-dark fs-5 fw-bold mb-0 product-price">RM{{$product['product_price']}}</p>
-                                                        <p class="text-red fs-5 fw-bold mb-0 product-discount-price" style="color:red;">RM{{$getDiscountPrice}}</p>
+                                                        <p class="red-text fs-5 fw-bold mb-0 product-price">RM{{ $getDiscountPrice }}</p>
+                                                        <p class="text-dark fs-5 fw-bold mb-0 product-discount-price" style="text-decoration: line-through;">RM{{ $product['product_price'] }}</p>
                                                         @else 
-                                                        <p class="text-dark fs-5 fw-bold mb-0">{{$product['product_price']}}</p>
+                                                        <p class="text-dark fs-5 fw-bold mb-0 product-price">RM{{ $product['product_price'] }}</p>
                                                         @endif
                                                     </div>
                                                 </div>

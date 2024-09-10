@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="{{url('admin/vendors/ti-icons/css/themify-icons.css')}}">
   <link rel="stylesheet" type="text/css" href="{{url('admin/js/select.dataTables.min.css')}}">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
   <!-- End plugin css for this page -->
   <!-- inject:css -->

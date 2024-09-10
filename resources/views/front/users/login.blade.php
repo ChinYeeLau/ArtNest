@@ -43,7 +43,7 @@
 
               <div style="padding-top:80px;" >
                   <div class="card-body p-5 text-center" >
-                      <h3 class="mb-5">Login</h3>
+                      <h3 class="mb-5 ">Login</h3>
                       <p id="login-error"></p>
 
                       <form id="loginForm" action="javascript:;" method="post">@csrf

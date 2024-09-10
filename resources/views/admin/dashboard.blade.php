@@ -4,35 +4,40 @@
     <div class="content-wrapper">
         @if(Auth::guard('admin')->user()->type == "vendor")
             <!-- Vendor View -->
-            <div class="row">
-                <div class="col-md-6 grid-margin transparent">
+            <div class="row" >
+                <div class="col-md-6  transparent">
                     <div class="row">
                         <div class="col-md-6 mb-4 stretch-card transparent">
-                            <div class="card card-light-blue">
+                            <div class="card btn-primary">
                                 <div class="card-body">
-                                    <p class="mb-4">Total Products</p>
+                                    <p class="mb-4 font-weight-bold">Total Products</p>
                                     <p class="fs-30 mb-2">{{ $productsCount }}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4 stretch-card transparent">
-                            <div class="card card-tale">
+                            <div class="card btn-primary ">
                                 <div class="card-body">
-                                    <p class="mb-4">Total Orders</p>
+                                    <p class="mb-4 font-weight-bold">Total Orders</p>
                                     <p class="fs-30 mb-2">{{ $ordersCount }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 mb-4 stretch-card transparent">
+                        <div class="col-md-12 grid-margin transparent">
+
+                        <div class="col-md-12 mb-4 stretch-card " style="padding:0px">
                             @if(Auth::guard('admin')->user()->type == "vendor")
                             <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
                             @endif                      
                           </div>
-                    </div>
+                        </div>
+            </div>
                 </div>
                 <div class="col-md-6 grid-margin transparent">
+                        <div class="card">
+                            <div class="card-body">
                     <h4 class="font-weight-bold " style="padding-bottom:10px">New Products</h4>
                 <div class="table-responsive border-top" >
                     <table  class="table table-bordered">
@@ -102,8 +107,9 @@
                 </div>
             </div>
             </div>
-            <div class="row">
-           
+        </div>
+    </div>
+            <div class="row">   
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">

@@ -48,7 +48,7 @@
                                 <div class="bottom">
                                     <form>
                                         <input type="text" id="message" name="message" placeholder="Enter message..." autocomplete="off" class="textareachat">
-                                        <button type="submit" class="send-button">Send</button>
+                                        <button type="submit" class="send-button btn-primary">Send</button>
                                     </form>
                                 </div>
                                 <!-- End Footer -->
