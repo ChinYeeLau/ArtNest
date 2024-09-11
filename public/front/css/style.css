@@ -107,9 +107,7 @@
     border-color: #000 !important;
 }
 
-.btn.border-secondary {
-    transition: 0.5s;  
-}
+
 
 /*.btn.border-secondary:hover {
     background: #000(--bs-secondary) !important;
