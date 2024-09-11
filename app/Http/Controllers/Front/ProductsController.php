@@ -786,10 +786,6 @@ if ($countWishlist > 0) {
   
       return view('front.products.wishlist')->with(compact('getWishlistItems', 'meta_title', 'meta_description', 'meta_keywords'));
   }
- 
- 
-  
- 
 
 
 

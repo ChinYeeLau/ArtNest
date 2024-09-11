@@ -136,6 +136,8 @@ Route::get('orders/invoice/download/{id}','App\Http\Controllers\Admin\OrderContr
 
 Route::namespace('App\Http\Controllers\Front')->group(function(){
      Route::get('/',[IndexController::class, 'index']);
+    
+
      //listing categories routes
  $catUrls=Category::select('url')->where('status',1)->get()->pluck('url')->toArray();
  //dd($catUrls);

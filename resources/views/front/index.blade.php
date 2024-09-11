@@ -101,9 +101,16 @@
                                 <img src="{{asset('front/images/product_images/small/no-image.png')}}" class="img-fluid w-100 rounded-top" alt="">
                                 @endif
                             </a>
-                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                <h4 class="fs-sm fs-md-4 fs-lg-5">{{$product['product_name']}}</h4>
-                                <h6 class="fs-xs fs-md-3 fs-lg-4">{{$product['product_code']}}</h6>
+
+                            <div class="p-4 border  border-top-0 rounded-bottom">
+                                <h4 class="fs-sm fs-md-4 fs-lg-5 " style="text-align: left">{{$product['product_name']}}</h4>
+                                <div style="text-align: left ;" >
+                                    <!-- Display the section name using section relationship -->
+                                   @if(isset($product->section_id))
+                                   <a style="color:#6c757d !important;">{{ $product->section->name }} </a>
+                                     @endif
+                                    </div> 
+                                <br>
                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                     <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                     @if($getDiscountPrice > 0)
@@ -136,9 +143,15 @@
                                                         <img src="{{asset('front/images/product_images/small/no-image.png')}}" class="img-fluid w-100 rounded-top" alt="">
                                                         @endif
                                                     </a>
-                                                    <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                        <h4 class="fs-sm fs-md-4 fs-lg-5">{{$product['product_name']}}</h4>
-                                                        <h6 class="fs-xs fs-md-3 fs-lg-4">{{$product['product_code']}}</h6>
+                                                    <div class="p-4 border  border-top-0 rounded-bottom">
+                                                        <h4 class="fs-sm fs-md-4 fs-lg-5 " style="text-align: left">{{$product['product_name']}}</h4>
+                                                        <div style="text-align: left ;" >
+                                                            <!-- Display the section name using section relationship -->
+                                                           @if(isset($product->section_id))
+                                                           <a style="color:#6c757d !important;">{{ $product->section->name }} </a>
+                                                             @endif
+                                                            </div> 
+                                                        <br>
                                                         <div class="d-flex justify-content-between flex-lg-wrap">
                                                             <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                             @if($getDiscountPrice > 0)
@@ -172,9 +185,15 @@
                                                     <img src="{{asset('front/images/product_images/small/no-image.png')}}" class="img-fluid w-100 rounded-top" alt="">
                                                     @endif
                                                 </a>
-                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h4 class="fs-sm fs-md-4 fs-lg-5">{{$product['product_name']}}</h4>
-                                                    <h6 class="fs-xs fs-md-3 fs-lg-4">{{$product['product_code']}}</h6>
+                                                <div class="p-4 border  border-top-0 rounded-bottom">
+                                                    <h4 class="fs-sm fs-md-4 fs-lg-5 " style="text-align: left">{{$product['product_name']}}</h4>
+                                                    <div style="text-align: left ;" >
+                                                        <!-- Display the section name using section relationship -->
+                                                       @if(isset($product->section_id))
+                                                       <a style="color:#6c757d !important;">{{ $product->section->name }} </a>
+                                                         @endif
+                                                        </div> 
+                                                        <br>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                         @if($getDiscountPrice > 0)
@@ -208,9 +227,15 @@
                                                     <img src="{{asset('front/images/product_images/small/no-image.png')}}" class="img-fluid w-100 rounded-top" alt="">
                                                     @endif
                                                 </a>
-                                                <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h4 class="fs-sm fs-md-4 fs-lg-5">{{$product['product_name']}}</h4>
-                                                    <h6 class="fs-xs fs-md-3 fs-lg-4">{{$product['product_code']}}</h6>
+                                                <div class="p-4 border border-top-0 rounded-bottom">
+                                                    <h4 class="fs-sm fs-md-4 fs-lg-5 " style="text-align: left">{{$product['product_name']}}</h4>
+                                                    <div style="text-align: left ;" >
+                                                        <!-- Display the section name using section relationship -->
+                                                       @if(isset($product->section_id))
+                                                       <a style="color:#6c757d !important;">{{ $product->section->name }} </a>
+                                                         @endif
+                                                        </div> 
+                                                    <br>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
                                                         @if($getDiscountPrice > 0)

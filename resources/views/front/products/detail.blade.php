@@ -99,7 +99,7 @@ use App\Models\Section;?>
                                 @endif
                             </span>
                                 <br><br>
-                                <h5>SKU onformation:</h5>
+                                <h5>SKU information:</h5>
                                <div>
                                 <span>Product Code:</span>
                                 <span>{{$productDetails['product_code']}}</span>

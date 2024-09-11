@@ -13,13 +13,15 @@
                 <a href="{{url('product/'.$product['id'])}}"><img src="{{ asset('front/images/product_images/small/no-image.png')}}" class="img-fluid w-100 rounded-top" alt=""></a>
                 @endif
             </div>
-            <div class="p-4 border border-secondary border-top-0 rounded-bottom" >
+            <div class="p-4 border border-top-0 rounded-bottom" >
                 <!-- Product Details -->
-                <h6>{{$product['product_code']}}</h6>
                 <h4>
-                    <a href="{{url('product/'.$product['id'])}}">{{$product['product_name']}}</a>
+                    <a href="{{url('product/'.$product['id'])}}" style="text-align: left">{{$product['product_name']}}</a>
                 </h4>
-                <p>{{$product['description']}}</p>                                           
+                @if(isset($categoryDetails['categoryDetails']['section']['name']))
+              <a style="color:#6c757d !important;">{{$categoryDetails['categoryDetails']['section']['name']}}</a>
+            @endif
+                <br><br>
                 <div class="d-flex justify-content-between flex-lg-wrap">
                     <!-- Product Prices -->
                     <?php $getDiscountPrice=Product::getDiscountPrice($product['id']);?>
