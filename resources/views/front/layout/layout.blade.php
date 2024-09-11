@@ -20,6 +20,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ url('front/img/mdi/css/materialdesignicons.min.css')}}">
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+        <link rel="shortcut icon" href="{{url('front/images/favicon.png')}}" />
+
         <!-- Libraries Stylesheet -->
         <link href="{{url('front/lib/lightbox/css/lightbox.min.css')}}" rel="stylesheet">
         <link href="{{url('front/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
