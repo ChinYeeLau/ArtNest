@@ -103,9 +103,9 @@
                                         </td>
                                         <td>
                                             @if($product['status']==1)
-                                            <a class="updateProductStatus" id="product-{{$product['id']}}" product_id="{{$product['id']}}" href="javascript:void(0)"><i style="font-size:25px"class="mdi mdi-bookmark-check" status="Active"></i></a>
+                                            <a title="Click to undisplay product" class="updateProductStatus" id="product-{{$product['id']}}" product_id="{{$product['id']}}" href="javascript:void(0)"><i style="font-size:25px"class="mdi mdi-bookmark-check" status="Active"></i></a>
                                             @else
-                                            <a class="updateProductStatus" id="product-{{$product['id']}}" product_id="{{$product['id']}}" href="javascript:void(0)"><i style="font-size:25px" class="mdi mdi-bookmark-outline"status="Inactive"></i></a>
+                                            <a title="Click to display product" class="updateProductStatus" id="product-{{$product['id']}}" product_id="{{$product['id']}}" href="javascript:void(0)"><i style="font-size:25px" class="mdi mdi-bookmark-outline"status="Inactive"></i></a>
                                             @endif
                                         </td>
                                         <td>

@@ -1218,4 +1218,7 @@ font-weight: 400;
     border: 1px solid #ccc;
 }
 
-/**/
+/*delivery*/
+.form-check-newAdd {
+    margin-right: 8px; /* Adjust the value as needed */
+}

@@ -1,9 +1,19 @@
 <h4 class="deliveryText">Add New Delivery Address</h4>
 @if (count($deliveryAddresses)>0)
 
-<p class="newAddress"><input type="checkbox" id="myCheck" class="newAddress form-check-newAdd " onclick="toggleForm()">Ship to a different Address?</p>
+<p class="newAddress">
+    <label>
+        <input type="checkbox" id="myCheck" class=" form-check-newAdd" onclick="toggleForm()">
+        Ship to a different Address?
+    </label>
+</p>
 @else
-<p class="newAddress"><input type="checkbox" id="myCheck" class="newAddress form-check-newAdd" onclick="toggleForm()">Check to add Delivery Address</p>
+<p class="newAddress">
+    <label>
+        <input type="checkbox" id="myCheck" class=" form-check-newAdd" onclick="toggleForm()">
+        Check to add Delivery Address
+    </label>
+</p>
 
 @endif
 <form id="addressAddEditForm" action="javascript:;" method="POST">@csrf    

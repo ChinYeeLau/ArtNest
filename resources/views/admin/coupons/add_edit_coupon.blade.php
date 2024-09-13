@@ -78,8 +78,8 @@
                     </div>
                     <div class="form-group">
                         <label for="amount_type"  >Amount Type</label><br>
-                        <span><input type="radio" name="amount_type"  value="Percentage"@switch($coupon['amount_type'])   @case('Percentage')   checked  @endswitch>Percentage(%)</span>
-                        <span><input type="radio" name="amount_type"  value="Fixed" @switch($coupon['amount_type'])   @case('Fixed')   checked  @endswitch>Fixed(RM)</span>
+                        <span><input type="radio" name="amount_type"  value="Percentage"@switch($coupon['amount_type'])   @case('Percentage')   checked  @endswitch style="margin-right: 5px;">Percentage (%)</span>
+                        <span><input type="radio" name="amount_type"  value="Fixed" @switch($coupon['amount_type'])   @case('Fixed')   checked  @endswitch style="margin-right: 5px;">Fixed (RM)</span>
 
                     </div>
                     <div class="form-group">
