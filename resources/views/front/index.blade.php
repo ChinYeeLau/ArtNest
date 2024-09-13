@@ -4,37 +4,17 @@
 @section('content')
 
     
-   <!-- Hero Start 
- 
-   <div class="container-fluid featurs py-5">
-    <div class="container py-5">
-        <div class="row g-4">
-              Banner Section Start-->
-             <!-- <div class="col-lg-12" style=" position: relative;">
-                  @if(isset($fixBanners[0]['image']))
-                        <div class="container-fluid col-lg-12 pad" style=" background-image: url('{{ asset('front/images/banner_images/'.$fixBanners[0]['image']) }}');  background-size: cover;background-position: center; background-repeat: no-repeat;">
-                            <div class="text-overlay col-lg-12" style="padding-top:100px;padding-bottom:100px;">  Adjust padding as needed 
-                                <h1 class="display-3" style="text-align: left; font-weight: 600; align-items:left;padding-bottom:30px;">Entrepreneurial Spirit <br>For A Brighter Future</h1>
-                                <p class="text-dark bannerdescription "  style="text-align: left;align-items:left;">
-                                    Where Malaysian designers flourish, connecting talent with opportunities, 
-                                    boosting our economy in line with National Entrepreneurship Policy (NEP) 2030 goals.
-                                </p>
-                               <a href="shop.html" class="banner-btn rounded-pill text-white ml-2" style="background-color: #f26b4e;  display:flex; align-items: center; justify-content: center; margin: auto;">SHOP NOW</a>
-                            </div>
-                        </div>
-                    @endif-->
-                
-            </div>-->
+  
             <div class="col-lg-12" style="position: relative;">
                 <div class="container-fluid col-lg-12 pad " 
                      style="background-image: url('front/images/banner_images/4839.png'); 
                             background-size: cover; 
                             background-position: center; 
                             background-repeat: no-repeat;">
-                    <div class="row" style=" padding-bottom:80px;">
+                    <div class="row" style=" padding-bottom:50px;">
                         <div class="col-lg-6 text-overlay">
                             <!-- Adjust padding as needed -->
-                            <h1 class="display-3 abril-fatface-regular " style="text-align: left;  padding-bottom:30px;padding-top:30px; ">
+                            <h1 class="display-3 abril-fatface-regular " style="text-align: left;  padding-bottom:30px;padding-top:50px; ">
                                 Entrepreneurial Spirit <br>For A Brighter Future
                             </h1>
                             <p class="text-dark bannerdescription" style="text-align: left;">
@@ -57,7 +37,7 @@
                     <div class="col-lg-12">
             <div class="tab-class text-center">
                 <div class="row g-4">
-                    <div class="col-lg-12" style="margin-top:-80px;">
+                    <div class="col-lg-12" >
                         <h1>Products</h1>
                     </div>
                     <div class="col-lg-12">

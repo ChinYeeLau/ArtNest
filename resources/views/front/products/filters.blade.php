@@ -166,6 +166,7 @@
                                     @endforeach
                                 </div>
                                 @endif
+                                <!--if need advertisement-->
                                 <div class="col-lg-12">
                                     <div class="position-relative" >
                                         @if(isset($fixBanners[1]['image']))
