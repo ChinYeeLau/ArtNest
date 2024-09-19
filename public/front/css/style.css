@@ -558,36 +558,43 @@
     color: var(--bs-white);
 }
 /*** testimonial End ***/
-
-
-/*** Single Page Start ***/
+/*** Single Page Start  ***/
 .pagination {
     display: flex;
     justify-content: center;
     padding-top: 20px;
+}
+.pagination .page-link {
+    color: #ff4500; 
+    border-color: #000; 
+    box-shadow: none; 
+}
 
+.pagination .page-item.active .page-link {
+    background-color: #ff4500; 
+    border-color: #000; 
+    box-shadow: none; /* Remove any shadow */
+    outline: none; /* Remove the focus outline */
 }
-  
-.pagination a {
-    color: var(--bs-dark);
-    padding: 10px 16px;
-    text-decoration: none;
-    transition: 0.5s;
-    border: 1px solid var(--bs-secondary);
-    margin: 0 4px;
+
+.pagination .page-link:hover {
+    background-color:white; 
+    border-color: #000; 
+    color: white; 
+    box-shadow: none; /* Remove any shadow */
+    outline: none; /* Remove the focus outline */
 }
-  
 .pagination a.active {
-    background-color: var(--bs-primary);
-    color: var(--bs-light);
-    border: 1px solid var(--bs-secondary);
+    border: none ;
+    box-shadow: none; /* Remove any shadow */
+    outline: none; /* Remove the focus outline */
 }
-  
-.pagination a:hover:not(.active) {background-color: var(--bs-primary)}
-
 .nav.nav-tabs .nav-link.active {
-    border-bottom: 2px solid var(--bs-secondary) !important;
+    border-bottom: 1px solid  #474747;
 }
+
+
+
 /*** Single Page End ***/
 
 
@@ -948,7 +955,7 @@ small{
 /**/
 .btn-primary { 
     background-image: linear-gradient(to right, #f8a239, #f26b4e);
-     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2) ;
  width: 169px;
 height: 55px;
  border-radius: 10px;
@@ -967,12 +974,13 @@ font-weight: 400;
 /* Change text color to white on hover */
 .btn-primary:hover {
     color: #fff;
+
 }
 
 /* Remove border and shadow on focus */
 .btn-primary:focus {
-    outline: none; /* Remove any default focus outline */
-    box-shadow: none; /* Remove box shadow on focus */
+    outline: none !important; /* Remove any default focus outline */
+    box-shadow: none !important; /* Remove box shadow on focus */
     border: none; /* Ensure no border is applied on focus */
     color: #fff !important;
 }

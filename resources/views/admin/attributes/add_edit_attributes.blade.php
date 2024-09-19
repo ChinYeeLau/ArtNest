@@ -75,7 +75,7 @@
                 <div class="form-group">
                   <div class="field_wrapper">
                     <div>
-                        <input type="text" name="size[]" placeholder="Size" style="width:120px;" />
+                        <input type="text" name="size[]" placeholder="Variable" style="width:120px;" />
                         <input type="text" name="sku[]" placeholder="SKU" style="width:120px;"/>
                         <input type="text" name="price[]" placeholder="Price" style="width:120px;" />
                         <input type="text" name="stock[]" placeholder="Stock" style="width:120px;"  />
@@ -89,7 +89,7 @@
                     <button type="reset" class="btn btn-light">Cancel</button>
                   </form>
                   <br><br>
-                    <h5 class="card title">Product Attributes</h5>  
+                  <h4 class="card-title">Product Attributes</h4>
                     <form method="post" action="{{url('admin/edit-attributes/'.$product['id'])}}">@csrf
                     <table id="products" class="table table-bordered">
                       <thead>
@@ -98,7 +98,7 @@
                                   ID
                               </th>
                               <th>
-                                Size
+                                Variable
                               </th>
                               <th>
                                  SKU

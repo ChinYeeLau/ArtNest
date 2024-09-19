@@ -7,6 +7,7 @@ use Auth;
 use Session;
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Order;
 use App\Models\Banner;
 use App\Models\Coupon;
@@ -207,7 +208,7 @@ class ProductsController extends Controller
             $fixBanners=Banner::where('type','Fix')->where('status',1)->get()->toArray();
    
    
-              $categoryProducts=$categoryProducts->orderBy('products.id', 'asc')->paginate(6);
+              $categoryProducts=$categoryProducts->orderBy('products.id', 'asc')->paginate(12);
               $meta_title=$categoryDetails['categoryDetails']['meta_title'];
               $meta_description=$categoryDetails['categoryDetails']['meta_description'];
               $meta_keywords=$categoryDetails['categoryDetails']['meta_keywords'];
@@ -223,23 +224,29 @@ class ProductsController extends Controller
     }
     public function vendorListing($vendorid){
       //get vendor shop detail
+
      $getVendorShop =Vendor::getVendorShop ($vendorid);
       // Get vendor details
-    $vendor = Vendor::find($vendorid);
-     //get vendor product
+      $vendor = Vendor::find($vendorid);
+
+      $admin = Admin::where('vendor_id', $vendorid)->first();
+            //get vendor product
      $vendorProducts=Product::where('vendor_id',$vendorid)->where('status',1);
-     $vendorProducts=$vendorProducts->paginate(30);
+     $vendorProducts=$vendorProducts->paginate(16);
+     
 
     //dd($vendorProducts);
-     return view('front.products.vendor_listing')->with(compact('getVendorShop','vendorProducts','vendor'));
+     return view('front.products.vendor_listing')->with(compact('getVendorShop','vendorProducts','vendor','admin'));
    }
 
    public function detail($id){
-      $productDetails = Product::with(['section','category','vendor','attributes'=>function($query){
+      $productDetails = Product::with(['admin','section','category','vendor','attributes'=>function($query){
           $query->where('stock','>',0)->where('status',1);
-      },'images'])->find($id)->toArray();
+      },'images'])->find($id);
   //dd($productDetails);
-      $categoryDetails = Category::categoryDetails($productDetails['category']['url']);
+
+      $categoryDetails = Category::categoryDetails($productDetails->category->url);
+      
       $product = Product::find($id);
       $session_id = Session::get('session_id');
       //check if user login or not
@@ -332,7 +339,7 @@ class ProductsController extends Controller
        $item->size=$data['size'];
        $item->quantity=$data['quantity'];
        $item->save();
-       return redirect()->back()->with('success_message','Product has been added in cart! <a href="/cart">View Cart</a>');
+       return redirect()->back()->with('success_message','Product added to cart!  <a href="/cart">View Cart</a>');
       }
 
     }

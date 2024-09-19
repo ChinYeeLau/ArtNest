@@ -32,7 +32,6 @@
                     </div>
                 </div>
             </div>
-     <!-- Fruits Shop Start-->
    <div class="container">
                     <div class="col-lg-12">
             <div class="tab-class text-center">

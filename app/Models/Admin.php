@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Vendor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,5 +23,5 @@ class Admin extends Authenticatable
         return $this->belongsTo('App\Models\VendorsBankDetail','vendor_id', 'vendor_id');
         
     }
-
+   
 }

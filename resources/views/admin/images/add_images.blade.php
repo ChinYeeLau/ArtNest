@@ -82,7 +82,7 @@
                     <button class="btn btn-light">Cancel</button>
                   </form>
                   <br><br>
-                    <h5 class="card title">Product Images</h5>  
+                  <h4 class="card-title">Product Images</h4>  
                     <table id="products" class="table table-bordered">
                       <thead>
                           <tr>

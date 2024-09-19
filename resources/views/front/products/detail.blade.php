@@ -23,7 +23,7 @@ use App\Models\Section;?>
                                                 $mainImage = !empty($productDetails['product_image']) ? 'front/images/product_images/large/'.$productDetails['product_image'] : 'front/images/product_images/small/no-image.png';
                                             @endphp
                                             <a href="{{ asset($mainImage) }}">
-                                                <img id="main-image" src="{{ asset($mainImage) }}" width="250" height="250" />
+                                               <img id="main-image" src="{{ asset($mainImage) }}" style="width: 100%; height: auto; max-width: 100%;width: auto; height: 400px; max-height: 100%; overflow: hidden;" />
                                             </a>
                                         </div>
                                         <div class="thumbnails">
@@ -31,6 +31,7 @@ use App\Models\Section;?>
                                                 $thumbnailImage = !empty($productDetails['product_image']) ? 'front/images/product_images/small/'.$productDetails['product_image'] : 'front/images/product_images/small/no-image.png';
                                             @endphp
                                             <a href="{{ asset($mainImage) }}" data-standard="{{ asset($thumbnailImage) }}">
+                                                
                                                 <img src="{{ asset($thumbnailImage) }}" alt="item-image" width="60" height="60" />
                                             </a>
                                     
@@ -138,18 +139,19 @@ use App\Models\Section;?>
                             </div>
                             <br>
                             <span>Sold by:</span>
-                            <div  >
+                            <div >
                                 <a href="/products/{{$productDetails['vendor']['id']?? ''}}">
-                                @if(!empty(Auth::guard('admin')->user()->image))
-                                <img style="border-radius: 50%; width:50px; height:50px;" src="{{ url('admin/images/photos/' . Auth::guard('admin')->user()->image) }}" alt="Admin/Vendor Image">
-                            @else
-                                <img style="border-radius: 50%; width:50px; height:50px;" src="{{ url('admin/images/photos/no-image.png') }}" alt="No Image">
-                            @endif
+                                    @if(!empty($productDetails['admin']->image))
+                                    <img class="user-photo" src="{{ url('admin/images/photos/' . $productDetails['admin']->image) }}" alt="Vendor Image">
+                                    @else
+                                    <img src="{{ url('admin/images/photos/no-image.png') }}" alt="No Image">
+                                @endif
                                 @if(isset($productDetails['vendor']))
                                 <span>{{$productDetails['vendor']['vendorbusinessdetails']['shop_name']}}</span>
                                 @endif
                             </a>
                             </div>
+                           
                             <br>
                               <!--  <div class="d-flex mb-4">
                                     <i class="fa fa-star text-secondary"></i>

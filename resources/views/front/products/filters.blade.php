@@ -71,7 +71,7 @@
                                         <output id="amount" name="amount" min-velue="0" max-value="500" for="rangeInput">0</output>
                                     </div>
                                 </div>-->
-                                @if(!isset($_REQUEST['search']))
+                              @if(!isset($_REQUEST['search']))
 
                                 <div class="col-lg-12">
                                     @foreach ($productFilters as $filter)
@@ -93,20 +93,28 @@
                                         @endif
                                     @endforeach
                                 </div>
-                               <!-- <?php $getSizes=ProductsFilter::getSizes($url);?>
-                                <div class="col-lg-12">
-                                    <h4 class="mb-3">Size</h4>
-                                    <form action="#" method="post">
-                                            @foreach ($getSizes as $key=>$size)
-                                            <div class="mb-2">
-                                            <input type="checkbox" class="checkbox size" name="size[]" id="size{{$key}}" value="{{$size}}">
-                                            <label for="size{{$key}}">{{$size}}
-                                            </label>
-                                        </div>
-                                            @endforeach
-                                      
-                                    </form>
-                                </div>-->
+
+                               <?php 
+                      $getSizes = ProductsFilter::getSizes($url); 
+                     $allowedSizes = ['Free Size', 'M size','S size','XL size','XXL size','M','S','XL','XXL']; // Define the sizes you want to display
+                     $filteredSizes = array_filter($getSizes, function($size) use ($allowedSizes) {
+                      return in_array($size, $allowedSizes);
+                      });
+                      ?>
+
+                  @if (!empty($filteredSizes))
+                  <div class="col-lg-12">
+                  <h4 class="mb-3">Size</h4>
+                 <form action="#" method="post">
+                  @foreach ($filteredSizes as $key => $size)
+                   <div class="mb-2">
+                    <input type="checkbox" class="checkbox size" name="size[]" id="size{{$key}}" value="{{$size}}">
+                    <label for="size{{$key}}">{{$size}}</label>
+                   </div>
+                     @endforeach
+                   </form>
+                     </div>
+                        @endif
                                 <?php $getColors=ProductsFilter::getColors($url);?>
                                 <div class="col-lg-12">
                                     <h4 class="mb-3">Color</h4>
@@ -114,7 +122,7 @@
                                             @foreach ($getColors as $key=>$color)
                                             <div class="mb-2">
                                             <input type="checkbox" class="checkbox color" name="color[]" id="color{{$key}}" value="{{$color}}">
-                                            <label for="color{{$key}}">{{$color}}
+                                            <label for="color{{$key}}">{{ ucfirst($color) }}
                                             </label>
                                         </div>
                                             @endforeach

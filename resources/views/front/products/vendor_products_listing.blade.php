@@ -7,18 +7,19 @@
     <div class="row justify-content-center  ">
         <div class="col-12 col-md-8 d-flex align-items-center flex-column flex-md-row text-center text-md-start justify-content-center">
            
-                @if($vendor)
-                    @if(!empty(Auth::guard('admin')->user()->image))
-                        <img src="{{ url('admin/images/photos/' . Auth::guard('admin')->user()->image) }}" 
-                             class="profile-img"
-                             alt="Admin Photo">
-                        <input type="hidden" name="current_vendor_image" value="{{ Auth::guard('admin')->user()->image }}">
-                    @else
-                        <img src="{{ url('admin/images/photos/no-image.png') }}" 
-                             class="profile-img"
-                             alt="No Image">
-                    @endif
-                @endif
+            @if($vendor)
+            @if(!empty($admin->image))
+                <img src="{{ url('admin/images/photos/' . $admin->image) }}" 
+                     class="profile-img"
+                     alt="Admin Photo">
+                <input type="hidden" name="current_vendor_image" value="{{ $admin->image }}">
+            @else
+                <img src="{{ url('admin/images/photos/no-image.png') }}" 
+                     class="profile-img"
+                     alt="No Image">
+            @endif
+        @endif
+              
             <div class="profile-info ms-md-4">
                 <h1>{{$getVendorShop}}</h1>
                 <p><strong>Name:</strong> {{$vendor->name}}</p>

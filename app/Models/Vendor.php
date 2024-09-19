@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\VendorsBusinessDetail;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Vendor extends Model
 {
@@ -26,4 +26,7 @@ class Vendor extends Model
         $getVendorShop=VendorsBusinessDetail::select('shop_name')->where('vendor_id',$vendorid)->first()->toArray();
         return $getVendorShop['shop_name'];
     }
+
+  
+
 }

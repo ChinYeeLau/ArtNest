@@ -13,7 +13,7 @@ class IndexController extends Controller
         $sliderBanners=Banner::where('type','Slider')->where('status',1)->get()->toArray();
         $fixBanners=Banner::where('type','Fix')->where('status',1)->get()->toArray();
         $newProducts=Product::orderby('id','Desc')->where('status',1)->with('section')->limit(8)->inRandomOrder()->get();
-        $bestSellers=Product::where('is_bestseller','Yes')->where('status',1)->inRandomOrder()->with('section')->get();
+        $bestSellers=Product::where('is_bestseller','Yes')->where('status',1)->limit(8)->inRandomOrder()->with('section')->get();
         $discountedProducts=Product::where('product_discount','>',0)->where('status',1)->limit(8)->inRandomOrder()->with('section')->get();
         $featuredProducts=Product::where('is_featured','Yes')->where('status',1)->limit(8)->inRandomOrder()->with('section')->get();
         $meta_title="E-Commerce Platform for Art Enthusiasts";

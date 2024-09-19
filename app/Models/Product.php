@@ -91,5 +91,8 @@ public static function getProductStatus($product_id){
 public static function deleteCartProduct($product_id){
  Cart::where('product_id',$product_id)->delete();
 }
+public function admin(){
+   return $this->belongsTo('App\Models\Admin','admin_id','id');
+}
 
 }
