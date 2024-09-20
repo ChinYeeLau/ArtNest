@@ -45,6 +45,20 @@
                         <label style="font-weight:500;">Order Status</label>
                         <label > {{$orderDetails['order_status']}} </label>
                         <br>
+                        @php
+                        $vendorId = Auth::guard('admin')->user()->vendor_id;
+                        $vendorTotal = 0;
+                        
+                        foreach ($orderDetails['orders_products'] as $product) {
+                            if ($product['vendor_id'] == $vendorId) { // Filter by vendor ID
+                                $vendorTotal += $product['product_price'] * $product['product_qty'];
+                            }
+                        }
+                        @endphp
+                        
+                        <label style="font-weight:500;">Total for Your Products</label>
+                        <label> RM {{$vendorTotal}} </label>
+                        <br>
                         <label style="font-weight:500;">Order Total</label>
                         <label > RM {{$orderDetails['grand_total']}} </label>
                         <br>

@@ -167,12 +167,27 @@
                                                 {{$order['email']}}
                                             </td>
                                             <td>
+                                                @if(Auth::guard('admin')->user()->vendor_id)
+                                                @php
+                                                    $vendorId = Auth::guard('admin')->user()->vendor_id;
+                                                    $vendorSubtotal = 0; // Initialize subtotal for vendor-specific products
+                                                @endphp
+                                            
+                                                {{-- Loop through the products --}}
                                                 @foreach($order['orders_products'] as $product)
-                                              {{ $product['product_code'] }} ({{ $product['product_qty'] }} )<br>
-                                              @endforeach
+                                                    @if($product['vendor_id'] == $vendorId) <!-- Filter by vendor ID -->
+                                                        {{ $product['product_code'] }} ({{ $product['product_qty'] }})<br>
+                                                        @php
+                                                            // Add product price * quantity to vendor subtotal
+                                                            $vendorSubtotal += $product['product_price'] * $product['product_qty'];
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                                @endif
                                             </td>
                                             <td>
-                                                {{$order['grand_total']}}
+                                                
+                                                {{$vendorSubtotal}}
                                             </td>
                                             <td>
                                                 {{$order['order_status']}}
@@ -181,16 +196,18 @@
                                                 {{$order['payment_method']}}
                                             </td>
                                             <td>
+                                               
                                                 <a title="View Order Details" href="{{url('admin/orders/'.$order['id'])}}"><i style="font-size:25px" class="mdi mdi-file-document"></i></a>
                                                 <a target="_blank" title="View Order Invoice" href="{{url('admin/orders/invoice/'.$order['id'])}}"><i style="font-size:25px" class="mdi mdi-printer"></i></a>
                                                 <a target="_blank" title="Print PDF Invoice" href="{{url('admin/orders/invoice/pdf/'.$order['id'])}}"><i style="font-size:25px" class="mdi mdi-file-pdf"></i></a>
+                                               
                                             </td>
                                           
                                            
                                         </tr>
                                         @endif
                                       @endforeach
-                                  
+                              
                                     </tbody>
                                 </table>
                             </div>

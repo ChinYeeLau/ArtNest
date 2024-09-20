@@ -56,7 +56,7 @@ class AdminController extends Controller
    $admin = Auth::guard('admin')->user();
    $adminId = $admin->id;
    $adminType = $admin->type;
-   $vendorId = $admin->vendor_id;
+   $vendorId = Auth::guard('admin')->user()->vendor_id;
 
    // Fetch monthly totals based on product price and quantity where admin_id matches
    $monthlyTotals = DB::table('orders_products')
@@ -75,29 +75,29 @@ class AdminController extends Controller
    foreach ($monthlyTotals as $month => $total) {
        $yValues[$month - 1] = $total; // Adjust month index for zero-based array
    }
-
-   // Fetch recent orders based on vendor ID for vendor type
-   if ($adminType == "vendor") {
-       $orders = Order::whereHas('orders_products', function($query) use ($vendorId) {
-           $query->where('vendor_id', $vendorId);
-       })
-       ->orderBy('created_at', 'desc')
-       ->get();
-   } else {
-       // Fetch all orders for other admin types
-       $orders = Order::with('orders_products')
-           ->orderBy('created_at', 'desc')
-           ->get();
-   }
-   // Fetch products based on vendor ID for vendor type
-   $products = Product::with(['section' => function ($query) {
+// Fetch recent orders based on vendor ID for vendor type
+if ($adminType == "vendor") {
+    $orders = Order::whereHas('orders_products', function($query) use ($vendorId) {
+        $query->where('vendor_id', $vendorId);
+    })
+    ->orderBy('created_at', 'desc')
+    ->get();
+} else {
+    // Fetch all orders for other admin types
+    $orders = Order::with('orders_products')
+        ->orderBy('created_at', 'desc')
+        ->get();
+}
+  // Fetch products based on vendor ID for vendor type
+$products = Product::with(['section' => function ($query) {
     $query->select('id', 'name');
 }, 'category' => function ($query) {
     $query->select('id', 'category_name');
 }]);
-
 if ($adminType == "vendor") {
-    $products = $products->where('vendor_id', $vendorId) ->limit(2)->orderBy('created_at', 'desc');
+    $products = $products->where('vendor_id', $vendorId)
+        ->orderBy('created_at', 'desc') 
+        ->limit(2); 
 }
 
 $products = $products->get();
