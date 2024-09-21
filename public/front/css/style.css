@@ -984,7 +984,40 @@ font-weight: 400;
     border: none; /* Ensure no border is applied on focus */
     color: #fff !important;
 }
+.btn4 { 
+    background-image: linear-gradient(to right, #f8a239, #f26b4e);
+     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2) ;
+     width: 220px;
+     height: 50px;
+     justify-content: center;
+ border-radius: 10px;
+ -webkit-text-stroke: #fff ;
+ -webkit-text-stroke-width: 1px;
+ display:flex;
+ align-items: center;
+ margin: auto;
+ border:none;
+ background-color:none;
+ letter-spacing: 2px;
+ font-weight: 400;
+} 
 
+.btn5 { 
+    background-image: linear-gradient(to right, #f8a239, #f26b4e);
+     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2) ;  
+     justify-content: center;
+ border-radius: 10px;
+ -webkit-text-stroke: #fff ;
+ -webkit-text-stroke-width: 1px;
+ display:flex;
+ align-items: center;
+ justify-content: center;
+ margin: auto;
+ border:none;
+ background-color:none;
+ letter-spacing: 2px;
+font-weight: 400;
+} 
 
 .btn3{
     width: 198px;

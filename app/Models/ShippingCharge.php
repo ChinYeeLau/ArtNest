@@ -11,9 +11,15 @@ class ShippingCharge extends Model
 
     public static function getShippingCharges($total_weight, $state)
     {
-
         $shippingDetail = self::where('state', $state)->first();
-        $shippingDetail->toArray();
+    
+        if (!$shippingDetail) {
+            // No shipping detail found for the state
+            return null; // Or a default shipping charge
+        }
+    
+        $shippingDetailArray = $shippingDetail->toArray();
+    
         $rate_key = match(true) {
             $total_weight <= 500 => '0_500g',
             $total_weight <= 1000 => '501_1000g',
@@ -22,12 +28,15 @@ class ShippingCharge extends Model
             $total_weight > 5000 => 'above_5000g',
             default => null
         };
-
+    
         $rate = 0;
-        if($rate_key){
-            $rate = $shippingDetail[$rate_key];
+    
+        if ($rate_key) {
+            $rate = $shippingDetailArray[$rate_key] ?? 0; // Default to 0 if key not found
         }
-
+    
+        return $rate;
+    }
         // if ($total_weight > 0) {
         //     if ($total_weight > 0 && $total_weight <= 500) {
         //         $rate = $shippingDetails['0_500g'];
@@ -43,6 +52,5 @@ class ShippingCharge extends Model
         // } else {
         //     $rate = 0;
         // }
-        return $rate;
-    }
+   
 }

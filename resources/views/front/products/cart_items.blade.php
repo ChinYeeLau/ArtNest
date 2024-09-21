@@ -83,7 +83,7 @@
 <div class="row g-4 justify-content-end">
     <div class="col-8"></div>
     <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
-        <div class="bg-light rounded " style="padding-bottom: 40px">
+        <div class="bg-light rounded " style="padding-bottom: 8px">
             <div class="p-4">
                 <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
                 <div class="d-flex justify-content-between mb-4">
@@ -107,7 +107,7 @@
                 <h5 class="mb-0 ps-4 me-4">Total</h5>
                 <p class="mb-0 pe-4 grand_total">RM {{$total_price-Session::get('couponAmount')}}</p>
             </div class="py-3 " >
-          <a href="{{url('/checkout')}}" class=" active tab-link px-4 py-3 mb-4 ms-4 text-white fw-bold fs-6" role="button">Proceed Checkout</a>
+          <a href="{{url('/checkout')}}" class=" btn4 px-4 py-3 mb-4 ms-4 text-white text-nowrap fs-6" role="button">Proceed Checkout</a>
         </div>
     </div>
 </div>
