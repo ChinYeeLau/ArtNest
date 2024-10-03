@@ -30,7 +30,7 @@
                     <h4 class="text-black mb-3">Shop Info</h4>
                     <a class="btn-link  " href="{{url('aboutus')}}">About Us</a>
                     <a class="btn-link  " href="{{url('sell-on-us')}}">Sell On Us</a>
-                    <a class="btn-link" href="{{url('faq')}}">FAQs & Help</a>
+                    <a class="btn-link" href="javascript:void(0);">FAQs & Help</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
