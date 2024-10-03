@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    @forelse($getWishlistItems as $item)
+    @if(count($getWishlistItems) > 0)
         <table class="table">
             <thead>
                 <tr>
@@ -8,6 +8,7 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($getWishlistItems as $item)
                 <tr>
                     <th scope="row">
                         <a href="{{ url('product/'.$item['product_id']) }}">
@@ -23,9 +24,10 @@
                         </button>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
-    @empty
-        <h5 style="text-align: center;color:#d9d9d9">Your Wishlist is Empty.</h5>
-    @endforelse
+    @else
+        <h5 style="text-align: center; color:#d9d9d9">Your Wishlist is Empty.</h5>
+    @endif
 </div>
