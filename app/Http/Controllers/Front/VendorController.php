@@ -20,78 +20,54 @@ class VendorController extends Controller
    public function register(){
     return view('front.vendors.register');
    }
-   public function vendorRegister(Request $request){
-      if($request->isMethod('post')){
-          // Retrieve form data
-          $data = $request->all();
-          //echo "<pre>";print_r($data);die;
-         //validate vendor
-         $rules=[
-            "name"=>"required",
-              "email"=>"required|email|unique:admins|unique:vendors",
-              "mobile"=>"required|min:10|numeric|unique:admins|unique:vendors",
-              "accept"=>"required"
-         ];
-         $customMessages=[
-               "name.required"=>"Name is required",
-               "email.required"=>"Email is required",
-               "email.unique"=>"Email  already exists",
-               "mobile.required"=>"Mobile is required",
-               "mobile.unique"=>"Mobile already exists",
-               "mobile.numeric"=>"Valid mobile number is required",
-               "accept.required"=>"Please accept T&C"
-
-         ];
-          $validator=Validator::make($data,$rules,$customMessages);
-          if($validator->fails()){
-            return Redirect::back()->withErrors($validator);
-          }
-          DB::beginTransaction();
-         //create vendor acc
-         //insert vendor detail in vendors table
-         $vendor= new Vendor;
-         $vendor->name=$data['name'];
-         $vendor->mobile=$data['mobile'];
-         $vendor->email=$data['email'];
-         $vendor->status=0;
-         //default time zone to malaysia
-         date_default_timezone_set("Asia/Kuala_Lumpur");
-         $vendor->created_at=date("Y-m-d H:i:s");
-         $vendor->updated_at=date("Y-m-d H:i:s");
-         $vendor->save();
-
-         $vendor_id=DB::getPdo()->lastInsertId();
-         //insert the vendor detail in admins table
-         $admin= new Admin;
-         $admin->type='vendor';
-         $admin->vendor_id=$vendor_id;
-         $admin->name=$data['name'];
-         $admin->mobile=$data['mobile'];
-         $admin->email=$data['email'];
-         $admin->password=bcrypt($data['password']);
-         $admin->status=0;
-         date_default_timezone_set("Asia/Kuala_Lumpur");
-         $admin->created_at=date("Y-m-d H:i:s");
-         $admin->updated_at=date("Y-m-d H:i:s");
-         $admin->save();
-      //send confirmation email
-        $email=$data['email'];
-        $messageData=[
-       'email'=>$data['email'],
-       'name'=>$data['name'],
-       'code'=>base64_encode($data['email']),
-      ];
-       Mail::send('emails.vendor_confirmation',$messageData,function($message)use($email){
-       $message->to($email)->subject('Confirm Your Vendor Account');
-       });
-          DB::commit();
-
+   
+  public function vendorRegister(Request $request) {
+    if($request->ajax()) {
+        $data = $request->all();
         
-        //Redirect back vendor with success message
-        $message="Thanks fo registering as Vendor.Please confirm your email to activate your account.";
-        return redirect()->back()->with ('success_message',$message);
-      }
-  }
+        $validator = Validator::make($data, [
+            'name' => 'required|string|max:100',
+            'mobile' => 'required|string|digits:10|unique:vendors',
+            'email' => 'required|email|max:150|unique:vendors|unique:admins',
+            'password' => 'required|min:6',
+            'accept' => 'required'
+        ], [
+            'accept.required' => 'Please accept our Terms & Conditions'
+        ]);
+
+        if ($validator->passes()) {
+            // Register the Vendor
+            $vendor = new Vendor;
+            $vendor->name = $data['name'];
+            $vendor->mobile = $data['mobile'];
+            $vendor->email = $data['email'];
+            $vendor->status = 0; // Inactive until email confirmation
+            $vendor->save();
+
+            // Create Admin entry for the vendor
+            $admin = new Admin;
+            $admin->type = 'vendor';
+            $admin->vendor_id = $vendor->id;
+            $admin->name = $data['name'];
+            $admin->mobile = $data['mobile'];
+            $admin->email = $data['email'];
+            $admin->password = bcrypt($data['password']);
+            $admin->status = 0;
+            $admin->save();
+
+            // Send Confirmation Email
+            $email = $data['email'];
+            $messageData = ['name' => $data['name'], 'email' => $data['email'], 'code' => base64_encode($data['email'])];
+            Mail::send('emails.vendor_confirmation', $messageData, function($message) use ($email) {
+                $message->to($email)->subject('Confirm Your Vendor Account');
+            });
+
+            return response()->json(['type' => 'success', 'message' => 'Please confirm your email to activate your account!']);
+        } else {
+            return response()->json(['type' => 'error', 'errors' => $validator->messages()]);
+        }
+    }
+}
   public function confirmVendor($email){
    // Decode Vendor Email
    $email = base64_decode($email);

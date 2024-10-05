@@ -16,6 +16,7 @@
       <!-- Right Form Section (50%) -->
       <div class="col-12 col-md-5 d-flex justify-content-center ">
           <div class="w-75 " > <!-- Adjust width as needed -->
+            <div style="padding-top:80px;" >
         @if(Session::has('success_message'))
               <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Success</strong> {{Session::get('success_message')}}
@@ -41,7 +42,7 @@
               </div>
               @endif
    
-              <div style="padding-top:80px;" >
+            
                 <div class="card-body p-5 text-center" >
               <h3 class="mb-5">Login</h3>
               <form  action="{{url('admin/login')}}" method="post" >@csrf

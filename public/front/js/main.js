@@ -271,6 +271,42 @@ $(document).ready(function() {
             }
         });
     });
+    //vendor
+    $("#vendorForm").submit(function(e){
+        e.preventDefault(); // Prevent the default form submission
+        
+        var formdata = $(this).serialize();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "/vendor/register", // Your vendor registration URL
+            type: "POST",
+            data: formdata,
+            success: function(resp) {
+                if (resp.type == "error") {
+                    $.each(resp.errors, function(i, error) {
+                        $("#register-" + i).attr('style', 'color:red');
+                        $("#register-" + i).html(error);
+                        setTimeout(function() {
+                            $("#register-" + i).css({
+                                'display': 'none'
+                            });
+                        }, 3000);
+                    });
+                } else if (resp.type == "success") {
+                    $("#register-success").attr('style', 'color:green');
+                    $("#register-success").html(resp.message).fadeIn();
+                    setTimeout(function(){
+                        location.reload();
+                    }, 5000); // Refresh after 5 seconds
+                }
+            },
+            error: function() {
+                alert("Error occurred while processing your request.");
+            }
+        });
+    });
     //accountform
     $("#accountForm").submit(function(){
     
