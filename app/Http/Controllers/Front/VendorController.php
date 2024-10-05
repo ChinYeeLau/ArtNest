@@ -20,7 +20,7 @@ class VendorController extends Controller
    public function register(){
     return view('front.vendors.register');
    }
-   
+
   public function vendorRegister(Request $request) {
     if($request->ajax()) {
         $data = $request->all();
@@ -36,6 +36,8 @@ class VendorController extends Controller
         ]);
 
         if ($validator->passes()) {
+            DB::beginTransaction();
+
             // Register the Vendor
             $vendor = new Vendor;
             $vendor->name = $data['name'];
@@ -61,6 +63,9 @@ class VendorController extends Controller
             Mail::send('emails.vendor_confirmation', $messageData, function($message) use ($email) {
                 $message->to($email)->subject('Confirm Your Vendor Account');
             });
+            DB::commit();
+
+
 
             return response()->json(['type' => 'success', 'message' => 'Please confirm your email to activate your account!']);
         } else {
