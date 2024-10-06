@@ -144,7 +144,7 @@ use App\Models\Section;?>
                                     @if(!empty($productDetails['admin']->image))
                                     <img class="user-photo" src="{{ url('admin/images/photos/' . $productDetails['admin']->image) }}" alt="Vendor Image">
                                     @else
-                                    <img src="{{ url('admin/images/photos/no-image.png') }}" alt="No Image">
+                                    <img class="user-photo" src="{{ url('admin/images/photos/no-image.png') }}" alt="No Image">
                                 @endif
                                 @if(isset($productDetails['vendor']))
                                 <span>{{$productDetails['vendor']['vendorbusinessdetails']['shop_name']}}</span>
