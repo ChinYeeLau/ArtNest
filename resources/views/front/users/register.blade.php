@@ -72,7 +72,7 @@
                     <div class="form-check d-flex justify-content-start ">
                         <input class="form-check-input" type="checkbox"  id="accept" name="accept">
                         <label class="form-check-label" for="accept">I've read and accept the
-                             <a href="terms-and-conditions.html" class="red-text">term & condition</a>
+                             <a href="javascript:void(0);" class="red-text">term & condition</a>
                             </label>
                             </div>
                             <p id="register-accept"></p>
